@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "paymentrails", "paymentrails\paymentrails.csproj", "{97DAB652-EB26-4139-BEC8-B725B19EDE66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "paymentrailsTest", "paymentrailsTest\paymentrailsTest.csproj", "{CC127BE7-2B09-4772-A46B-B26433AAFC45}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{97DAB652-EB26-4139-BEC8-B725B19EDE66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97DAB652-EB26-4139-BEC8-B725B19EDE66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97DAB652-EB26-4139-BEC8-B725B19EDE66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97DAB652-EB26-4139-BEC8-B725B19EDE66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC127BE7-2B09-4772-A46B-B26433AAFC45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC127BE7-2B09-4772-A46B-B26433AAFC45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC127BE7-2B09-4772-A46B-B26433AAFC45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC127BE7-2B09-4772-A46B-B26433AAFC45}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
