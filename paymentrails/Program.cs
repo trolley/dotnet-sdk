@@ -14,11 +14,16 @@ namespace paymentrails
 
         static void Main(string[] args)
         {
+            PaymentRails_Configuration.setApiBase("http://api.local.dev:3000");
+            PaymentRails_Configuration.apiKey = "pk_test_91XPUY8D8GAGA";
 
+            var val = PaymentRails_Balances.get("");
+            Console.WriteLine(val);
+            Console.Read();
             //recipient();
             //payoutMethods();
-        //    payment();
-       //     batches();
+            //    payment();
+            //     batches();
             //balances();
 
         }
@@ -70,11 +75,11 @@ namespace paymentrails
         static void balances()
         {
             PaymentRails_Configuration.apiKey = "pk_live_91XNJFBD19ZQ6";
-            String response = PaymentRails_Balances.get();
+            //String response = PaymentRails_Balances.get();
             //String response = PaymentRails_Balances.get("paymentrails");
             //String response = PaymentRails_Balances.get("paypal");
-            Console.WriteLine(response);
-            Console.ReadLine();
+            //Console.WriteLine(response);
+            //Console.ReadLine();
         }
     }
 }

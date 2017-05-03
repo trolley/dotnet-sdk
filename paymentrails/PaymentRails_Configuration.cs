@@ -14,7 +14,7 @@ namespace paymentrails
             set;
         }
 
-        public static string apiBase = "http://api.railz.io";
+        private static string apiBase = "http://api.railz.io";
         /// <summary>
         /// Gets the API Base
         /// </summary>

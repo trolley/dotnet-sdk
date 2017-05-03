@@ -17,7 +17,7 @@ namespace paymentrails
         public PaymentRails_Client(String apiKey)
         {
             this.apiKey = apiKey;
-            this.apiBase = PaymentRails_Configuration.apiBase;
+            this.apiBase = PaymentRails_Configuration.getApiBase();
         }
         /// <summary>
         /// Factory method to create an instance

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using paymentrails;
 using paymentrails.Exceptions;
@@ -8,13 +9,16 @@ namespace paymentrailsTest
     [TestClass]
     public class PaymentRails_BalancesTest
     {
+        public static string apiKey = "pk_test_91XPUY8D8GAGA";
+        public paymentrails.Types.Balance sampleBalance = new paymentrails.Types.Balance(true, 10000, "USD", "paymentrails", null);
         [TestMethod]
         public void TestRetrieveBalances()
         {
-            PaymentRails_Configuration.apiKey = "pk_live_91XNJFBD19ZQ6";
-            String response = PaymentRails_Balances.get();
-            String message = response.Substring(6, 4);
-            Assert.AreEqual("true", message);
+            PaymentRails_Configuration.apiKey = apiKey;
+            PaymentRails_Configuration.setApiBase("http://api.local.dev:3000");
+            Dictionary<String, paymentrails.Types.Balance> response = PaymentRails_Balances.get();
+            Assert.IsTrue(response.ContainsKey("USD"));
+            Assert.AreEqual(this.sampleBalance, response["USD"]);
         }
 
         [TestMethod]
@@ -22,7 +26,7 @@ namespace paymentrailsTest
         public void TestRetrieveBalancesInvalidAPIKey()
         {
             PaymentRails_Configuration.apiKey = "wdwd";
-            String response = PaymentRails_Balances.get();
+            var response = PaymentRails_Balances.get();
         }
 
         [TestMethod]
@@ -30,19 +34,19 @@ namespace paymentrailsTest
         public void TestRetrievePaypal()
         {
             PaymentRails_Configuration.apiKey = "pk_live_91XNJFBD19ZQ6";
-            String response = PaymentRails_Balances.get("paypal");
-            String message = response.Substring(6, 4);
-            Assert.AreEqual("true", message);
+            var response = PaymentRails_Balances.get("paypal");
+            //String message = response.Substring(6, 4);
+            //Assert.AreEqual("true", message);
         }
 
         [TestMethod]
         [Ignore]
         public void TestRetrievePaymentrails()
         {
-            PaymentRails_Configuration.apiKey = "pk_live_91XNJFBD19ZQ6";
-            String response = PaymentRails_Balances.get("paymentrails");
-            String message = response.Substring(6, 4);
-            Assert.AreEqual("true", message);
+            //PaymentRails_Configuration.apiKey = "pk_live_91XNJFBD19ZQ6";
+            //String response = PaymentRails_Balances.get("paymentrails");
+            //String message = response.Substring(6, 4);
+            //Assert.AreEqual("true", message);
         }
     }
 }
