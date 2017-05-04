@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace paymentrails.Types
 {
-    public class Payment
+    public interface IPaymentRailsMappable
     {
-        
+        String ToJson();
     }
 }

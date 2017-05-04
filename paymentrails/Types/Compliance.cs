@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace paymentrails.Types
 {
-    public struct Compliance
+    public class Compliance
     {
         private string status;
         private string active;

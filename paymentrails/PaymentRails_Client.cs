@@ -61,7 +61,7 @@ namespace paymentrails
         /// <param name="endPoint"></param>
         /// <param name="stringBody"></param>
         /// <returns>The Response</returns>
-        public String post(String endPoint, String stringBody)
+        public String post(String endPoint, String stringBody) // change body to accept IJsonMappable objects
         {
             HttpContent body = convertBody(stringBody);
             string result = "";
@@ -88,7 +88,7 @@ namespace paymentrails
         /// <param name="endPoint"></param>
         /// <param name="stringBody"></param>
         /// <returns>The response</returns>
-        public String patch(String endPoint, String stringBody)
+        public String patch(String endPoint, String stringBody) // change body to accept IJsonMappable objects
         {
             HttpContent body = convertBody(stringBody);
             string result = "";

@@ -2,7 +2,7 @@
 
 namespace paymentrails.Types
 {
-    public struct Balance
+    public class Balance
     {
         private Boolean primary;
         private Double amount;

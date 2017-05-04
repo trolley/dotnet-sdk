@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace paymentrails.Types
 {
-    struct Recipient
+    public class Recipient
     {
         private string id;
         private string referenceId;

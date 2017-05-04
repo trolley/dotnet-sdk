@@ -1,4 +1,5 @@
 ﻿using System;
+using paymentrails.Types;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,12 +14,13 @@ namespace paymentrails
         /// </summary>
         /// <param name="recipient_id"></param>
         /// <returns>The response</returns>
-        public static String get(String recipient_id)
+        public static Payout get(String recipient_id)
         {
             String endPoint = "/v1/recipients/" + recipient_id + "/payout-methods";
             PaymentRails_Client client = PaymentRails_Client.create();
             String response = client.get(endPoint);
-            return response;
+            Types.Payout payout = JsonHelpers.PayoutHelper.JsonToPayout(response);
+            return payout;
         }
         /// <summary>
         /// Creates a payout method based on the recipient id and body
@@ -26,11 +28,11 @@ namespace paymentrails
         /// <param name="recipient_id"></param>
         /// <param name="body"></param>
         /// <returns>The response</returns>
-        public static String post(String recipient_id,String body)
+        public static String post(String recipient_id, Payout payout)
         {
             String endPoint = "/v1/recipients/" + recipient_id +"/payout-methods";
             PaymentRails_Client client = PaymentRails_Client.create();
-            String response = client.post(endPoint, body);
+            String response = client.post(endPoint, payout.ToJson()); // will change this method to use IPaymentRailsMappable
             return response;
         }
         /// <summary>
@@ -39,11 +41,11 @@ namespace paymentrails
         /// <param name="recipient_id"></param>
         /// <param name="body"></param>
         /// <returns>The response</returns>
-        public static String patch(String recipient_id, String body)
+        public static String patch(String recipient_id, Payout payout)
         {
             String endPoint = "/v1/recipients/" + recipient_id + "/payout-methods";
             PaymentRails_Client client = PaymentRails_Client.create();
-            String response = client.patch(endPoint, body);
+            String response = client.patch(endPoint, payout.ToJson());
             return response;
         }
 

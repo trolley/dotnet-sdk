@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Exceptions\InvalidStatusCodeException.cs" />
     <Compile Include="JsonHelpers\BalanceHelper.cs" />
+    <Compile Include="JsonHelpers\AccountHelper.cs" />
     <Compile Include="JsonHelpers\PayoutHelper.cs" />
     <Compile Include="PaymentRails_Configuration.cs" />
     <Compile Include="PaymentRails_PayoutMethods.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Types\Balance.cs" />
     <Compile Include="Types\BankAccount.cs" />
     <Compile Include="Types\Compliance.cs" />
+    <Compile Include="Types\IPaymentRailMappable.cs" />
     <Compile Include="Types\Payment.cs" />
     <Compile Include="Types\Payout.cs" />
     <Compile Include="Types\PaypalAccount.cs" />

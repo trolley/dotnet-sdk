@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace paymentrails.Types
 {
-    public struct Address
+    public class Address
     {
         private string street1;
         private string street2;
