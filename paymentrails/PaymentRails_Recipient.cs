@@ -8,6 +8,10 @@ namespace paymentrails
 {
     public class PaymentRails_Recipient
     {
+        public static List<Types.Recipient> get()
+        {
+            return null;
+        }
         /// <summary>
         /// Retrieves a recipient based on the recipient id given 
         /// </summary>
@@ -19,6 +23,7 @@ namespace paymentrails
             String endPoint = "/v1/recipients/" + recipient_id + "/" + term;
             PaymentRails_Client client = PaymentRails_Client.create();
             String response = client.get(endPoint);
+            Types.Recipient recipient = JsonHelpers.RecipientHelper.JsonToRecipient(response);
             return response;
         }
         /// <summary>

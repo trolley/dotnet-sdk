@@ -16,6 +16,7 @@ namespace paymentrails.Types
         private string country;
         private string region;
 
+        #region properties
         public string Street1
         {
             get
@@ -106,6 +107,7 @@ namespace paymentrails.Types
                 region = value;
             }
         }
+        #endregion properties
 
         public Address(string street1, string street2, string city, string postalCode, string phone, string country, string region)
         {
@@ -116,6 +118,11 @@ namespace paymentrails.Types
             this.phone = phone;
             this.country = country;
             this.region = region;
+        }
+
+        public Address()
+        {
+
         }
     }
 }

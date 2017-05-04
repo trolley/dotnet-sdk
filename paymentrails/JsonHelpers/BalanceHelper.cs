@@ -4,7 +4,7 @@ using System.Web.Script.Serialization;
 
 namespace paymentrails.JsonHelpers
 {
-    public class BalanceHelper
+    public class BalanceHelper : JsonHelper
     {
         public static Dictionary<String, Types.Balance> JsonToBalanceDictionary(String jsonString)
         {
@@ -22,18 +22,6 @@ namespace paymentrails.JsonHelpers
                 }
             }
             return balances;
-        }
-
-        protected struct JsonBalancesHelper
-        {
-            public Boolean ok { get; set; }
-            public Dictionary<String, Types.Balance> balances { get; set; }
-
-            public JsonBalancesHelper(bool ok, Dictionary<string, Types.Balance> balances) : this()
-            {
-                this.ok = ok;
-                this.balances = balances;
-            }
         }
     }
     

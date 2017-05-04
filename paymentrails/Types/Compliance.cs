@@ -42,5 +42,10 @@ namespace paymentrails.Types
             this.status = status;
             this.active = active;
         }
+
+        public Compliance()
+        {
+
+        }
     }
 }

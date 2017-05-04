@@ -25,6 +25,7 @@ namespace paymentrails.Types
         private Payout payout;
         private Address address;
 
+        #region Properties
         public string Id
         {
             get
@@ -219,6 +220,7 @@ namespace paymentrails.Types
                 address = value;
             }
         }
+        #endregion
 
         public Recipient(string id, string referenceId, string email, string name, string firstName, string lastName, string type, string status, string timeZone, string language, string dob, string gravatarUrl, Compliance compliance, Payout payout, Address address)
         {
@@ -237,6 +239,10 @@ namespace paymentrails.Types
             this.compliance = compliance;
             this.payout = payout;
             this.address = address;
+        }
+
+        public Recipient()
+        {
         }
     }
 }
