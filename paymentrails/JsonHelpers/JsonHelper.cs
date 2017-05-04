@@ -12,7 +12,35 @@ namespace paymentrails.JsonHelpers
         #region Helper to type Mapping functions
         protected static Payout PayoutJsonHelperToPayout(PayoutJsonHelper helper)
         {
-            return new Types.Payout(helper.AutoSwitch.Limit, helper.AutoSwitch.Active, helper.Holdup.Limit, helper.Holdup.Active, helper.Method, helper.Primary.Currency.Currency.Code, helper.Accounts.Bank, helper.Accounts.Paypal);
+            float autoswitchLimit = 0, holdupLimit = 0;
+            bool autoswitchActive = false, holdupActive = false;
+            string currency = null;
+            BankAccount bank = null;
+            PaypalAccount paypal = null;
+            if(helper.AutoSwitch == null && helper.Holdup == null)
+            {
+                return null;
+            }
+            if(helper.AutoSwitch != null)
+            {
+                autoswitchLimit = helper.AutoSwitch.Limit;
+                autoswitchActive = helper.AutoSwitch.Active;
+            }
+            if (helper.Holdup != null)
+            {
+                holdupLimit = helper.Holdup.Limit;
+                holdupActive = helper.Holdup.Active;
+            }
+            if (helper.Primary != null)
+            {
+                currency = helper.Primary.Currency.Currency.Code;
+            }
+            if (helper.Accounts != null)
+            {
+                bank = helper.Accounts.Bank;
+                paypal = helper.Accounts.Paypal;
+            }
+            return new Types.Payout(autoswitchLimit, autoswitchActive, holdupLimit, holdupActive, helper.Method, currency, bank, paypal);
         }
 
         protected static Recipient RecipientJsonHelperToRecipient(RecipientJsonHelper helper)
@@ -370,7 +398,7 @@ namespace paymentrails.JsonHelpers
         }
         #endregion
         #region Payout classes
-        protected struct PayoutJsonHelper
+        protected class PayoutJsonHelper
         {
             private bool ok;
             private LimitActiveHelper autoSwitch;
@@ -466,6 +494,11 @@ namespace paymentrails.JsonHelpers
                 this.method = method;
                 this.accounts = accounts;
             }
+
+            public PayoutJsonHelper()
+            {
+
+            }
         }
 
         protected class AccountsHelper
@@ -511,7 +544,7 @@ namespace paymentrails.JsonHelpers
             }
         }
 
-        protected struct PrimaryHelper
+        protected class PrimaryHelper
         {
             string method;
             private OuterCurrencyHelper currency;
@@ -547,9 +580,14 @@ namespace paymentrails.JsonHelpers
                 this.method = method;
                 this.currency = currency;
             }
+
+            public PrimaryHelper()
+            {
+
+            }
         }
 
-        protected struct OuterCurrencyHelper
+        protected class OuterCurrencyHelper
         {
             private InnerCurrencyHelper currency;
 
@@ -570,9 +608,14 @@ namespace paymentrails.JsonHelpers
                     currency = value;
                 }
             }
+
+            public OuterCurrencyHelper()
+            {
+
+            }
         }
 
-        protected struct InnerCurrencyHelper
+        protected class InnerCurrencyHelper
         {
             private string code;
             private string name;
@@ -582,6 +625,12 @@ namespace paymentrails.JsonHelpers
                 this.code = code;
                 this.name = name;
             }
+
+            public InnerCurrencyHelper()
+            {
+
+            }
+
 
             public string Code
             {
@@ -610,7 +659,7 @@ namespace paymentrails.JsonHelpers
             }
         }
 
-        protected struct LimitActiveHelper
+        protected class LimitActiveHelper
         {
             private float limit;
             private bool active;
@@ -645,6 +694,11 @@ namespace paymentrails.JsonHelpers
             {
                 this.limit = limit;
                 this.active = active;
+            }
+
+            public LimitActiveHelper()
+            {
+
             }
         }
         #endregion

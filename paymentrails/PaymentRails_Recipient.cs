@@ -8,9 +8,17 @@ namespace paymentrails
 {
     public class PaymentRails_Recipient
     {
+        /// <summary>
+        /// Retrieves a list of recipients from the API
+        /// </summary>
+        /// <returns>A list containing all recipient objects</returns>
         public static List<Types.Recipient> get()
         {
-            return null;
+            String endpoint = "/v1/recipients";
+            PaymentRails_Client client = PaymentRails_Client.create();
+            String jsonResponse = client.get(endpoint);
+            List<Types.Recipient> recipients = JsonHelpers.RecipientHelper.JsonToRecipientList(jsonResponse);
+            return recipients;
         }
         /// <summary>
         /// Retrieves a recipient based on the recipient id given 

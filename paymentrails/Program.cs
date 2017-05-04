@@ -14,14 +14,17 @@ namespace paymentrails
 
         static void Main(string[] args)
         {
-            PaymentRails_Configuration.setApiBase("http://api.local.dev:3000");
-            PaymentRails_Configuration.apiKey = "pk_test_91XPUY8D8GAGA";
+            PaymentRails_Configuration.setApiBase("http://api.railz.io");
+            PaymentRails_Configuration.apiKey = "pk_test_5E9CB6C692DE5EE62712760B7F7D9FDF";
 
-            var val = PaymentRails_Recipient.get("R-91XQ00KM0CPMR");
+            //var val = PaymentRails_Recipient.get("R-91XQ00KM0CPMR");
+
+            var recipients = PaymentRails_Recipient.get();
+            Console.WriteLine(recipients);
             
             //val.Bank = new Types.BankAccount("CAD", "abc bank", "123412", "1231", "CAD", "CA", "abc bank");
             
-            Console.WriteLine(val);
+            //Console.WriteLine(val);
             Console.Read();
 
         }       
