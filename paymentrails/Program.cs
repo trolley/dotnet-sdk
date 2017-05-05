@@ -24,8 +24,10 @@ namespace paymentrails
 
             Types.Recipient recipient = PaymentRails_Recipient.get("R-91XQ00KM0CPMR");
             recipient.Payout.PrimaryMethod = "paypal";
+            recipient.Email = "test@test.test";
+            recipient.Payout.AutoswitchActive = true;
             Console.WriteLine(recipient);
-            PaymentRails_Recipient.patch("R-91XQ00KM0CPMR", recipient);
+            PaymentRails_Recipient.patch(recipient);
             recipient = PaymentRails_Recipient.get("R-91XQ00KM0CPMR");
             //string val = PaymentRails_Payment.get("P-908GY52558A7R");
             //var payment = JsonHelpers.PaymentHelper.JsonToPayment(val);

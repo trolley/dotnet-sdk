@@ -152,6 +152,7 @@ namespace paymentrails.Types
             return this.ToJson();
         }
 
+        // @TODO: rewrite this to be more readable
         public string ToJson()
         {
             StringBuilder builder = new StringBuilder();
@@ -166,7 +167,8 @@ namespace paymentrails.Types
             //}
             if (this.PrimaryMethod != null || this.PrimaryCurrency != null)
             {
-                builder.AppendFormat("\"primary\": {{\n\"method\": \"{0}\",\n\"currency\": {{\n\t \"code\": \"{1}\"\n}}\n}},\n", this.PrimaryMethod, this.primaryCurrency);
+                //,\n\"currency\": {{\n\t \"code\": \"{1}\"\n}}\n ||add this back into the string when updating currency through recipient works
+                builder.AppendFormat("\"primary\": {{\n\"method\": \"{0}\"}},\n", this.PrimaryMethod, this.primaryCurrency);
             }
 
             builder.Append("\"accounts\": {\n");

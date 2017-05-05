@@ -1,4 +1,5 @@
 ﻿using System;
+using paymentrails.Types;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,17 +14,19 @@ namespace paymentrails
         /// </summary>
         /// <param name="batch_id"></param>
         /// <returns>The response</returns>
-        public static String get(String batch_id)
+        public static Batch get(String batch_id)
         {
             String endPoint = "/v1/batches/" + batch_id;
             PaymentRails_Client client = PaymentRails_Client.create();
             String response = client.get(endPoint);
-            return response;
+            Batch batch = JsonHelpers.BatchHelper.JsonToBatch(response);
+            return batch;
         }
         /// <summary>
         /// Creates a batch based on the body or
         /// Genereates a quote based on batch_id or
         /// Starts processing the batch based on the batch_id
+        /// or this does way too many things for a single method
         /// </summary>
         /// <param name="body"></param>
         /// <param name="batch_id"></param>
@@ -41,11 +44,11 @@ namespace paymentrails
         /// <param name="batch_id"></param>
         /// <param name="body"></param>
         /// <returns>The response</returns>
-        public static String patch(String batch_id, String body)
+        public static String patch(Batch batch)
         {
-            String endPoint = "/v1/batches/" + batch_id;
+            String endPoint = "/v1/batches/" + batch.Id;
             PaymentRails_Client client = PaymentRails_Client.create();
-            String response = client.patch(endPoint, body);
+            String response = client.patch(endPoint, batch.ToJson());
             return response;
         }
         /// <summary>
@@ -59,6 +62,11 @@ namespace paymentrails
             PaymentRails_Client client = PaymentRails_Client.create();
             String response = client.delete(endPoint);
             return response;
+        }
+
+        public static string delete(Batch batch)
+        {
+            return delete(batch.Id);
         }
         /// <summary>
         /// Lists all batches based on queries
@@ -101,10 +109,10 @@ namespace paymentrails
         /// </summary>
         /// <param name="batch_id"></param>
         /// <returns>The response</returns>
-        public static String summary(String batch_id)
+        public static Batch summary(String batch_id)
         {
             String endPoint = batch_id + "/summary";
-            String response = get(endPoint);
+            Batch response = get(endPoint);
             return response;
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using paymentrails.Types;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,30 +9,29 @@ namespace paymentrails
 {
     public class PaymentRails_Payment
     {
-        public static String batchId { get; set; }
-
         /// <summary>
         /// Retrieves the Payment based on the payment id and batch id
         /// </summary>
         /// <param name="payment_id"></param>
         /// <returns>The response</returns>
-        public static String get(String payment_id)
+        public static Payment get(String payment_id)
         {
             String endPoint = "/v1/payments/" + payment_id;
             PaymentRails_Client client = PaymentRails_Client.create();
             String response = client.get(endPoint);
-            return response;
+            Payment payment = JsonHelpers.PaymentHelper.JsonToPayment(response);
+            return payment;
         }
         /// <summary>
         /// Creates a payment based on the body and batch id
         /// </summary>
         /// <param name="body"></param>
         /// <returns>The response</returns>
-        public static String post(String body)
+        public static String post(Payment payment)
         {        
-            String endPoint = "/v1/batches/"+ batchId + "/payments";
+            String endPoint = "/v1/batches/"+ payment.BatchId + "/payments";
             PaymentRails_Client client = PaymentRails_Client.create();
-            String response = client.post(endPoint, body);
+            String response = client.post(endPoint, payment.ToJson());
             return response;
         }
         /// <summary>
@@ -40,11 +40,11 @@ namespace paymentrails
         /// <param name="payment_id"></param>
         /// <param name="body"></param>
         /// <returns>The response</returns>
-        public static String patch(String payment_id, String body)
+        public static String patch(Payment payment)
         {
-            String endPoint = "/v1/batches/" + batchId + "/payments/" + payment_id;
+            String endPoint = "/v1/batches/" + payment.BatchId + "/payments/" + payment.Id;
             PaymentRails_Client client = PaymentRails_Client.create();
-            String response = client.patch(endPoint, body);
+            String response = client.patch(endPoint, payment.ToJson());
             return response;
         }
         /// <summary>
@@ -52,12 +52,17 @@ namespace paymentrails
         /// </summary>
         /// <param name="payment_id"></param>
         /// <returns>The response</returns>
-        public static String delete(String payment_id)
+        public static String delete(string paymentId, string batchId)
         {
-            String endPoint = "/v1/batches/" + batchId + "/payments/" + payment_id;
+            String endPoint = "/v1/batches/" + batchId + "/payments/" + paymentId;
             PaymentRails_Client client = PaymentRails_Client.create();
             String response = client.delete(endPoint);
             return response;
+        }
+
+        public static string delete(Payment payment)
+        {
+            return delete(payment.Id, payment.BatchId);
         }
         /// <summary>
         /// Lists all the payments based on and batch id
@@ -66,7 +71,7 @@ namespace paymentrails
         /// <param name="page"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public static String query(String term = "", int page = 1, int pageSize = 10)
+        public static String query(String term = "", int page = 1, int pageSize = 10, string batchId = "")
         {
             String endPoint = "/v1/batches/" + batchId + "/payments?" + "&search=" + term + "&page=" + page + "&pageSize=" + pageSize;
             PaymentRails_Client client = PaymentRails_Client.create();
