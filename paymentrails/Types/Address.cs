@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace paymentrails.Types
 {
-    public class Address
+    public class Address : IPaymentRailsMappable
     {
         private string street1;
         private string street2;
@@ -123,6 +123,26 @@ namespace paymentrails.Types
         public Address()
         {
 
+        }
+
+        public override string ToString()
+        {
+            return this.ToJson();
+        }
+
+        public string ToJson()
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append("{\n");
+            builder.AppendFormat("\"street1\": \"{0}\",\n", this.street1);
+            builder.AppendFormat("\"street2\": \"{0}\",\n", this.street2);
+            builder.AppendFormat("\"city\": \"{0}\",\n", this.city);
+            builder.AppendFormat("\"postalCode\": \"{0}\",\n", this.postalCode);
+            builder.AppendFormat("\"phone\": \"{0}\",\n", this.phone);
+            builder.AppendFormat("\"country\": \"{0}\",\n", this.country);
+            builder.AppendFormat("\"region\": \"{0}\"\n", this.region);
+            builder.Append("}");
+            return builder.ToString();
         }
     }
 }

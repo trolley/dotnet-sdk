@@ -48,6 +48,7 @@
     <Compile Include="Exceptions\InvalidStatusCodeException.cs" />
     <Compile Include="JsonHelpers\BalanceHelper.cs" />
     <Compile Include="JsonHelpers\JsonHelper.cs" />
+    <Compile Include="JsonHelpers\PaymentHelper.cs" />
     <Compile Include="JsonHelpers\PayoutHelper.cs" />
     <Compile Include="JsonHelpers\RecipientHelper.cs" />
     <Compile Include="PaymentRails_Configuration.cs" />

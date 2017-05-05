@@ -17,7 +17,7 @@ namespace paymentrails
         /// <returns>The response</returns>
         public static String get(String payment_id)
         {
-            String endPoint = "/v1/batches/" + batchId + "/payments/" + payment_id;
+            String endPoint = "/v1/payments/" + payment_id;
             PaymentRails_Client client = PaymentRails_Client.create();
             String response = client.get(endPoint);
             return response;

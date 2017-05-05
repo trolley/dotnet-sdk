@@ -52,6 +52,26 @@ namespace paymentrails.JsonHelpers
 
             return recipient;
         }
+
+        protected static Payment PaymentJsonHelperToPayment(PaymentJsonHelper helper)
+        {
+            Recipient recipient = RecipientJsonHelperToRecipient(helper.Recipient);
+            Payment payment = new Payment(recipient, helper.SourceAmount, helper.Memo, helper.TargetAmount, helper.TargetCurrency, helper.ExchangeRate,
+                helper.Fees, helper.RecipientFees, helper.FxRate, helper.ProcessedAt, helper.CreatedAt, helper.UpdatedAt, helper.MerchantFees, helper.SourceCurrency,
+                helper.Batch.Id, helper.Id, helper.Status, helper.Compliance);
+            return payment;
+        }
+
+        protected static Batch BatchJsonHelperToBatch(BatchJsonHelper helper)
+        {
+            List<Payment> payments = new List<Payment>();
+            foreach(PaymentJsonHelper p in helper.Payments)
+            {
+                payments.Add(PaymentJsonHelperToPayment(p));
+            }
+            Batch batch = new Batch();
+            return batch;
+        }
         #endregion
 
         #region Recipient classes
@@ -702,5 +722,681 @@ namespace paymentrails.JsonHelpers
             }
         }
         #endregion
+        #region Payment classes
+        protected class PaymentResponseJsonHelper
+        {
+            private bool ok;
+            private PaymentJsonHelper payment;
+
+            public bool Ok
+            {
+                get
+                {
+                    return ok;
+                }
+
+                set
+                {
+                    ok = value;
+                }
+            }
+
+            public PaymentJsonHelper Payment
+            {
+                get
+                {
+                    return payment;
+                }
+
+                set
+                {
+                    payment = value;
+                }
+            }
+
+            public PaymentResponseJsonHelper()
+            {
+
+            }
+        }
+
+        protected class PaymentJsonHelper
+        {
+            private string id;
+            private string status;
+            private double sourceAmount;
+            private double exchangeRate;
+            private double fees;
+            private double recipientFees;
+            private double targetAmount;
+            private double fxRate;
+            private string memo;
+            private string processedAt;
+            private string createdAt;
+            private string updatedAt;
+            private double merchantFees;
+            private string sourceCurrency;
+            private string targetCurrency;
+
+            private PaymentBatchJsonHelper batch;
+            private RecipientJsonHelper recipient;
+            private Compliance compliance;
+
+            #region properties
+            public string Id
+            {
+                get
+                {
+                    return id;
+                }
+
+                set
+                {
+                    id = value;
+                }
+            }
+
+            public string Status
+            {
+                get
+                {
+                    return status;
+                }
+
+                set
+                {
+                    status = value;
+                }
+            }
+
+            public double SourceAmount
+            {
+                get
+                {
+                    return sourceAmount;
+                }
+
+                set
+                {
+                    sourceAmount = value;
+                }
+            }
+
+            public double ExchangeRate
+            {
+                get
+                {
+                    return exchangeRate;
+                }
+
+                set
+                {
+                    exchangeRate = value;
+                }
+            }
+
+            public double Fees
+            {
+                get
+                {
+                    return fees;
+                }
+
+                set
+                {
+                    fees = value;
+                }
+            }
+
+            public double RecipientFees
+            {
+                get
+                {
+                    return recipientFees;
+                }
+
+                set
+                {
+                    recipientFees = value;
+                }
+            }
+
+            public double TargetAmount
+            {
+                get
+                {
+                    return targetAmount;
+                }
+
+                set
+                {
+                    targetAmount = value;
+                }
+            }
+
+            public double FxRate
+            {
+                get
+                {
+                    return fxRate;
+                }
+
+                set
+                {
+                    fxRate = value;
+                }
+            }
+
+            public string Memo
+            {
+                get
+                {
+                    return memo;
+                }
+
+                set
+                {
+                    memo = value;
+                }
+            }
+
+            public string ProcessedAt
+            {
+                get
+                {
+                    return processedAt;
+                }
+
+                set
+                {
+                    processedAt = value;
+                }
+            }
+
+            public string CreatedAt
+            {
+                get
+                {
+                    return createdAt;
+                }
+
+                set
+                {
+                    createdAt = value;
+                }
+            }
+
+            public string UpdatedAt
+            {
+                get
+                {
+                    return updatedAt;
+                }
+
+                set
+                {
+                    updatedAt = value;
+                }
+            }
+
+            public double MerchantFees
+            {
+                get
+                {
+                    return merchantFees;
+                }
+
+                set
+                {
+                    merchantFees = value;
+                }
+            }
+
+            public string SourceCurrency
+            {
+                get
+                {
+                    return sourceCurrency;
+                }
+
+                set
+                {
+                    sourceCurrency = value;
+                }
+            }
+
+            public string TargetCurrency
+            {
+                get
+                {
+                    return targetCurrency;
+                }
+
+                set
+                {
+                    targetCurrency = value;
+                }
+            }
+
+            public PaymentBatchJsonHelper Batch
+            {
+                get
+                {
+                    return batch;
+                }
+
+                set
+                {
+                    batch = value;
+                }
+            }
+
+            public RecipientJsonHelper Recipient
+            {
+                get
+                {
+                    return recipient;
+                }
+
+                set
+                {
+                    recipient = value;
+                }
+            }
+
+            public Compliance Compliance
+            {
+                get
+                {
+                    return compliance;
+                }
+
+                set
+                {
+                    compliance = value;
+                }
+            }
+            #endregion
+
+            public PaymentJsonHelper()
+            {
+
+            }
+        }
+
+        protected class PaymentBatchJsonHelper
+        {
+            private string id;
+            private string createdAt;
+            private string updatedAt;
+            private string sentAt;
+            private string completedAt;
+
+            #region properties
+            public string Id
+            {
+                get
+                {
+                    return id;
+                }
+
+                set
+                {
+                    id = value;
+                }
+            }
+
+            public string CreatedAt
+            {
+                get
+                {
+                    return createdAt;
+                }
+
+                set
+                {
+                    createdAt = value;
+                }
+            }
+
+            public string UpdatedAt
+            {
+                get
+                {
+                    return updatedAt;
+                }
+
+                set
+                {
+                    updatedAt = value;
+                }
+            }
+
+            public string SentAt
+            {
+                get
+                {
+                    return sentAt;
+                }
+
+                set
+                {
+                    sentAt = value;
+                }
+            }
+
+            public string CompletedAt
+            {
+                get
+                {
+                    return completedAt;
+                }
+
+                set
+                {
+                    completedAt = value;
+                }
+            }
+            #endregion
+
+            public PaymentBatchJsonHelper()
+            {
+
+            }
+        }
+        #endregion
+        #region Batch Classes
+        protected class BatchResponseJsonHelper
+        {
+            private bool ok;
+            BatchJsonHelper batch;
+
+            public bool Ok
+            {
+                get
+                {
+                    return ok;
+                }
+
+                set
+                {
+                    ok = value;
+                }
+            }
+
+            public BatchJsonHelper Batch
+            {
+                get
+                {
+                    return batch;
+                }
+
+                set
+                {
+                    batch = value;
+                }
+            }
+
+            public BatchResponseJsonHelper()
+            {
+
+            }
+        }
+
+        protected class BatchPaymentPaginationJsonHelper
+        {
+            private List<PaymentJsonHelper> payments;
+            private PaginationJsonHelper meta;
+
+            protected List<PaymentJsonHelper> Payments
+            {
+                get
+                {
+                    return payments;
+                }
+
+                set
+                {
+                    payments = value;
+                }
+            }
+
+            protected PaginationJsonHelper Meta
+            {
+                get
+                {
+                    return meta;
+                }
+
+                set
+                {
+                    meta = value;
+                }
+            }
+
+            public BatchPaymentPaginationJsonHelper()
+            {
+
+            }
+
+        }
+
+        protected class BatchJsonHelper
+        {
+            private string id;
+            private string status;
+            private double amount;
+            private int totalPayments;
+            private string currency;
+            private string description;
+            private string sentAt;
+            private string completedAt;
+            private string createdAt;
+            private string updatedAt;
+
+            private BatchPaymentPaginationJsonHelper payments;
+
+            public string Id
+            {
+                get
+                {
+                    return id;
+                }
+
+                set
+                {
+                    id = value;
+                }
+            }
+
+            public string Status
+            {
+                get
+                {
+                    return status;
+                }
+
+                set
+                {
+                    status = value;
+                }
+            }
+
+            public double Amount
+            {
+                get
+                {
+                    return amount;
+                }
+
+                set
+                {
+                    amount = value;
+                }
+            }
+
+            public int TotalPayments
+            {
+                get
+                {
+                    return totalPayments;
+                }
+
+                set
+                {
+                    totalPayments = value;
+                }
+            }
+
+            public string Currency
+            {
+                get
+                {
+                    return currency;
+                }
+
+                set
+                {
+                    currency = value;
+                }
+            }
+
+            public string Description
+            {
+                get
+                {
+                    return description;
+                }
+
+                set
+                {
+                    description = value;
+                }
+            }
+
+            public string SentAt
+            {
+                get
+                {
+                    return sentAt;
+                }
+
+                set
+                {
+                    sentAt = value;
+                }
+            }
+
+            public string CompletedAt
+            {
+                get
+                {
+                    return completedAt;
+                }
+
+                set
+                {
+                    completedAt = value;
+                }
+            }
+
+            public string CreatedAt
+            {
+                get
+                {
+                    return createdAt;
+                }
+
+                set
+                {
+                    createdAt = value;
+                }
+            }
+
+            public string UpdatedAt
+            {
+                get
+                {
+                    return updatedAt;
+                }
+
+                set
+                {
+                    updatedAt = value;
+                }
+            }
+
+            protected BatchPaymentPaginationJsonHelper Payments1
+            {
+                get
+                {
+                    return payments;
+                }
+
+                set
+                {
+                    payments = value;
+                }
+            }
+
+            public BatchJsonHelper()
+            {
+
+            }
+        }
+        #endregion
+
+        protected class PaginationJsonHelper
+        {
+            private string page;
+            private string pages;
+            private string records;
+
+            #region Properties
+            public string Page
+            {
+                get
+                {
+                    return page;
+                }
+
+                set
+                {
+                    page = value;
+                }
+            }
+
+            public string Pages
+            {
+                get
+                {
+                    return pages;
+                }
+
+                set
+                {
+                    pages = value;
+                }
+            }
+
+            public string Records
+            {
+                get
+                {
+                    return records;
+                }
+
+                set
+                {
+                    records = value;
+                }
+            }
+            #endregion
+
+            public PaginationJsonHelper()
+            {
+
+            }
+        }
     }
 }

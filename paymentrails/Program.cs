@@ -7,24 +7,26 @@ using System.Collections.Generic;
 using System.Web;
 namespace paymentrails
 {
+    //REMOVE THIS ONCE COMPLETED SINCE THIS PROJECT IS NOT A CONSOLE APP IT IS A LIBRARY
     class Program
     {
 
         private static readonly HttpClient client = new HttpClient();
 
         static void Main(string[] args)
-        {
+        {   // railz
             PaymentRails_Configuration.setApiBase("http://api.railz.io");
             PaymentRails_Configuration.apiKey = "pk_test_5E9CB6C692DE5EE62712760B7F7D9FDF";
 
-            //var val = PaymentRails_Recipient.get("R-91XQ00KM0CPMR");
+            // local
+            //PaymentRails_Configuration.setApiBase("http://api.local.dev:3000");
+            //PaymentRails_Configuration.apiKey = "pk_test_91XPUY8D8GAGA";
 
-            var recipients = PaymentRails_Recipient.get();
-            Console.WriteLine(recipients);
-            
-            //val.Bank = new Types.BankAccount("CAD", "abc bank", "123412", "1231", "CAD", "CA", "abc bank");
-            
-            //Console.WriteLine(val);
+            string val = PaymentRails_Payment.get("P-908GY52558A7R");
+            var payment = JsonHelpers.PaymentHelper.JsonToPayment(val);
+
+            Console.WriteLine(payment);
+
             Console.Read();
 
         }       

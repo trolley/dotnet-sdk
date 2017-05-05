@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace paymentrails.Types
 {
-    public class Recipient
+    public class Recipient : IPaymentRailsMappable
     {
         private string id;
         private string referenceId;
@@ -243,6 +243,42 @@ namespace paymentrails.Types
 
         public Recipient()
         {
+        }
+
+        public override string ToString()
+        {
+            return this.ToJson();
+        }
+
+        public string ToJson()
+        {
+            string payoutString = "null";
+            string addressString = "null";
+            StringBuilder builder = new StringBuilder();
+            builder.Append("{\n");
+            builder.AppendFormat("\"referenceId\": \"{0}\",\n", this.referenceId);
+            builder.AppendFormat("\"email\": \"{0}\",\n", this.email);
+            builder.AppendFormat("\"name\": \"{0}\",\n", this.name);
+            builder.AppendFormat("\"firstName\": \"{0}\",\n", this.firstName);
+            builder.AppendFormat("\"lastName\": \"{0}\",\n", this.lastName);
+            builder.AppendFormat("\"type\": \"{0}\",\n", this.type);
+            builder.AppendFormat("\"status\": \"{0}\",\n", this.status);
+            builder.AppendFormat("\"timeZone\": \"{0}\",\n", this.timeZone);
+            builder.AppendFormat("\"language\": \"{0}\",\n", this.language);
+            builder.AppendFormat("\"dob\": \"{0}\",\n", this.dob);
+            builder.AppendFormat("\"gravatarUrl\": \"{0}\",\n", this.gravatarUrl);
+            if (this.payout != null)
+            {
+                payoutString = this.payout.ToJson();
+            }
+            builder.AppendFormat("\"payout\": {0},\n", payoutString);
+            if (this.address != null)
+            {
+                addressString = this.address.ToJson();
+            }
+            builder.AppendFormat("\"address\": {0}\n", addressString);
+            builder.Append("}");
+            return builder.ToString();
         }
     }
 }

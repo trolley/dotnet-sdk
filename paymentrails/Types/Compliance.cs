@@ -47,5 +47,15 @@ namespace paymentrails.Types
         {
 
         }
+
+        //public string ToJson()
+        //{
+        //    StringBuilder builder = new StringBuilder();
+        //    builder.Append("{\n");
+        //    builder.AppendFormat("\"active\": \"{0}\",\n", this.active);
+        //    builder.AppendFormat("\"status\": \"{0}\",\n", this.status);
+        //    builder.Append("}");
+        //    return builder.ToString();
+        //}
     }
 }

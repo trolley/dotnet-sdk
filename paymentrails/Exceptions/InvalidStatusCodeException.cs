@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace paymentrails.Exceptions
 {
-    public class InvalidStatusCodeException :SystemException
+    public class InvalidStatusCodeException : SystemException
     {
         /// <summary>
 

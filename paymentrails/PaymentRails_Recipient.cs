@@ -26,13 +26,13 @@ namespace paymentrails
         /// <param name="recipient_id"></param>
         /// <param name="term"></param>
         /// <returns>The response</returns>
-        public static String get(String recipient_id, String term = "")
+        public static Types.Recipient get(String recipient_id, String term = "")
         {
             String endPoint = "/v1/recipients/" + recipient_id + "/" + term;
             PaymentRails_Client client = PaymentRails_Client.create();
             String response = client.get(endPoint);
             Types.Recipient recipient = JsonHelpers.RecipientHelper.JsonToRecipient(response);
-            return response;
+            return recipient;
         }
         /// <summary>
         /// Creates a recipient based on the body given to the client
@@ -53,11 +53,11 @@ namespace paymentrails
         /// <param name="recipient_id"></param>
         /// <param name="body"></param>
         /// <returns>The response</returns>
-        public static String patch(String recipient_id, String body)
+        public static String patch(String recipient_id, Types.Recipient recipient)
         {
             String endPoint = "/v1/recipients/" + recipient_id;
             PaymentRails_Client client = PaymentRails_Client.create();
-            String response = client.patch(endPoint, body);
+            String response = client.patch(endPoint, recipient.ToJson()); // change to take IPaymentRailsMappable
             return response;
         }
         /// <summary>

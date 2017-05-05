@@ -8,13 +8,13 @@ namespace paymentrails
 {
     class PaymentRails_Client
     {
-        private static readonly HttpClient client = new HttpClient();
+        //private static readonly HttpClient client = new HttpClient();
 
 
         String apiKey;
         String apiBase;
 
-        public PaymentRails_Client(String apiKey)
+        private PaymentRails_Client(String apiKey)
         {
             this.apiKey = apiKey;
             this.apiBase = PaymentRails_Configuration.getApiBase();
