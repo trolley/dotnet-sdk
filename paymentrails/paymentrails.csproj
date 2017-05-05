@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Exceptions\InvalidStatusCodeException.cs" />
     <Compile Include="JsonHelpers\BalanceHelper.cs" />
+    <Compile Include="JsonHelpers\BatchHelper.cs" />
     <Compile Include="JsonHelpers\JsonHelper.cs" />
     <Compile Include="JsonHelpers\PaymentHelper.cs" />
     <Compile Include="JsonHelpers\PayoutHelper.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Types\Address.cs" />
     <Compile Include="Types\Balance.cs" />
     <Compile Include="Types\BankAccount.cs" />
+    <Compile Include="Types\Batch.cs" />
     <Compile Include="Types\Compliance.cs" />
     <Compile Include="Types\IPaymentRailMappable.cs" />
     <Compile Include="Types\Payment.cs" />

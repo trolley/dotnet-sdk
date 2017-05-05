@@ -16,8 +16,6 @@ namespace paymentrails.Types
         private string primaryCurrency;
         private BankAccount bank;
         private PaypalAccount paypal;
-        private bool autoSwitchEdited;
-        private bool holdupEdited;
 
         #region Properties
         public double AutoswitchLimit
@@ -29,7 +27,6 @@ namespace paymentrails.Types
 
             set
             {
-                autoSwitchEdited = true;
                 autoswitchLimit = value;
             }
         }
@@ -43,7 +40,6 @@ namespace paymentrails.Types
 
             set
             {
-                autoSwitchEdited = true;
                 autoswitchActive = value;
             }
         }
@@ -57,7 +53,6 @@ namespace paymentrails.Types
 
             set
             {
-                holdupEdited = true;
                 holdupLimit = value;
             }
         }
@@ -71,7 +66,6 @@ namespace paymentrails.Types
 
             set
             {
-                holdupEdited = true;
                 holdupActive = value;
             }
         }
@@ -127,22 +121,6 @@ namespace paymentrails.Types
                 paypal = value;
             }
         }
-
-        public bool AutoSwitchEdited
-        {
-            get
-            {
-                return autoSwitchEdited;
-            }
-        }
-
-        public bool HoldupEdited
-        {
-            get
-            {
-                return holdupEdited;
-            }
-        }
         #endregion
 
         public Payout()
@@ -182,16 +160,16 @@ namespace paymentrails.Types
                 this.AutoswitchLimit, this.AutoswitchActive);
             builder.AppendFormat("\"holdup\": {{\n \"limit\": {0},\n \"active\": \"{1}\"\n}},\n",
                 this.HoldupLimit, this.HoldupActive);
-            if (this.PrimaryCurrency != null)
+            //if (this.PrimaryCurrency != null)
+            //{
+            //    builder.AppendFormat("\"currency\": {{\n\t \"code\": \"{0}\"\n}},\n", this.PrimaryCurrency);
+            //}
+            if (this.PrimaryMethod != null || this.PrimaryCurrency != null)
             {
-                builder.AppendFormat("\"currency\": {{\n\t \"code\": \"{0}\"\n}},\n", this.PrimaryCurrency);
-            }
-            if (this.PrimaryMethod != null)
-            {
-                builder.AppendFormat("\"primary\": \"{0}\",\n", this.PrimaryMethod);
+                builder.AppendFormat("\"primary\": {{\n\"method\": \"{0}\",\n\"currency\": {{\n\t \"code\": \"{1}\"\n}}\n}},\n", this.PrimaryMethod, this.primaryCurrency);
             }
 
-            builder.Append("\n\"accounts\": {\n");
+            builder.Append("\"accounts\": {\n");
             string bankString = "null";
             string paypalString = "null";
             if (this.Bank != null)

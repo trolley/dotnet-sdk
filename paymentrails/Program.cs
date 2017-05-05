@@ -15,17 +15,25 @@ namespace paymentrails
 
         static void Main(string[] args)
         {   // railz
-            PaymentRails_Configuration.setApiBase("http://api.railz.io");
-            PaymentRails_Configuration.apiKey = "pk_test_5E9CB6C692DE5EE62712760B7F7D9FDF";
+            //PaymentRails_Configuration.setApiBase("http://api.railz.io");
+            //PaymentRails_Configuration.apiKey = "pk_test_5E9CB6C692DE5EE62712760B7F7D9FDF";
 
             // local
-            //PaymentRails_Configuration.setApiBase("http://api.local.dev:3000");
-            //PaymentRails_Configuration.apiKey = "pk_test_91XPUY8D8GAGA";
+            PaymentRails_Configuration.setApiBase("http://api.local.dev:3000");
+            PaymentRails_Configuration.apiKey = "pk_test_91XPUY8D8GAGA";
 
-            string val = PaymentRails_Payment.get("P-908GY52558A7R");
-            var payment = JsonHelpers.PaymentHelper.JsonToPayment(val);
+            Types.Recipient recipient = PaymentRails_Recipient.get("R-91XQ00KM0CPMR");
+            recipient.Payout.PrimaryMethod = "paypal";
+            Console.WriteLine(recipient);
+            PaymentRails_Recipient.patch("R-91XQ00KM0CPMR", recipient);
+            recipient = PaymentRails_Recipient.get("R-91XQ00KM0CPMR");
+            //string val = PaymentRails_Payment.get("P-908GY52558A7R");
+            //var payment = JsonHelpers.PaymentHelper.JsonToPayment(val);
 
-            Console.WriteLine(payment);
+            //string val = PaymentRails_Batch.get("B-912Q4PAPBN868");
+            //Types.Batch batch = JsonHelpers.BatchHelper.JsonToBatch(val);
+
+            //Console.WriteLine(batch);
 
             Console.Read();
 

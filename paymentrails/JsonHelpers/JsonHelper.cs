@@ -12,6 +12,10 @@ namespace paymentrails.JsonHelpers
         #region Helper to type Mapping functions
         protected static Payout PayoutJsonHelperToPayout(PayoutJsonHelper helper)
         {
+            if(helper == null)
+            {
+                return null;
+            }
             float autoswitchLimit = 0, holdupLimit = 0;
             bool autoswitchActive = false, holdupActive = false;
             string currency = null;
@@ -55,21 +59,28 @@ namespace paymentrails.JsonHelpers
 
         protected static Payment PaymentJsonHelperToPayment(PaymentJsonHelper helper)
         {
+            string batchId = null;
+            if(helper.Batch != null)
+            {
+                batchId = helper.Batch.Id;
+            }
             Recipient recipient = RecipientJsonHelperToRecipient(helper.Recipient);
             Payment payment = new Payment(recipient, helper.SourceAmount, helper.Memo, helper.TargetAmount, helper.TargetCurrency, helper.ExchangeRate,
                 helper.Fees, helper.RecipientFees, helper.FxRate, helper.ProcessedAt, helper.CreatedAt, helper.UpdatedAt, helper.MerchantFees, helper.SourceCurrency,
-                helper.Batch.Id, helper.Id, helper.Status, helper.Compliance);
+                batchId, helper.Id, helper.Status, helper.Compliance);
             return payment;
         }
 
         protected static Batch BatchJsonHelperToBatch(BatchJsonHelper helper)
         {
             List<Payment> payments = new List<Payment>();
-            foreach(PaymentJsonHelper p in helper.Payments)
+            foreach(PaymentJsonHelper p in helper.Payments.Payments)
             {
                 payments.Add(PaymentJsonHelperToPayment(p));
+                payments.Last().BatchId = helper.Id;
             }
-            Batch batch = new Batch();
+            Batch batch = new Batch(helper.Currency, helper.Description, payments, helper.Amount, helper.TotalPayments, helper.Status,
+                helper.SentAt, helper.CompletedAt, helper.CreatedAt, helper.UpdatedAt, helper.Id);
             return batch;
         }
         #endregion
@@ -1148,7 +1159,7 @@ namespace paymentrails.JsonHelpers
             private List<PaymentJsonHelper> payments;
             private PaginationJsonHelper meta;
 
-            protected List<PaymentJsonHelper> Payments
+            public List<PaymentJsonHelper> Payments
             {
                 get
                 {
@@ -1161,7 +1172,7 @@ namespace paymentrails.JsonHelpers
                 }
             }
 
-            protected PaginationJsonHelper Meta
+            public PaginationJsonHelper Meta
             {
                 get
                 {
@@ -1326,7 +1337,7 @@ namespace paymentrails.JsonHelpers
                 }
             }
 
-            protected BatchPaymentPaginationJsonHelper Payments1
+            public BatchPaymentPaginationJsonHelper Payments
             {
                 get
                 {
@@ -1346,6 +1357,7 @@ namespace paymentrails.JsonHelpers
         }
         #endregion
 
+        #region Misc classes
         protected class PaginationJsonHelper
         {
             private string page;
@@ -1398,5 +1410,6 @@ namespace paymentrails.JsonHelpers
 
             }
         }
+        #endregion
     }
 }
