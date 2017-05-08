@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using paymentrails;
 using paymentrails.Exceptions;
+using paymentrails.Types;
 
 namespace paymentrailsTest
 {
@@ -16,7 +17,7 @@ namespace paymentrailsTest
         {
             PaymentRails_Configuration.apiKey = apiKey;
             PaymentRails_Configuration.setApiBase("http://api.local.dev:3000");
-            Dictionary<String, paymentrails.Types.Balance> response = PaymentRails_Balances.get();
+            Dictionary<String, Balance> response = PaymentRails_Balances.get();
             Assert.IsTrue(response.ContainsKey("USD"));
             Assert.AreEqual(this.sampleBalance, response["USD"]);
         }

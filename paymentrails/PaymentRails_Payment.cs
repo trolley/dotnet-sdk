@@ -31,7 +31,7 @@ namespace paymentrails
         {        
             String endPoint = "/v1/batches/"+ payment.BatchId + "/payments";
             PaymentRails_Client client = PaymentRails_Client.create();
-            String response = client.post(endPoint, payment.ToJson());
+            String response = client.post(endPoint, payment);
             return response;
         }
         /// <summary>
@@ -44,7 +44,7 @@ namespace paymentrails
         {
             String endPoint = "/v1/batches/" + payment.BatchId + "/payments/" + payment.Id;
             PaymentRails_Client client = PaymentRails_Client.create();
-            String response = client.patch(endPoint, payment.ToJson());
+            String response = client.patch(endPoint, payment);
             return response;
         }
         /// <summary>

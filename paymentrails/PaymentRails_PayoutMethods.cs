@@ -32,7 +32,7 @@ namespace paymentrails
         {
             String endPoint = "/v1/recipients/" + recipient_id +"/payout-methods";
             PaymentRails_Client client = PaymentRails_Client.create();
-            String response = client.post(endPoint, payout.ToJson()); // will change this method to use IPaymentRailsMappable
+            String response = client.post(endPoint, payout); // will change this method to use IPaymentRailsMappable
             return response;
         }
         /// <summary>
@@ -45,7 +45,7 @@ namespace paymentrails
         {
             String endPoint = "/v1/recipients/" + recipient_id + "/payout-methods";
             PaymentRails_Client client = PaymentRails_Client.create();
-            String response = client.patch(endPoint, payout.ToJson());
+            String response = client.patch(endPoint, payout);
             return response;
         }
 

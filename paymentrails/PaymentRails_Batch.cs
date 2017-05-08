@@ -31,7 +31,7 @@ namespace paymentrails
         /// <param name="body"></param>
         /// <param name="batch_id"></param>
         /// <returns>The response</returns>
-        public static String post(String body,String batch_id = "")
+        public static String post(Batch body,String batch_id = "")
         {
             String endPoint = "/v1/batches/" + batch_id;
             PaymentRails_Client client = PaymentRails_Client.create();
@@ -48,7 +48,7 @@ namespace paymentrails
         {
             String endPoint = "/v1/batches/" + batch.Id;
             PaymentRails_Client client = PaymentRails_Client.create();
-            String response = client.patch(endPoint, batch.ToJson());
+            String response = client.patch(endPoint, batch);
             return response;
         }
         /// <summary>
@@ -90,7 +90,8 @@ namespace paymentrails
         public static String generateQuote(String batch_id)
         {
             String endPoint = batch_id + "/generate-quote";
-            String response = post("", endPoint);
+            PaymentRails_Client client = PaymentRails_Client.create();
+            String response = client.PostEmpty(endPoint);
             return response;
         }
         /// <summary>
@@ -101,7 +102,8 @@ namespace paymentrails
         public static String processBatch(String batch_id)
         {
             String endPoint = batch_id + "/start-processing";
-            String response = post("", endPoint);
+            PaymentRails_Client client = PaymentRails_Client.create();
+            String response = client.PostEmpty(endPoint);
             return response;
         }
         /// <summary>

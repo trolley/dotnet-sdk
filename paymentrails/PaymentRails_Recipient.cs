@@ -44,7 +44,7 @@ namespace paymentrails
         {
             String endPoint = "/v1/recipients";
             PaymentRails_Client client = PaymentRails_Client.create();
-            String response = client.post(endPoint, recipient.ToJson());
+            String response = client.post(endPoint, recipient);
             return response;
         }
         /// <summary>
@@ -58,7 +58,7 @@ namespace paymentrails
         {
             String endPoint = "/v1/recipients/" + recipient.Id;
             PaymentRails_Client client = PaymentRails_Client.create();
-            String response = client.patch(endPoint, recipient.ToJson()); // change to take IPaymentRailsMappable
+            String response = client.patch(endPoint, recipient); // change to take IPaymentRailsMappable
             return response;
         }
         /// <summary>

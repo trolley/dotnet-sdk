@@ -3,6 +3,7 @@ using System.Text;
 using System.Net.Http;
 using System.Net;
 using paymentrails.Exceptions;
+using paymentrails.Types;
 
 namespace paymentrails
 {
@@ -61,9 +62,9 @@ namespace paymentrails
         /// <param name="endPoint"></param>
         /// <param name="stringBody"></param>
         /// <returns>The Response</returns>
-        public String post(String endPoint, String stringBody) // change body to accept IJsonMappable objects
+        public String post(String endPoint,  IPaymentRailsMappable body) // change body to accept IJsonMappable objects
         {
-            HttpContent body = convertBody(stringBody);
+            HttpContent jsonBody = convertBody(body.ToJson());
             string result = "";
             try
             {
@@ -71,7 +72,7 @@ namespace paymentrails
                 {
                     client.BaseAddress = new Uri(this.apiBase);
                     client.DefaultRequestHeaders.Add("x-api-key", this.apiKey);
-                    HttpResponseMessage response = client.PostAsync(endPoint, body).Result;
+                    HttpResponseMessage response = client.PostAsync(endPoint, jsonBody).Result;
                     response.EnsureSuccessStatusCode();
                     result = response.Content.ReadAsStringAsync().Result;
                 }
@@ -82,15 +83,44 @@ namespace paymentrails
             }
             return result;
         }
+
+        /// <summary>
+        /// Method used to post to endpoints with no data, this is used for endpoints such as
+        /// batch/:batch_id/generate_quote
+        /// </summary>
+        /// <param name="endpoint">Endpoint to post to</param>
+        /// <returns></returns>
+        public string PostEmpty(String endPoint)
+        {
+            HttpContent jsonBody = convertBody("");
+            string result = "";
+            try
+            {
+                using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
+                {
+                    client.BaseAddress = new Uri(this.apiBase);
+                    client.DefaultRequestHeaders.Add("x-api-key", this.apiKey);
+                    HttpResponseMessage response = client.PostAsync(endPoint, jsonBody).Result;
+                    response.EnsureSuccessStatusCode();
+                    result = response.Content.ReadAsStringAsync().Result;
+                }
+            }
+            catch (System.Net.Http.HttpRequestException e)
+            {
+                throw new InvalidStatusCodeException(e.Message);
+            }
+            return result;
+        }
+
         /// <summary>
         /// Makes a POST request to API
         /// </summary>
         /// <param name="endPoint"></param>
         /// <param name="stringBody"></param>
         /// <returns>The response</returns>
-        public String patch(String endPoint, String stringBody) // change body to accept IJsonMappable objects
+        public String patch(String endPoint, IPaymentRailsMappable body) // change body to accept IJsonMappable objects
         {
-            HttpContent body = convertBody(stringBody);
+            HttpContent jsonBody = convertBody(body.ToJson());
             string result = "";
             try
             {
@@ -100,7 +130,7 @@ namespace paymentrails
                     client.DefaultRequestHeaders.Add("x-api-key", this.apiKey);
 
                     //  HttpResponseMessage response = client.PatchAsync(endPoint, body).Result;
-                    var request = new HttpRequestMessage(new HttpMethod("PATCH"), endPoint) { Content = body };
+                    var request = new HttpRequestMessage(new HttpMethod("PATCH"), endPoint) { Content = jsonBody };
                     System.Threading.Tasks.Task<HttpResponseMessage> responseTask = client.SendAsync(request);
 
                     HttpResponseMessage response = responseTask.Result;
@@ -143,6 +173,7 @@ namespace paymentrails
             }
             return result;
         }
+
         /// <summary>
         /// Converts String into HTTPContent
         /// </summary>
