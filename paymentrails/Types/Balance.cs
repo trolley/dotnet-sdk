@@ -10,6 +10,7 @@ namespace paymentrails.Types
         private String type;
         private String accountNumber;
 
+        #region Properties
         public bool Primary
         {
             get
@@ -74,7 +75,7 @@ namespace paymentrails.Types
                 accountNumber = value;
             }
         }
-
+        #endregion
 
         public Balance(bool primary, double amount, string currency, string type, string accountNumber)
         {
@@ -85,6 +86,20 @@ namespace paymentrails.Types
             this.accountNumber = accountNumber;
         }
         
+        public static bool operator ==(Balance a, Balance b)
+        {
+            if (System.Object.ReferenceEquals(a, b))
+                return true;
+            if ((object)a == null || (object)b == null)
+                return false;
+            return a.Equals(b);
+        }
+
+        public static bool operator !=(Balance a, Balance b)
+        {
+            return !(a == b);
+        }
+
         public override int GetHashCode()
         {
             return base.GetHashCode();

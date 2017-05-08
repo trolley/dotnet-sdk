@@ -181,6 +181,52 @@ namespace paymentrails.Types
             this.payments = payments;
         }
 
+        public static bool operator ==(Batch a, Batch b)
+        {
+            if (System.Object.ReferenceEquals(a, b))
+                return true;
+            if ((object)a == null || (object)b == null)
+                return false;
+            return a.Equals(b);
+        }
+
+        public static bool operator !=(Batch a, Batch b)
+        {
+            return !(a == b);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj != null && obj.GetType() == this.GetType())
+            {
+                Batch other = (Batch)obj;
+                // check non list fields
+                if (other.id == this.id && other.status == this.status && other.amount == this.amount && other.totalPayments == this.totalPayments
+                    && other.currency == this.currency && other.description == this.description && other.sentAt == this.sentAt && other.completedAt == this.completedAt
+                    && other.createdAt == this.createdAt && other.updatedAt == this.updatedAt)
+                {
+                    // use sequence equals to check if the payments list matches
+                    if (other.Payments != null)
+                    {
+                        if (this.payments != null && other.payments.SequenceEqual(this.payments))
+                            return true;
+                    }
+                    else
+                    {
+                        if (this.payments == null)
+                            return true;
+                    }
+                }
+                
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         public override string ToString()
         {
             return this.ToJson();

@@ -9,6 +9,7 @@ namespace paymentrails.Types
     public class PaypalAccount : IPaymentRailsMappable
     {
         private string email;
+
         #region properties
         public string Email
         {
@@ -31,6 +32,7 @@ namespace paymentrails.Types
             }
         }
         #endregion
+
         public PaypalAccount(string email)
         {
             this.email = email;
@@ -40,7 +42,37 @@ namespace paymentrails.Types
         {
             this.email = null;
         }
-        
+
+        public static bool operator ==(PaypalAccount a, PaypalAccount b)
+        {
+            if (System.Object.ReferenceEquals(a, b))
+                return true;
+            if ((object)a == null || (object)b == null)
+                return false;
+            return a.Equals(b);
+        }
+
+        public static bool operator !=(PaypalAccount a, PaypalAccount b)
+        {
+            return !(a == b);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj != null && obj.GetType() == this.GetType())
+            {
+                PaypalAccount other = (PaypalAccount)obj;
+                if (other.email == this.email)
+                    return true;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         public override string ToString()
         {
             return this.ToJson();

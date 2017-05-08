@@ -245,6 +245,39 @@ namespace paymentrails.Types
         {
         }
 
+        public static bool operator ==(Recipient a, Recipient b)
+        {
+            if (System.Object.ReferenceEquals(a, b))
+                return true;
+            if ((object)a == null || (object)b == null)
+                return false;
+            return a.Equals(b);
+        }
+
+        public static bool operator !=(Recipient a, Recipient b)
+        {
+            return !(a == b);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj != null && obj.GetType() == this.GetType())
+            {
+                Recipient other = (Recipient)obj;
+                if (other.id == this.id && other.referenceId == this.referenceId && other.email == this.email && other.name == this.name
+                    && other.firstName == this.firstName && other.lastName == this.lastName && other.type == this.type && other.status == this.status
+                    && other.timeZone == this.timeZone && other.language == this.language && other.dob == this.dob && other.gravatarUrl == this.gravatarUrl
+                    && other.compliance == this.compliance && other.payout == this.payout && other.address == this.address)
+                    return true;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         public override string ToString()
         {
             return this.ToJson();

@@ -11,6 +11,7 @@ namespace paymentrails.Types
         private string status;
         private string active;
 
+        #region Properties
         public string Status
         {
             get
@@ -36,6 +37,7 @@ namespace paymentrails.Types
                 active = value;
             }
         }
+        #endregion
 
         public Compliance(string status, string active)
         {
@@ -48,6 +50,35 @@ namespace paymentrails.Types
 
         }
 
+        public static bool operator ==(Compliance a, Compliance b)
+        {
+            if (System.Object.ReferenceEquals(a, b))
+                return true;
+            if ((object)a == null || (object)b == null)
+                return false;
+            return a.Equals(b);
+        }
+
+        public static bool operator !=(Compliance a, Compliance b)
+        {
+            return !(a == b);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj != null && obj.GetType() == this.GetType())
+            {
+                Compliance other = (Compliance)obj;
+                if (other.status == this.status && other.active == this.active)
+                    return true;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
         //public string ToJson()
         //{
         //    StringBuilder builder = new StringBuilder();

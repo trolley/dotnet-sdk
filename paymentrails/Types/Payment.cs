@@ -293,6 +293,40 @@ namespace paymentrails.Types
             this.compliance = compliance;
         }
 
+        public static bool operator ==(Payment a, Payment b)
+        {
+            if (System.Object.ReferenceEquals(a, b))
+                return true;
+            if ((object)a == null || (object)b == null)
+                return false;
+            return a.Equals(b);
+        }
+
+        public static bool operator !=(Payment a, Payment b)
+        {
+            return !(a == b);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj != null && obj.GetType() == this.GetType())
+            {
+                Payment other = (Payment)obj;
+                if (other.sourceAmount == this.sourceAmount && other.sourceCurrency == this.sourceCurrency && other.targetCurrency == this.targetCurrency
+                    && other.exchangeRate == this.exchangeRate && other.fees == this.fees && other.recipientFees == this.recipientFees
+                    && other.targetAmount == this.targetAmount && other.fxRate == this.fxRate && other.memo == this.memo && other.processedAt == this.processedAt
+                    && other.createdAt == this.createdAt && other.updatedAt == this.updatedAt && other.merchantFees == this.merchantFees && other.batchId == this.batchId
+                    && other.recipient == this.recipient && other.compliance == this.compliance)
+                    return true;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         public override string ToString()
         {
             return this.ToJson();

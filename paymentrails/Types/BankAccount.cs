@@ -115,6 +115,38 @@ namespace paymentrails.Types
             this.name = null;
         }
 
+        public static bool operator ==(BankAccount a, BankAccount b)
+        {
+            if (System.Object.ReferenceEquals(a, b))
+                return true;
+            if ((object)a == null || (object)b == null)
+                return false;
+            return a.Equals(b);
+        }
+
+        public static bool operator !=(BankAccount a, BankAccount b)
+        {
+            return !(a == b);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj != null && obj.GetType() == this.GetType())
+            {
+                BankAccount other = (BankAccount)obj;
+                if(other.institution == this.institution && other.branchNum == this.branchNum && other.accountNum == this.accountNum 
+                    && other.currency == this.currency && other.country == this.country && other.name == this.name)
+                    return true;
+            }
+
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         public override string ToString()
         {
             return this.ToJson();

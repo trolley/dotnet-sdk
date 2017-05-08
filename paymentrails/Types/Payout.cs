@@ -147,6 +147,38 @@ namespace paymentrails.Types
             this.paypal = paypal;
         }
 
+        public static bool operator ==(Payout a, Payout b)
+        {
+            if (System.Object.ReferenceEquals(a, b))
+                return true;
+            if ((object)a == null || (object)b == null)
+                return false;
+            return a.Equals(b);
+        }
+
+        public static bool operator !=(Payout a, Payout b)
+        {
+            return !(a == b);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj != null && obj.GetType() == this.GetType())
+            {
+                Payout other = (Payout)obj;
+                if (other.autoswitchLimit == this.autoswitchLimit && other.autoswitchActive == this.autoswitchActive && other.holdupActive == this.holdupActive
+                    && other.holdupLimit == this.holdupLimit && other.primaryMethod == this.primaryMethod && other.primaryCurrency == this.primaryCurrency
+                    && other.Bank == this.Bank && other.Paypal == this.Paypal)
+                    return true;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         public override string ToString()
         {
             return this.ToJson();

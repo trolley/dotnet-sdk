@@ -125,6 +125,37 @@ namespace paymentrails.Types
 
         }
 
+        public static bool operator ==(Address a, Address b)
+        {
+            if (System.Object.ReferenceEquals(a, b))
+                return true;
+            if ((object)a == null || (object)b == null)
+                return false;
+            return a.Equals(b);
+        }
+
+        public static bool operator  !=(Address a, Address b)
+        {
+            return !(a == b);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj != null && obj.GetType() == this.GetType())
+            {
+                Address other = (Address)obj;
+                if (other.street1 == this.street1 && other.Street2 == this.Street2 && other.city == this.city && other.postalCode == this.postalCode
+                    && other.phone == this.phone && other.country == this.country && other.region == this.region)
+                    return true;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         public override string ToString()
         {
             return this.ToJson();
