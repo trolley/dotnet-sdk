@@ -61,6 +61,10 @@ namespace paymentrails.Types
 
             set
             {
+                if (value == null)
+                {
+                    //throw new exception because email is required
+                }
                 email = value;
             }
         }
@@ -87,6 +91,10 @@ namespace paymentrails.Types
 
             set
             {
+                if(value == null)
+                {
+                    //throw exception because valid field
+                }
                 firstName = value;
             }
         }
@@ -100,6 +108,10 @@ namespace paymentrails.Types
 
             set
             {
+                if(value == null)
+                {
+                    //throw new exception because field is required
+                }
                 lastName = value;
             }
         }
@@ -113,6 +125,10 @@ namespace paymentrails.Types
 
             set
             {
+                if(value == null)
+                {
+                    //throw exception because type must be there
+                }
                 type = value;
             }
         }
@@ -224,21 +240,25 @@ namespace paymentrails.Types
 
         public Recipient(string id, string referenceId, string email, string name, string firstName, string lastName, string type, string status, string timeZone, string language, string dob, string gravatarUrl, Compliance compliance, Payout payout, Address address)
         {
-            this.id = id;
-            this.referenceId = referenceId;
-            this.email = email;
-            this.name = name;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.type = type;
-            this.status = status;
-            this.timeZone = timeZone;
-            this.language = language;
-            this.dob = dob;
-            this.gravatarUrl = gravatarUrl;
-            this.compliance = compliance;
-            this.payout = payout;
-            this.address = address;
+            if (Id == null && email == null)
+            {
+                //throw an exception saying that either or is required
+            }
+            this.Id = id;
+            this.ReferenceId = referenceId;
+            this.Email = email;
+            this.Name = name;
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.Type = type;
+            this.Status = status;
+            this.TimeZone = timeZone;
+            this.Language = language;
+            this.Dob = dob;
+            this.GravatarUrl = gravatarUrl;
+            this.Compliance = compliance;
+            this.Payout = payout;
+            this.Address = address;
         }
 
         public Recipient()

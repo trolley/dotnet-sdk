@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\InvalidFieldException.cs" />
+    <Compile Include="Exceptions\InvalidServerRequest.cs" />
     <Compile Include="Exceptions\InvalidStatusCodeException.cs" />
     <Compile Include="JsonHelpers\BalanceHelper.cs" />
     <Compile Include="JsonHelpers\BatchHelper.cs" />

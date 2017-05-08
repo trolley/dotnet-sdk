@@ -30,16 +30,16 @@ namespace paymentrails
             //recipient.Payout.AutoswitchActive = true;
             //Console.WriteLine(recipient);
             //PaymentRails_Recipient.patch(recipient);
-            //recipient = PaymentRails_Recipient.get("R-91XQ00KM0CPMR");
+            //Recipient recipient = PaymentRails_Recipient.get("R-91XQ0PJH39U54");
 
             List<Payment> payments = PaymentRails_Payment.get(1,30);
 
-            List<Batch> batches = PaymentRails_Batch.get(1,30);
+            //List<Batch> batches = PaymentRails_Batch.get(1,30);
 
-            Batch batch = PaymentRails_Batch.get("B-91XQ40VXECQJM");
+           // Batch batch = PaymentRails_Batch.get("B-91XQ40VXECQJM");
 
-            List<Recipient> recipients = PaymentRails_Recipient.get(1,30);
-            List<Recipient> moreRecips = PaymentRails_Recipient.query();
+           // List<Recipient> recipients = PaymentRails_Recipient.get(1,30);
+           // List<Recipient> moreRecips = PaymentRails_Recipient.query();
 
                 //string val = PaymentRails_Payment.get("P-908GY52558A7R");
                 //var payment = JsonHelpers.PaymentHelper.JsonToPayment(val);

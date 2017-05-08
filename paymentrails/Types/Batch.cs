@@ -168,6 +168,7 @@ namespace paymentrails.Types
 
         public Batch(string currency, string description, List<Payment> payments, double amount, int totalPayments, string status, string sentAt, string completedAt, string createdAt, string updatedAt, string id)
         {
+
             this.id = id;
             this.status = status;
             this.amount = amount;

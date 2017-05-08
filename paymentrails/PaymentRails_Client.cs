@@ -45,7 +45,9 @@ namespace paymentrails
                     client.BaseAddress = new Uri(this.apiBase);
                     client.DefaultRequestHeaders.Add("x-api-key", this.apiKey);
                     HttpResponseMessage response = client.GetAsync(endPoint).Result;
-                    response.EnsureSuccessStatusCode();
+
+                    if (response.IsSuccessStatusCode == false)
+                        throw new InvalidStatusCodeException(response.Content.ReadAsStringAsync().Result);
                     result = response.Content.ReadAsStringAsync().Result;
                 }
 
@@ -53,6 +55,10 @@ namespace paymentrails
             catch (System.Net.Http.HttpRequestException e)
             {
                 throw new InvalidStatusCodeException(e.Message);
+            }
+            catch(System.AggregateException e)
+            {
+                throw new InvalidServerRequest("An error occured while sending the request.");
             }
             return result;
         }
