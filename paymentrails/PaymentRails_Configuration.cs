@@ -8,15 +8,35 @@ namespace paymentrails
 {
    public class PaymentRails_Configuration
     {
-        public static string apiKey
+        private static string apiKey;
+        private static string apiBase = "http://api.railz.io";
+
+        public static string ApiKey
         {
-            get;   
-            set;
+            get
+            {
+                return apiKey;
+            }
+            set
+            {
+                apiKey = value;
+            }
         }
 
-        private static string apiBase = "http://api.railz.io";
+        public static string ApiBase
+        {
+            get
+            {
+                return apiBase;
+            }
+            set
+            {
+                apiBase = value;
+            }
+        }
+
         /// <summary>
-        /// Gets the API Base
+        /// Gets the API Base --> change everywhere that this is used to use properties
         /// </summary>
         /// <returns>The APiBase</returns>
         public static String getApiBase()
@@ -24,7 +44,7 @@ namespace paymentrails
             return PaymentRails_Configuration.apiBase;
         }
         /// <summary>
-        /// Sets the API Base
+        /// Sets the API Base --> change everywhere that this is used to use properties
         /// </summary>
         /// <param name="apiBase"></param>
         public static void setApiBase(String apiBase)

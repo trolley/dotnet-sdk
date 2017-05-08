@@ -15,20 +15,20 @@ namespace paymentrails
 
         static void Main(string[] args)
         {   // railz
-            //PaymentRails_Configuration.setApiBase("http://api.railz.io");
-            //PaymentRails_Configuration.apiKey = "pk_test_5E9CB6C692DE5EE62712760B7F7D9FDF";
+            PaymentRails_Configuration.ApiBase = "http://api.railz.io";
+            PaymentRails_Configuration.ApiKey = "pk_test_5E9CB6C692DE5EE62712760B7F7D9FDF";
 
             // local
-            PaymentRails_Configuration.setApiBase("http://api.local.dev:3000");
-            PaymentRails_Configuration.apiKey = "pk_test_91XPUY8D8GAGA";
+            //PaymentRails_Configuration.setApiBase("http://api.local.dev:3000");
+            //PaymentRails_Configuration.ApiKey = "pk_test_91XPUY8D8GAGA";
 
-            Types.Recipient recipient = PaymentRails_Recipient.get("R-91XQ00KM0CPMR");
-            recipient.Payout.PrimaryMethod = "paypal";
-            recipient.Email = "test@test.test";
-            recipient.Payout.AutoswitchActive = true;
+            Types.Recipient recipient = PaymentRails_Recipient.get("R-91XPRHAX8G5MW");
+            //recipient.Payout.PrimaryMethod = "paypal";
+            //recipient.Email = "test@test.test";
+            //recipient.Payout.AutoswitchActive = true;
             Console.WriteLine(recipient);
-            PaymentRails_Recipient.patch(recipient);
-            recipient = PaymentRails_Recipient.get("R-91XQ00KM0CPMR");
+            //PaymentRails_Recipient.patch(recipient);
+            //recipient = PaymentRails_Recipient.get("R-91XQ00KM0CPMR");
             //string val = PaymentRails_Payment.get("P-908GY52558A7R");
             //var payment = JsonHelpers.PaymentHelper.JsonToPayment(val);
 

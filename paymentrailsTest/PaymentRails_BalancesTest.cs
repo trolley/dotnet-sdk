@@ -15,7 +15,7 @@ namespace paymentrailsTest
         [TestMethod]
         public void TestRetrieveBalances()
         {
-            PaymentRails_Configuration.apiKey = apiKey;
+            PaymentRails_Configuration.ApiKey = apiKey;
             PaymentRails_Configuration.setApiBase("http://api.local.dev:3000");
             Dictionary<String, Balance> response = PaymentRails_Balances.get();
             Assert.IsTrue(response.ContainsKey("USD"));
@@ -26,7 +26,7 @@ namespace paymentrailsTest
         [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
         public void TestRetrieveBalancesInvalidAPIKey()
         {
-            PaymentRails_Configuration.apiKey = "wdwd";
+            PaymentRails_Configuration.ApiKey = "wdwd";
             var response = PaymentRails_Balances.get();
         }
 
@@ -34,7 +34,7 @@ namespace paymentrailsTest
         [Ignore]
         public void TestRetrievePaypal()
         {
-            PaymentRails_Configuration.apiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
             var response = PaymentRails_Balances.get("paypal");
             //String message = response.Substring(6, 4);
             //Assert.AreEqual("true", message);

@@ -7,28 +7,48 @@ using paymentrails.Types;
 
 namespace paymentrails
 {
-    class PaymentRails_Client
+    public class PaymentRails_Client
     {
-        //private static readonly HttpClient client = new HttpClient();
+        private static PaymentRails_Client clientInstance;
 
 
-        String apiKey;
-        String apiBase;
+        private HttpClient httpClient;
 
-        private PaymentRails_Client(String apiKey)
+        public static PaymentRails_Client ClientInstance
         {
-            this.apiKey = apiKey;
-            this.apiBase = PaymentRails_Configuration.getApiBase();
+            get
+            {
+                if (clientInstance == null)
+                {
+                    clientInstance = new PaymentRails_Client(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate });
+                }
+                return clientInstance;
+            }
+        }
+
+        public static HttpMessageHandler HttpMessageHandler
+        {
+            set
+            { 
+                clientInstance.httpClient.Dispose();
+                clientInstance.httpClient = new HttpClient(value);
+            }
+        }
+
+        private PaymentRails_Client(HttpMessageHandler handler)
+        {
+            this.httpClient = new HttpClient(handler);
         }
         /// <summary>
         /// Factory method to create an instance
+        /// 
+        /// Kept for the sake of not breaking everything while transitioning to singleton
         /// </summary>
         /// <returns>The instance of PaymentRails_Client</returns>
         public static PaymentRails_Client create()
         {
-            return new PaymentRails_Client(PaymentRails_Configuration.apiKey);
+            return ClientInstance;
         }
-
 
         /// <summary>
         /// Makes a GET request to API
@@ -40,14 +60,11 @@ namespace paymentrails
             string result = "";
             try
             {
-                using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
-                {
-                    client.BaseAddress = new Uri(this.apiBase);
-                    client.DefaultRequestHeaders.Add("x-api-key", this.apiKey);
-                    HttpResponseMessage response = client.GetAsync(endPoint).Result;
-                    response.EnsureSuccessStatusCode();
-                    result = response.Content.ReadAsStringAsync().Result;
-                }
+                httpClient.BaseAddress = new Uri(PaymentRails_Configuration.ApiBase);
+                httpClient.DefaultRequestHeaders.Add("x-api-key", PaymentRails_Configuration.ApiKey);
+                HttpResponseMessage response = httpClient.GetAsync(endPoint).Result;
+                response.EnsureSuccessStatusCode();
+                result = response.Content.ReadAsStringAsync().Result;
 
             }
             catch (System.Net.Http.HttpRequestException e)
@@ -56,26 +73,26 @@ namespace paymentrails
             }
             return result;
         }
+        
         /// <summary>
         /// Makes a POST request to API
         /// </summary>
         /// <param name="endPoint"></param>
         /// <param name="stringBody"></param>
         /// <returns>The Response</returns>
-        public String post(String endPoint,  IPaymentRailsMappable body) // change body to accept IJsonMappable objects
+        public String post(String endPoint, IPaymentRailsMappable body) // change body to accept IJsonMappable objects
         {
             HttpContent jsonBody = convertBody(body.ToJson());
             string result = "";
             try
             {
-                using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
-                {
-                    client.BaseAddress = new Uri(this.apiBase);
-                    client.DefaultRequestHeaders.Add("x-api-key", this.apiKey);
-                    HttpResponseMessage response = client.PostAsync(endPoint, jsonBody).Result;
-                    response.EnsureSuccessStatusCode();
-                    result = response.Content.ReadAsStringAsync().Result;
-                }
+
+                httpClient.BaseAddress = new Uri(PaymentRails_Configuration.ApiBase);
+                httpClient.DefaultRequestHeaders.Add("x-api-key", PaymentRails_Configuration.ApiKey);
+                HttpResponseMessage response = httpClient.PostAsync(endPoint, jsonBody).Result;
+                response.EnsureSuccessStatusCode();
+                result = response.Content.ReadAsStringAsync().Result;
+
             }
             catch (System.Net.Http.HttpRequestException e)
             {
@@ -96,14 +113,13 @@ namespace paymentrails
             string result = "";
             try
             {
-                using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
-                {
-                    client.BaseAddress = new Uri(this.apiBase);
-                    client.DefaultRequestHeaders.Add("x-api-key", this.apiKey);
-                    HttpResponseMessage response = client.PostAsync(endPoint, jsonBody).Result;
-                    response.EnsureSuccessStatusCode();
-                    result = response.Content.ReadAsStringAsync().Result;
-                }
+
+                httpClient.BaseAddress = new Uri(PaymentRails_Configuration.ApiBase);
+                httpClient.DefaultRequestHeaders.Add("x-api-key", PaymentRails_Configuration.ApiKey);
+                HttpResponseMessage response = httpClient.PostAsync(endPoint, jsonBody).Result;
+                response.EnsureSuccessStatusCode();
+                result = response.Content.ReadAsStringAsync().Result;
+
             }
             catch (System.Net.Http.HttpRequestException e)
             {
@@ -124,20 +140,17 @@ namespace paymentrails
             string result = "";
             try
             {
-                using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
-                {
-                    client.BaseAddress = new Uri(this.apiBase);
-                    client.DefaultRequestHeaders.Add("x-api-key", this.apiKey);
+                httpClient.BaseAddress = new Uri(PaymentRails_Configuration.ApiBase);
+                httpClient.DefaultRequestHeaders.Add("x-api-key", PaymentRails_Configuration.ApiKey);
 
-                    //  HttpResponseMessage response = client.PatchAsync(endPoint, body).Result;
-                    var request = new HttpRequestMessage(new HttpMethod("PATCH"), endPoint) { Content = jsonBody };
-                    System.Threading.Tasks.Task<HttpResponseMessage> responseTask = client.SendAsync(request);
+                //  HttpResponseMessage response = client.PatchAsync(endPoint, body).Result;
+                var request = new HttpRequestMessage(new HttpMethod("PATCH"), endPoint) { Content = jsonBody };
+                System.Threading.Tasks.Task<HttpResponseMessage> responseTask = httpClient.SendAsync(request);
 
-                    HttpResponseMessage response = responseTask.Result;
-                    response.EnsureSuccessStatusCode();
-                    result = response.Content.ReadAsStringAsync().Result;
+                HttpResponseMessage response = responseTask.Result;
+                response.EnsureSuccessStatusCode();
+                result = response.Content.ReadAsStringAsync().Result;
 
-                }
             }
             catch (System.Net.Http.HttpRequestException e)
             {
@@ -156,16 +169,11 @@ namespace paymentrails
             string result = "";
             try
             {
-                using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
-                {
-                    client.BaseAddress = new Uri(this.apiBase);
-                    client.DefaultRequestHeaders.Add("x-api-key", this.apiKey);
-                    HttpResponseMessage response = client.DeleteAsync(endPoint).Result;
-                    response.EnsureSuccessStatusCode();
-                    result = response.Content.ReadAsStringAsync().Result;
-                }
-
-
+                httpClient.BaseAddress = new Uri(PaymentRails_Configuration.ApiBase);
+                httpClient.DefaultRequestHeaders.Add("x-api-key", PaymentRails_Configuration.ApiKey);
+                HttpResponseMessage response = httpClient.DeleteAsync(endPoint).Result;
+                response.EnsureSuccessStatusCode();
+                result = response.Content.ReadAsStringAsync().Result;
             }
             catch (System.Net.Http.HttpRequestException e)
             {
