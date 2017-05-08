@@ -22,6 +22,12 @@ namespace paymentrails
             Batch batch = JsonHelpers.BatchHelper.JsonToBatch(response);
             return batch;
         }
+
+        public static List<Batch> get(int page, int pageNumber)
+        {
+            return PaymentRails_Batch.query("", page, pageNumber);
+
+        }
         /// <summary>
         /// Creates a batch based on the body or
         /// Genereates a quote based on batch_id or
@@ -75,12 +81,13 @@ namespace paymentrails
         /// <param name="page"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public static String query(String term = "", int page = 1, int pageSize = 10)
+        public static List<Batch> query(String term = "", int page = 1, int pageSize = 10)
         {
             String endPoint = "/v1/batches/?" + "&search=" + term + "&page=" + page + "&pageSize=" + pageSize;
             PaymentRails_Client client = PaymentRails_Client.create();
             String response = client.get(endPoint);
-            return response;
+            List<Batch> batches = JsonHelpers.BatchHelper.JsonToBatchList(response);
+            return batches;
         }
         /// <summary>
         /// Generates quote based on batch id

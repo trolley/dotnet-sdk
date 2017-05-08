@@ -9,6 +9,13 @@ namespace paymentrails
 {
     public class PaymentRails_Payment
     {
+
+        public static List<Payment> get(int page, int pageNumber)
+        {
+            return query("",page,pageNumber,"");
+
+        }
+
         /// <summary>
         /// Retrieves the Payment based on the payment id and batch id
         /// </summary>
@@ -71,12 +78,17 @@ namespace paymentrails
         /// <param name="page"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public static String query(String term = "", int page = 1, int pageSize = 10, string batchId = "")
+        public static List<Payment> query(String term = "", int page = 1, int pageSize = 10, string batchId = "")
         {
-            String endPoint = "/v1/batches/" + batchId + "/payments?" + "&search=" + term + "&page=" + page + "&pageSize=" + pageSize;
+            String endPoint;
+            if (batchId != "")
+                endPoint = "/v1/batches/" + batchId + "/payments?" + "&search=" + term + "&page=" + page + "&pageSize=" + pageSize;
+            else
+                endPoint = "/v1/payments?" + "&search=" + term + "&page=" + page + "&pageSize=" + pageSize;
             PaymentRails_Client client = PaymentRails_Client.create();
-            String response = client.get(endPoint);
-            return response;
+            String jsonResponse = client.get(endPoint);
+            List<Payment> payments = JsonHelpers.PaymentHelper.JsonToPaymentList(jsonResponse);
+            return payments;
         }
 
 

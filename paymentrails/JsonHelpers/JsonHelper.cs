@@ -73,11 +73,15 @@ namespace paymentrails.JsonHelpers
 
         protected static Batch BatchJsonHelperToBatch(BatchJsonHelper helper)
         {
-            List<Payment> payments = new List<Payment>();
-            foreach(PaymentJsonHelper p in helper.Payments.Payments)
+            List<Payment> payments = null;
+            if (helper.Payments != null)
             {
-                payments.Add(PaymentJsonHelperToPayment(p));
-                payments.Last().BatchId = helper.Id;
+                payments = new List<Payment>();
+                foreach (PaymentJsonHelper p in helper.Payments.Payments)
+                {
+                    payments.Add(PaymentJsonHelperToPayment(p));
+                    payments.Last().BatchId = helper.Id;
+                }
             }
             Batch batch = new Batch(helper.Currency, helper.Description, payments, helper.Amount, helper.TotalPayments, helper.Status,
                 helper.SentAt, helper.CompletedAt, helper.CreatedAt, helper.UpdatedAt, helper.Id);
@@ -1115,6 +1119,50 @@ namespace paymentrails.JsonHelpers
 
             }
         }
+       
+        protected class PaymentListJsonHelper
+        {
+            private bool ok;
+            private List<PaymentJsonHelper> payments;
+            #region properties
+            public bool Ok
+            {
+                get
+                {
+                    return ok;
+                }
+
+                set
+                {
+                    ok = value;
+                }
+            }
+
+            public List<PaymentJsonHelper> Payments
+            {
+                get
+                {
+                    return payments;
+                }
+
+                set
+                {
+                    payments = value;
+                }
+            }
+            #endregion
+            public PaymentListJsonHelper(bool ok, List<PaymentJsonHelper> payments)
+            {
+                this.ok = ok;
+                this.payments = payments;
+            }
+
+            public PaymentListJsonHelper()
+            {
+
+            }
+        }
+
         #endregion
         #region Batch Classes
         protected class BatchResponseJsonHelper
@@ -1355,6 +1403,50 @@ namespace paymentrails.JsonHelpers
 
             }
         }
+        
+        protected class BatchListJsonHelper
+        {
+            private bool ok;
+            private List<BatchJsonHelper> batches;
+            #region properties
+            public bool Ok
+            {
+                get
+                {
+                    return ok;
+                }
+
+                set
+                {
+                    ok = value;
+                }
+            }
+
+            public List<BatchJsonHelper> Batches
+            {
+                get
+                {
+                    return batches;
+                }
+
+                set
+                {
+                    batches = value;
+                }
+            }
+            #endregion
+            public BatchListJsonHelper(bool ok, List<BatchJsonHelper> batches)
+            {
+                this.ok = ok;
+                this.batches = batches;
+            }
+
+            public BatchListJsonHelper()
+            {
+
+            }
+        }
+        
         #endregion
 
         #region Misc classes

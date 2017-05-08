@@ -13,13 +13,9 @@ namespace paymentrails
         /// Retrieves a list of recipients from the API
         /// </summary>
         /// <returns>A list containing all recipient objects</returns>
-        public static List<Recipient> get()
+        public static List<Recipient> get(int page, int pageNumber)
         {
-            String endpoint = "/v1/recipients";
-            PaymentRails_Client client = PaymentRails_Client.create();
-            String jsonResponse = client.get(endpoint);
-            List<Recipient> recipients = JsonHelpers.RecipientHelper.JsonToRecipientList(jsonResponse);
-            return recipients;
+            return PaymentRails_Recipient.query("", page, pageNumber);
         }
         /// <summary>
         /// Retrieves a recipient based on the recipient id given 
@@ -73,7 +69,7 @@ namespace paymentrails
             String response = client.delete(endPoint);
             return response;
         }
-
+    
         public static String delete(Recipient recipient)
         {
             return delete(recipient.Id);
@@ -85,12 +81,16 @@ namespace paymentrails
         /// <param name="page"></param>
         /// <param name="pageSize"></param>
         /// <returns>The response</returns>
-        public static String query(String term = "", int page = 1, int pageSize = 10)
+        public static List<Recipient> query(String term = "", int page = 1, int pageSize = 10)
         {
+   
             String endPoint = "/v1/recipients/?" + "&search=" + term + "&page=" + page + "&pageSize=" + pageSize;
+            
+
             PaymentRails_Client client = PaymentRails_Client.create();
-            String response = client.get(endPoint);
-            return response;
+            String jsonResponse = client.get(endPoint);
+            List<Recipient> recipients = JsonHelpers.RecipientHelper.JsonToRecipientList(jsonResponse);
+            return recipients;
         }
 
     }

@@ -10,6 +10,21 @@ namespace paymentrails.JsonHelpers
 {
     class PaymentHelper : JsonHelper
     {
+        public static List<Payment> JsonToPaymentList(string jsonResponse)
+        {
+            PaymentListJsonHelper helper = new JavaScriptSerializer().Deserialize<PaymentListJsonHelper>(jsonResponse);
+            List<Payment> payments = new List<Payment>();
+
+            if (helper.Ok)
+            {
+                foreach (PaymentJsonHelper p in helper.Payments)
+                {
+                    payments.Add(PaymentJsonHelperToPayment(p));
+                }
+            }
+            return payments;
+        }
+
         public static Payment JsonToPayment(string jsonResponse)
         {
             PaymentResponseJsonHelper helper = new JavaScriptSerializer().Deserialize<PaymentResponseJsonHelper>(jsonResponse);
