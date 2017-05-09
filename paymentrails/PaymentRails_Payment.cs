@@ -23,7 +23,7 @@ namespace paymentrails
         public static Payment get(String payment_id)
         {
             String endPoint = "/v1/payments/" + payment_id;
-            PaymentRails_Client client = PaymentRails_Client.create();
+            PaymentRails_Client client = PaymentRails_Client.CreateClient();
             String response = client.get(endPoint);
             Payment payment = JsonHelpers.PaymentHelper.JsonToPayment(response);
             return payment;
@@ -36,7 +36,7 @@ namespace paymentrails
         public static String post(Payment payment)
         {        
             String endPoint = "/v1/batches/"+ payment.BatchId + "/payments";
-            PaymentRails_Client client = PaymentRails_Client.create();
+            PaymentRails_Client client = PaymentRails_Client.CreateClient();
             String response = client.post(endPoint, payment);
             return response;
         }
@@ -49,7 +49,7 @@ namespace paymentrails
         public static String patch(Payment payment)
         {
             String endPoint = "/v1/batches/" + payment.BatchId + "/payments/" + payment.Id;
-            PaymentRails_Client client = PaymentRails_Client.create();
+            PaymentRails_Client client = PaymentRails_Client.CreateClient();
             String response = client.patch(endPoint, payment);
             return response;
         }
@@ -61,7 +61,7 @@ namespace paymentrails
         public static String delete(string paymentId, string batchId)
         {
             String endPoint = "/v1/batches/" + batchId + "/payments/" + paymentId;
-            PaymentRails_Client client = PaymentRails_Client.create();
+            PaymentRails_Client client = PaymentRails_Client.CreateClient();
             String response = client.delete(endPoint);
             return response;
         }
@@ -84,7 +84,7 @@ namespace paymentrails
                 endPoint = "/v1/batches/" + batchId + "/payments?" + "&search=" + term + "&page=" + page + "&pageSize=" + pageSize;
             else
                 endPoint = "/v1/payments?" + "&search=" + term + "&page=" + page + "&pageSize=" + pageSize;
-            PaymentRails_Client client = PaymentRails_Client.create();
+            PaymentRails_Client client = PaymentRails_Client.CreateClient();
             String jsonResponse = client.get(endPoint);
             List<Payment> payments = JsonHelpers.PaymentHelper.JsonToPaymentList(jsonResponse);
             return payments;

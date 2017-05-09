@@ -17,7 +17,7 @@ namespace paymentrails
         public static Batch get(String batch_id)
         {
             String endPoint = "/v1/batches/" + batch_id;
-            PaymentRails_Client client = PaymentRails_Client.create();
+            PaymentRails_Client client = PaymentRails_Client.CreateClient();
             String response = client.get(endPoint);
             Batch batch = JsonHelpers.BatchHelper.JsonToBatch(response);
             return batch;
@@ -40,7 +40,7 @@ namespace paymentrails
         public static String post(Batch body,String batch_id = "")
         {
             String endPoint = "/v1/batches/" + batch_id;
-            PaymentRails_Client client = PaymentRails_Client.create();
+            PaymentRails_Client client = PaymentRails_Client.CreateClient();
             String response = client.post(endPoint, body);
             return response;
         }
@@ -53,7 +53,7 @@ namespace paymentrails
         public static String patch(Batch batch)
         {
             String endPoint = "/v1/batches/" + batch.Id;
-            PaymentRails_Client client = PaymentRails_Client.create();
+            PaymentRails_Client client = PaymentRails_Client.CreateClient();
             String response = client.patch(endPoint, batch);
             return response;
         }
@@ -65,7 +65,7 @@ namespace paymentrails
         public static String delete(String batch_id)
         {
             String endPoint = "/v1/batches/" + batch_id;
-            PaymentRails_Client client = PaymentRails_Client.create();
+            PaymentRails_Client client = PaymentRails_Client.CreateClient();
             String response = client.delete(endPoint);
             return response;
         }
@@ -84,7 +84,7 @@ namespace paymentrails
         public static List<Batch> query(String term = "", int page = 1, int pageSize = 10)
         {
             String endPoint = "/v1/batches/?" + "&search=" + term + "&page=" + page + "&pageSize=" + pageSize;
-            PaymentRails_Client client = PaymentRails_Client.create();
+            PaymentRails_Client client = PaymentRails_Client.CreateClient();
             String response = client.get(endPoint);
             List<Batch> batches = JsonHelpers.BatchHelper.JsonToBatchList(response);
             return batches;
@@ -97,7 +97,7 @@ namespace paymentrails
         public static String generateQuote(String batch_id)
         {
             String endPoint = batch_id + "/generate-quote";
-            PaymentRails_Client client = PaymentRails_Client.create();
+            PaymentRails_Client client = PaymentRails_Client.CreateClient();
             String response = client.PostEmpty(endPoint);
             return response;
         }
@@ -109,7 +109,7 @@ namespace paymentrails
         public static String processBatch(String batch_id)
         {
             String endPoint = batch_id + "/start-processing";
-            PaymentRails_Client client = PaymentRails_Client.create();
+            PaymentRails_Client client = PaymentRails_Client.CreateClient();
             String response = client.PostEmpty(endPoint);
             return response;
         }

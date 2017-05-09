@@ -5,8 +5,6 @@ using System.IO;
 using System.Net;
 using System.Collections.Generic;
 using System.Web;
-using paymentrails.Types;
-
 namespace paymentrails
 {
     //REMOVE THIS ONCE COMPLETED SINCE THIS PROJECT IS NOT A CONSOLE APP IT IS A LIBRARY
@@ -24,37 +22,19 @@ namespace paymentrails
             //PaymentRails_Configuration.setApiBase("http://api.local.dev:3000");
             //PaymentRails_Configuration.ApiKey = "pk_test_91XPUY8D8GAGA";
 
-           // Types.Recipient recipient = PaymentRails_Recipient.get("R-91XPRHAX8G5MW");
+            Types.Recipient recipient = PaymentRails_Recipient.get("R-91XPRHAX8G5MW");
+            PaymentRails_Recipient.get("R-91XPRHAX8G5MW");
             //recipient.Payout.PrimaryMethod = "paypal";
             //recipient.Email = "test@test.test";
             //recipient.Payout.AutoswitchActive = true;
-            //Console.WriteLine(recipient);
+            Console.WriteLine(recipient);
             //PaymentRails_Recipient.patch(recipient);
-
-            //Recipient recipient = PaymentRails_Recipient.get("R-91XQ0PJH39U54");
-
-          //  List<Payment> payments = PaymentRails_Payment.get(1,30);
-
-            //List<Batch> batches = PaymentRails_Batch.get(1,30);
-
-           // Batch batch = PaymentRails_Batch.get("B-91XQ40VXECQJM");
-
-           // List<Recipient> recipients = PaymentRails_Recipient.get(1,30);
-           // List<Recipient> moreRecips = PaymentRails_Recipient.query();
-
-                //string val = PaymentRails_Payment.get("P-908GY52558A7R");
-                //var payment = JsonHelpers.PaymentHelper.JsonToPayment(val);
-
-                //string val = PaymentRails_Batch.get("B-912Q4PAPBN868");
-                //Types.Batch batch = JsonHelpers.BatchHelper.JsonToBatch(val);
-
             //recipient = PaymentRails_Recipient.get("R-91XQ00KM0CPMR");
             //string val = PaymentRails_Payment.get("P-908GY52558A7R");
             //var payment = JsonHelpers.PaymentHelper.JsonToPayment(val);
 
             //string val = PaymentRails_Batch.get("B-912Q4PAPBN868");
             //Types.Batch batch = JsonHelpers.BatchHelper.JsonToBatch(val);
-
 
             //Console.WriteLine(batch);
 

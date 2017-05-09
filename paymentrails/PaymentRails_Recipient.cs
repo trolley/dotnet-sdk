@@ -26,7 +26,7 @@ namespace paymentrails
         public static Recipient get(String recipient_id, String term = "")
         {
             String endPoint = "/v1/recipients/" + recipient_id + "/" + term;
-            PaymentRails_Client client = PaymentRails_Client.create();
+            PaymentRails_Client client = PaymentRails_Client.CreateClient();
             String response = client.get(endPoint);
             Recipient recipient = JsonHelpers.RecipientHelper.JsonToRecipient(response);
             return recipient;
@@ -39,7 +39,7 @@ namespace paymentrails
         public static String post(Recipient recipient)
         {
             String endPoint = "/v1/recipients";
-            PaymentRails_Client client = PaymentRails_Client.create();
+            PaymentRails_Client client = PaymentRails_Client.CreateClient();
             String response = client.post(endPoint, recipient);
             return response;
         }
@@ -53,7 +53,7 @@ namespace paymentrails
         public static String patch(Recipient recipient)
         {
             String endPoint = "/v1/recipients/" + recipient.Id;
-            PaymentRails_Client client = PaymentRails_Client.create();
+            PaymentRails_Client client = PaymentRails_Client.CreateClient();
             String response = client.patch(endPoint, recipient); // change to take IPaymentRailsMappable
             return response;
         }
@@ -65,7 +65,7 @@ namespace paymentrails
         public static String delete(String recipient_id)
         {
             String endPoint = "/v1/recipients/" + recipient_id;
-            PaymentRails_Client client = PaymentRails_Client.create();
+            PaymentRails_Client client = PaymentRails_Client.CreateClient();
             String response = client.delete(endPoint);
             return response;
         }
@@ -87,7 +87,7 @@ namespace paymentrails
             String endPoint = "/v1/recipients/?" + "&search=" + term + "&page=" + page + "&pageSize=" + pageSize;
             
 
-            PaymentRails_Client client = PaymentRails_Client.create();
+            PaymentRails_Client client = PaymentRails_Client.CreateClient();
             String jsonResponse = client.get(endPoint);
             List<Recipient> recipients = JsonHelpers.RecipientHelper.JsonToRecipientList(jsonResponse);
             return recipients;
