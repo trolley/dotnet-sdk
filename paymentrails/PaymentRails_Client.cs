@@ -2,6 +2,7 @@
 using System.Text;
 using System.Net.Http;
 using System.Net;
+using System.Linq;
 using paymentrails.Exceptions;
 using paymentrails.Types;
 
@@ -220,9 +221,8 @@ namespace paymentrails
         // Function that checks if the api key has changed
         private static bool ApiKeyUpdated()
         {
-            var s = clientInstance.httpClient.DefaultRequestHeaders.GetValues("x-api-key").GetEnumerator();
-            s.MoveNext();
-            return s.Current != PaymentRails_Configuration.ApiKey;
+            var s = clientInstance.httpClient.DefaultRequestHeaders.GetValues("x-api-key");
+            return s.First() != PaymentRails_Configuration.ApiKey;
         }
     }
 

@@ -54,6 +54,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="MockHttpHandler.cs" />
+    <Compile Include="MockResponseContent.cs" />
     <Compile Include="PaymentRails_IPaymentRailsMappableTest.cs" />
     <Compile Include="PaymentRails_RecipientTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="PaymentRails_BalancesTest.cs" />
     <Compile Include="PaymentRails_PaymentTest.cs" />
     <Compile Include="PaymentRails_BatchesTest.cs" />
+    <Compile Include="ValidResponseData.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\paymentrails\paymentrails.csproj">

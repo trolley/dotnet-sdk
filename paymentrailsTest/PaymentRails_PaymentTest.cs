@@ -26,8 +26,8 @@ namespace paymentrailsTest
         {
             PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
             Payment response = PaymentRails_Payment.get("P-91XPU88Q5GN2E");
-            String message = "";
-            Assert.AreEqual("true", message);
+            response.Equals(ValidResponseData.VALID_PAYMENT);
+            Assert.AreEqual(ValidResponseData.VALID_PAYMENT, response);
         }
         [TestMethod]
         [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
