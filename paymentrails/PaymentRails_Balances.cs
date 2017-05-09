@@ -17,7 +17,7 @@ namespace paymentrails
         public static Dictionary<String, Types.Balance> get(String type = "")
         {
             String endPoint = "/v1/profile/balances/" + type;
-            PaymentRails_Client client = PaymentRails_Client.create();
+            PaymentRails_Client client = PaymentRails_Client.CreateClient();
             String response = client.get(endPoint);
             Dictionary<String, Types.Balance> balanceDictionary = JsonHelpers.BalanceHelper.JsonToBalanceDictionary(response);
             return balanceDictionary;

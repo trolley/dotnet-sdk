@@ -23,6 +23,7 @@ namespace paymentrails
             //PaymentRails_Configuration.ApiKey = "pk_test_91XPUY8D8GAGA";
 
             Types.Recipient recipient = PaymentRails_Recipient.get("R-91XPRHAX8G5MW");
+            PaymentRails_Recipient.get("R-91XPRHAX8G5MW");
             //recipient.Payout.PrimaryMethod = "paypal";
             //recipient.Email = "test@test.test";
             //recipient.Payout.AutoswitchActive = true;

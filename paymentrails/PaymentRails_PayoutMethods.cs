@@ -17,7 +17,7 @@ namespace paymentrails
         public static Payout get(String recipient_id)
         {
             String endPoint = "/v1/recipients/" + recipient_id + "/payout-methods";
-            PaymentRails_Client client = PaymentRails_Client.create();
+            PaymentRails_Client client = PaymentRails_Client.CreateClient();
             String response = client.get(endPoint);
             Types.Payout payout = JsonHelpers.PayoutHelper.JsonToPayout(response);
             return payout;
@@ -31,7 +31,7 @@ namespace paymentrails
         public static String post(String recipient_id, Payout payout)
         {
             String endPoint = "/v1/recipients/" + recipient_id +"/payout-methods";
-            PaymentRails_Client client = PaymentRails_Client.create();
+            PaymentRails_Client client = PaymentRails_Client.CreateClient();
             String response = client.post(endPoint, payout); // will change this method to use IPaymentRailsMappable
             return response;
         }
@@ -44,7 +44,7 @@ namespace paymentrails
         public static String patch(String recipient_id, Payout payout)
         {
             String endPoint = "/v1/recipients/" + recipient_id + "/payout-methods";
-            PaymentRails_Client client = PaymentRails_Client.create();
+            PaymentRails_Client client = PaymentRails_Client.CreateClient();
             String response = client.patch(endPoint, payout);
             return response;
         }
