@@ -1,4 +1,5 @@
-﻿using System;
+﻿using paymentrails.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -61,10 +62,7 @@ namespace paymentrails.Types
 
             set
             {
-                if (value == null)
-                {
-                    //throw new exception because email is required
-                }
+                
                 email = value;
             }
         }
@@ -78,12 +76,7 @@ namespace paymentrails.Types
 
             set
             {
-                if(Type == "business")
-                    if(value == null)
-                    {
-                        //throw new excpetion because if type is buisness name is required
-                    }
-
+              
                 name = value;
             }
         }
@@ -97,11 +90,7 @@ namespace paymentrails.Types
 
             set
             {
-                if(Type == "individual")
-                    if(value == null)
-                    {
-                        //throw exception because valid field
-                    }
+                
                 firstName = value;
             }
         }
@@ -115,11 +104,7 @@ namespace paymentrails.Types
 
             set
             {
-                if (Type == "individual")
-                    if (value == null)
-                    {
-                        //throw new exception because field is required
-                    }
+                
                 lastName = value;
             }
         }
@@ -133,10 +118,7 @@ namespace paymentrails.Types
 
             set
             {
-                if(value == null)
-                {
-                    //throw exception because type must be there
-                }
+             
                 type = value;
             }
         }
@@ -150,7 +132,7 @@ namespace paymentrails.Types
 
             set
             {
-
+                status = value;
             }
         }
 
@@ -337,6 +319,40 @@ namespace paymentrails.Types
             builder.AppendFormat("\"address\": {0}\n", addressString);
             builder.Append("}");
             return builder.ToString();
+        }
+
+        public bool IsMappable()
+        {
+            if (Type == null)
+            {
+                throw new InvalidFieldException("Recipient must have a type");
+            }
+            if (Type == "individual")
+                if (LastName == null)
+                {
+                    throw new InvalidFieldException("Recipient must have a last name if the type is individual");
+                }
+            if (Type == "individual")
+                if (FirstName == null)
+                {
+                    throw new InvalidFieldException("Recipient must have a first name if the type is individual");
+                }
+            
+            if (Type == "business")
+                if (Name == null)
+                {
+                    throw new InvalidFieldException("Recipient must have a name if the type is business");
+                }
+
+            if (Email == null)
+            {
+                if (Id == null)
+                {
+                    throw new InvalidFieldException("Recipient must have an email");
+                }
+                
+            }
+           return true; 
         }
     }
 }

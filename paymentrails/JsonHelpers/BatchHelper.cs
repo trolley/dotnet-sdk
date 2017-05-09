@@ -8,11 +8,16 @@ using System.Threading.Tasks;
 
 namespace paymentrails.JsonHelpers
 {
-    class BatchHelper : JsonHelper
+    public class BatchHelper : JsonHelper
     {
 
         public static List<Batch> JsonToBatchList(string jsonResponse)
         {
+            if (jsonResponse == null || jsonResponse == "")
+            {
+                throw new ArgumentException("JSON must be provided");
+            }
+
             BatchListJsonHelper helper = new JavaScriptSerializer().Deserialize<BatchListJsonHelper>(jsonResponse);
             List<Batch> batches = new List<Batch>();
             if (helper.Ok)
@@ -25,9 +30,14 @@ namespace paymentrails.JsonHelpers
             return batches;
         }
 
-        public static Batch JsonToBatch(string JsonResponse)
+        public static Batch JsonToBatch(string jsonResponse)
         {
-            BatchResponseJsonHelper helper = new JavaScriptSerializer().Deserialize<BatchResponseJsonHelper>(JsonResponse);
+            if (jsonResponse == null || jsonResponse == "")
+            {
+                throw new ArgumentException("JSON must be provided");
+            }
+
+            BatchResponseJsonHelper helper = new JavaScriptSerializer().Deserialize<BatchResponseJsonHelper>(jsonResponse);
             if (helper.Ok)
             {
                 return BatchJsonHelperToBatch(helper.Batch);

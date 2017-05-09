@@ -1,4 +1,5 @@
-﻿using System;
+﻿using paymentrails.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -81,7 +82,7 @@ namespace paymentrails.Types
             {
                 if(value == null)
                 {
-                    //throw exception
+                    throw new InvalidFieldException("Payout method must have a primary method");
                 }
                 primaryMethod = value;
             }
@@ -142,14 +143,14 @@ namespace paymentrails.Types
 
         public Payout(double autoswitchLimit, bool autoswitchActive, double holdupLimit, bool holdupActive, string primaryMethod, string primaryCurrency, BankAccount bank, PaypalAccount paypal)
         {
-            this.autoswitchLimit = autoswitchLimit;
-            this.autoswitchActive = autoswitchActive;
-            this.holdupLimit = holdupLimit;
-            this.holdupActive = holdupActive;
-            this.primaryMethod = primaryMethod;
-            this.primaryCurrency = primaryCurrency;
-            this.bank = bank;
-            this.paypal = paypal;
+            this.AutoswitchLimit = autoswitchLimit;
+            this.AutoswitchActive = autoswitchActive;
+            this.HoldupLimit = holdupLimit;
+            this.HoldupActive = holdupActive;
+            this.PrimaryMethod = primaryMethod;
+            this.PrimaryCurrency = primaryCurrency;
+            this.Bank = bank;
+            this.Paypal = paypal;
         }
 
         public static bool operator ==(Payout a, Payout b)
@@ -227,6 +228,11 @@ namespace paymentrails.Types
             builder.Append("}");
 
             return builder.ToString();
+        }
+
+        public bool IsMappable()
+        {
+            throw new NotImplementedException();
         }
     }
 }
