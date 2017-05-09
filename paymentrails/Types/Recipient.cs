@@ -78,6 +78,12 @@ namespace paymentrails.Types
 
             set
             {
+                if(Type == "business")
+                    if(value == null)
+                    {
+                        //throw new excpetion because if type is buisness name is required
+                    }
+
                 name = value;
             }
         }
@@ -91,10 +97,11 @@ namespace paymentrails.Types
 
             set
             {
-                if(value == null)
-                {
-                    //throw exception because valid field
-                }
+                if(Type == "individual")
+                    if(value == null)
+                    {
+                        //throw exception because valid field
+                    }
                 firstName = value;
             }
         }
@@ -108,10 +115,11 @@ namespace paymentrails.Types
 
             set
             {
-                if(value == null)
-                {
-                    //throw new exception because field is required
-                }
+                if (Type == "individual")
+                    if (value == null)
+                    {
+                        //throw new exception because field is required
+                    }
                 lastName = value;
             }
         }
@@ -142,7 +150,7 @@ namespace paymentrails.Types
 
             set
             {
-                status = value;
+
             }
         }
 
@@ -238,19 +246,16 @@ namespace paymentrails.Types
         }
         #endregion
 
-        public Recipient(string id, string referenceId, string email, string name, string firstName, string lastName, string type, string status, string timeZone, string language, string dob, string gravatarUrl, Compliance compliance, Payout payout, Address address)
+        public Recipient(string id, string type, string referenceId, string email, string name, string firstName, string lastName, string status, string timeZone, string language, string dob, string gravatarUrl, Compliance compliance, Payout payout, Address address)
         {
-            if (Id == null && email == null)
-            {
-                //throw an exception saying that either or is required
-            }
+            
             this.Id = id;
+            this.Type = type;
             this.ReferenceId = referenceId;
             this.Email = email;
             this.Name = name;
             this.FirstName = firstName;
             this.LastName = lastName;
-            this.Type = type;
             this.Status = status;
             this.TimeZone = timeZone;
             this.Language = language;

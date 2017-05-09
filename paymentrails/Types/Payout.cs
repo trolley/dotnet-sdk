@@ -79,6 +79,10 @@ namespace paymentrails.Types
 
             set
             {
+                if(value == null)
+                {
+                    //throw exception
+                }
                 primaryMethod = value;
             }
         }
@@ -105,6 +109,7 @@ namespace paymentrails.Types
 
             set
             {
+   
                 bank = value;
             }
         }

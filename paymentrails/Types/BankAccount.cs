@@ -76,7 +76,7 @@ namespace paymentrails.Types
             }
 
             set
-            {
+            { 
                 country = value;
             }
         }
@@ -95,7 +95,7 @@ namespace paymentrails.Types
         }
         #endregion
 
-        public BankAccount(string currencyCode, string institution, string branchNum, string accountNum, string currency, string country, string name)
+        public BankAccount(string country, string currencyCode, string institution, string branchNum, string accountNum, string currency, string name)
         {
             this.institution = institution;
             this.branchNum = branchNum;

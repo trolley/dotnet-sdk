@@ -83,6 +83,17 @@ namespace paymentrails.Types
 
             set
             {
+                foreach(Payment p in Payments)
+                {
+                    if (p.SourceCurrency == null)
+                    {
+                        if (p.TargetCurrency == null)
+
+                        {
+                            break;
+                        }
+                    }
+                }
                 currency = value;
             }
         }
@@ -161,25 +172,29 @@ namespace paymentrails.Types
 
             set
             {
+                if(value == null)
+                {
+                    //throw exception because payments are required
+                }
                 payments = value;
             }
         }
         #endregion
 
-        public Batch(string currency, string description, List<Payment> payments, double amount, int totalPayments, string status, string sentAt, string completedAt, string createdAt, string updatedAt, string id)
+        public Batch(string description, List<Payment> payments, string currency, double amount, int totalPayments, string status, string sentAt, string completedAt, string createdAt, string updatedAt, string id)
         {
 
-            this.id = id;
-            this.status = status;
-            this.amount = amount;
-            this.totalPayments = totalPayments;
-            this.currency = currency;
-            this.description = description;
-            this.sentAt = sentAt;
-            this.completedAt = completedAt;
-            this.createdAt = createdAt;
-            this.updatedAt = updatedAt;
-            this.payments = payments;
+            this.Id = id;
+            this.Status = status;
+            this.Amount = amount;
+            this.TotalPayments = totalPayments;
+            this.Currency = currency;
+            this.Description = description;
+            this.SentAt = sentAt;
+            this.CompletedAt = completedAt;
+            this.CreatedAt = createdAt;
+            this.UpdatedAt = updatedAt;
+            this.Payments = payments;
         }
 
         public static bool operator ==(Batch a, Batch b)
