@@ -9,7 +9,7 @@ namespace paymentrails.Types
     public class Compliance
     {
         private string status;
-        private string active;
+        private string checkedAt;
 
         #region Properties
         public string Status
@@ -25,16 +25,16 @@ namespace paymentrails.Types
             }
         }
 
-        public string Active
+        public string CheckedAt
         {
             get
             {
-                return active;
+                return checkedAt;
             }
 
             set
             {
-                active = value;
+                checkedAt = value;
             }
         }
         #endregion
@@ -42,7 +42,7 @@ namespace paymentrails.Types
         public Compliance(string status, string active)
         {
             this.status = status;
-            this.active = active;
+            this.checkedAt = active;
         }
 
         public Compliance()
@@ -69,7 +69,7 @@ namespace paymentrails.Types
             if (obj != null && obj.GetType() == this.GetType())
             {
                 Compliance other = (Compliance)obj;
-                if (other.status == this.status && other.active == this.active)
+                if (other.status == this.status && other.checkedAt == this.checkedAt)
                     return true;
             }
             return false;

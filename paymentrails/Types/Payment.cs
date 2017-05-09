@@ -368,6 +368,7 @@ namespace paymentrails.Types
             }
             StringBuilder builder = new StringBuilder();
             builder.Append("{\n");
+            builder.AppendFormat("\"memo\":\"{0}\"", this.memo);
             builder.AppendFormat("\"id\": \"{0}\",\n", this.batchId);
             builder.Append(currencyString);
             builder.Append("\"recipient\": {\n");

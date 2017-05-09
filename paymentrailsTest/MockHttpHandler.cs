@@ -17,6 +17,7 @@ namespace paymentrailsTest
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             HttpResponseMessage message = new HttpResponseMessage();
+            message.Content = new StringContent("");
             this.apiKey = this.GetApiKey(request);
             if (this.apiKey == null || (!this.apiKey.ToUpper().Contains("PK_TEST") && !this.apiKey.ToUpper().Contains("PK_LIVE")))
             {
@@ -29,10 +30,13 @@ namespace paymentrailsTest
                     HandleGet(request, message);
                     break;
                 case "POST":
+                    HandlePost(request, message);
                     break;
                 case "PATCH":
+                    HandlePatch(request, message);
                     break;
                 case "DELETE":
+                    HandleDelete(request, message);
                     break;
             }
 
@@ -42,22 +46,36 @@ namespace paymentrailsTest
             t.Start();
             return t;
         }
+
+        
+
         #region get
         private void HandleGet(HttpRequestMessage request, HttpResponseMessage message)
         {
             string[] segments = request.RequestUri.Segments;
             string endpoint = segments[2];
+            endpoint = endpoint.Replace("/","");
             switch (endpoint)
             {
-                case "payments/":
+                case "payments":
                     PaymentGet(request, message);
                     break;
-                case "batches/":
+                case "batches":
+                    BatchesGet(request, message);
                     break;
-                case "recipients/":
+                case "recipients":
                     break;
-                case "balances/":
+                case "balances":
                     break;
+            }
+        }
+
+        private void BatchesGet(HttpRequestMessage request, HttpResponseMessage message)
+        {
+            if (request.RequestUri.Segments.Length >=3 && !request.RequestUri.Segments[3].Contains("B-"))
+            {
+                message.StatusCode = HttpStatusCode.NotFound;
+                message.Content = new StringContent(MockResponseContent.INVALID_NOT_FOUND);
             }
         }
 
@@ -75,7 +93,8 @@ namespace paymentrailsTest
 
         private void MultiPaymentGet(HttpRequestMessage request, HttpResponseMessage message)
         {
-            throw new NotImplementedException();
+            message.StatusCode = HttpStatusCode.OK;
+            message.Content = new StringContent(MockResponseContent.VALID_PAYMENT_LIST);
         }
 
         private void SinglePaymentGet(HttpRequestMessage request, HttpResponseMessage message)
@@ -84,9 +103,156 @@ namespace paymentrailsTest
             {
                 message.Content = new StringContent(MockResponseContent.VALID_PAYMENT, Encoding.UTF8, "application/json");
             }
+            else
+            {
+                message.StatusCode = HttpStatusCode.NotAcceptable;
+            }
         }
         #endregion
 
+        #endregion
+        #region post
+        private void HandlePost(HttpRequestMessage request, HttpResponseMessage message)
+        {
+            string[] segments = request.RequestUri.Segments;
+            string endpoint = segments[2];
+            switch (endpoint)
+            {
+                case "payments/":
+                    PaymentPost(request, message);
+                    break;
+                case "batches/":
+                    BatchPost(request, message);
+                    break;
+                case "recipients/":
+                    break;
+                case "balances/":
+                    break;
+            }
+        }
+
+        private void BatchPost(HttpRequestMessage request, HttpResponseMessage message)
+        {
+            if (request.RequestUri.Segments.Length >= 4 && !request.RequestUri.Segments[3].ToUpper().Contains("B-"))
+            {
+                message.StatusCode = HttpStatusCode.NotAcceptable;
+                message.Content = new StringContent(MockResponseContent.INVALID_NOT_FOUND);
+                return;
+            }
+            if (request.RequestUri.Segments.Length >= 5)
+            {
+                PaymentPost(request, message);
+                return;
+            }
+        }
+
+        private void PaymentPost(HttpRequestMessage request, HttpResponseMessage message)
+        {
+            string content = request.Content.ReadAsStringAsync().Result;
+            if (!content.Contains("INVALID"))
+            {
+                message.StatusCode = HttpStatusCode.OK;
+                message.Content = new StringContent(MockResponseContent.VALID_POST);
+            }else
+            {
+                message.StatusCode = HttpStatusCode.NotAcceptable;
+                message.Content = new StringContent(MockResponseContent.INVALID_BAD_DATA);
+            }
+        }
+        #endregion
+        #region patch
+        private void HandlePatch(HttpRequestMessage request, HttpResponseMessage message)
+        {
+            string[] segments = request.RequestUri.Segments;
+            string endpoint = segments[2];
+            switch (endpoint)
+            {
+                case "batches/":
+                    BatchPatch(request, message);
+                    break;
+                case "recipients/":
+                    break;
+                case "balances/":
+                    break;
+            }
+        }
+
+        private void BatchPatch(HttpRequestMessage request, HttpResponseMessage message)
+        {
+            if (request.RequestUri.Segments.Length >= 4 && !request.RequestUri.Segments[3].ToUpper().Contains("B-"))
+            {
+                message.StatusCode = HttpStatusCode.NotFound;
+                message.Content = new StringContent(MockResponseContent.INVALID_NOT_FOUND);
+                return;
+            }
+            if (request.RequestUri.Segments.Length >= 5)
+            {
+                PaymentPatch(request, message);
+                return;
+            }
+        }
+
+        private void PaymentPatch(HttpRequestMessage request, HttpResponseMessage message)
+        {
+            string content = request.Content.ReadAsStringAsync().Result;
+            if (!content.Contains("INVALID"))
+            {
+                message.StatusCode = HttpStatusCode.OK;
+                message.Content = new StringContent(MockResponseContent.VALID_POST);
+            }
+            else
+            {
+                message.StatusCode = HttpStatusCode.NotAcceptable;
+                message.Content = new StringContent(MockResponseContent.INVALID_BAD_DATA);
+            }
+        }
+
+        #endregion
+        #region delete
+        private void HandleDelete(HttpRequestMessage request, HttpResponseMessage message)
+        {
+            string[] segments = request.RequestUri.Segments;
+            string endpoint = segments[2];
+            switch (endpoint)
+            {
+                case "batches/":
+                    BatchDelete(request, message);
+                    break;
+                case "recipients/":
+                    break;
+                case "balances/":
+                    break;
+            }
+        }
+
+        private void BatchDelete(HttpRequestMessage request, HttpResponseMessage message)
+        {
+            if (request.RequestUri.Segments.Length >= 4 && !request.RequestUri.Segments[3].ToUpper().Contains("B-"))
+            {
+                message.StatusCode = HttpStatusCode.NotFound;
+                message.Content = new StringContent(MockResponseContent.INVALID_NOT_FOUND);
+                return;
+            }
+            if (request.RequestUri.Segments.Length >= 5)
+            {
+                PaymentDelete(request, message);
+                return;
+            }
+        }
+
+        private void PaymentDelete(HttpRequestMessage request, HttpResponseMessage message)
+        {
+            if(request.RequestUri.Segments.Length >= 6 && request.RequestUri.Segments[5].ToUpper().Contains("P-"))
+            {
+                message.StatusCode = HttpStatusCode.OK;
+                message.Content = new StringContent(MockResponseContent.VALID_POST);
+            }
+            else
+            {
+                message.StatusCode = HttpStatusCode.NotFound;
+                message.Content = new StringContent(MockResponseContent.INVALID_NOT_FOUND);
+            }
+        }
         #endregion
 
         private string GetApiKey(HttpRequestMessage message)

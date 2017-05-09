@@ -11,12 +11,11 @@ namespace paymentrailsTest
     public class PaymentRails_BalancesTest
     {
         public static string apiKey = "pk_test_91XPUY8D8GAGA";
-        public paymentrails.Types.Balance sampleBalance = new paymentrails.Types.Balance(true, 10000, "USD", "paymentrails", null);
+        public Balance sampleBalance = new paymentrails.Types.Balance(true, 10000, "USD", "paymentrails", null);
         [TestMethod]
         public void TestRetrieveBalances()
         {
             PaymentRails_Configuration.ApiKey = apiKey;
-            PaymentRails_Configuration.setApiBase("http://api.local.dev:3000");
             Dictionary<String, Balance> response = PaymentRails_Balances.get();
             Assert.IsTrue(response.ContainsKey("USD"));
             Assert.AreEqual(this.sampleBalance, response["USD"]);
