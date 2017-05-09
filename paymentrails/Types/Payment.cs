@@ -38,6 +38,10 @@ namespace paymentrails.Types
 
             set
             {
+                if (value <= 0)
+                {
+                    //throw an exception saying this is not a valid source amount
+                }
                 sourceAmount = value;
             }
         }
@@ -246,6 +250,10 @@ namespace paymentrails.Types
 
             set
             {
+                if (value == null)
+                {
+                    //throw an exception saying that reipient is a must
+                }
                 recipient = value;
             }
         }
@@ -269,28 +277,30 @@ namespace paymentrails.Types
             double fees, double recipientFees, double fxRate, string processedAt, string createdAt, string updatedAt,
             double merchantFees, string sourceCurrency, string batchId, string id, string status, Compliance compliance)
         {
-            if( recipient == null || batchId == null)
+            if(recipient == null || batchId == null)
             {
                 // throw an exception saying this is not a valid payment
             }
-            this.sourceAmount = sourceAmount;
-            this.targetCurrency = targetCurrency;
-            this.exchangeRate = exchangeRate;
-            this.fees = fees;
-            this.recipientFees = recipientFees;
-            this.targetAmount = targetAmount;
-            this.fxRate = fxRate;
-            this.memo = memo;
-            this.processedAt = processedAt;
-            this.createdAt = createdAt;
-            this.updatedAt = updatedAt;
-            this.merchantFees = merchantFees;
-            this.sourceCurrency = sourceCurrency;
-            this.batchId = batchId;
-            this.id = id;
-            this.status = status;
-            this.recipient = recipient;
-            this.compliance = compliance;
+
+   
+            this.SourceAmount = sourceAmount;
+            this.TargetCurrency = targetCurrency;
+            this.ExchangeRate = exchangeRate;
+            this.Fees = fees;
+            this.RecipientFees = recipientFees;
+            this.TargetAmount = targetAmount;
+            this.FxRate = fxRate;
+            this.Memo = memo;
+            this.ProcessedAt = processedAt;
+            this.CreatedAt = createdAt;
+            this.UpdatedAt = updatedAt;
+            this.MerchantFees = merchantFees;
+            this.SourceCurrency = sourceCurrency;
+            this.BatchId = batchId;
+            this.Id = id;
+            this.Status = status;
+            this.Recipient = recipient;
+            this.Compliance = compliance;
         }
 
         public static bool operator ==(Payment a, Payment b)

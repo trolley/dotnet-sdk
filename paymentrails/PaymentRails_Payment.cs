@@ -13,7 +13,6 @@ namespace paymentrails
         public static List<Payment> get(int page, int pageNumber)
         {
             return query("",page,pageNumber,"");
-
         }
 
         /// <summary>

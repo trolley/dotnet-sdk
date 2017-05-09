@@ -68,13 +68,18 @@ namespace paymentrails
             {
                 UpdateApiKey();
                 HttpResponseMessage response = httpClient.GetAsync(endPoint).Result;
-                response.EnsureSuccessStatusCode();
                 result = response.Content.ReadAsStringAsync().Result;
+                response.EnsureSuccessStatusCode();
+                
 
             }
             catch (System.Net.Http.HttpRequestException e)
             {
-                throw new InvalidStatusCodeException(e.Message);
+                throw new InvalidStatusCodeException(result);
+            }
+            catch(System.AggregateException e)
+            {
+                throw new InvalidServerRequest("An error occured while sending the request.");
             }
             return result;
         }
