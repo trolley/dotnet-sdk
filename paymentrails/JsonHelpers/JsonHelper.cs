@@ -50,8 +50,8 @@ namespace paymentrails.JsonHelpers
         protected static Recipient RecipientJsonHelperToRecipient(RecipientJsonHelper helper)
         {
             Payout payout = PayoutJsonHelperToPayout(helper.Payout);
-            Recipient recipient = new Recipient(helper.Id, helper.ReferenceId, helper.Email, helper.Name,
-                helper.FirstName, helper.LastName, helper.Type, helper.Status, helper.TimeZone, helper.Language,
+            Recipient recipient = new Recipient(helper.Id, helper.Type, helper.ReferenceId, helper.Email, helper.Name,
+                helper.FirstName, helper.LastName, helper.Status, helper.TimeZone, helper.Language,
                 helper.Dob, helper.GravatarUrl, helper.Compliance, payout, helper.Address);
 
             return recipient;
@@ -83,7 +83,7 @@ namespace paymentrails.JsonHelpers
                     payments.Last().BatchId = helper.Id;
                 }
             }
-            Batch batch = new Batch(helper.Currency, helper.Description, payments, helper.Amount, helper.TotalPayments, helper.Status,
+            Batch batch = new Batch(helper.Description, payments, helper.Currency, helper.Amount, helper.TotalPayments, helper.Status,
                 helper.SentAt, helper.CompletedAt, helper.CreatedAt, helper.UpdatedAt, helper.Id);
             return batch;
         }

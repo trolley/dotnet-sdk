@@ -55,6 +55,10 @@ namespace paymentrails.Types
 
             set
             {
+                if(TargetAmount <= 0 && value == null)
+                {
+                    //throw exception 
+                }
                 targetCurrency = value;
             }
         }
@@ -107,6 +111,14 @@ namespace paymentrails.Types
 
             set
             {
+                if (SourceAmount <= 0)
+                {
+                    if(value <= 0)
+                    {
+                        //throw exception because target amount is required if no source amount
+                    }
+
+                }
                 targetAmount = value;
             }
         }
@@ -197,7 +209,7 @@ namespace paymentrails.Types
             }
 
             set
-            {
+            {                
                 sourceCurrency = value;
             }
         }
@@ -250,10 +262,15 @@ namespace paymentrails.Types
 
             set
             {
-                if (value == null)
+                if(value == null)
                 {
-                    //throw an exception saying that reipient is a must
+                    //throw exception
                 }
+                if(value.Id == null && value.Email == null)
+                {
+                    //throw exception
+                }
+
                 recipient = value;
             }
         }
@@ -277,18 +294,15 @@ namespace paymentrails.Types
             double fees, double recipientFees, double fxRate, string processedAt, string createdAt, string updatedAt,
             double merchantFees, string sourceCurrency, string batchId, string id, string status, Compliance compliance)
         {
-            if(recipient == null || batchId == null)
-            {
-                // throw an exception saying this is not a valid payment
-            }
+            
 
-   
+        
             this.SourceAmount = sourceAmount;
+            this.TargetAmount = targetAmount;
             this.TargetCurrency = targetCurrency;
             this.ExchangeRate = exchangeRate;
             this.Fees = fees;
-            this.RecipientFees = recipientFees;
-            this.TargetAmount = targetAmount;
+            this.RecipientFees = recipientFees;       
             this.FxRate = fxRate;
             this.Memo = memo;
             this.ProcessedAt = processedAt;
