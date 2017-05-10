@@ -319,7 +319,16 @@ namespace paymentrails.Types
         {
             foreach (Payment p in Payments)
             {
-                p.IsMappable();
+                if (p.SourceCurrency == null)
+                {
+                    if (p.TargetCurrency == null)
+                    {
+                        if (Currency == null)
+                        {
+                            throw new InvalidFieldException("Batch must have a Currency if not all payment have currency's");
+                        }
+                    }
+                }
             }
             return true;
         }
