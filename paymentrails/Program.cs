@@ -37,9 +37,8 @@ namespace paymentrails
 
             //string val = PaymentRails_Batch.get("B-912Q4PAPBN868");
             //Types.Batch batch = JsonHelpers.BatchHelper.JsonToBatch(val);
-            Recipient newRecipient = new Recipient(null,"individual",null,"j@j.com",null,"j","j",null,null,null,null,null,null,null,null);
-            Recipient createdRecipient = PaymentRails_Recipient.post(newRecipient);
-            Console.WriteLine(createdRecipient);
+            String r = PaymentRails_Recipient.get("R-91XQ4QBJ65W1U", "logs");
+            Console.WriteLine(r);
             
             //Console.WriteLine(batch);
 

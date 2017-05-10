@@ -7,13 +7,16 @@ using System.Threading.Tasks;
 
 namespace paymentrails
 {
+    /// <summary>
+    /// A Class that facilitates HTTP Requests to the API in regards to Payout Methods.
+    /// </summary>
     public class PaymentRails_PayoutMethods
     {
         /// <summary>
         /// Retrieves the payout method based on the recipient id
         /// </summary>
-        /// <param name="recipient_id"></param>
-        /// <returns>The response</returns>
+        /// <param name="recipient_id">A recipient id that will have its payout methods returned</param>
+        /// <returns>The A payout object</returns>
         public static Payout get(String recipient_id)
         {
             String endPoint = "/v1/recipients/" + recipient_id + "/payout-methods";
@@ -25,9 +28,9 @@ namespace paymentrails
         /// <summary>
         /// Creates a payout method based on the recipient id and body
         /// </summary>
-        /// <param name="recipient_id"></param>
-        /// <param name="body"></param>
-        /// <returns>The response</returns>
+        /// <param name="recipient_id">A recipient id that will have a payout method created</param>
+        ///<param name="payout">A payout object that will be created</param>
+        /// <returns>A newly created payout object</returns>
         public static Payout post(String recipient_id, Payout payout)
         {
             String endPoint = "/v1/recipients/" + recipient_id +"/payout-methods";
@@ -39,8 +42,8 @@ namespace paymentrails
         /// <summary>
         /// Updates the payout method based on the recipient id and body
         /// </summary>
-        /// <param name="recipient_id"></param>
-        /// <param name="body"></param>
+        /// <param name="recipient_id">A recipient id that will have its payout method updated</param>
+        /// <param name="payout">A payout object</param>
         /// <returns>The response</returns>
         public static String patch(String recipient_id, Payout payout)
         {

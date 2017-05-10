@@ -15,5 +15,12 @@ namespace paymentrailsTest
         // ""paypal"":{""primary"":false,""amount"":""0.00"",""currency"":""CAD"",""type"":""paypal"",""accountNumber"":null}
         public static readonly Balance VALID_BALANCE = new Balance(true, 1463430.27, "USD", "paymentrails", "0000848");
         public static readonly Balance VALID_BALANCE_PAYPAL = new Balance(false, 0, "CAD", "paypal", null);
+
+        private static Compliance compliance = new Compliance("pending", null);
+        private static Address address = new Address(null, null, null, null, null, null, null);
+        public static readonly Recipient VALID_RECIPIENT = new Recipient("R-91XQ4VKD39C3P", "individual", "tess@example.com", "tess@example.com", "John Smith", "John", "Smith", "incomplete", null, "en", null, "https://s3.amazonaws.com/static.api.paymentrails.com/icon_user.svg", compliance, null, address);
+
+        public static readonly Payout VALID_PAYOUT = new Payout(1000,false,1000,false,"bank", "USD", null, null);
     }
 }
+

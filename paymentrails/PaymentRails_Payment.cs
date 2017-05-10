@@ -7,9 +7,17 @@ using System.Threading.Tasks;
 
 namespace paymentrails
 {
+    /// <summary>
+    /// A Class that facilitates HTTP Requests to the API in regards to Payments.
+    /// </summary>
     public class PaymentRails_Payment
     {
-
+        /// <summary>
+        /// Retrieves a ist of payments based on the page and page number
+        /// </summary>
+        /// <param name="page">The page number (default: 1)</param>
+        /// <param name="pageNumber">Number of records in a page (default: 10)</param>
+        /// <returns>A list of all payments</returns>
         public static List<Payment> get(int page, int pageNumber)
         {
             return query("",page,pageNumber,"");
@@ -18,7 +26,7 @@ namespace paymentrails
         /// <summary>
         /// Retrieves the Payment based on the payment id and batch id
         /// </summary>
-        /// <param name="payment_id"></param>
+        /// <param name="payment_id">A payment id belonging to a payment object</param>
         /// <returns>The response</returns>
         public static Payment get(String payment_id)
         {
@@ -28,13 +36,13 @@ namespace paymentrails
             Payment payment = JsonHelpers.PaymentHelper.JsonToPayment(response);
             return payment;
         }
-        
+
 
         /// <summary>
         /// Creates a payment based on the body and batch id
         /// </summary>
-        /// <param name="body"></param>
-        /// <returns>The response</returns>
+        /// <param name="payment">A payment object that will be created</param>
+        /// <returns>A newley created payment object</returns>
         public static Payment post(Payment payment)
         {        
             String endPoint = "/v1/batches/"+ payment.BatchId + "/payments";
@@ -46,8 +54,7 @@ namespace paymentrails
         /// <summary>
         /// Updates a payment based on the payment id and batch id and body
         /// </summary>
-        /// <param name="payment_id"></param>
-        /// <param name="body"></param>
+        /// <param name="payment">A payment object that will be updated</param>
         /// <returns>The response</returns>
         public static String patch(Payment payment)
         {
@@ -59,7 +66,8 @@ namespace paymentrails
         /// <summary>
         /// Deletes a payment based on the payment id and batch id
         /// </summary>
-        /// <param name="payment_id"></param>
+        /// <param name="paymentId">A payment id that belongs to a payment object</param>
+        /// <param name="batchId">A batch id that belongs to a payment object</param>
         /// <returns>The response</returns>
         public static String delete(string paymentId, string batchId)
         {
@@ -68,7 +76,11 @@ namespace paymentrails
             String response = client.delete(endPoint);
             return response;
         }
-
+        /// <summary>
+        /// Deletes a payment based on a payment object
+        /// </summary>
+        /// <param name="payment">A payment object that will be deleted</param>
+        /// <returns>The response</returns>
         public static string delete(Payment payment)
         {
             return delete(payment.Id, payment.BatchId);
@@ -76,10 +88,11 @@ namespace paymentrails
         /// <summary>
         /// Lists all the payments based on and batch id
         /// </summary>
-        /// <param name="term"></param>
-        /// <param name="page"></param>
-        /// <param name="pageSize"></param>
-        /// <returns></returns>
+        /// <param name="term">The page number (default: 1)</param>
+        /// <param name="page">The page number (default: 1)</param>
+        /// <param name="pageSize">Number of records in a page (default: 10)</param>
+        /// <param name="batchId">A batch id that will have its payments returned</param>
+        /// <returns>A list of payments</returns>
         public static List<Payment> query(String term = "", int page = 1, int pageSize = 10, string batchId = "")
         {
             String endPoint;

@@ -8,13 +8,17 @@ using paymentrails.Types;
 
 namespace paymentrails
 {
+    /// <summary>
+    /// A Class that makes HTTP Requests to the API.
+    /// </summary>
     public class PaymentRails_Client
     {
         private static PaymentRails_Client clientInstance;
-
-
         private HttpClient httpClient;
-
+        
+        /// <summary>
+        /// The client instance
+        /// </summary>
         public static PaymentRails_Client ClientInstance
         {
             get
@@ -26,7 +30,10 @@ namespace paymentrails
                 return clientInstance;
             }
         }
-
+        
+        /// <summary>
+        /// The HttpMessageHandler
+        /// </summary>
         public static HttpMessageHandler HttpMessageHandler
         {
             set
@@ -41,6 +48,10 @@ namespace paymentrails
             }
         }
 
+        /// <summary>
+        /// One paramter constructor
+        /// </summary>
+        /// <param name="handler"></param>
         private PaymentRails_Client(HttpMessageHandler handler)
         {
             this.httpClient = new HttpClient(handler);
@@ -60,7 +71,7 @@ namespace paymentrails
         /// <summary>
         /// Makes a GET request to API
         /// </summary>
-        /// <param name="endPoint"></param>
+        /// <param name="endPoint">The api endPoint</param>
         /// <returns>The response</returns>
         public String get(String endPoint)
         {
@@ -71,8 +82,6 @@ namespace paymentrails
                 HttpResponseMessage response = httpClient.GetAsync(endPoint).Result;
                 result = response.Content.ReadAsStringAsync().Result;
                 response.EnsureSuccessStatusCode();
-                
-
             }
             catch (System.Net.Http.HttpRequestException e)
             {
@@ -84,15 +93,16 @@ namespace paymentrails
             }
             return result;
         }
-        
+
         /// <summary>
         /// Makes a POST request to API
         /// </summary>
-        /// <param name="endPoint"></param>
-        /// <param name="stringBody"></param>
+        /// <param name="endPoint">The api endPoint</param>
+        /// <param name="stringBody">The request payload</param>
         /// <returns>The Response</returns>
         public String post(String endPoint, IPaymentRailsMappable body) // change body to accept IJsonMappable objects
         {
+            body.IsMappable();
             HttpContent jsonBody = convertBody(body.ToJson());
             string result = "";
             try
@@ -120,7 +130,7 @@ namespace paymentrails
         /// Method used to post to endpoints with no data, this is used for endpoints such as
         /// batch/:batch_id/generate_quote
         /// </summary>
-        /// <param name="endpoint">Endpoint to post to</param>
+        /// <param name="endpoint">The api endPoint</param>
         /// <returns></returns>
         public string PostEmpty(String endPoint)
         {
@@ -149,11 +159,12 @@ namespace paymentrails
         /// <summary>
         /// Makes a POST request to API
         /// </summary>
-        /// <param name="endPoint"></param>
-        /// <param name="stringBody"></param>
+        /// <param name="endPoint">The api endPoint</param>
+        /// <param name="stringBody">The request payload</param>
         /// <returns>The response</returns>
         public String patch(String endPoint, IPaymentRailsMappable body) // change body to accept IJsonMappable objects
         {
+            body.IsMappable();
             HttpContent jsonBody = convertBody(body.ToJson());
             string result = "";
             try
@@ -181,7 +192,7 @@ namespace paymentrails
         /// <summary>
         /// Makes A DELETE request to API
         /// </summary>
-        /// <param name="endPoint"></param>
+        /// <param name="endPoint">The api endPoint</param>
         /// <returns>The response</returns>
         public String delete(String endPoint)
         {
@@ -207,8 +218,8 @@ namespace paymentrails
         /// <summary>
         /// Converts String into HTTPContent
         /// </summary>
-        /// <param name="body"></param>
-        /// <returns>The response</returns>
+        /// <param name="body">The request payload</param>
+        /// <returns>The HTTPContent</returns>
         private HttpContent convertBody(String body)
         {
             HttpContent content = new StringContent(body, UTF8Encoding.UTF8, "application/json");
@@ -234,7 +245,11 @@ namespace paymentrails
             }
         }
 
-        // Function that checks if the api key has changed
+
+        /// <summary>
+        /// Function that checks if the api key has changed
+        /// </summary>
+        /// <returns>A bool representing if the api key has changed</returns>
         private static bool ApiKeyUpdated()
         {
             var s = clientInstance.httpClient.DefaultRequestHeaders.GetValues("x-api-key");

@@ -15,9 +15,16 @@ namespace paymentrailsTest
         public const string VALID_BALANCE_PAYPAL = @"{""ok"":true,""balances"":{""paypal"":{""primary"":false,""amount"":""0.00"",""currency"":""CAD"",""type"":""paypal"",""accountNumber"":null}}}";
         public const string VALID_BALANCE_PAYMENTRAILS = @"{""ok"":true,""balances"":{""USD"":{""primary"":true,""amount"":""1463430.27"",""currency"":""USD"",""type"":""paymentrails"",""accountNumber"":""0000848""},""CAD"":{""primary"":false,""amount"":""20000.89"",""currency"":""CAD"",""type"":""paymentrails"",""accountNumber"":""0000867""},""EUR"":{""primary"":false,""amount"":""790473.12"",""currency"":""EUR"",""type"":""paymentrails"",""accountNumber"":""0000847""},""GBP"":{""primary"":false,""amount"":""761316.01"",""currency"":""GBP"",""type"":""paymentrails"",""accountNumber"":""0000846""}}}";
 
+        public const string VALID_RECIPIENT = @"{""ok"":true,""recipient"":{""id"":""R-91XQ4VKD39C3P"",""referenceId"":""tess@example.com"",""email"":""tess@example.com"",""name"":""John Smith"",""lastName"":""Smith"",""firstName"":""John"",""type"":""individual"",""status"":""incomplete"",""language"":""en"",""complianceStatus"":""pending"",""dob"":null,""payoutMethod"":null,""updatedAt"":""2017-05-09T19:11:37.647Z"",""createdAt"":""2017-05-09T19:11:37.647Z"",""gravatarUrl"":""https://s3.amazonaws.com/static.api.paymentrails.com/icon_user.svg"",""compliance"":{""status"":""pending"",""checkedAt"":null},""payout"":{""method"":null},""address"":{""street1"":null,""street2"":null,""city"":null,""postalCode"":null,""country"":null,""region"":null,""phone"":null}}}";
+        public const string VALID_RECIPIENT_LIST = @"{""ok"":true,""recipients"":[{""id"":""R-91XQ4VKD39C3P"",""referenceId"":""tess@example.com"",""email"":""tess@example.com"",""name"":""John Smith"",""lastName"":""Smith"",""firstName"":""John"",""type"":""individual"",""status"":""incomplete"",""language"":""en"",""complianceStatus"":""pending"",""dob"":null,""payoutMethod"":null,""updatedAt"":""2017-05-09T19:11:37.647Z"",""createdAt"":""2017-05-09T19:11:37.647Z"",""gravatarUrl"":""https://s3.amazonaws.com/static.api.paymentrails.com/icon_user.svg"",""compliance"":{""status"":""pending"",""checkedAt"":null},""payout"":{""method"":null},""address"":{""street1"":null,""street2"":null,""city"":null,""postalCode"":null,""country"":null,""region"":null,""phone"":null}}]}";
+        public const string VALID_PAYOUT = @"{""ok"":true,""autoswitch"":{""limit"":1000,""active"":false},""holdup"":{""limit"":1000,""active"":false},""primary"":{""method"":""bank"",""currency"":{""currency"":{""code"":""USD"",""name"":""US Dollar""}}},""method"":""bank"",""accounts"":{}}";
         public const string INVALID_NOT_FOUND = @"{""ok"":false, ""message"":""not found""}";
         public const string INVALID_BAD_DATA = @"{""ok"":false, ""message"":""bad data""}";
         public const string INVALID_UNAUTHORISED = @"{""ok"":false, ""message"":""bad api key""}";
         // P-91YPY3G2FNPHJ
+
+
     }
 }
+
+
