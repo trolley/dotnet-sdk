@@ -77,10 +77,7 @@ namespace paymentrails.Types
         }
         #endregion
 
-        public Balance()
-        {
-
-        }
+        public Balance() { }
 
         public Balance(bool primary, double amount, string currency, string type, string accountNumber)
         {

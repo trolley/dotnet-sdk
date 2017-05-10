@@ -89,5 +89,10 @@ namespace paymentrails.Types
             builder.Append("}");
             return builder.ToString();
         }
+
+        public bool IsMappable()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

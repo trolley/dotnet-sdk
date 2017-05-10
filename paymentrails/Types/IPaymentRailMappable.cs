@@ -14,5 +14,6 @@ namespace paymentrails.Types
         /// </summary>
         /// <returns>JSON string representation of the object</returns>
         String ToJson();
+        bool IsMappable();
     }
 }

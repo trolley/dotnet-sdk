@@ -1,4 +1,5 @@
-﻿using System;
+﻿using paymentrails.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -88,12 +89,15 @@ namespace paymentrails.Types
                     if (p.SourceCurrency == null)
                     {
                         if (p.TargetCurrency == null)
-
                         {
-                            break;
+                            if (value == null)
+                            {
+                                throw new InvalidFieldException("Batch must have a Currency if not all payment have currency's");
+                            }
                         }
                     }
                 }
+
                 currency = value;
             }
         }
@@ -174,7 +178,7 @@ namespace paymentrails.Types
             {
                 if(value == null)
                 {
-                    //throw exception because payments are required
+                    throw new InvalidFieldException("Batch must have at least 1 payment");
                 }
                 payments = value;
             }
@@ -185,6 +189,7 @@ namespace paymentrails.Types
         {
 
             this.Id = id;
+            this.Payments = payments;
             this.Status = status;
             this.Amount = amount;
             this.TotalPayments = totalPayments;
@@ -194,7 +199,7 @@ namespace paymentrails.Types
             this.CompletedAt = completedAt;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
-            this.Payments = payments;
+            
         }
 
         public static bool operator ==(Batch a, Batch b)
@@ -268,6 +273,11 @@ namespace paymentrails.Types
             builder.Append("}");
 
             return builder.ToString();
+        }
+
+        public bool IsMappable()
+        {
+            throw new NotImplementedException();
         }
     }
 }

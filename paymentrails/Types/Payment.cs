@@ -1,4 +1,5 @@
-﻿using System;
+﻿using paymentrails.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,10 +39,6 @@ namespace paymentrails.Types
 
             set
             {
-                if (value <= 0)
-                {
-                    //throw an exception saying this is not a valid source amount
-                }
                 sourceAmount = value;
             }
         }
@@ -55,10 +52,12 @@ namespace paymentrails.Types
 
             set
             {
-                if(TargetAmount <= 0 && value == null)
+
+                if (TargetAmount > 0 && value == null)
                 {
-                    //throw exception 
+                    throw new InvalidFieldException("Payment must have a Target Currency ");
                 }
+
                 targetCurrency = value;
             }
         }
@@ -113,9 +112,9 @@ namespace paymentrails.Types
             {
                 if (SourceAmount <= 0)
                 {
-                    if(value <= 0)
+                    if (value <= 0)
                     {
-                        //throw exception because target amount is required if no source amount
+                        throw new InvalidFieldException("Payment must have a Target Amount if it does not have a Source Amount.");
                     }
 
                 }
@@ -209,7 +208,7 @@ namespace paymentrails.Types
             }
 
             set
-            {                
+            {
                 sourceCurrency = value;
             }
         }
@@ -262,15 +261,10 @@ namespace paymentrails.Types
 
             set
             {
-                if(value == null)
+                if (value == null)
                 {
-                    //throw exception
+                    throw new InvalidFieldException("Payment must have a Recipient.");
                 }
-                if(value.Id == null && value.Email == null)
-                {
-                    //throw exception
-                }
-
                 recipient = value;
             }
         }
@@ -294,15 +288,15 @@ namespace paymentrails.Types
             double fees, double recipientFees, double fxRate, string processedAt, string createdAt, string updatedAt,
             double merchantFees, string sourceCurrency, string batchId, string id, string status, Compliance compliance)
         {
-            
 
-        
+
+
             this.SourceAmount = sourceAmount;
             this.TargetAmount = targetAmount;
             this.TargetCurrency = targetCurrency;
             this.ExchangeRate = exchangeRate;
             this.Fees = fees;
-            this.RecipientFees = recipientFees;       
+            this.RecipientFees = recipientFees;
             this.FxRate = fxRate;
             this.Memo = memo;
             this.ProcessedAt = processedAt;
@@ -362,7 +356,8 @@ namespace paymentrails.Types
             if (this.sourceAmount > 0)
             {
                 currencyString = String.Format("\"sourceAmount\": {0},\n", this.sourceAmount);
-            } else
+            }
+            else
             {
                 currencyString = String.Format("\"targetAmount\": {0},\n\"targetCurrency\": \"{1}\",\n", this.targetAmount, this.TargetCurrency);
             }
@@ -377,6 +372,11 @@ namespace paymentrails.Types
             builder.Append("}\n");
             builder.Append("}");
             return builder.ToString();
+        }
+
+        public bool IsMappable()
+        {
+            throw new NotImplementedException();
         }
     }
 }

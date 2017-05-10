@@ -20,6 +20,7 @@ namespace paymentrails
             PaymentRails_Client client = PaymentRails_Client.CreateClient();
             String response = client.get(endPoint);
             Batch batch = JsonHelpers.BatchHelper.JsonToBatch(response);
+            
             return batch;
         }
 
@@ -42,6 +43,7 @@ namespace paymentrails
             String endPoint = "/v1/batches/" + batch_id;
             PaymentRails_Client client = PaymentRails_Client.CreateClient();
             String response = client.post(endPoint, body);
+
             return response;
         }
         /// <summary>

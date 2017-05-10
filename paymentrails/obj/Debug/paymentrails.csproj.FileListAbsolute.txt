@@ -9,4 +9,3 @@ C:\dev\dotNet\c-sdk\paymentrails\obj\Debug\paymentrails.exe
 C:\dev\dotNet\c-sdk\paymentrails\obj\Debug\paymentrails.pdb
 C:\dev\dotNet\c-sdk\paymentrails\bin\Debug\paymentrails.exe
 C:\dev\dotNet\c-sdk\paymentrails\bin\Debug\paymentrails.pdb
-C:\dev\dotNet\c-sdk\paymentrails\obj\Debug\paymentrails.csprojResolveAssemblyReference.cache

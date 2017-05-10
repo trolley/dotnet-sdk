@@ -8,10 +8,14 @@ using System.Web.Script.Serialization;
 
 namespace paymentrails.JsonHelpers
 {
-    class RecipientHelper : JsonHelper
+    public class RecipientHelper : JsonHelper
     {
         public static List<Recipient> JsonToRecipientList(string jsonResponse)
         {
+            if (jsonResponse == null || jsonResponse == "")
+            {
+                throw new ArgumentException("JSON must be provided");
+            }
             RecipientListJsonHelper helper = new JavaScriptSerializer().Deserialize<RecipientListJsonHelper>(jsonResponse);
             List<Recipient> recipients = new List<Recipient>();
             if (helper.Ok)
@@ -26,6 +30,11 @@ namespace paymentrails.JsonHelpers
 
         public static Recipient JsonToRecipient(string jsonResponse)
         {
+            if (jsonResponse == null || jsonResponse == "")
+            {
+                throw new ArgumentException("JSON must be provided");
+            }
+
             RecipientResponseHelper helper = new JavaScriptSerializer().Deserialize<RecipientResponseHelper>(jsonResponse);
             if (helper.Ok)
             {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace paymentrails.Exceptions
 {
-    class InvalidFieldException : SystemException
+    public class InvalidFieldException : ArgumentException
     {
         /// <summary>
 
