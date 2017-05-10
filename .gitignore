@@ -1,2 +1,5 @@
 paymentrails/bin/**
 paymentrails/obj/**
+paymentrailsTest/obj/**
+paymentrailsTest/bin/**
+TestResults
