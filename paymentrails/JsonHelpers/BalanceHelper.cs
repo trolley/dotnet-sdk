@@ -13,17 +13,10 @@ namespace paymentrails.JsonHelpers
                 throw new ArgumentException("JSON must be provided");
             }
             JsonBalancesHelper helper = new JavaScriptSerializer().Deserialize<JsonBalancesHelper>(jsonString);
-            Dictionary<String, Types.Balance> balances = new Dictionary<string, Types.Balance>();
+            Dictionary<String, Types.Balance> balances = null;
             if (helper.ok)
             {
-                if (helper.balances.ContainsKey("USD"))
-                {
-                    balances.Add("USD", helper.balances["USD"]);
-                }
-                if (helper.balances.ContainsKey("CAD"))
-                {
-                    balances.Add("CAD", helper.balances["USD"]);
-                }
+                balances = helper.balances;
             }
             return balances;
         }

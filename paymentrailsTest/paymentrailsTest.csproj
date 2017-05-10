@@ -59,6 +59,7 @@
     <Compile Include="JsonHelper\BatchHelperTest.cs" />
     <Compile Include="JsonHelper\PaymentHelperTest.cs" />
     <Compile Include="MockHttpHandler.cs" />
+    <Compile Include="MockResponseContent.cs" />
     <Compile Include="PaymentRails_IPaymentRailsMappableTest.cs" />
     <Compile Include="PaymentRails_RecipientTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Types\PayoutTest.cs" />
     <Compile Include="Types\PaymentTest.cs" />
     <Compile Include="Types\BatchTest.cs" />
+    <Compile Include="ValidResponseData.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\paymentrails\paymentrails.csproj">

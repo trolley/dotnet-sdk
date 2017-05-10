@@ -28,6 +28,8 @@ namespace paymentrails
             Payment payment = JsonHelpers.PaymentHelper.JsonToPayment(response);
             return payment;
         }
+        
+
         /// <summary>
         /// Creates a payment based on the body and batch id
         /// </summary>
