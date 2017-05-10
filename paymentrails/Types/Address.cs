@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace paymentrails.Types
 {
+    /// <summary>
+    /// This class represents a recipient address from the Payment Rails API
+    /// </summary>
     public class Address : IPaymentRailsMappable
     {
         private string street1;
@@ -17,6 +20,9 @@ namespace paymentrails.Types
         private string region;
 
         #region properties
+        /// <summary>
+        /// Street address 1
+        /// </summary>
         public string Street1
         {
             get
@@ -30,6 +36,9 @@ namespace paymentrails.Types
             }
         }
 
+        /// <summary>
+        /// street address 2
+        /// </summary>
         public string Street2
         {
             get
@@ -43,6 +52,9 @@ namespace paymentrails.Types
             }
         }
 
+        /// <summary>
+        /// City name
+        /// </summary>
         public string City
         {
             get
@@ -56,6 +68,9 @@ namespace paymentrails.Types
             }
         }
 
+        /// <summary>
+        /// postal code
+        /// </summary>
         public string PostalCode
         {
             get
@@ -69,6 +84,9 @@ namespace paymentrails.Types
             }
         }
 
+        /// <summary>
+        /// phone number
+        /// </summary>
         public string Phone
         {
             get
@@ -82,6 +100,9 @@ namespace paymentrails.Types
             }
         }
 
+        /// <summary>
+        /// country code (should be a valid ISO 3166-1 alpha-2 code)
+        /// </summary>
         public string Country
         {
             get
@@ -95,6 +116,9 @@ namespace paymentrails.Types
             }
         }
 
+        /// <summary>
+        /// region code (should be valid iso_3166-2 code)
+        /// </summary>
         public string Region
         {
             get
@@ -109,6 +133,16 @@ namespace paymentrails.Types
         }
         #endregion properties
 
+        /// <summary>
+        /// Default constructor for a recipient's address
+        /// </summary>
+        /// <param name="street1"></param>
+        /// <param name="street2"></param>
+        /// <param name="city"></param>
+        /// <param name="postalCode"></param>
+        /// <param name="phone"></param>
+        /// <param name="country"></param>
+        /// <param name="region"></param>
         public Address(string street1, string street2, string city, string postalCode, string phone, string country, string region)
         {
             this.street1 = street1;
@@ -120,11 +154,20 @@ namespace paymentrails.Types
             this.region = region;
         }
 
+        /// <summary>
+        /// no paramater constructor for recipient's address sets all fields to null
+        /// </summary>
         public Address()
         {
 
         }
 
+        /// <summary>
+        /// Operator that checks for the equality of all fields within an Address object
+        /// </summary>
+        /// <param name="a">The first address</param>
+        /// <param name="b">The second address</param>
+        /// <returns>Weather the addresses are the same</returns>
         public static bool operator ==(Address a, Address b)
         {
             if (System.Object.ReferenceEquals(a, b))
@@ -134,11 +177,23 @@ namespace paymentrails.Types
             return a.Equals(b);
         }
 
+        /// <summary>
+        /// Operator that checks for the inequality of all fields within an Address object
+        /// </summary>
+        /// <param name="a">The first address</param>
+        /// <param name="b">The second address</param>
+        /// <returns>Weather the addresses are not the same</returns>
         public static bool operator  !=(Address a, Address b)
         {
             return !(a == b);
         }
 
+        /// <summary>
+        /// Checks weather all fields in the object being compared are equal to this instances
+        /// fields
+        /// </summary>
+        /// <param name="obj">The object to compare with</param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             if (obj != null && obj.GetType() == this.GetType())
@@ -156,11 +211,15 @@ namespace paymentrails.Types
             return base.GetHashCode();
         }
 
+        /// <summary>
+        /// Function that represents this object as a JSON string
+        /// </summary>
+        /// <returns>The results of calling ToJson</returns>
         public override string ToString()
         {
             return this.ToJson();
         }
-
+        
         public string ToJson()
         {
             StringBuilder builder = new StringBuilder();
@@ -178,7 +237,7 @@ namespace paymentrails.Types
 
         public bool IsMappable()
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }

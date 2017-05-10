@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace paymentrails.Types
 {
+    /// <summary>
+    /// This class is a representation of a Payment Rails Recipient, it can be used to create or update recipients
+    /// over the API
+    /// </summary>
     public class Recipient : IPaymentRailsMappable
     {
         private string id;
@@ -27,6 +31,9 @@ namespace paymentrails.Types
         private Address address;
 
         #region Properties
+        /// <summary>
+        /// The recipient's id
+        /// </summary>
         public string Id
         {
             get
@@ -39,7 +46,9 @@ namespace paymentrails.Types
                 id = value;
             }
         }
-
+        /// <summary>
+        /// The recipient's reference id
+        /// </summary>
         public string ReferenceId
         {
             get
@@ -52,7 +61,9 @@ namespace paymentrails.Types
                 referenceId = value;
             }
         }
-
+        /// <summary>
+        /// the recipient's email
+        /// </summary>
         public string Email
         {
             get
@@ -66,7 +77,9 @@ namespace paymentrails.Types
                 email = value;
             }
         }
-
+        /// <summary>
+        /// The recipients full name if he is an individual or the buisiness name
+        /// </summary>
         public string Name
         {
             get
@@ -80,7 +93,9 @@ namespace paymentrails.Types
                 name = value;
             }
         }
-
+        /// <summary>
+        /// The recipient's full name
+        /// </summary>
         public string FirstName
         {
             get
@@ -94,7 +109,9 @@ namespace paymentrails.Types
                 firstName = value;
             }
         }
-
+        /// <summary>
+        /// The recipient's last name
+        /// </summary>
         public string LastName
         {
             get
@@ -108,7 +125,9 @@ namespace paymentrails.Types
                 lastName = value;
             }
         }
-
+        /// <summary>
+        /// The type of recipient (individual or business)
+        /// </summary>
         public string Type
         {
             get
@@ -122,7 +141,9 @@ namespace paymentrails.Types
                 type = value;
             }
         }
-
+        /// <summary>
+        /// The recipient's status
+        /// </summary>
         public string Status
         {
             get
@@ -135,7 +156,9 @@ namespace paymentrails.Types
                 status = value;
             }
         }
-
+        /// <summary>
+        /// The recipient's TimeZone
+        /// </summary>
         public string TimeZone
         {
             get
@@ -148,7 +171,9 @@ namespace paymentrails.Types
                 timeZone = value;
             }
         }
-
+        /// <summary>
+        /// The recipient's language
+        /// </summary>
         public string Language
         {
             get
@@ -161,7 +186,9 @@ namespace paymentrails.Types
                 language = value;
             }
         }
-
+        /// <summary>
+        /// The recipient's Date of Birth
+        /// </summary>
         public string Dob
         {
             get
@@ -174,7 +201,9 @@ namespace paymentrails.Types
                 dob = value;
             }
         }
-
+        /// <summary>
+        /// The recipient's gravatar URL
+        /// </summary>
         public string GravatarUrl
         {
             get
@@ -187,7 +216,9 @@ namespace paymentrails.Types
                 gravatarUrl = value;
             }
         }
-
+        /// <summary>
+        /// The recipient's current compliance status
+        /// </summary>
         public Compliance Compliance
         {
             get
@@ -200,7 +231,9 @@ namespace paymentrails.Types
                 compliance = value;
             }
         }
-
+        /// <summary>
+        /// The recipient's payout method
+        /// </summary>
         public Payout Payout
         {
             get
@@ -213,7 +246,9 @@ namespace paymentrails.Types
                 payout = value;
             }
         }
-
+        /// <summary>
+        /// The recipient's address
+        /// </summary>
         public Address Address
         {
             get
@@ -227,7 +262,24 @@ namespace paymentrails.Types
             }
         }
         #endregion
-
+        /// <summary>
+        /// The constructor to instantiate a recipient object
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="type"></param>
+        /// <param name="referenceId"></param>
+        /// <param name="email"></param>
+        /// <param name="name"></param>
+        /// <param name="firstName"></param>
+        /// <param name="lastName"></param>
+        /// <param name="status"></param>
+        /// <param name="timeZone"></param>
+        /// <param name="language"></param>
+        /// <param name="dob"></param>
+        /// <param name="gravatarUrl"></param>
+        /// <param name="compliance"></param>
+        /// <param name="payout"></param>
+        /// <param name="address"></param>
         public Recipient(string id, string type, string referenceId, string email, string name, string firstName, string lastName, string status, string timeZone, string language, string dob, string gravatarUrl, Compliance compliance, Payout payout, Address address)
         {
             
@@ -265,7 +317,11 @@ namespace paymentrails.Types
         {
             return !(a == b);
         }
-
+        /// <summary>
+        /// Checks whether all fields are equivalent to the object being compared
+        /// </summary>
+        /// <param name="obj">The object to compare to</param>
+        /// <returns>whether the objects are equal</returns>
         public override bool Equals(object obj)
         {
             if (obj != null && obj.GetType() == this.GetType())
@@ -289,7 +345,11 @@ namespace paymentrails.Types
         {
             return this.ToJson();
         }
-
+        /// <summary>
+        /// Returns a JSON string representation of the object formatted to be compliant with
+        /// the Payment Rails API post and patch endpoints
+        /// </summary>
+        /// <returns>JSON string representation of the object</returns>
         public string ToJson()
         {
             string payoutString = "null";
@@ -321,6 +381,14 @@ namespace paymentrails.Types
             return builder.ToString();
         }
 
+        /// <summary>
+        /// Function that checks if a IPaymentRailsMappable object has all required fields to be sent
+        /// this function will throw an exception if any of the fields are not properly set.
+        /// 
+        /// In order to have a valid recipient the first name and last name must be set if the 
+        /// recipient is an individual OR the name must be set if it is a business. An email is also required
+        /// </summary>
+        /// <returns>weather the object is ready to be sent to the Payment Rails API</returns>
         public bool IsMappable()
         {
             if (Type == null)

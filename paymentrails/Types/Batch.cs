@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace paymentrails.Types
 {
+    /// <summary>
+    /// This class represents a Payment Rails batch object, it can be used to create new
+    /// batches or update existing ones
+    /// </summary>
     public class Batch : IPaymentRailsMappable
     {
         private string id;
@@ -23,6 +27,9 @@ namespace paymentrails.Types
         private List<Payment> payments;
 
         #region Properties
+        /// <summary>
+        /// The batch id
+        /// </summary>
         public string Id
         {
             get
@@ -35,7 +42,9 @@ namespace paymentrails.Types
                 id = value;
             }
         }
-
+        /// <summary>
+        /// The current status of the batch
+        /// </summary>
         public string Status
         {
             get
@@ -48,7 +57,9 @@ namespace paymentrails.Types
                 status = value;
             }
         }
-
+        /// <summary>
+        /// The total value of the batch
+        /// </summary>
         public double Amount
         {
             get
@@ -61,7 +72,9 @@ namespace paymentrails.Types
                 amount = value;
             }
         }
-
+        /// <summary>
+        /// The number of payments in the batch
+        /// </summary>
         public int TotalPayments
         {
             get
@@ -74,7 +87,9 @@ namespace paymentrails.Types
                 totalPayments = value;
             }
         }
-
+        /// <summary>
+        /// The currency code of the batch
+        /// </summary>
         public string Currency
         {
             get
@@ -87,7 +102,9 @@ namespace paymentrails.Types
                 currency = value;
             }
         }
-
+        /// <summary>
+        /// A short description of what the batch is for
+        /// </summary>
         public string Description
         {
             get
@@ -100,7 +117,9 @@ namespace paymentrails.Types
                 description = value;
             }
         }
-
+        /// <summary>
+        /// when the batch was sent
+        /// </summary>
         public string SentAt
         {
             get
@@ -113,7 +132,9 @@ namespace paymentrails.Types
                 sentAt = value;
             }
         }
-
+        /// <summary>
+        /// when the batch was completed
+        /// </summary>
         public string CompletedAt
         {
             get
@@ -126,7 +147,9 @@ namespace paymentrails.Types
                 completedAt = value;
             }
         }
-
+        /// <summary>
+        /// when the batch was created
+        /// </summary>
         public string CreatedAt
         {
             get
@@ -139,7 +162,9 @@ namespace paymentrails.Types
                 createdAt = value;
             }
         }
-
+        /// <summary>
+        /// when the batch was last updated
+        /// </summary>
         public string UpdatedAt
         {
             get
@@ -152,7 +177,10 @@ namespace paymentrails.Types
                 updatedAt = value;
             }
         }
-
+        /// <summary>
+        /// The list of payments included in the batch
+        /// If you retrieve a list of batches from the API this field will not be set.
+        /// </summary>
         public List<Payment> Payments
         {
             get
@@ -170,7 +198,20 @@ namespace paymentrails.Types
             }
         }
         #endregion
-
+        /// <summary>
+        /// Constructor to instantiate a batch
+        /// </summary>
+        /// <param name="description"></param>
+        /// <param name="payments"></param>
+        /// <param name="currency"></param>
+        /// <param name="amount"></param>
+        /// <param name="totalPayments"></param>
+        /// <param name="status"></param>
+        /// <param name="sentAt"></param>
+        /// <param name="completedAt"></param>
+        /// <param name="createdAt"></param>
+        /// <param name="updatedAt"></param>
+        /// <param name="id"></param>
         public Batch(string description, List<Payment> payments, string currency, double amount, int totalPayments, string status, string sentAt, string completedAt, string createdAt, string updatedAt, string id)
         {
 
@@ -201,7 +242,11 @@ namespace paymentrails.Types
         {
             return !(a == b);
         }
-
+        /// <summary>
+        /// Checks whether all fields in a batch are equivalent to the object being compared
+        /// </summary>
+        /// <param name="obj">the object to compare to</param>
+        /// <returns>Whether the two are equivalent</returns>
         public override bool Equals(object obj)
         {
             if (obj != null && obj.GetType() == this.GetType())
@@ -238,7 +283,11 @@ namespace paymentrails.Types
         {
             return this.ToJson();
         }
-
+        /// <summary>
+        /// Returns a JSON string representation of the object formatted to be compliant with
+        /// the Payment Rails API post and patch endpoints
+        /// </summary>
+        /// <returns>JSON string representation of the object</returns>
         public string ToJson()
         {
             StringBuilder builder = new StringBuilder();
@@ -260,27 +309,17 @@ namespace paymentrails.Types
 
             return builder.ToString();
         }
-
+        /// <summary>
+        /// Function that checks if a IPaymentRailsMappable object has all required fields to be sent
+        /// this function will throw an exception if any of the fields are not properly set.
+        /// For a valid batch valid payments are required
+        /// </summary>
+        /// <returns>weather the object is ready to be sent to the Payment Rails API</returns>
         public bool IsMappable()
         {
-            if (Payments == null)
-            {
-                throw new InvalidFieldException("Batch must have at least 1 payment");
-            }
-
-
             foreach (Payment p in Payments)
             {
-                if (p.SourceCurrency == null)
-                {
-                    if (p.TargetCurrency == null)
-                    {
-                        if (Currency == null)
-                        {
-                            throw new InvalidFieldException("Batch must have a Currency if not all payment have currency's");
-                        }
-                    }
-                }
+                p.IsMappable();
             }
             return true;
         }
