@@ -28,12 +28,13 @@ namespace paymentrails
         /// <param name="recipient_id"></param>
         /// <param name="body"></param>
         /// <returns>The response</returns>
-        public static String post(String recipient_id, Payout payout)
+        public static Payout post(String recipient_id, Payout payout)
         {
             String endPoint = "/v1/recipients/" + recipient_id +"/payout-methods";
             PaymentRails_Client client = PaymentRails_Client.CreateClient();
             String response = client.post(endPoint, payout); // will change this method to use IPaymentRailsMappable
-            return response;
+            Payout createdPayout = JsonHelpers.PayoutHelper.JsonToPayout(response);
+            return createdPayout;
         }
         /// <summary>
         /// Updates the payout method based on the recipient id and body

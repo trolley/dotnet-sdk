@@ -80,10 +80,7 @@ namespace paymentrails.Types
 
             set
             {
-                if(value == null)
-                {
-                    throw new InvalidFieldException("Payout method must have a primary method");
-                }
+                
                 primaryMethod = value;
             }
         }
@@ -232,7 +229,11 @@ namespace paymentrails.Types
 
         public bool IsMappable()
         {
-            throw new NotImplementedException();
+            if (PrimaryMethod == null)
+            {
+                throw new InvalidFieldException("Payout method must have a primary method");
+            }
+            return true;
         }
     }
 }

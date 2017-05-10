@@ -102,11 +102,16 @@ namespace paymentrails
                 HttpResponseMessage response = httpClient.PostAsync(endPoint, jsonBody).Result;
                 result = response.Content.ReadAsStringAsync().Result;
                 response.EnsureSuccessStatusCode();
-
+            
             }
             catch (System.Net.Http.HttpRequestException e)
             {
                 throw new InvalidStatusCodeException(result);
+
+            }
+            catch (System.AggregateException e)
+            {
+                throw new InvalidServerRequest("An error occured while sending the request.");
             }
             return result;
         }
@@ -128,11 +133,15 @@ namespace paymentrails
                 HttpResponseMessage response = httpClient.PostAsync(endPoint, jsonBody).Result;
                 result = response.Content.ReadAsStringAsync().Result;
                 response.EnsureSuccessStatusCode();
-
             }
             catch (System.Net.Http.HttpRequestException e)
             {
                 throw new InvalidStatusCodeException(result);
+
+            }
+            catch (System.AggregateException e)
+            {
+                throw new InvalidServerRequest("An error occured while sending the request.");
             }
             return result;
         }
@@ -157,11 +166,14 @@ namespace paymentrails
                 HttpResponseMessage response = responseTask.Result;
                 result = response.Content.ReadAsStringAsync().Result;
                 response.EnsureSuccessStatusCode();
-
             }
             catch (System.Net.Http.HttpRequestException e)
             {
                 throw new InvalidStatusCodeException(result);
+            }
+            catch (System.AggregateException e)
+            {
+                throw new InvalidServerRequest("An error occured while sending the request.");
             }
             return result;
 
@@ -184,6 +196,10 @@ namespace paymentrails
             catch (System.Net.Http.HttpRequestException e)
             {
                 throw new InvalidStatusCodeException(result);
+            }
+            catch (System.AggregateException e)
+            {
+                throw new InvalidServerRequest("An error occured while sending the request.");
             }
             return result;
         }

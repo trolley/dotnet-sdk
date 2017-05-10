@@ -35,12 +35,13 @@ namespace paymentrails
         /// </summary>
         /// <param name="body"></param>
         /// <returns>The response</returns>
-        public static String post(Payment payment)
+        public static Payment post(Payment payment)
         {        
             String endPoint = "/v1/batches/"+ payment.BatchId + "/payments";
             PaymentRails_Client client = PaymentRails_Client.CreateClient();
             String response = client.post(endPoint, payment);
-            return response;
+            Payment createdPayment = JsonHelpers.PaymentHelper.JsonToPayment(response);
+            return createdPayment;
         }
         /// <summary>
         /// Updates a payment based on the payment id and batch id and body
