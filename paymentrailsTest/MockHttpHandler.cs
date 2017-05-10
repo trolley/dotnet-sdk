@@ -22,24 +22,29 @@ namespace paymentrailsTest
             if (this.apiKey == null || (!this.apiKey.ToUpper().Contains("PK_TEST") && !this.apiKey.ToUpper().Contains("PK_LIVE")))
             {
                 message.StatusCode = HttpStatusCode.Forbidden;
+                message.Content = new StringContent(MockResponseContent.INVALID_UNAUTHORISED);
             }
-            this.method = request.Method.Method;
-            switch (method)
+            else
             {
-                case "GET":
-                    HandleGet(request, message);
-                    break;
-                case "POST":
-                    HandlePost(request, message);
-                    break;
-                case "PATCH":
-                    HandlePatch(request, message);
-                    break;
-                case "DELETE":
-                    HandleDelete(request, message);
-                    break;
-            }
+                this.method = request.Method.Method;
+                switch (method)
+                {
+                    case "GET":
+                        HandleGet(request, message);
+                        break;
+                    case "POST":
+                        HandlePost(request, message);
+                        break;
+                    case "PATCH":
+                        HandlePatch(request, message);
+                        break;
+                    case "DELETE":
+                        HandleDelete(request, message);
+                        break;
+                }
 
+            }
+            
             message.RequestMessage = request;
             //contentData
             Task<HttpResponseMessage> t = new Task<HttpResponseMessage>(() => message);
@@ -65,8 +70,40 @@ namespace paymentrailsTest
                     break;
                 case "recipients":
                     break;
-                case "balances":
+                case "profile":
+                    ProfileGet(request, message);
                     break;
+            }
+        }
+
+        private void ProfileGet(HttpRequestMessage request, HttpResponseMessage message)
+        {
+            if (request.RequestUri.Segments[3].Replace("/", "") == "balances")
+            {
+                if(request.RequestUri.Segments.Length >= 5 )
+                {
+                    if (request.RequestUri.Segments[4].Contains("paypal"))
+                    {
+                        message.StatusCode = HttpStatusCode.OK;
+                        message.Content = new StringContent(MockResponseContent.VALID_BALANCE_PAYPAL);
+                    }
+                    else if (request.RequestUri.Segments[4].Contains("paymentrails"))
+                    {
+                        message.StatusCode = HttpStatusCode.OK;
+                        message.Content = new StringContent(MockResponseContent.VALID_BALANCE_PAYMENTRAILS);
+                    }
+                }
+                else
+                {
+                    message.StatusCode = HttpStatusCode.OK;
+                    message.Content = new StringContent(MockResponseContent.VALID_BALANCE);
+                }
+                
+            }
+            else
+            {
+                message.StatusCode = HttpStatusCode.NotFound;
+                message.Content = new StringContent(MockResponseContent.INVALID_NOT_FOUND);
             }
         }
 

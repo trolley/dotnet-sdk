@@ -12,6 +12,8 @@ namespace paymentrailsTest
         public static readonly Payment VALID_PAYMENT_2 = new Payment(ValidPaymentRecipient, 0, "", 0, "CAD", 1, 0, 0, 2, null, "2017-05-02T17:08:11.362Z", "2017-05-02T17:08:11.362Z", 0, "USD", "B-91XPY3G229AQ8", "P-91YPY3G2FNPHJ", "active", new Compliance("pending", null));
         private static Payment[] payments = { VALID_PAYMENT, VALID_PAYMENT_2 };
         public static readonly List<Payment> VALID_PAYMENTS = new List<Payment>(payments);
-
+        // ""paypal"":{""primary"":false,""amount"":""0.00"",""currency"":""CAD"",""type"":""paypal"",""accountNumber"":null}
+        public static readonly Balance VALID_BALANCE = new Balance(true, 1463430.27, "USD", "paymentrails", "0000848");
+        public static readonly Balance VALID_BALANCE_PAYPAL = new Balance(false, 0, "CAD", "paypal", null);
     }
 }
