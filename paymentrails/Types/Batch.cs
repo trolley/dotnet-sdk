@@ -178,7 +178,7 @@ namespace paymentrails.Types
             {
                 if(value == null)
                 {
-                    throw new InvalidFieldException("Batch must have at least 1 payment");
+                    value = new List<Payment>();
                 }
                 payments = value;
             }

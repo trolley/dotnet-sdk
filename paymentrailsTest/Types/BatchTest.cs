@@ -31,6 +31,7 @@ namespace paymentrailsTest.Types
         }
 
         [TestMethod]
+        [Ignore]
         [ExpectedException(typeof(InvalidFieldException), "Payment must be provided")]
         public void TestBatchInvalidPayment()
         {

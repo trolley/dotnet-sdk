@@ -109,10 +109,26 @@ namespace paymentrailsTest
 
         private void BatchesGet(HttpRequestMessage request, HttpResponseMessage message)
         {
-            if (request.RequestUri.Segments.Length >=3 && !request.RequestUri.Segments[3].Contains("B-"))
+            if (request.RequestUri.Segments.Length >= 4)
             {
-                message.StatusCode = HttpStatusCode.NotFound;
-                message.Content = new StringContent(MockResponseContent.INVALID_NOT_FOUND);
+                if (request.RequestUri.Segments[3].Contains("B-"))
+                {
+                    message.StatusCode = HttpStatusCode.OK;
+                    message.Content = new StringContent(MockResponseContent.VALID_BATCH);
+                    return;
+                }
+                else
+                {
+                    message.StatusCode = HttpStatusCode.NotFound;
+                    message.Content = new StringContent(MockResponseContent.INVALID_NOT_FOUND);
+                    return;
+                }
+
+            }
+            else
+            {
+                message.StatusCode = HttpStatusCode.OK;
+                message.Content = new StringContent(MockResponseContent.VALID_BATCH_LIST);
             }
         }
 
@@ -176,6 +192,20 @@ namespace paymentrailsTest
                 message.Content = new StringContent(MockResponseContent.INVALID_NOT_FOUND);
                 return;
             }
+            else
+            {
+                string content = request.Content.ReadAsStringAsync().Result;
+                if (content.Contains("INVALID"))
+                {
+                    message.StatusCode = HttpStatusCode.NotAcceptable;
+                    message.Content = new StringContent(MockResponseContent.INVALID_BAD_DATA);
+                }
+                else
+                {
+                    message.StatusCode = HttpStatusCode.OK;
+                    message.Content = new StringContent(MockResponseContent.VALID_POST);
+                }
+            }
             if (request.RequestUri.Segments.Length >= 5)
             {
                 PaymentPost(request, message);
@@ -221,6 +251,11 @@ namespace paymentrailsTest
                 message.StatusCode = HttpStatusCode.NotFound;
                 message.Content = new StringContent(MockResponseContent.INVALID_NOT_FOUND);
                 return;
+            }
+            if(request.RequestUri.Segments.Length == 4)
+            {
+                message.StatusCode = HttpStatusCode.OK;
+                message.Content = new StringContent(MockResponseContent.VALID_POST);
             }
             if (request.RequestUri.Segments.Length >= 5)
             {
@@ -269,6 +304,11 @@ namespace paymentrailsTest
                 message.StatusCode = HttpStatusCode.NotFound;
                 message.Content = new StringContent(MockResponseContent.INVALID_NOT_FOUND);
                 return;
+            }
+            if (request.RequestUri.Segments.Length == 4)
+            {
+                message.StatusCode = HttpStatusCode.OK;
+                message.Content = new StringContent(MockResponseContent.VALID_POST);
             }
             if (request.RequestUri.Segments.Length >= 5)
             {
