@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace paymentrails.JsonHelpers
 {
-    class PaymentHelper : JsonHelper
+    public class PaymentHelper : JsonHelper
     {
         public static List<Payment> JsonToPaymentList(string jsonResponse)
         {

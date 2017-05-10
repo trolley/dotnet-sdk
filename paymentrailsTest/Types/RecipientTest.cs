@@ -12,13 +12,13 @@ namespace paymentrailsTest
         public void TestRecipientBusiness()
         {
             Recipient r = new Recipient(null, "business", null, "email", "name", null,null, null, null, null, null, null, null, null, null);
-            Assert.IsTrue(true);
+            Assert.IsTrue(r.IsMappable());
         }
         [TestMethod]
         public void TestRecipientIndividual()
         {
             Recipient r = new Recipient(null, "individual", null, "email", null, "firstName", "lastName", null, null, null, null, null, null, null, null);
-            Assert.IsTrue(true);
+            Assert.IsTrue(r.IsMappable());
         }
 
         [TestMethod]
@@ -26,14 +26,14 @@ namespace paymentrailsTest
         public void TestRecipientInvalidEmail()
         {
             Recipient r = new Recipient(null,"type",null,null,null,"firstName","lastName",null,null,null,null,null,null,null,null);
-
+            Assert.IsTrue(r.IsMappable());
         }
 
         [TestMethod]
         public void TestRecipientInvalidId()
         {
             Recipient r = new Recipient("R-fhfh", "type", null, null, null, "firstName", "lastName", null, null, null, null, null, null, null, null);
-
+            Assert.IsTrue(r.IsMappable());
         }
 
         [TestMethod]
@@ -41,28 +41,28 @@ namespace paymentrailsTest
         public void TestRecipientInvalidType()
         {
             Recipient r = new Recipient(null, null, null, "email", null, "firstName", "lastName", null, null, null, null, null, null, null, null);
-
+            Assert.IsTrue(r.IsMappable());
         }
         [TestMethod]
         [ExpectedException(typeof(InvalidFieldException), "Name must be provided if type is business.")]
         public void TestRecipientInvalidName()
         {
             Recipient r = new Recipient(null, "business", null, "email", null, null, null, null, null, null, null, null, null, null, null);
-
+            Assert.IsTrue(r.IsMappable());
         }
         [TestMethod]
         [ExpectedException(typeof(InvalidFieldException), "First name must be provided if type is individual.")]
         public void TestRecipientInvalilFirstName()
         {
             Recipient r = new Recipient(null, "individual", null, null, "email",null, null, "lastname", null, null, null, null, null, null, null);
-
+            Assert.IsTrue(r.IsMappable());
         }
         [TestMethod]
         [ExpectedException(typeof(InvalidFieldException), "Last name must be provided if type is individual.")]
         public void TestRecipientInvalidLastName()
         {
             Recipient r = new Recipient(null, "individual", null, null, "email", "firstName", null, null, null, null, null, null, null, null, null);
-
+            Assert.IsTrue(r.IsMappable());
         }
     }
 }

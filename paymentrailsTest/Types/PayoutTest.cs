@@ -13,13 +13,13 @@ namespace paymentrailsTest.Types
         public void TestPayoutInvaliPrimaryMethod()
         {
             Payout payout = new Payout(0,false,0,false,null,null,null,null);
+            Assert.IsTrue(payout.IsMappable());
         }
         [TestMethod]
         public void TestPayout()
         {
             Payout payout = new Payout(0, false, 0, false, "primarymethod", null, null, null);
-
-
+            Assert.IsTrue(payout.IsMappable());
         }
     }
 }

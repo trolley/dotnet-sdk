@@ -53,10 +53,7 @@ namespace paymentrails.Types
             set
             {
 
-                if (TargetAmount > 0 && value == null)
-                {
-                    throw new InvalidFieldException("Payment must have a Target Currency ");
-                }
+                
 
                 targetCurrency = value;
             }
@@ -110,14 +107,7 @@ namespace paymentrails.Types
 
             set
             {
-                if (SourceAmount <= 0)
-                {
-                    if (value <= 0)
-                    {
-                        throw new InvalidFieldException("Payment must have a Target Amount if it does not have a Source Amount.");
-                    }
-
-                }
+                
                 targetAmount = value;
             }
         }
@@ -261,10 +251,7 @@ namespace paymentrails.Types
 
             set
             {
-                if (value == null)
-                {
-                    throw new InvalidFieldException("Payment must have a Recipient.");
-                }
+                
                 recipient = value;
             }
         }
@@ -375,7 +362,25 @@ namespace paymentrails.Types
 
         public bool IsMappable()
         {
-            throw new NotImplementedException();
+            if (Recipient == null)
+            {
+                throw new InvalidFieldException("Payment must have a Recipient.");
+            }
+
+            if (SourceAmount <= 0)
+            {
+                if (TargetAmount <= 0)
+                {
+                    throw new InvalidFieldException("Payment must have a Target Amount if it does not have a Source Amount.");
+                }
+
+            }
+            if (TargetAmount > 0 && TargetCurrency == null)
+            {
+                throw new InvalidFieldException("Payment must have a Target Currency ");
+            }
+
+            return true;
         }
     }
 }

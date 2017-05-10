@@ -99,13 +99,18 @@ namespace paymentrails
 
                 UpdateApiKey();
                 HttpResponseMessage response = httpClient.PostAsync(endPoint, jsonBody).Result;
-                response.EnsureSuccessStatusCode();
                 result = response.Content.ReadAsStringAsync().Result;
+                response.EnsureSuccessStatusCode();
+
 
             }
             catch (System.Net.Http.HttpRequestException e)
             {
-                throw new InvalidStatusCodeException(e.Message);
+                throw new InvalidStatusCodeException(result);
+            }
+            catch (System.AggregateException e)
+            {
+                throw new InvalidServerRequest("An error occured while sending the request.");
             }
             return result;
         }
@@ -125,13 +130,18 @@ namespace paymentrails
 
                 UpdateApiKey();
                 HttpResponseMessage response = httpClient.PostAsync(endPoint, jsonBody).Result;
-                response.EnsureSuccessStatusCode();
                 result = response.Content.ReadAsStringAsync().Result;
+                response.EnsureSuccessStatusCode();
+
 
             }
             catch (System.Net.Http.HttpRequestException e)
             {
-                throw new InvalidStatusCodeException(e.Message);
+                throw new InvalidStatusCodeException(result);
+            }
+            catch (System.AggregateException e)
+            {
+                throw new InvalidServerRequest("An error occured while sending the request.");
             }
             return result;
         }
@@ -154,13 +164,18 @@ namespace paymentrails
                 System.Threading.Tasks.Task<HttpResponseMessage> responseTask = httpClient.SendAsync(request);
 
                 HttpResponseMessage response = responseTask.Result;
-                response.EnsureSuccessStatusCode();
                 result = response.Content.ReadAsStringAsync().Result;
+                response.EnsureSuccessStatusCode();
+
 
             }
             catch (System.Net.Http.HttpRequestException e)
             {
-                throw new InvalidStatusCodeException(e.Message);
+                throw new InvalidStatusCodeException(result);
+            }
+            catch (System.AggregateException e)
+            {
+                throw new InvalidServerRequest("An error occured while sending the request.");
             }
             return result;
 
@@ -177,12 +192,18 @@ namespace paymentrails
             {
                 UpdateApiKey();
                 HttpResponseMessage response = httpClient.DeleteAsync(endPoint).Result;
-                response.EnsureSuccessStatusCode();
                 result = response.Content.ReadAsStringAsync().Result;
+                response.EnsureSuccessStatusCode();
+
+
             }
             catch (System.Net.Http.HttpRequestException e)
             {
-                throw new InvalidStatusCodeException(e.Message);
+                throw new InvalidStatusCodeException(result);
+            }
+            catch (System.AggregateException e)
+            {
+                throw new InvalidServerRequest("An error occured while sending the request.");
             }
             return result;
         }

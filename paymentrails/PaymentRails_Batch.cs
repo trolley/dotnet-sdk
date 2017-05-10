@@ -38,13 +38,14 @@ namespace paymentrails
         /// <param name="body"></param>
         /// <param name="batch_id"></param>
         /// <returns>The response</returns>
-        public static String post(Batch body,String batch_id = "")
+        public static Batch post(Batch body,String batch_id = "")
         {
             String endPoint = "/v1/batches/" + batch_id;
             PaymentRails_Client client = PaymentRails_Client.CreateClient();
             String response = client.post(endPoint, body);
+            Batch createdBatch = JsonHelpers.BatchHelper.JsonToBatch(response);
 
-            return response;
+            return createdBatch;
         }
         /// <summary>
         /// Updates a batch based on batch id and the body

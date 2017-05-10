@@ -19,6 +19,7 @@ namespace paymentrailsTest.Types
             List<Payment> payments = new List<Payment>();
             payments.Add(payment);
             Batch batch = new Batch(null,payments, "currency", 0, 0, null, null, null, null, null, null);
+            Assert.IsTrue(batch.IsMappable());
         }
         [TestMethod]
         public void TestBatchWithoutCurrency()
@@ -28,6 +29,7 @@ namespace paymentrailsTest.Types
             List<Payment> payments = new List<Payment>();
             payments.Add(payment);
             Batch batch = new Batch(null, payments,null, 0, 0, null, null, null, null, null, null);
+            Assert.IsTrue(batch.IsMappable());
         }
 
         [TestMethod]
@@ -36,6 +38,7 @@ namespace paymentrailsTest.Types
         {
             Recipient recipient = new Recipient(null, "business", null, "email", "name", null, null, null, null, null, null, null, null, null, null);
             Batch batch = new Batch(null, null, "currency", 0, 0, null, null, null, null, null, null);
+            Assert.IsTrue(batch.IsMappable());
         }
         [TestMethod]
         [ExpectedException(typeof(InvalidFieldException), "Payment must be provided")]
@@ -46,6 +49,7 @@ namespace paymentrailsTest.Types
             List<Payment> payments = new List<Payment>();
             payments.Add(payment);
             Batch batch = new Batch(null, payments, null, 0, 0, null, null, null, null, null, null);
+            Assert.IsTrue(batch.IsMappable());
         }
 
 

@@ -84,20 +84,6 @@ namespace paymentrails.Types
 
             set
             {
-                foreach(Payment p in Payments)
-                {
-                    if (p.SourceCurrency == null)
-                    {
-                        if (p.TargetCurrency == null)
-                        {
-                            if (value == null)
-                            {
-                                throw new InvalidFieldException("Batch must have a Currency if not all payment have currency's");
-                            }
-                        }
-                    }
-                }
-
                 currency = value;
             }
         }
@@ -176,10 +162,7 @@ namespace paymentrails.Types
 
             set
             {
-                if(value == null)
-                {
-                    throw new InvalidFieldException("Batch must have at least 1 payment");
-                }
+                
                 payments = value;
             }
         }
@@ -277,7 +260,26 @@ namespace paymentrails.Types
 
         public bool IsMappable()
         {
-            throw new NotImplementedException();
+            if (Payments == null)
+            {
+                throw new InvalidFieldException("Batch must have at least 1 payment");
+            }
+
+
+            foreach (Payment p in Payments)
+            {
+                if (p.SourceCurrency == null)
+                {
+                    if (p.TargetCurrency == null)
+                    {
+                        if (Currency == null)
+                        {
+                            throw new InvalidFieldException("Batch must have a Currency if not all payment have currency's");
+                        }
+                    }
+                }
+            }
+            return true;
         }
     }
 }

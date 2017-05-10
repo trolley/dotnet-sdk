@@ -57,6 +57,7 @@
     <Compile Include="JsonHelper\PayoutHelperTest.cs" />
     <Compile Include="JsonHelper\BalanceHelperTest.cs" />
     <Compile Include="JsonHelper\BatchHelperTest.cs" />
+    <Compile Include="JsonHelper\PaymentHelperTest.cs" />
     <Compile Include="MockHttpHandler.cs" />
     <Compile Include="PaymentRails_IPaymentRailsMappableTest.cs" />
     <Compile Include="PaymentRails_RecipientTest.cs" />

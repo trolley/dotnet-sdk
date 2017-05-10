@@ -36,12 +36,13 @@ namespace paymentrails
         /// </summary>
         /// <param name="body"></param>
         /// <returns>The resonse</returns>
-        public static String post(Recipient recipient)
+        public static Recipient post(Recipient recipient)
         {
             String endPoint = "/v1/recipients";
             PaymentRails_Client client = PaymentRails_Client.CreateClient();
             String response = client.post(endPoint, recipient);
-            return response;
+            Recipient createdRecipient = JsonHelpers.RecipientHelper.JsonToRecipient(response);
+            return createdRecipient;
         }
         /// <summary>
         /// Updates a recipient based on the recipient id given and the body
