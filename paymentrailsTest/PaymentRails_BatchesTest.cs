@@ -145,8 +145,8 @@ namespace paymentrailsTest
         {
             PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
             Batch batch = new Batch("VALID", null, "CAD", 0, 0, null, null, null, null, null, null);
-            //string response = PaymentRails_Batch.post(batch);
-            //Assert.AreEqual(MockResponseContent.VALID_POST, response);
+            Batch result = PaymentRails_Batch.post(batch);
+            Assert.AreEqual(ValidResponseData.VALID_BATCH, result);
         }
 
         [TestMethod]
@@ -157,7 +157,7 @@ namespace paymentrailsTest
             Batch batch = new Batch("INVALID", null, "CAD", 0, 0, null, null, null, null, null, null);
             try
             {
-                //string response = PaymentRails_Batch.post(batch);
+                Batch response = PaymentRails_Batch.post(batch);
             }
             catch(InvalidStatusCodeException e)
             {

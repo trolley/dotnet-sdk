@@ -53,9 +53,8 @@ namespace paymentrailsTest
         {
             PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
             Payment p = new Payment(PaymentRecipient, 10, "VALID", 0, "CAD", 0,0,0,0,null,null,null,0,null,"B-VALIDBATCHID" ,null,null,null);
-            //String response = PaymentRails_Payment.post(p);
-            //String message = response.Substring(6, 4);
-            //Assert.AreEqual("true", message);
+            Payment result = PaymentRails_Payment.post(p);
+            Assert.AreEqual(ValidResponseData.VALID_PAYMENT, result);
         }
 
         [TestMethod]
@@ -66,7 +65,7 @@ namespace paymentrailsTest
             Payment p = new Payment(PaymentRecipient, 10, "INVALID", 0, "CAD", 0, 0, 0, 0, null, null, null, 0, null, "B-INVALIDBATCHID", "INVALIDID", null, null);
             try
             {
-                //string response = PaymentRails_Payment.post(p);
+                Payment response = PaymentRails_Payment.post(p);
             }
             catch (InvalidStatusCodeException e)
             {

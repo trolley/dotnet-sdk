@@ -203,7 +203,7 @@ namespace paymentrailsTest
                 else
                 {
                     message.StatusCode = HttpStatusCode.OK;
-                    message.Content = new StringContent(MockResponseContent.VALID_POST);
+                    message.Content = new StringContent(MockResponseContent.VALID_BATCH);
                 }
             }
             if (request.RequestUri.Segments.Length >= 5)
@@ -219,7 +219,7 @@ namespace paymentrailsTest
             if (!content.Contains("INVALID"))
             {
                 message.StatusCode = HttpStatusCode.OK;
-                message.Content = new StringContent(MockResponseContent.VALID_POST);
+                message.Content = new StringContent(MockResponseContent.VALID_PAYMENT);
             }else
             {
                 message.StatusCode = HttpStatusCode.NotAcceptable;
