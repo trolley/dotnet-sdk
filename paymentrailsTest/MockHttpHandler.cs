@@ -191,6 +191,19 @@ namespace paymentrailsTest
             {
                 PayoutGet(request, message);
             }
+            else if(request.RequestUri.Segments.Length > 4)
+            {
+                if (request.RequestUri.Segments[3].ToUpper().Contains("R-"))
+                {
+                    message.StatusCode = HttpStatusCode.OK;
+                    message.Content = new StringContent(MockResponseContent.VALID_POST);
+                }
+                else
+                {
+                    message.StatusCode = HttpStatusCode.NotFound;
+                    message.Content = new StringContent(MockResponseContent.INVALID_NOT_FOUND);
+                }
+            }
             else if (request.RequestUri.Segments.Length > 3)
             {
                 SingleRecipientGet(request, message);

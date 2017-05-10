@@ -29,12 +29,28 @@ namespace paymentrails
         /// <param name="term">An optional term that can be logs or payments. Using a term will result
         /// in a the logs or payments being returned </param>
         /// <returns>The response</returns>
-        public static String get(String recipient_id, String term = "")
+        public static String get(String recipient_id, String term)
         {
             String endPoint = "/v1/recipients/" + recipient_id + "/" + term;
             PaymentRails_Client client = PaymentRails_Client.CreateClient();
             String response = client.get(endPoint);
             return response;
+        }
+
+        /// <summary>
+        /// Retrieves either the logs or payments of a recipient object
+        /// </summary>HERERERE
+        /// <param name="recipient_id">The recipient id that belongs to a recipient bject </param>
+        /// <param name="term">An optional term that can be logs or payments. Using a term will result
+        /// in a the logs or payments being returned </param>
+        /// <returns>The response</returns>
+        public static Recipient get(String recipient_id)
+        {
+            String endPoint = "/v1/recipients/" + recipient_id;
+            PaymentRails_Client client = PaymentRails_Client.CreateClient();
+            String response = client.get(endPoint);
+            Recipient createdRecipient = JsonHelpers.RecipientHelper.JsonToRecipient(response);
+            return createdRecipient;
         }
         /// <summary>
         /// Creates a recipient based on the body given to the client

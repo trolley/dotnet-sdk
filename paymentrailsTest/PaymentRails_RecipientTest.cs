@@ -144,8 +144,8 @@ namespace paymentrailsTest
         public void TestRetrieveAllLogs()
         {
             PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
-            Recipient response = PaymentRails_Recipient.get("R-91XPU407CRNGR","logs");
-            Assert.AreEqual(ValidResponseData.VALID_RECIPIENT, response);
+            String response = PaymentRails_Recipient.get("R-91XPU407CRNGR", "logs");
+            Assert.AreEqual(MockResponseContent.VALID_POST, response);
         }
 
         [TestMethod]
@@ -153,16 +153,23 @@ namespace paymentrailsTest
         public void TestRetrieveAllLogsInvalidRecipientId()
         {
             PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
-            Recipient response = PaymentRails_Recipient.get("INVALID", "logs");
-            Assert.AreEqual(ValidResponseData.VALID_RECIPIENT, response);
+            try
+            {
+                String response = PaymentRails_Recipient.get("INVALID", "logs");
+            }
+            catch (InvalidStatusCodeException e)
+            {
+                Assert.AreEqual(MockResponseContent.INVALID_NOT_FOUND, e.Message);
+                throw e;
+            }
         }
 
         [TestMethod]
         public void TestRetrieveAllpayments()
         {
             PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
-            Recipient response = PaymentRails_Recipient.get("R-91XPU407CRNGR", "payments");
-            Assert.AreEqual(ValidResponseData.VALID_RECIPIENT, response);
+            String response = PaymentRails_Recipient.get("R-91XPU407CRNGR", "payments");
+            Assert.AreEqual(MockResponseContent.VALID_POST, response);
         }
 
         [TestMethod]
@@ -170,8 +177,16 @@ namespace paymentrailsTest
         public void TestRetrieveAllPaymentsInvalidRecipientId()
         {
             PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
-            Recipient response = PaymentRails_Recipient.get("INVALID", "payments");
-            Assert.AreEqual(ValidResponseData.VALID_RECIPIENT, response);
+
+            try
+            {
+                String response = PaymentRails_Recipient.get("INVALID", "payments");
+            }
+            catch (InvalidStatusCodeException e)
+            {
+                Assert.AreEqual(MockResponseContent.INVALID_NOT_FOUND, e.Message);
+                throw e;
+            }
         }
 
 
