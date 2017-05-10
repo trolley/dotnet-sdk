@@ -10,6 +10,11 @@ namespace paymentrails.JsonHelpers
 {
     public class RecipientHelper : JsonHelper
     {
+        /// <summary>
+        /// Method that converts a JSON string to a List of Recipients objects
+        /// </summary>
+        /// <param name="jsonResponse"></param>
+        /// <returns>The List of Recipients that the JSON object represented</returns>
         public static List<Recipient> JsonToRecipientList(string jsonResponse)
         {
             if (jsonResponse == null || jsonResponse == "")
@@ -27,7 +32,11 @@ namespace paymentrails.JsonHelpers
             }
             return recipients;
         }
-
+        /// <summary>
+        /// Method that converts a JSON string to a Recipient objects
+        /// </summary>
+        /// <param name="jsonResponse"></param>
+        /// <returns>The Recipient that the JSON object represented</returns>
         public static Recipient JsonToRecipient(string jsonResponse)
         {
             if (jsonResponse == null || jsonResponse == "")
