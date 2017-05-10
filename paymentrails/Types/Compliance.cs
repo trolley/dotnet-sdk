@@ -6,12 +6,19 @@ using System.Threading.Tasks;
 
 namespace paymentrails.Types
 {
+    /// <summary>
+    /// This class shows whether the associated object is compliant with are variety of background checks.
+    /// This data type is read only and can not be modified over the API
+    /// </summary>
     public class Compliance
     {
         private string status;
         private string checkedAt;
 
         #region Properties
+        /// <summary>
+        /// The status of the compliance check
+        /// </summary>
         public string Status
         {
             get
@@ -24,7 +31,9 @@ namespace paymentrails.Types
                 status = value;
             }
         }
-
+        /// <summary>
+        /// When compliance checks were last ran
+        /// </summary>
         public string CheckedAt
         {
             get
@@ -39,6 +48,12 @@ namespace paymentrails.Types
         }
         #endregion
 
+        /// <summary>
+        /// Constructor to instantiate a Compliance object, you should never have to use this as
+        /// compliance is a read only field
+        /// </summary>
+        /// <param name="status"></param>
+        /// <param name="active"></param>
         public Compliance(string status, string active)
         {
             this.status = status;
@@ -64,6 +79,12 @@ namespace paymentrails.Types
             return !(a == b);
         }
 
+        /// <summary>
+        /// Checks whether the fields in this Compliance are equivalent to the ones in the 
+        /// object being compared
+        /// </summary>
+        /// <param name="obj">the object to compare to</param>
+        /// <returns>whether the two are equivalent</returns>
         public override bool Equals(object obj)
         {
             if (obj != null && obj.GetType() == this.GetType())
@@ -79,14 +100,5 @@ namespace paymentrails.Types
         {
             return base.GetHashCode();
         }
-        //public string ToJson()
-        //{
-        //    StringBuilder builder = new StringBuilder();
-        //    builder.Append("{\n");
-        //    builder.AppendFormat("\"active\": \"{0}\",\n", this.active);
-        //    builder.AppendFormat("\"status\": \"{0}\",\n", this.status);
-        //    builder.Append("}");
-        //    return builder.ToString();
-        //}
     }
 }

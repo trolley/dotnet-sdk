@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using paymentrails;
 using paymentrails.Exceptions;
@@ -19,89 +21,78 @@ namespace paymentrailsTest
         {
             PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
             Batch response = PaymentRails_Batch.get("B-91XPR9A29NMMC");
-            Assert.AreEqual("true", response);
+            Assert.AreEqual(ValidResponseData.VALID_BATCH, response);
         }
-        //        [TestMethod]
-        //        [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
-        //        public void TestRetrieveBatchInvalidAPIKey()
-        //        {
-        //            PaymentRails_Configuration.ApiKey = "wdwd";
-        //            String response = PaymentRails_Batch.get("B-91XPR9A29NMMC");
 
-        //        }
-        //        [TestMethod]
-        //        [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
-        //        public void TestRetrieveBatchInvalidBatchId()
-        //        {
-        //            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
-        //            String response = PaymentRails_Batch.get("B-ssdsd");
+        [TestMethod]
+        [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
+        public void TestRetrieveBatchNotFound()
+        {
+            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            try
+            {
+                Batch response = PaymentRails_Batch.get("ssdsd");
+            }
+            catch(InvalidStatusCodeException e)
+            {
+                Assert.AreEqual(MockResponseContent.INVALID_NOT_FOUND, e.Message);
+                throw e;
+            }
+            
 
-        //        }
-        //        [TestMethod]
-        //        public void TestUpdateBatch()
-        //        {
-        //            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
-        //            String body = @"{""update_payments"":[{""id"":""P-908GUDK2FHQGR"",""sourceAmount"":999}]}";
-        //            String response = PaymentRails_Batch.patch("B-91XPR9A29NMMC",body);
-        //            String message = response.Substring(6, 4);
-        //            Assert.AreEqual("true", message);
-        //        }
-        //        [TestMethod]
-        //        [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
-        //        public void TestUpdateBatchInvalidAPIKey()
-        //        {
-        //            PaymentRails_Configuration.ApiKey = "wdwddw";
-        //            String body = @"{""update_payments"":[{""id"":""P-908GUDK2FHQGR"",""sourceAmount"":999}]}";
-        //            String response = PaymentRails_Batch.patch("B-91XPR9A29NMMC", body);
-        //        }
-        //        [TestMethod]
-        //        [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
-        //        public void TestUpdateBatchInvalidBatchId()
-        //        {
-        //            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
-        //            String body = @"{""update_payments"":[{""id"":""P-908GUDK2FHQGR"",""sourceAmount"":999}]}";
-        //            String response = PaymentRails_Batch.patch("B-wdwdwd", body);
-        //        }
-        //        [TestMethod]
-        //        [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
-        //        public void TestUpdateBatchInvalidPaymentAmount()
-        //        {
-        //            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
-        //            String body = @"{""update_payments"":[{""id"":""P-908GUDK2FHQGR"",""sourceAmount"":9.9}]}";
-        //            String response = PaymentRails_Batch.patch("B-91XPR9A29NMMC", body);
-        //        }
-        //        [TestMethod]
-        //        [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
-        //        public void TestUpdateBatchInvalidFieldName()
-        //        {
-        //            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
-        //            String body = @"{""update_payments"":[{""idss"":""P-908GUDK2FHQGR"",""sourceAmount"":999}]}";
-        //            String response = PaymentRails_Batch.patch("B-91XPR9A29NMMC", body);
-        //        }
+        }
+        [TestMethod]
+        public void TestUpdateBatch()
+        {
+            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            Batch b = new Batch("VALID", null, "CAD", 0, 0, null, null, null, null, null, "B-VALIDBATCH");
+            string result = PaymentRails_Batch.patch(b); // change to use batch that is returned
+            Assert.AreEqual(MockResponseContent.VALID_POST, result);
+        }
 
-        //        [TestMethod]
-        //        [Ignore]
-        //        public void TestDeleteBatch()
-        //        {
-        //            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
-        //             String response = PaymentRails_Batch.delete("B-91XPR9A29NMMC");
-        //            String message = response.Substring(6, 4);
-        //            Assert.AreEqual("true", message);
-        //        }
-        //        [TestMethod]
-        //        [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
-        //        public void TestDeleteBatchInvalidAPIKey()
-        //        {
-        //            PaymentRails_Configuration.ApiKey = "wdwd";
-        //            String response = PaymentRails_Batch.delete("B-91XPR9A29NMMC");
-        //        }
-        //        [TestMethod]
-        //        [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
-        //        public void TestDeleteBatchInvalidBatchId()
-        //        {
-        //            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
-        //            String response = PaymentRails_Batch.delete("B-wd");
-        //        }
+        [TestMethod]
+        [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
+        public void TestUpdateBatchNotFound()
+        {
+            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            Batch b = new Batch("VALID", null, "CAD", 0, 0, null, null, null, null, null, null);
+            b.Id = "NOTVALID";
+            try
+            {
+                string response = PaymentRails_Batch.patch(b);
+            }
+            catch (InvalidStatusCodeException e)
+            {
+                Assert.AreEqual(MockResponseContent.INVALID_NOT_FOUND, e.Message);
+                throw e;
+            }
+        }
+
+        [TestMethod]
+        public void TestDeleteBatch()
+        {
+            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            String response = PaymentRails_Batch.delete("B-91XPR9A29NMMC");
+            String message = response.Substring(6, 4);
+            Assert.AreEqual("true", message);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
+        public void TestDeleteBatchNotFound()
+        {
+            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            Batch b = new Batch("INVALID", null, "CAD", 0, 0, null, null, null, null, null, "INVALID ID");
+            try
+            {
+                string response = PaymentRails_Batch.delete(b);
+            }
+            catch (InvalidStatusCodeException e)
+            {
+                Assert.AreEqual(MockResponseContent.INVALID_NOT_FOUND, e.Message);
+                throw e;
+            }
+        }
         //        [TestMethod]
         //        [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
         //        public void TestDeleteBatchInvalidBatchStatus()
@@ -110,29 +101,20 @@ namespace paymentrailsTest
         //            String response = PaymentRails_Batch.delete("B-912Q011VA8V2C");
         //        }
 
-        //        [TestMethod]
-        //        public void TestListAllBatches()
-        //        {
-        //            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
-        //            String response = PaymentRails_Batch.query();
-        //            String message = response.Substring(6, 4);
-        //            Assert.AreEqual("true", message);
-        //        }
-        //        [TestMethod]
-        //        public void TestListAllBatchesWithQueries()
-        //        {
-        //            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
-        //            String response = PaymentRails_Batch.query();
-        //            String message = response.Substring(6, 4);
-        //            Assert.AreEqual("true", message);
-        //        }
-        //        [TestMethod]
-        //        [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
-        //        public void TestListAllBatchesInvalidAPIKey()
-        //        {
-        //            PaymentRails_Configuration.ApiKey = "dwdwwd";
-        //            String response = PaymentRails_Batch.query();
-        //        }
+        [TestMethod]
+        public void TestListAllBatches()
+        {
+            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            List<Batch> response = PaymentRails_Batch.get(1,1);
+            Assert.IsTrue(ValidResponseData.VALID_BATCH_LIST.SequenceEqual(response));
+        }
+        [TestMethod]
+        public void TestListAllBatchesWithQueries()
+        {
+            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            List<Batch> response = PaymentRails_Batch.query("",1,1);
+            Assert.IsTrue(ValidResponseData.VALID_BATCH_LIST.SequenceEqual(response));
+        }
 
         //        [TestMethod]
         //        public void TestListAllBatchSummary()
@@ -158,47 +140,30 @@ namespace paymentrailsTest
         //            String response = PaymentRails_Batch.summary("B-91XPR9A29NMMC");
         //        }
 
-        //        [TestMethod]
-        //        [Ignore]
-        //        public void TestCreateBatch()
-        //        {
-        //            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
-        //            String body = @"{""payments"":[{""recipient"":{""id"":""R-91XPJZTR612MG""},""sourceAmount"":""65"",""memo"":"""",""sourceCurrency"":""CAD""}]}";
-        //            String response = PaymentRails_Batch.post(body);
-        //            String batch_id = response.Substring(26,15);
+        [TestMethod]
+        public void TestCreateBatch()
+        {
+            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            Batch batch = new Batch("VALID", null, "CAD", 0, 0, null, null, null, null, null, null);
+            Batch result = PaymentRails_Batch.post(batch);
+            Assert.AreEqual(ValidResponseData.VALID_BATCH, result);
+        }
 
-        //            response = PaymentRails_Batch.generateQuote(batch_id);
-
-        //            response = PaymentRails_Batch.processBatch(batch_id);
-
-        //            String message = response.Substring(6, 4);
-        //            Assert.AreEqual("true", message);
-
-        //        }
-        //        [TestMethod]
-        //        [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
-        //        public void testCreateBatchInvalidAPIKey()
-        //        {
-        //            PaymentRails_Configuration.ApiKey = "efeff";
-        //            String body = @"{""payments"":[{""recipient"":{""id"":""R-91XPJZTR612MG""},""sourceAmount"":""65"",""memo"":"""",""sourceCurrency"":""CAD""}]}";
-        //            String response = PaymentRails_Batch.post(body);
-        //        }
-
-        //        [TestMethod]
-        //        [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
-        //        public void testCreateBatchInvalilField()
-        //        {
-        //            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
-        //            String body = @"{""payments"":[{""recipient"":{""iwdwdd"":""R-91XPJZTR612MG""},""sourceAmount"":""65"",""memo"":"""",""sourceCurrency"":""CAD""}]}";
-        //            String response = PaymentRails_Batch.post(body);
-        //        }
-        //        [TestMethod]
-        //        [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
-        //        public void testCreateBatchInvalidRecipientIdy()
-        //        {
-        //            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
-        //            String body = @"{""payments"":[{""recipient"":{""id"":""R-wdwd""},""sourceAmount"":""65"",""memo"":"""",""sourceCurrency"":""CAD""}]}";
-        //            String response = PaymentRails_Batch.post(body);
-        //        }
+        [TestMethod]
+        [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
+        public void testCreateBatchBadData()
+        {
+            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            Batch batch = new Batch("INVALID", null, "CAD", 0, 0, null, null, null, null, null, null);
+            try
+            {
+                Batch response = PaymentRails_Batch.post(batch);
+            }
+            catch(InvalidStatusCodeException e)
+            {
+                Assert.AreEqual(MockResponseContent.INVALID_BAD_DATA, e.Message);
+                throw e;
+            }
+        }
     }
 }

@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace paymentrails.Types
 {
+    /// <summary>
+    /// This class represents a Payment Rails Payment, it can be used to create new payments or update
+    /// existing payments over the API
+    /// </summary>
     public class Payment : IPaymentRailsMappable
     {
         private double sourceAmount;
@@ -30,6 +34,9 @@ namespace paymentrails.Types
         private Compliance compliance;
 
         #region properties
+        /// <summary>
+        /// The value of the payment in the merchants currency
+        /// </summary>
         public double SourceAmount
         {
             get
@@ -42,7 +49,9 @@ namespace paymentrails.Types
                 sourceAmount = value;
             }
         }
-
+        /// <summary>
+        /// The currency code of the target payment
+        /// </summary>
         public string TargetCurrency
         {
             get
@@ -52,13 +61,12 @@ namespace paymentrails.Types
 
             set
             {
-
-                
-
                 targetCurrency = value;
             }
         }
-
+        /// <summary>
+        /// The exchange rate
+        /// </summary>
         public double ExchangeRate
         {
             get
@@ -71,7 +79,9 @@ namespace paymentrails.Types
                 exchangeRate = value;
             }
         }
-
+        /// <summary>
+        /// The fees on the payment 
+        /// </summary>
         public double Fees
         {
             get
@@ -84,7 +94,9 @@ namespace paymentrails.Types
                 fees = value;
             }
         }
-
+        /// <summary>
+        /// The fees on the payment covered by the recipient
+        /// </summary>
         public double RecipientFees
         {
             get
@@ -97,7 +109,9 @@ namespace paymentrails.Types
                 recipientFees = value;
             }
         }
-
+        /// <summary>
+        /// The value of the payment in the recipient's currency
+        /// </summary>
         public double TargetAmount
         {
             get
@@ -111,7 +125,9 @@ namespace paymentrails.Types
                 targetAmount = value;
             }
         }
-
+        /// <summary>
+        /// The fx rate
+        /// </summary>
         public double FxRate
         {
             get
@@ -124,7 +140,9 @@ namespace paymentrails.Types
                 fxRate = value;
             }
         }
-
+        /// <summary>
+        /// A short message associated with the payment
+        /// </summary>
         public string Memo
         {
             get
@@ -137,7 +155,9 @@ namespace paymentrails.Types
                 memo = value;
             }
         }
-
+        /// <summary>
+        /// The time the payment was processed at
+        /// </summary>
         public string ProcessedAt
         {
             get
@@ -150,7 +170,9 @@ namespace paymentrails.Types
                 processedAt = value;
             }
         }
-
+        /// <summary>
+        /// The time the payment was created at
+        /// </summary>
         public string CreatedAt
         {
             get
@@ -163,7 +185,9 @@ namespace paymentrails.Types
                 createdAt = value;
             }
         }
-
+        /// <summary>
+        /// The time the payment was updated at
+        /// </summary>
         public string UpdatedAt
         {
             get
@@ -176,7 +200,9 @@ namespace paymentrails.Types
                 updatedAt = value;
             }
         }
-
+        /// <summary>
+        /// The fees on the payment covered by the merchant
+        /// </summary>
         public double MerchantFees
         {
             get
@@ -189,7 +215,9 @@ namespace paymentrails.Types
                 merchantFees = value;
             }
         }
-
+        /// <summary>
+        /// The currency code of the source amount
+        /// </summary>
         public string SourceCurrency
         {
             get
@@ -202,7 +230,10 @@ namespace paymentrails.Types
                 sourceCurrency = value;
             }
         }
-
+        /// <summary>
+        /// The id of the batch this payment is a part of
+        /// All payments must be part of a batch
+        /// </summary>
         public string BatchId
         {
             get
@@ -215,7 +246,9 @@ namespace paymentrails.Types
                 batchId = value;
             }
         }
-
+        /// <summary>
+        /// The id of the payment
+        /// </summary>
         public string Id
         {
             get
@@ -228,7 +261,9 @@ namespace paymentrails.Types
                 id = value;
             }
         }
-
+        /// <summary>
+        /// The current status of the payment
+        /// </summary>
         public string Status
         {
             get
@@ -241,7 +276,10 @@ namespace paymentrails.Types
                 status = value;
             }
         }
-
+        /// <summary>
+        /// The recipient that the payment is for
+        /// When creating a payment not all recipient fields are necessary
+        /// </summary>
         public Recipient Recipient
         {
             get
@@ -255,7 +293,9 @@ namespace paymentrails.Types
                 recipient = value;
             }
         }
-
+        /// <summary>
+        /// The current compliance status of the payment
+        /// </summary>
         public Compliance Compliance
         {
             get
@@ -270,14 +310,31 @@ namespace paymentrails.Types
         }
         #endregion
 
-
+        /// <summary>
+        /// The constructor to instantiate a payment
+        /// </summary>
+        /// <param name="recipient"></param>
+        /// <param name="sourceAmount"></param>
+        /// <param name="memo"></param>
+        /// <param name="targetAmount"></param>
+        /// <param name="targetCurrency"></param>
+        /// <param name="exchangeRate"></param>
+        /// <param name="fees"></param>
+        /// <param name="recipientFees"></param>
+        /// <param name="fxRate"></param>
+        /// <param name="processedAt"></param>
+        /// <param name="createdAt"></param>
+        /// <param name="updatedAt"></param>
+        /// <param name="merchantFees"></param>
+        /// <param name="sourceCurrency"></param>
+        /// <param name="batchId"></param>
+        /// <param name="id"></param>
+        /// <param name="status"></param>
+        /// <param name="compliance"></param>
         public Payment(Recipient recipient, double sourceAmount, string memo, double targetAmount, string targetCurrency, double exchangeRate,
             double fees, double recipientFees, double fxRate, string processedAt, string createdAt, string updatedAt,
             double merchantFees, string sourceCurrency, string batchId, string id, string status, Compliance compliance)
         {
-
-
-
             this.SourceAmount = sourceAmount;
             this.TargetAmount = targetAmount;
             this.TargetCurrency = targetCurrency;
@@ -312,6 +369,11 @@ namespace paymentrails.Types
             return !(a == b);
         }
 
+        /// <summary>
+        /// Checks whether all the fields in this payment are equivalent to the object being compared
+        /// </summary>
+        /// <param name="obj">the object to compare to</param>
+        /// <returns>whether the payment and the other object are equalt</returns>
         public override bool Equals(object obj)
         {
             if (obj != null && obj.GetType() == this.GetType())
@@ -336,7 +398,11 @@ namespace paymentrails.Types
         {
             return this.ToJson();
         }
-
+        /// <summary>
+        /// Returns a JSON string representation of the object formatted to be compliant with
+        /// the Payment Rails API post and patch endpoints
+        /// </summary>
+        /// <returns>JSON string representation of the object</returns>
         public string ToJson()
         {
             String currencyString;
@@ -360,7 +426,13 @@ namespace paymentrails.Types
             builder.Append("}");
             return builder.ToString();
         }
-
+        /// <summary>
+        /// Function that checks if a IPaymentRailsMappable object has all required fields to be sent
+        /// this function will throw an exception if any of the fields are not properly set.
+        /// For a payment the recipient and batch id are mandatory
+        /// source amount or target amount and currency are also required
+        /// </summary>
+        /// <returns>weather the object is ready to be sent to the Payment Rails API</returns>
         public bool IsMappable()
         {
             if (Recipient == null)

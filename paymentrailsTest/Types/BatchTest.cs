@@ -32,14 +32,7 @@ namespace paymentrailsTest.Types
             Assert.IsTrue(batch.IsMappable());
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(InvalidFieldException), "Payment must be provided")]
-        public void TestBatchInvalidPayment()
-        {
-            Recipient recipient = new Recipient(null, "business", null, "email", "name", null, null, null, null, null, null, null, null, null, null);
-            Batch batch = new Batch(null, null, "currency", 0, 0, null, null, null, null, null, null);
-            Assert.IsTrue(batch.IsMappable());
-        }
+        
         [TestMethod]
         [ExpectedException(typeof(InvalidFieldException), "Payment must be provided")]
         public void TestBatchInvalidPaymentsCurrency()

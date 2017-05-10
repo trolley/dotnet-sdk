@@ -11,6 +11,9 @@ namespace paymentrails.Types
         private string email;
 
         #region properties
+        /// <summary>
+        /// The email of the paypal account
+        /// </summary>
         public string Email
         {
             get
@@ -32,7 +35,10 @@ namespace paymentrails.Types
             }
         }
         #endregion
-
+        /// <summary>
+        /// Constructor to instantiate a paypal account
+        /// </summary>
+        /// <param name="email"></param>
         public PaypalAccount(string email)
         {
             this.email = email;
@@ -56,7 +62,12 @@ namespace paymentrails.Types
         {
             return !(a == b);
         }
-
+        /// <summary>
+        /// Checks whether the current paypal account has the same email as the
+        /// object it is being compared to
+        /// </summary>
+        /// <param name="obj">the object to compare to</param>
+        /// <returns>whether the two paypal accounts are equivalent</returns>
         public override bool Equals(object obj)
         {
             if (obj != null && obj.GetType() == this.GetType())
@@ -77,7 +88,11 @@ namespace paymentrails.Types
         {
             return this.ToJson();
         }
-
+        /// <summary>
+        /// Returns a JSON string representation of the object formatted to be compliant with
+        /// the Payment Rails API post and patch endpoints
+        /// </summary>
+        /// <returns>JSON string representation of the object</returns>
         public string ToJson()
         {
             StringBuilder builder = new StringBuilder();
@@ -89,10 +104,14 @@ namespace paymentrails.Types
             builder.Append("}");
             return builder.ToString();
         }
-
+        /// <summary>
+        /// Function that checks if a IPaymentRailsMappable object has all required fields to be sent
+        /// this function will throw an exception if any of the fields are not properly set.
+        /// </summary>
+        /// <returns>weather the object is ready to be sent to the Payment Rails API</returns>
         public bool IsMappable()
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }

@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace paymentrails.Types
 {
+    /// <summary>
+    /// This class represents a Payment Rails payout method for a recipient, this object can be used for creating
+    /// and updating recipient payouts
+    /// </summary>
     public class Payout : IPaymentRailsMappable
     {
         private double autoswitchLimit;
@@ -19,6 +23,9 @@ namespace paymentrails.Types
         private PaypalAccount paypal;
 
         #region Properties
+        /// <summary>
+        /// The amount of money required to default to another currencuy
+        /// </summary>
         public double AutoswitchLimit
         {
             get
@@ -31,7 +38,9 @@ namespace paymentrails.Types
                 autoswitchLimit = value;
             }
         }
-
+        /// <summary>
+        /// Whether autoswitching is active
+        /// </summary>
         public bool AutoswitchActive
         {
             get
@@ -44,7 +53,9 @@ namespace paymentrails.Types
                 autoswitchActive = value;
             }
         }
-
+        /// <summary>
+        /// The amount of money required to hold up a payment
+        /// </summary>
         public double HoldupLimit
         {
             get
@@ -57,7 +68,9 @@ namespace paymentrails.Types
                 holdupLimit = value;
             }
         }
-
+        /// <summary>
+        /// whether payment holdups are active
+        /// </summary>
         public bool HoldupActive
         {
             get
@@ -70,7 +83,9 @@ namespace paymentrails.Types
                 holdupActive = value;
             }
         }
-
+        /// <summary>
+        /// The primary payout method name
+        /// </summary>
         public string PrimaryMethod
         {
             get
@@ -84,7 +99,9 @@ namespace paymentrails.Types
                 primaryMethod = value;
             }
         }
-
+        /// <summary>
+        /// The primary currency code
+        /// </summary>
         public string PrimaryCurrency
         {
             get
@@ -97,7 +114,9 @@ namespace paymentrails.Types
                 primaryCurrency = value;
             }
         }
-
+        /// <summary>
+        /// A bank account
+        /// </summary>
         public BankAccount Bank
         {
             get
@@ -111,7 +130,9 @@ namespace paymentrails.Types
                 bank = value;
             }
         }
-
+        /// <summary>
+        /// a paypal account
+        /// </summary>
         public PaypalAccount Paypal
         {
             get
@@ -137,7 +158,17 @@ namespace paymentrails.Types
             this.bank = null;
             this.paypal = null;
         }
-
+        /// <summary>
+        /// Constructor used to instantiate a recipient payout method
+        /// </summary>
+        /// <param name="autoswitchLimit"></param>
+        /// <param name="autoswitchActive"></param>
+        /// <param name="holdupLimit"></param>
+        /// <param name="holdupActive"></param>
+        /// <param name="primaryMethod"></param>
+        /// <param name="primaryCurrency"></param>
+        /// <param name="bank"></param>
+        /// <param name="paypal"></param>
         public Payout(double autoswitchLimit, bool autoswitchActive, double holdupLimit, bool holdupActive, string primaryMethod, string primaryCurrency, BankAccount bank, PaypalAccount paypal)
         {
             this.AutoswitchLimit = autoswitchLimit;
@@ -164,6 +195,11 @@ namespace paymentrails.Types
             return !(a == b);
         }
 
+        /// <summary>
+        /// Checks whether all the fields the current payout are equivalent to the object it is being compared to
+        /// </summary>
+        /// <param name="obj">The object to compare to</param>
+        /// <returns>Whether the two objects are equivalent</returns>
         public override bool Equals(object obj)
         {
             if (obj != null && obj.GetType() == this.GetType())
@@ -188,6 +224,11 @@ namespace paymentrails.Types
         }
 
         // @TODO: rewrite this to be more readable
+        /// <summary>
+        /// Returns a JSON string representation of the object formatted to be compliant with
+        /// the Payment Rails API post and patch endpoints
+        /// </summary>
+        /// <returns>JSON string representation of the object</returns>
         public string ToJson()
         {
             StringBuilder builder = new StringBuilder();
@@ -226,7 +267,12 @@ namespace paymentrails.Types
 
             return builder.ToString();
         }
-
+        /// <summary>
+        /// Function that checks if a IPaymentRailsMappable object has all required fields to be sent
+        /// this function will throw an exception if any of the fields are not properly set.
+        /// In order to have a valid payout a primary method is required
+        /// </summary>
+        /// <returns>weather the object is ready to be sent to the Payment Rails API</returns>
         public bool IsMappable()
         {
             if (PrimaryMethod == null)

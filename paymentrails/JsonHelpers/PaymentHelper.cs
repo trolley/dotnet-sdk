@@ -10,6 +10,11 @@ namespace paymentrails.JsonHelpers
 {
     public class PaymentHelper : JsonHelper
     {
+        /// <summary>
+        /// Method that converts a JSON string to a List of Payment objects
+        /// </summary>
+        /// <param name="jsonResponse"></param>
+        /// <returns>The List of Payment that the JSON object represented</returns>
         public static List<Payment> JsonToPaymentList(string jsonResponse)
         {
             if (jsonResponse == null || jsonResponse == "")
@@ -28,7 +33,11 @@ namespace paymentrails.JsonHelpers
             }
             return payments;
         }
-
+        /// <summary>
+        /// Method that converts a JSON string to a Paymentobjects
+        /// </summary>
+        /// <param name="jsonResponse"></param>
+        /// <returns>The Payment that the JSON object represented</returns>
         public static Payment JsonToPayment(string jsonResponse)
         {
             if (jsonResponse == null || jsonResponse == "")

@@ -2,6 +2,9 @@
 
 namespace paymentrails.Types
 {
+    /// <summary>
+    /// This class is a representation of a merchant balance from the Payment Rails API
+    /// </summary>
     public class Balance
     {
         private Boolean primary;
@@ -11,6 +14,9 @@ namespace paymentrails.Types
         private String accountNumber;
 
         #region Properties
+        /// <summary>
+        /// Whether or not this balance is your primary balance
+        /// </summary>
         public bool Primary
         {
             get
@@ -24,6 +30,9 @@ namespace paymentrails.Types
             }
         }
 
+        /// <summary>
+        /// The amount of money available for this balance
+        /// </summary>
         public double Amount
         {
             get
@@ -37,6 +46,9 @@ namespace paymentrails.Types
             }
         }
 
+        /// <summary>
+        /// The currency type of this balance
+        /// </summary>
         public string Currency
         {
             get
@@ -50,6 +62,9 @@ namespace paymentrails.Types
             }
         }
 
+        /// <summary>
+        /// The type of balance this is such as a PaymentRails or a Paypal balance
+        /// </summary>
         public string Type
         {
             get
@@ -63,6 +78,9 @@ namespace paymentrails.Types
             }
         }
 
+        /// <summary>
+        /// The account number associated with this balance
+        /// </summary>
         public string AccountNumber
         {
             get
@@ -79,6 +97,15 @@ namespace paymentrails.Types
 
         public Balance() { }
 
+        /// <summary>
+        /// Default constructor for a merchant balance (You should never have to instantiate your own balance object
+        /// as balances are read only)
+        /// </summary>
+        /// <param name="primary"></param>
+        /// <param name="amount"></param>
+        /// <param name="currency"></param>
+        /// <param name="type"></param>
+        /// <param name="accountNumber"></param>
         public Balance(bool primary, double amount, string currency, string type, string accountNumber)
         {
             this.primary = primary;
@@ -107,6 +134,11 @@ namespace paymentrails.Types
             return base.GetHashCode();
         }
 
+        /// <summary>
+        /// Checks weather all the fields in a balance are equivalent to the object being compared
+        /// </summary>
+        /// <param name="obj">THe object being compared</param>
+        /// <returns>Whether the objects are equal</returns>
         public override bool Equals(object obj)
         {
             if(obj == null || obj.GetType() != this.GetType())

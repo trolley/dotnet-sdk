@@ -53,12 +53,14 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ClientTest.cs" />
     <Compile Include="JsonHelper\RecipientHelperTest.cs" />
     <Compile Include="JsonHelper\PayoutHelperTest.cs" />
     <Compile Include="JsonHelper\BalanceHelperTest.cs" />
     <Compile Include="JsonHelper\BatchHelperTest.cs" />
     <Compile Include="JsonHelper\PaymentHelperTest.cs" />
     <Compile Include="MockHttpHandler.cs" />
+    <Compile Include="MockHttpHandlerForClientTests.cs" />
     <Compile Include="MockResponseContent.cs" />
     <Compile Include="PaymentRails_IPaymentRailsMappableTest.cs" />
     <Compile Include="PaymentRails_RecipientTest.cs" />
