@@ -1,11 +1,11 @@
-﻿using paymentrails.Exceptions;
+﻿using PaymentRails.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace paymentrails.Types
+namespace PaymentRails.Types
 {
     /// <summary>
     /// This class represents a Payment Rails payout method for a recipient, this object can be used for creating

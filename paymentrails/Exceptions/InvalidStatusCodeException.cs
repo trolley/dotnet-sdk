@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace paymentrails.Exceptions
+namespace PaymentRails.Exceptions
 {
     public class InvalidStatusCodeException : SystemException
     {

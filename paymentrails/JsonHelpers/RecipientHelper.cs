@@ -1,12 +1,12 @@
 ﻿using System;
-using paymentrails.Types;
+using PaymentRails.Types;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 
-namespace paymentrails.JsonHelpers
+namespace PaymentRails.JsonHelpers
 {
     public class RecipientHelper : JsonHelper
     {

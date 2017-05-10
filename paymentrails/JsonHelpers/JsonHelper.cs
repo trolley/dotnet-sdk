@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using paymentrails.Types;
+using PaymentRails.Types;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace paymentrails.JsonHelpers
+namespace PaymentRails.JsonHelpers
 {
     public abstract class JsonHelper
     {

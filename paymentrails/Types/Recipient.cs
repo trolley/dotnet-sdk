@@ -1,11 +1,11 @@
-﻿using paymentrails.Exceptions;
+﻿using PaymentRails.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace paymentrails.Types
+namespace PaymentRails.Types
 {
     /// <summary>
     /// This class is a representation of a Payment Rails Recipient, it can be used to create or update recipients

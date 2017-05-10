@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace paymentrails
+namespace PaymentRails
 {
     /// <summary>
     /// A Class that facilitates HTTP Requests to the API in regards to Balances.

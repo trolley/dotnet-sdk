@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace paymentrails.Types
+namespace PaymentRails.Types
 {
     /// <summary>
     /// This interface represents an object that can be POSTed or PATCHed to the Payment Rails API

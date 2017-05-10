@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using paymentrails.Types;
+using PaymentRails.Types;
 using System.Collections.Generic;
 
 namespace paymentrailsTest.JsonHelper
@@ -14,7 +14,7 @@ namespace paymentrailsTest.JsonHelper
             Balance balance = new Balance(true, 10000.00,"USD","paymentrails",null);
 
             String response = @"{""ok"":true,""balances"":{""USD"":{""primary"":true,""amount"":""10000.00"",""currency"":""USD"",""type"":""paymentrails"",""accountNumber"":null}}}";
-            Dictionary<String, Balance> balanceDictionary = paymentrails.JsonHelpers.BalanceHelper.JsonToBalanceDictionary(response);
+            Dictionary<String, Balance> balanceDictionary = PaymentRails.JsonHelpers.BalanceHelper.JsonToBalanceDictionary(response);
 
             Assert.AreEqual(balance, balanceDictionary["USD"]);
         }
@@ -26,7 +26,7 @@ namespace paymentrailsTest.JsonHelper
             Balance balance = new Balance(true, 10000.00, "USD", "paymentrails", null);
 
             String response = @"";
-            Dictionary<String, Balance> balanceDictionary = paymentrails.JsonHelpers.BalanceHelper.JsonToBalanceDictionary(response);
+            Dictionary<String, Balance> balanceDictionary = PaymentRails.JsonHelpers.BalanceHelper.JsonToBalanceDictionary(response);
 
             Assert.AreEqual(balance, balanceDictionary["USD"]);
         }

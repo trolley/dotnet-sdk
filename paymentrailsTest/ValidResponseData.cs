@@ -1,4 +1,4 @@
-﻿using paymentrails.Types;
+﻿using PaymentRails.Types;
 using System.Collections.Generic;
 
 namespace paymentrailsTest

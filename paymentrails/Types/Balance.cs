@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace paymentrails.Types
+namespace PaymentRails.Types
 {
     /// <summary>
     /// This class is a representation of a merchant balance from the Payment Rails API

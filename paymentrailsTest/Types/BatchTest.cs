@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using paymentrails.Types;
-using paymentrails.Exceptions;
+using PaymentRails.Types;
+using PaymentRails.Exceptions;
 using System.Collections.Generic;
 using System.Collections;
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace paymentrails.Types
+namespace PaymentRails.Types
 {
     /// <summary>
     /// This class is a representation of a Payment Rails bank account, the data in this class can

@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using paymentrails;
-using paymentrails.Exceptions;
-using paymentrails.Types;
+using PaymentRails;
+using PaymentRails.Exceptions;
+using PaymentRails.Types;
 
 namespace paymentrailsTest
 {

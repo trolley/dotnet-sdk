@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace paymentrails.Types
+namespace PaymentRails.Types
 {
     public class PaypalAccount : IPaymentRailsMappable
     {

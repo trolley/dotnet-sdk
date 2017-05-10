@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using paymentrails.Types;
+using PaymentRails.Types;
 using System.Collections.Generic;
 
 namespace paymentrailsTest.JsonHelper
@@ -28,7 +28,7 @@ namespace paymentrailsTest.JsonHelper
                                 ""updatedAt"":""2017-05-08T18:31:00.736Z"",""merchantFees"":""0.00"",""compliance"":{""status"":""pending"",""checkedAt"":null},""sourceCurrency"":""USD"",""sourceCurrencyName"":""US Dollar"",""targetCurrency"":""USD"",
                                 ""targetCurrencyName"":""US Dollar"",""batch"":{""id"":""B-91XQ40VXECQJM"",""createdAt"":""2017-05-08T18:31:00.682Z"",""updatedAt"":""2017-05-08T18:31:00.767Z"",""sentAt"":null,""completedAt"":null}}}";
 
-            Payment newPayment = paymentrails.JsonHelpers.PaymentHelper.JsonToPayment(response);
+            Payment newPayment = PaymentRails.JsonHelpers.PaymentHelper.JsonToPayment(response);
             Assert.AreEqual(payment, newPayment);
         }
 
@@ -44,7 +44,7 @@ namespace paymentrailsTest.JsonHelper
             Payment payment = new Payment(recipient, 65.00, "", 65.00, "USD", 1.000000, 0.00, 0.00, 2.000000, null, "2017-05-08T18:31:00.736Z", "2017-05-08T18:31:00.736Z", 0, "USD", "B-91XQ40VXECQJM", "P-912Q8KVY19D2Y", "pending", compliance);
 
             String response = @"";
-            Payment newPayment = paymentrails.JsonHelpers.PaymentHelper.JsonToPayment(response);
+            Payment newPayment = PaymentRails.JsonHelpers.PaymentHelper.JsonToPayment(response);
             Assert.AreEqual(payment, newPayment);
         }
 
@@ -67,7 +67,7 @@ namespace paymentrailsTest.JsonHelper
                                 ""createdAt"":""2017-05-08T18:31:00.736Z"",""updatedAt"":""2017-05-08T18:31:00.736Z"",""merchantFees"":""0.00"",""compliance"":{""status"":""pending"",""checkedAt"":null},""sourceCurrency"":""USD"",""sourceCurrencyName"":""US Dollar"",""targetCurrency"":""USD"",
                                 ""targetCurrencyName"":""US Dollar"",""batch"":{""id"":""B-91XQ40VXECQJM"",""createdAt"":""2017-05-08T18:31:00.682Z"",""updatedAt"":""2017-05-08T18:31:00.767Z"",""sentAt"":null,""completedAt"":null}}],""meta"":{""page"":1,""pages"":1,""records"":1}}";
 
-            List<Payment> payments = paymentrails.JsonHelpers.PaymentHelper.JsonToPaymentList(response);
+            List<Payment> payments = PaymentRails.JsonHelpers.PaymentHelper.JsonToPaymentList(response);
             Assert.AreEqual(payment, payments[0]);
         }
 
@@ -85,7 +85,7 @@ namespace paymentrailsTest.JsonHelper
 
             String response = @"";
 
-            List<Payment> payments = paymentrails.JsonHelpers.PaymentHelper.JsonToPaymentList(response);
+            List<Payment> payments = PaymentRails.JsonHelpers.PaymentHelper.JsonToPaymentList(response);
             Assert.AreEqual(payment, payments[0]);
         }
     }

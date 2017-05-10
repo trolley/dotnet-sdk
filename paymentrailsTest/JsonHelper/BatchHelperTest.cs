@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using paymentrails.Types;
+using PaymentRails.Types;
 using System.Collections.Generic;
 
 namespace paymentrailsTest.JsonHelper
@@ -15,7 +15,7 @@ namespace paymentrailsTest.JsonHelper
                                 ""payments"":{""payments"":[{""id"":""P-912Q8KVY19D2Y"",""recipient"":{""id"":""R-91XQ0PJH39U54"",""referenceId"":""U345678912"",""email"":""Johnny@test.com"",""name"":""mark Test"",""status"":""active"",""countryCode"":null},""method"":""paypal"",""methodDisplay"":""PayPal"",""status"":""pending"",
                                 ""sourceAmount"":""65.00"",""targetAmount"":""65.00"",""isSupplyPayment"":false,""memo"":"""",""fees"":""0.00"",""recipientFees"":""0.00"",""exchangeRate"":""1.000000"",""processedAt"":null,""merchantFees"":""0.00"",""sourceCurrency"":""USD"",""sourceCurrencyName"":""US Dollar"",""targetCurrency"":""USD"",
                                 ""targetCurrencyName"":""US Dollar"",""compliance"":{""status"":""pending"",""checkedAt"":null}}],""meta"":{""page"":1,""pages"":1,""records"":1}}}}";
-            Batch newBatch = paymentrails.JsonHelpers.BatchHelper.JsonToBatch(response);
+            Batch newBatch = PaymentRails.JsonHelpers.BatchHelper.JsonToBatch(response);
 
 
             Compliance compliance = new Compliance("pending",null);
@@ -33,7 +33,7 @@ namespace paymentrailsTest.JsonHelper
         public void TestJsonToBatchInvalidJSON()
         {
             String response = @"";
-            Batch newBatch = paymentrails.JsonHelpers.BatchHelper.JsonToBatch(response);
+            Batch newBatch = PaymentRails.JsonHelpers.BatchHelper.JsonToBatch(response);
 
 
             Compliance compliance = new Compliance("pending", null);
@@ -67,7 +67,7 @@ namespace paymentrailsTest.JsonHelper
                                 ""description"":""Weekly Payouts on 2017-4-5"",""sentAt"":""2017-05-05T17:02:36.486Z"",""completedAt"":null,""createdAt"":""2017-05-05T16:45:45.493Z"",""updatedAt"":""2017-05-05T17:02:36.487Z""},{""id"":""B-912Q61G0BRVGC"",
                                 ""status"":""open"",""amount"":""900.90"",""totalPayments"":1,""currency"":""USD"",""description"":""Weekly Payouts on 2017-4-4"",""sentAt"":null,""completedAt"":null,""createdAt"":""2017-05-04T19:19:38.049Z"",
                                 ""updatedAt"":""2017-05-08T16:51:56.423Z""}],""meta"":{""page"":1,""pages"":1,""records"":12}}";
-            List<Batch> batches = paymentrails.JsonHelpers.BatchHelper.JsonToBatchList(response);
+            List<Batch> batches = PaymentRails.JsonHelpers.BatchHelper.JsonToBatchList(response);
 
             Batch batch = new Batch("Weekly Payouts on 2017-4-8", null, "USD", 65.00, 1, "open", null, null, "2017-05-08T18:31:00.682Z", "2017-05-08T18:31:00.767Z", "B-91XQ40VXECQJM");
 

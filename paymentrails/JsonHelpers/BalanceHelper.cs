@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Script.Serialization;
 
-namespace paymentrails.JsonHelpers
+namespace PaymentRails.JsonHelpers
 {
     public class BalanceHelper : JsonHelper
     {

@@ -3,10 +3,10 @@ using System.Text;
 using System.Net.Http;
 using System.Net;
 using System.Linq;
-using paymentrails.Exceptions;
-using paymentrails.Types;
+using PaymentRails.Exceptions;
+using PaymentRails.Types;
 
-namespace paymentrails
+namespace PaymentRails
 {
     /// <summary>
     /// A Class that makes HTTP Requests to the API.
