@@ -8,20 +8,20 @@ The PaymentRails_PayoutMethods class contains static utily methods for interfaci
 ### **get**
 Utility method to make GET requests to the payout method API
 Parameters | Return Type
---- | ---:
+--- | :---
 `(String recipientId)` | Payout
 
 ---
 ### **post**
 Utility method to make POST requests to the payout method API
 Parameters | Return Type
---- | ---:
+--- | :---
 `(String recipientId, Payout payoutMethod)` | Payout
 
 ---
 ### **patch**
 Utility method to make PATCH requests to the payout method API
 Parameters | Return Type
---- | ---:
+--- | :---
 `(String recipientId, Payout payoutMethod)` | String
 
