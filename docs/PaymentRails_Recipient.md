@@ -8,11 +8,7 @@ The PaymentRails_Recipient class contains static utily methods for interfacing w
 ### **get**
 Utility method to make GET requests to the recipient API
 Parameters | Return Type
-<<<<<<< HEAD
 ---| ---:
-=======
-|---|---
->>>>>>> abcabb51a9a6ef0ad65dcd979cda4f2239aa2e9f
 (int page, int pageSize) | List<Recipient\>
 (String recipientId) | Recipient
 (String recipientId, String term) | String
