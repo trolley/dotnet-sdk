@@ -29,10 +29,6 @@ namespace PaymentRails
             {
                 return apiBase;
             }
-            set
-            {
-                apiBase = value;
-            }
         }
 
         /// <summary>

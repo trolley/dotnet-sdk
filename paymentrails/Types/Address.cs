@@ -117,7 +117,7 @@ namespace PaymentRails.Types
         }
 
         /// <summary>
-        /// region code (should be valid iso_3166-2 code)
+        /// region code (should be valid ISO 3166-2 code)
         /// </summary>
         public string Region
         {

@@ -15,10 +15,16 @@ namespace PaymentRails.Types
     {
         private string institution;
         private string branchNum;
-        private string accountNum;
         private string currency;
         private string country;
         private string name;
+        private string accountNum;
+        private string routing;
+        private string iban;
+        private string swiftBic;
+        private string gouvernmentID;
+
+        private Address bankAddress;
 
         #region Properties
         /// <summary>
@@ -60,12 +66,12 @@ namespace PaymentRails.Types
         {
             get
             {
-                return accountNum;
+                return AccountNum1;
             }
 
             set
             {
-                accountNum = value;
+                AccountNum1 = value;
             }
         }
 
@@ -116,6 +122,84 @@ namespace PaymentRails.Types
                 name = value;
             }
         }
+
+        public string AccountNum1
+        {
+            get
+            {
+                return accountNum;
+            }
+
+            set
+            {
+                accountNum = value;
+            }
+        }
+
+        public string Routing
+        {
+            get
+            {
+                return routing;
+            }
+
+            set
+            {
+                routing = value;
+            }
+        }
+
+        public string Iban
+        {
+            get
+            {
+                return iban;
+            }
+
+            set
+            {
+                iban = value;
+            }
+        }
+
+        public string SwiftBic
+        {
+            get
+            {
+                return swiftBic;
+            }
+
+            set
+            {
+                swiftBic = value;
+            }
+        }
+
+        public string GouvernmentID
+        {
+            get
+            {
+                return gouvernmentID;
+            }
+
+            set
+            {
+                gouvernmentID = value;
+            }
+        }
+
+        public Address BankAddress
+        {
+            get
+            {
+                return bankAddress;
+            }
+
+            set
+            {
+                bankAddress = value;
+            }
+        }
         #endregion
 
         /// <summary>
@@ -128,21 +212,26 @@ namespace PaymentRails.Types
         /// <param name="accountNum"></param>
         /// <param name="currency"></param>
         /// <param name="name"></param>
-        public BankAccount(string country, string currencyCode, string institution, string branchNum, string accountNum, string currency, string name)
+        public BankAccount(string country, string institution, string branchNum, string accountNum, string currency, string name, string routing = null, string iban = null, string swiftBic = null, string gouvernmentID = null, Address bankAddress = null)
         {
             this.institution = institution;
             this.branchNum = branchNum;
-            this.accountNum = accountNum;
+            this.AccountNum1 = accountNum;
             this.currency = currency;
             this.country = country;
             this.name = name;
+            this.routing = routing;
+            this.iban = iban;
+            this.swiftBic = swiftBic;
+            this.gouvernmentID = gouvernmentID;
+            this.bankAddress = bankAddress;
         }
 
         public BankAccount()
         {
             this.institution = null;
             this.branchNum = null;
-            this.accountNum = null;
+            this.AccountNum1 = null;
             this.currency = null;
             this.country = null;
             this.name = null;
@@ -172,7 +261,7 @@ namespace PaymentRails.Types
             if(obj != null && obj.GetType() == this.GetType())
             {
                 BankAccount other = (BankAccount)obj;
-                if(other.institution == this.institution && other.branchNum == this.branchNum && other.accountNum == this.accountNum 
+                if(other.institution == this.institution && other.branchNum == this.branchNum && other.AccountNum1 == this.AccountNum1 
                     && other.currency == this.currency && other.country == this.country && other.name == this.name)
                     return true;
             }
@@ -221,6 +310,29 @@ namespace PaymentRails.Types
             if (this.Name != null)
             {
                 builder.AppendFormat("\"name\": \"{0}\"\n", this.Name);
+            }
+            if (this.Routing != null)
+            {
+                builder.AppendFormat("\"routing\": \"{0}\"\n", this.Routing);
+            }
+            if (this.Iban != null)
+            {
+                builder.AppendFormat("\"iban\": \"{0}\"\n", this.Iban);
+            }
+            if (this.SwiftBic != null)
+            {
+                builder.AppendFormat("\"swiftBic\": \"{0}\"\n", this.SwiftBic);
+            }
+            if (this.GouvernmentID != null)
+            {
+                builder.AppendFormat("\"gouvernmentId\": \"{0}\"\n", this.GouvernmentID);
+            }
+            if (this.BankAddress != null)
+            {
+                builder.AppendFormat("\"bankAddress\": \"{0}\"\n", this.BankAddress.Street1);
+                builder.AppendFormat("\"bankCity\": \"{0}\"\n", this.BankAddress.City);
+                builder.AppendFormat("\"bankAddress\": \"{0}\"\n", this.BankAddress.Region);
+                builder.AppendFormat("\"bankAddress\": \"{0}\"\n", this.BankAddress.PostalCode);
             }
             builder.Append("}");
             return builder.ToString();

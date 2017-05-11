@@ -85,10 +85,11 @@ namespace PaymentRails
         {
             return delete(payment.Id, payment.BatchId);
         }
+        // Change into two methods
         /// <summary>
         /// Lists all the payments based on and batch id
         /// </summary>
-        /// <param name="term">The page number (default: 1)</param>
+        /// <param name="term">The search term</param>
         /// <param name="page">The page number (default: 1)</param>
         /// <param name="pageSize">Number of records in a page (default: 10)</param>
         /// <param name="batchId">A batch id that will have its payments returned</param>
