@@ -8,7 +8,7 @@ This class that represents a PaypalAccount
 
 Name | type | description | 
 ---|---|---
-email | sting| The paypal Account email
+email | string| The paypal Account email
 
 ## **Methods**
 ---
