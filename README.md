@@ -64,7 +64,7 @@ Class | Method | HTTP request | Description
 *PaymentRails_Payment | [**patch**](docs/PaymentRails_Payment.md#patch) | **PATCH** /batch/<batch_id>/payments |
 *PaymentRails_Payment | [**delete**](docs/PaymentRails_Payment.md#delete) | **DELETE** /batch/<batch_id>/payments |
 *PaymentRails_Payment | [**query**](docs/PaymentRails_Payment.md#query) | **GET** /payments/ |
-*PaymentRails_Balances | [**get**](docs/PaymentRails_Balance.md#get) | **GET** /balances/ |
+*PaymentRails_Balances | [**get**](docs/PaymentRails_Balances.md#get) | **GET** /balances/ |
 
 ## Documentation for Types
 
