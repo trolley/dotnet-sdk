@@ -1,3 +1,4 @@
+packages/**
 paymentrails/bin/**
 paymentrails/obj/**
 paymentrailsTest/obj/**
