@@ -41,7 +41,14 @@ namespace PaymentRails.JsonHelpers
             }
             if (helper.Accounts != null)
             {
-                bank = helper.Accounts.Bank;
+                if (helper.Accounts.Bank != null)
+                {
+                    Address bankAddress = new Address(helper.Accounts.Bank.BankAddress, null, helper.Accounts.Bank.BankCity,
+                        helper.Accounts.Bank.BankPostalCode, null, helper.Accounts.Bank.Country, helper.Accounts.Bank.BankRegion);
+                    bank = new BankAccount(helper.Accounts.Bank.Country, helper.Accounts.Bank.Institution, helper.Accounts.Bank.BranchNum,
+                        helper.Accounts.Bank.AccountNum, helper.Accounts.Bank.Currency, helper.Accounts.Bank.Name, helper.Accounts.Bank.Routing,
+                        helper.Accounts.Bank.Iban, helper.Accounts.Bank.SwiftBic, helper.Accounts.Bank.GovernmentID, bankAddress);
+                }                
                 paypal = helper.Accounts.Paypal;
             }
             return new Types.Payout(autoswitchLimit, autoswitchActive, holdupLimit, holdupActive, helper.Method, currency, bank, paypal);
@@ -538,10 +545,10 @@ namespace PaymentRails.JsonHelpers
 
         protected class AccountsHelper
         {
-            private Types.BankAccount bank;
+            private BankAccountHelper bank;
             private Types.PaypalAccount paypal;
 
-            public BankAccount Bank
+            public BankAccountHelper Bank
             {
                 get
                 {
@@ -567,7 +574,7 @@ namespace PaymentRails.JsonHelpers
                 }
             }
 
-            public AccountsHelper(BankAccount bank, PaypalAccount paypal)
+            public AccountsHelper(BankAccountHelper bank, PaypalAccount paypal)
             {
                 this.bank = bank;
                 this.paypal = paypal;
@@ -732,6 +739,225 @@ namespace PaymentRails.JsonHelpers
             }
 
             public LimitActiveHelper()
+            {
+
+            }
+        }
+
+        protected new class BankAccountHelper
+        {
+            private string institution;
+            private string branchNum;
+            private string currency;
+            private string country;
+            private string name;
+            private string accountNum;
+            private string routing;
+            private string iban;
+            private string swiftBic;
+            private string governmentID;
+            private string bankAddress;
+            private string bankCity;
+            private string bankRegion;
+            private string bankPostalCode;
+            private string bankProvince;
+
+            public string Institution
+            {
+                get
+                {
+                    return institution;
+                }
+
+                set
+                {
+                    institution = value;
+                }
+            }
+
+            public string BranchNum
+            {
+                get
+                {
+                    return branchNum;
+                }
+
+                set
+                {
+                    branchNum = value;
+                }
+            }
+
+            public string Currency
+            {
+                get
+                {
+                    return currency;
+                }
+
+                set
+                {
+                    currency = value;
+                }
+            }
+
+            public string Country
+            {
+                get
+                {
+                    return country;
+                }
+
+                set
+                {
+                    country = value;
+                }
+            }
+
+            public string Name
+            {
+                get
+                {
+                    return name;
+                }
+
+                set
+                {
+                    name = value;
+                }
+            }
+
+            public string AccountNum
+            {
+                get
+                {
+                    return accountNum;
+                }
+
+                set
+                {
+                    accountNum = value;
+                }
+            }
+
+            public string Routing
+            {
+                get
+                {
+                    return routing;
+                }
+
+                set
+                {
+                    routing = value;
+                }
+            }
+
+            public string Iban
+            {
+                get
+                {
+                    return iban;
+                }
+
+                set
+                {
+                    iban = value;
+                }
+            }
+
+            public string SwiftBic
+            {
+                get
+                {
+                    return swiftBic;
+                }
+
+                set
+                {
+                    swiftBic = value;
+                }
+            }
+
+            public string GovernmentID
+            {
+                get
+                {
+                    return governmentID;
+                }
+
+                set
+                {
+                    governmentID = value;
+                }
+            }
+
+            public string BankAddress
+            {
+                get
+                {
+                    return bankAddress;
+                }
+
+                set
+                {
+                    bankAddress = value;
+                }
+            }
+
+            public string BankCity
+            {
+                get
+                {
+                    return bankCity;
+                }
+
+                set
+                {
+                    bankCity = value;
+                }
+            }
+
+            public string BankRegion
+            {
+                get
+                {
+                    return bankRegion;
+                }
+
+                set
+                {
+                    bankRegion = value;
+                }
+            }
+
+            public string BankPostalCode
+            {
+                get
+                {
+                    return bankPostalCode;
+                }
+
+                set
+                {
+                    bankPostalCode = value;
+                }
+            }
+
+            public string BankProvince
+            {
+                get
+                {
+                    return bankProvince;
+                }
+
+                set
+                {
+                    bankProvince = value;
+                }
+            }
+
+            public BankAccountHelper()
             {
 
             }

@@ -22,7 +22,7 @@ namespace PaymentRails.Types
         private string routing;
         private string iban;
         private string swiftBic;
-        private string gouvernmentID;
+        private string governmentID;
 
         private Address bankAddress;
 
@@ -66,12 +66,12 @@ namespace PaymentRails.Types
         {
             get
             {
-                return AccountNum1;
+                return accountNum;
             }
 
             set
             {
-                AccountNum1 = value;
+                accountNum = value;
             }
         }
 
@@ -123,20 +123,7 @@ namespace PaymentRails.Types
             }
         }
 
-        public string AccountNum1
-        {
-            get
-            {
-                return accountNum;
-            }
-
-            set
-            {
-                accountNum = value;
-            }
-        }
-
-        public string Routing
+       public string Routing
         {
             get
             {
@@ -175,16 +162,16 @@ namespace PaymentRails.Types
             }
         }
 
-        public string GouvernmentID
+        public string GovernmentID
         {
             get
             {
-                return gouvernmentID;
+                return governmentID;
             }
 
             set
             {
-                gouvernmentID = value;
+                governmentID = value;
             }
         }
 
@@ -212,18 +199,18 @@ namespace PaymentRails.Types
         /// <param name="accountNum"></param>
         /// <param name="currency"></param>
         /// <param name="name"></param>
-        public BankAccount(string country, string institution, string branchNum, string accountNum, string currency, string name, string routing = null, string iban = null, string swiftBic = null, string gouvernmentID = null, Address bankAddress = null)
+        public BankAccount(string country, string institution, string branchNum, string accountNum, string currency, string name, string routing = null, string iban = null, string swiftBic = null, string governmentID = null, Address bankAddress = null)
         {
             this.institution = institution;
             this.branchNum = branchNum;
-            this.AccountNum1 = accountNum;
+            this.AccountNum = accountNum;
             this.currency = currency;
             this.country = country;
             this.name = name;
             this.routing = routing;
             this.iban = iban;
             this.swiftBic = swiftBic;
-            this.gouvernmentID = gouvernmentID;
+            this.governmentID = governmentID;
             this.bankAddress = bankAddress;
         }
 
@@ -231,7 +218,7 @@ namespace PaymentRails.Types
         {
             this.institution = null;
             this.branchNum = null;
-            this.AccountNum1 = null;
+            this.AccountNum = null;
             this.currency = null;
             this.country = null;
             this.name = null;
@@ -261,8 +248,9 @@ namespace PaymentRails.Types
             if(obj != null && obj.GetType() == this.GetType())
             {
                 BankAccount other = (BankAccount)obj;
-                if(other.institution == this.institution && other.branchNum == this.branchNum && other.AccountNum1 == this.AccountNum1 
-                    && other.currency == this.currency && other.country == this.country && other.name == this.name)
+                if(other.institution == this.institution && other.branchNum == this.branchNum && other.AccountNum == this.AccountNum 
+                    && other.currency == this.currency && other.country == this.country && other.name == this.name && other.Iban == this.Iban 
+                    && other.SwiftBic == this.swiftBic && other.Routing == this.Routing && other.BankAddress == this.BankAddress)
                     return true;
             }
 
@@ -323,9 +311,9 @@ namespace PaymentRails.Types
             {
                 builder.AppendFormat("\"swiftBic\": \"{0}\"\n", this.SwiftBic);
             }
-            if (this.GouvernmentID != null)
+            if (this.GovernmentID != null)
             {
-                builder.AppendFormat("\"gouvernmentId\": \"{0}\"\n", this.GouvernmentID);
+                builder.AppendFormat("\"governmentId\": \"{0}\"\n", this.GovernmentID);
             }
             if (this.BankAddress != null)
             {
