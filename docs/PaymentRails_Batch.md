@@ -7,6 +7,7 @@ The PaymentRails_Batch class contains static utily methods for interfacing with 
 ---
 ### **get**
 Utility method to make GET requests to the batch API
+
 Parameters | Return Type
 --- | ---:
 (int page, int pageSize) | List\<Batch\>
