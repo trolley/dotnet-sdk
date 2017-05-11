@@ -2,6 +2,8 @@
 
 A native C# SDK for the Payment Rails API
 
+For more information about the API as well as C# code samples check out the [full API documentation](http://docs.paymentrails.com)
+
 
 ## Installation
 
@@ -27,7 +29,9 @@ class Program
 {
     static void Main(string[] args)
     {
+        // set your API key
         PaymentRails_Configuration.ApiKey = "<YOUR-API-KEY>";
+        // request away
         Dictionary<String, Balance> balances = PaymentRails_Balances.get();
         foreach(KeyValuePair<String, Balance> balance in balances)
         {
@@ -38,6 +42,12 @@ class Program
 }
 
 ```
+Output
+>My USD balance is 1463430.27  
+>My CAD balance is 20000.89  
+>My EUR balance is 790473.12  
+>My GBP balance is 761316.01  
+>My paypal balance is 0  
 
 ## Documentation for API Endpoint Methods
 
