@@ -3,6 +3,12 @@
 ## About
 This class that represents a Payment
 
+## **Related Types**
+---
++ [Compliance](Compliance.md)
++ [Recipient](Recipient.md)
+
+
 ## **Properties**
 ---
 

@@ -3,6 +3,10 @@
 ## About
 The PaymentRails_Recipient class contains static utily methods for interfacing with the recipient API. For more information see the [API documentation](http://docs.paymentrails.com/#recipients)
 
+## **Related Types**
+---
++ [Recipient](types/Recipient.md)
+
 ## **Methods**
 ---
 ### **get**

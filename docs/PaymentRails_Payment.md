@@ -3,6 +3,10 @@
 ## About
 The PaymentRails_Payment class contains static utily methods for interfacing with the payment API. For more information see the [API documentation](http://docs.paymentrails.com/#payments)
 
+## **Related Types**
+---
++ [Payment](types/Payment.md)
+
 ## **Methods**
 ---
 ### **get**

@@ -3,6 +3,11 @@
 ## About
 This class that represents a Batch
 
+## **Related Types**
+---
++ [Payment](Payment.md)
+
+
 ## **Properties**
 ---
 

@@ -3,6 +3,10 @@
 ## **About**
 The PaymentRails_Balances class contains static utily methods for interfacing with the balances API. For more information see the API documentation
 
+## **Related Types**
+---
++ [Balance](types/Balance.md)
+
 ## **Methods**
 ---
 ### **get**

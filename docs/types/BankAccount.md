@@ -3,6 +3,10 @@
 ## About
 This class represents a merchant's balance. For more information see the [API documentation](http://docs.paymentrails.com/#balances)
 
+## **Related Types**
+---
++ [Address](Address.md)
+
 ## **Properties**
 ---
 

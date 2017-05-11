@@ -3,6 +3,11 @@
 ## About
 This class that represents a Payout
 
+## **Related Types**
+---
++ [BankAccount](BankAccount.md)
++ [PaypalAccount](PaypalAccount.md)
+
 ## **Properties**
 ---
 

@@ -3,6 +3,10 @@
 ## **About**
 The PaymentRails_PayoutMethods class contains static utily methods for interfacing with the payout methods API. For more information see the [API documentation](http://docs.paymentrails.com/#payout-methods)
 
+## **Related Types**
+---
++ [Payout](types/Payout.md)
+
 ## **Methods**
 ---
 ### **get**

@@ -3,6 +3,10 @@
 ## About
 The PaymentRails_Batch class contains static utily methods for interfacing with the batch API. For more information see the [API documentation](http://docs.paymentrails.com/#payments)
 
+## **Related Types**
+---
++ [Batch](types/Batch.md)
+
 ## **Methods**
 ---
 ### **get**

@@ -3,6 +3,12 @@
 ## About
 This class that represents a Recipient
 
+## **Related Types**
+---
++ [Payout](Payout.md)
++ [Compliance](Compliance.md)
++ [Address](Address.md)
+
 ## **Properties**
 ---
 
@@ -21,8 +27,8 @@ language|string| The recipient language
 dob| string| The recipient date of birth
 gravatarUrl| string| Recipient gravatar url
 Compliance |Compliance| The recipient compliance information
-Payout| payout| The recipient payout methods
-Address |address| The recipient address
+Payout| Payout| The recipient payout methods
+Address |Address| The recipient address
 
 ## **Methods**
 ---
