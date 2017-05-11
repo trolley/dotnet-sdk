@@ -8,7 +8,7 @@ The PaymentRails_Payment class contains static utily methods for interfacing wit
 ### **get**
 Utility method to make GET requests to the payment API
 Parameters | Return Type
---- | :---
+--- | ---:
 (int page, int pageSize) | List<Payment\>
 (String paymentId) | Payment
 
@@ -16,21 +16,21 @@ Parameters | Return Type
 ### **post**
 Utility method to make POST requests to the payment API
 Parameters | Return Type
---- | :---
+--- | ---:
 (Payment payment) | Payment
 
 ---
 ### **patch**
 Utility method to make PATCH requests to the payment API
 Parameters | Return Type
---- | :---
+--- | ---:
 (Payment payment) | String
 
 ---
 ### **delete**
 Utility method to make DELETE requests to the payment API
 Parameters | Return Type
---- | :---
+--- | ---:
 (Payment payment) | String
 (String paymentId) | String
 
@@ -38,5 +38,5 @@ Parameters | Return Type
 ### **query**
 Utility method for querying payments
 Parameters | Return Type
---- | :---
+--- | ---:
 (String term, int page, int pageSize) | List<Payment>
