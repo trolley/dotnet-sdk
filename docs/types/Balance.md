@@ -14,9 +14,4 @@ Currency | String | The balance's currency code
 Type | String | The balance's type
 AccountNumber | String | The balance's account number
 
-## **Methods**
----
-Name | Return Type | Description
---- | --- | --- 
-
 

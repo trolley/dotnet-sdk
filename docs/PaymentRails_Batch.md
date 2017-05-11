@@ -10,12 +10,13 @@ Utility method to make GET requests to the batch API
 
 Parameters | Return Type
 --- | ---:
-(int page, int pageSize) | List\<Batch\>
+(int page, int pageSize) | List<Batch\>
 (String batchId) | Batch
 
 ---
 ### **post**
 Utility method to make POST requests to the batch API
+
 Parameters | Return Type
 --- | ---:
 (Batch batch) | Batch
@@ -23,6 +24,7 @@ Parameters | Return Type
 ---
 ### **patch**
 Utility method to make PATCH requests to the batch API
+
 Parameters | Return Type
 --- | ---:
 (Batch batch) | String
@@ -30,6 +32,7 @@ Parameters | Return Type
 ---
 ### **delete**
 Utility method to make DELETE requests to the batch API
+
 Parameters | Return Type
 --- | ---:
 (Batch batch) | String
@@ -38,6 +41,7 @@ Parameters | Return Type
 ---
 ### **query**
 Utility method for querying batches
+
 Parameters | Return Type
 --- | ---:
 (String term, int page, int pageSize) | List<Batch>
@@ -45,6 +49,7 @@ Parameters | Return Type
 ---
 ### **generateQuote**
 Utility method to generating a quote for a bacth
+
 Parameters | Return Type
 --- | ---:
 (String batchId) | String
@@ -53,6 +58,7 @@ Parameters | Return Type
 ---
 ### **processBatch**
 Utility method to send a batch out for processing
+
 Parameters | Return Type
 --- | ---:
 (String batchId) | String
@@ -61,6 +67,7 @@ Parameters | Return Type
 ---
 ### **summary**
 Utility method to get a batch summary
+
 Parameters | Return Type
 --- | ---:
 (String batchId) | String
