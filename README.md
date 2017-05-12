@@ -16,7 +16,7 @@ For more information about the API as well as C# code samples check out the [ful
 In Solution Explorer, right-click the project node and click Add Reference.
 
 
-The library is hosted at [insert github link]
+The library is hosted on github [here](https://github.com/PaymentRails/paymentrails_dotnet)
 
 ## Getting Started
 
