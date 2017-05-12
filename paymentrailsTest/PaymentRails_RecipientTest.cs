@@ -29,7 +29,7 @@ namespace paymentrailsTest
         [TestMethod]
         public void TestRetrieveRecipient()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             Recipient response = PaymentRails_Recipient.get("R-91XPU407CRNGR");
             Assert.AreEqual(ValidResponseData.VALID_RECIPIENT, response);
         }
@@ -38,14 +38,14 @@ namespace paymentrailsTest
         [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
         public void TestRetrieveRecipientNotFound()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             Recipient response = PaymentRails_Recipient.get("efef");
         }
 
         [TestMethod]
         public void TestCreateRecipient()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             Recipient recipient = new Recipient("R-91XQ4VKD39C3P", "individual", "tess@example.com", "tess@example.com", "John Smith", "John", "Smith", "incomplete", null, "en", null, "https://s3.amazonaws.com/static.api.paymentrails.com/icon_user.svg", Compliance, null, Address);
 
             Recipient newRecipient = PaymentRails_Recipient.post(recipient);
@@ -56,7 +56,7 @@ namespace paymentrailsTest
         [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
         public void TestCreateRecipientInvalid()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             Recipient recipient = new Recipient("R-91XQ4VKD39C3P", "individual", "INVALID", "tess@example.com", "John Smith", "John", "Smith", "incomplete", null, "en", null, "https://s3.amazonaws.com/static.api.paymentrails.com/icon_user.svg", Compliance, null, Address);
             try
             {
@@ -73,7 +73,7 @@ namespace paymentrailsTest
         [TestMethod]
         public void TestUpdateRecipient()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             Recipient recipient = new Recipient("R-91XQ4VKD39C3P", "individual", "tess@example.com", "tess@example.com", "John Smith", "John", "Smith", "incomplete", null, "en", null, "https://s3.amazonaws.com/static.api.paymentrails.com/icon_user.svg", Compliance, null, Address);
             String response = PaymentRails_Recipient.patch(recipient);
 
@@ -85,7 +85,7 @@ namespace paymentrailsTest
         [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
         public void TestUpdateRecipientInvalidRecipientId()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             Recipient recipient = new Recipient("R-91XQ4VKD39C3P", "individual", "INVALID", "tess@example.com", "John Smith", "John", "Smith", "incomplete", null, "en", null, "https://s3.amazonaws.com/static.api.paymentrails.com/icon_user.svg", Compliance, null, Address);
             String response = PaymentRails_Recipient.patch(recipient);
         }
@@ -96,7 +96,7 @@ namespace paymentrailsTest
         [TestMethod]
         public void TestDeleteRecipient()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             Recipient recipient = new Recipient("R-91XQ4VKD39C3P", "individual", "tess@example.com", "tess@example.com", "John Smith", "John", "Smith", "incomplete", null, "en", null, "https://s3.amazonaws.com/static.api.paymentrails.com/icon_user.svg", Compliance, null, Address);
             String response = PaymentRails_Recipient.delete(recipient);
             Assert.AreEqual(MockResponseContent.VALID_POST, response);
@@ -107,7 +107,7 @@ namespace paymentrailsTest
         [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
         public void TestDeleteRecipientInvalidRecipientId()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             Recipient recipient = new Recipient("91XQ4VKD39C3P", "individual", "tess@example.com", "tess@example.com", "John Smith", "John", "Smith", "incomplete", null, "en", null, "https://s3.amazonaws.com/static.api.paymentrails.com/icon_user.svg", Compliance, null, Address);
             try
             {
@@ -123,7 +123,7 @@ namespace paymentrailsTest
         [TestMethod]
         public void TestListAllRecipients()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             List<Recipient> response = PaymentRails_Recipient.query();
 
             Assert.AreEqual(ValidResponseData.VALID_RECIPIENT, response[0]);
@@ -133,7 +133,7 @@ namespace paymentrailsTest
         [TestMethod]
         public void TestListAllRecipientsWithQueries()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             List<Recipient> response = PaymentRails_Recipient.query("j",1,10);
 
             Assert.AreEqual(ValidResponseData.VALID_RECIPIENT, response[0]);
@@ -143,7 +143,7 @@ namespace paymentrailsTest
         [TestMethod]
         public void TestRetrieveAllLogs()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             String response = PaymentRails_Recipient.get("R-91XPU407CRNGR", "logs");
             Assert.AreEqual(MockResponseContent.VALID_POST, response);
         }
@@ -152,7 +152,7 @@ namespace paymentrailsTest
         [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
         public void TestRetrieveAllLogsInvalidRecipientId()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             try
             {
                 String response = PaymentRails_Recipient.get("INVALID", "logs");
@@ -167,7 +167,7 @@ namespace paymentrailsTest
         [TestMethod]
         public void TestRetrieveAllpayments()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             String response = PaymentRails_Recipient.get("R-91XPU407CRNGR", "payments");
             Assert.AreEqual(MockResponseContent.VALID_POST, response);
         }
@@ -176,7 +176,7 @@ namespace paymentrailsTest
         [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
         public void TestRetrieveAllPaymentsInvalidRecipientId()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
 
             try
             {

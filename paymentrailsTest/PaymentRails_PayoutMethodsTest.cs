@@ -17,7 +17,7 @@ namespace paymentrailsTest
         [TestMethod]
         public void TestRetrievePayoutMethod()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             Payout response = PaymentRails_PayoutMethods.get("R-91XQ4QBJ65W1U");
             Assert.AreEqual(ValidResponseData.VALID_PAYOUT, response);
 
@@ -29,7 +29,7 @@ namespace paymentrailsTest
         [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
         public void TestRetrievePayoutMethodInvalidRecipientId()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             try {
                 Payout response = PaymentRails_PayoutMethods.get("91XQ4QBJ65W1U");
             }
@@ -44,7 +44,7 @@ namespace paymentrailsTest
         [TestMethod]
         public void TestCreatePayoutMethod()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             Payout payout = new Payout(1000, false, 1000, false, "bank", "USD", null, null);
             Payout response = PaymentRails_PayoutMethods.post("R-91XQ4QBJ65W1U",payout);
             Assert.AreEqual(payout, response);
@@ -54,7 +54,7 @@ namespace paymentrailsTest
         [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
         public void TestCreatePayoutMethodRecipientId()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             Payout payout = new Payout(1000, false, 1000, false, "bank", "USD", null, null);
 
             try
@@ -73,7 +73,7 @@ namespace paymentrailsTest
         [TestMethod]
         public void TestUpdatePayoutMethod()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             Payout payout = new Payout(1000, false, 1000, false, "bank", "USD", null, null);
             String response = PaymentRails_PayoutMethods.patch("R-91XQ4QBJ65W1U", payout);
             String message = response.Substring(6, 4);
@@ -85,7 +85,7 @@ namespace paymentrailsTest
         [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
         public void TestUpdatePayoutMethodInvalidRecipientId()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             Payout payout = new Payout(1000, false, 1000, false, "bank", "USD", null, null);
             try
             {

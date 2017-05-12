@@ -19,7 +19,7 @@ namespace paymentrailsTest
         [TestMethod]
         public void TestRetrieveBatch()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             Batch response = PaymentRails_Batch.get("B-91XPR9A29NMMC");
             Assert.AreEqual(ValidResponseData.VALID_BATCH, response);
         }
@@ -28,7 +28,7 @@ namespace paymentrailsTest
         [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
         public void TestRetrieveBatchNotFound()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             try
             {
                 Batch response = PaymentRails_Batch.get("ssdsd");
@@ -44,7 +44,7 @@ namespace paymentrailsTest
         [TestMethod]
         public void TestUpdateBatch()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             Batch b = new Batch("VALID", null, "CAD", 0, 0, null, null, null, null, null, "B-VALIDBATCH");
             string result = PaymentRails_Batch.patch(b); // change to use batch that is returned
             Assert.AreEqual(MockResponseContent.VALID_POST, result);
@@ -54,7 +54,7 @@ namespace paymentrailsTest
         [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
         public void TestUpdateBatchNotFound()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             Batch b = new Batch("VALID", null, "CAD", 0, 0, null, null, null, null, null, null);
             b.Id = "NOTVALID";
             try
@@ -71,7 +71,7 @@ namespace paymentrailsTest
         [TestMethod]
         public void TestDeleteBatch()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             String response = PaymentRails_Batch.delete("B-91XPR9A29NMMC");
             String message = response.Substring(6, 4);
             Assert.AreEqual("true", message);
@@ -81,7 +81,7 @@ namespace paymentrailsTest
         [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
         public void TestDeleteBatchNotFound()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             Batch b = new Batch("INVALID", null, "CAD", 0, 0, null, null, null, null, null, "INVALID ID");
             try
             {
@@ -97,21 +97,21 @@ namespace paymentrailsTest
         //        [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
         //        public void TestDeleteBatchInvalidBatchStatus()
         //        {
-        //            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+        //            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
         //            String response = PaymentRails_Batch.delete("B-912Q011VA8V2C");
         //        }
 
         [TestMethod]
         public void TestListAllBatches()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             List<Batch> response = PaymentRails_Batch.get(1,1);
             Assert.IsTrue(ValidResponseData.VALID_BATCH_LIST.SequenceEqual(response));
         }
         [TestMethod]
         public void TestListAllBatchesWithQueries()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             List<Batch> response = PaymentRails_Batch.query("",1,1);
             Assert.IsTrue(ValidResponseData.VALID_BATCH_LIST.SequenceEqual(response));
         }
@@ -119,7 +119,7 @@ namespace paymentrailsTest
         //        [TestMethod]
         //        public void TestListAllBatchSummary()
         //        {
-        //            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+        //            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
         //            String response = PaymentRails_Batch.summary("B-91XPR9A29NMMC");
         //            String message = response.Substring(6, 4);
         //            Assert.AreEqual("true", message);
@@ -129,7 +129,7 @@ namespace paymentrailsTest
         //        [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
         //        public void TestListAllBatchSummaryInvalidBatchId()
         //        {
-        //            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+        //            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
         //            String response = PaymentRails_Batch.summary("B-wddw");
         //        }
         //        [TestMethod]
@@ -143,7 +143,7 @@ namespace paymentrailsTest
         [TestMethod]
         public void TestCreateBatch()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             Batch batch = new Batch("VALID", null, "CAD", 0, 0, null, null, null, null, null, null);
             Batch result = PaymentRails_Batch.post(batch);
             Assert.AreEqual(ValidResponseData.VALID_BATCH, result);
@@ -153,7 +153,7 @@ namespace paymentrailsTest
         [ExpectedException(typeof(InvalidStatusCodeException), "Status code must be 200.")]
         public void testCreateBatchBadData()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             Batch batch = new Batch("INVALID", null, "CAD", 0, 0, null, null, null, null, null, null);
             try
             {

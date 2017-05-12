@@ -10,7 +10,7 @@ namespace paymentrailsTest
     [TestClass]
     public class PaymentRails_BalancesTest
     {
-        public static string apiKey = "pk_test_91XPUY8D8GAGA";
+        public static string apiKey = "pk_live_GOODAPIKEY";
 
         [ClassInitialize]
         public static void Init(TestContext context)
@@ -38,7 +38,7 @@ namespace paymentrailsTest
         [TestMethod]
         public void TestRetrievePaypal()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             var response = PaymentRails_Balances.get("paypal");
             Assert.AreEqual(ValidResponseData.VALID_BALANCE_PAYPAL, response["paypal"]);
         }
@@ -46,7 +46,7 @@ namespace paymentrailsTest
         [TestMethod]
         public void TestRetrievePaymentrails()
         {
-            PaymentRails_Configuration.ApiKey = "pk_live_91XNJFBD19ZQ6";
+            PaymentRails_Configuration.ApiKey = "pk_live_GOODAPIKEY";
             var response = PaymentRails_Balances.get("paymentrails");
             Assert.AreEqual(ValidResponseData.VALID_BALANCE, response["USD"]);
             Assert.AreEqual(response.Count, 4);
