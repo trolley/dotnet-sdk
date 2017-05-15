@@ -44,10 +44,7 @@ class Program
 ```
 Output
 >My USD balance is 1463430.27  
->My CAD balance is 20000.89  
->My EUR balance is 790473.12  
->My GBP balance is 761316.01  
->My paypal balance is 0  
+>My paypal balance is 5000.00  
 
 ## Documentation for API Endpoint Methods
 
