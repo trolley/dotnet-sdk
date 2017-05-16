@@ -12,13 +12,23 @@ For more information about the API as well as C# code samples check out the [ful
 #### For [C#](https://docs.microsoft.com/en-us/dotnet/articles/csharp/index)
 
 #
-#### To install the reference: 
-In Solution Explorer, right-click the project node and click Add Reference.
+### To install the reference: 
+#### with dll  
+In Solution Explorer, right-click the project node and click Add Reference. Selec the dll in the file explorer and confirm your selection.
+
+#### With NuGet
+Open your package manager console and enter:  
+`PM> Install-Package PaymentRails.SDK`
 
 
 The library is hosted on github [here](https://github.com/PaymentRails/paymentrails_dotnet)
 
 ## Getting Started
+### Namespaces
++ PaymentRails
++ PaymentRails.Types
++ PaymentRails.Exceptions
+### Simple example
 
 ```csharp
 // A simple c# application using the Payment Rails SDK
