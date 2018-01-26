@@ -10,57 +10,24 @@ namespace PaymentRails.JsonHelpers
     public abstract class JsonHelper
     {
         #region Helper to type Mapping functions
-        protected static Payout PayoutJsonHelperToPayout(PayoutJsonHelper helper)
-        {
-            if(helper == null)
-            {
-                return null;
-            }
-            float autoswitchLimit = 0, holdupLimit = 0;
-            bool autoswitchActive = false, holdupActive = false;
-            string currency = null;
-            BankAccount bank = null;
-            PaypalAccount paypal = null;
-            if(helper.AutoSwitch == null && helper.Holdup == null)
-            {
-                return null;
-            }
-            if(helper.AutoSwitch != null)
-            {
-                autoswitchLimit = helper.AutoSwitch.Limit;
-                autoswitchActive = helper.AutoSwitch.Active;
-            }
-            if (helper.Holdup != null)
-            {
-                holdupLimit = helper.Holdup.Limit;
-                holdupActive = helper.Holdup.Active;
-            }
-            if (helper.Primary != null)
-            {
-                currency = helper.Primary.Currency.Currency.Code;
-            }
-            if (helper.Accounts != null)
-            {
-                if (helper.Accounts.Bank != null)
-                {
-                    Address bankAddress = new Address(helper.Accounts.Bank.BankAddress, null, helper.Accounts.Bank.BankCity,
-                        helper.Accounts.Bank.BankPostalCode, null, helper.Accounts.Bank.Country, helper.Accounts.Bank.BankRegion);
-                    bank = new BankAccount(helper.Accounts.Bank.Country, helper.Accounts.Bank.Institution, helper.Accounts.Bank.BranchNum,
-                        helper.Accounts.Bank.AccountNum, helper.Accounts.Bank.Currency, helper.Accounts.Bank.Name, helper.Accounts.Bank.Routing,
-                        helper.Accounts.Bank.Iban, helper.Accounts.Bank.SwiftBic, helper.Accounts.Bank.GovernmentID, bankAddress);
-                }                
-                paypal = helper.Accounts.Paypal;
-            }
-            return new Types.Payout(autoswitchLimit, autoswitchActive, holdupLimit, holdupActive, helper.Method, currency, bank, paypal);
-        }
-
         protected static Recipient RecipientJsonHelperToRecipient(RecipientJsonHelper helper)
         {
-            Payout payout = PayoutJsonHelperToPayout(helper.Payout);
+            List<RecipientAccount> accounts = null;
+            
+            if (helper.Accounts != null)
+            {
+                accounts = new List<RecipientAccount>();
+                foreach (RecipientAccount p in helper.Accounts)
+                {
+                    accounts.Add(p);
+                    //accounts.Add(RecipientAccountJsonHelperToRecipientAccount(p));
+                    //accounts.Last().BatchId = helper.Id;
+                }
+            }
+
             Recipient recipient = new Recipient(helper.Id, helper.Type, helper.ReferenceId, helper.Email, helper.Name,
                 helper.FirstName, helper.LastName, helper.Status, helper.TimeZone, helper.Language,
-                helper.Dob, helper.GravatarUrl, helper.Compliance, payout, helper.Address);
-
+                helper.Dob, helper.GravatarUrl, helper.Compliance, accounts, helper.Address);
             return recipient;
         }
 
@@ -149,6 +116,29 @@ namespace PaymentRails.JsonHelpers
             }
         }
 
+        protected class RecipientRecipientAccountPaginationJsonHelper
+        {
+            private List<RecipientAccountJsonHelper> recipientAccounts;
+            
+            public List<RecipientAccountJsonHelper> RecipientAccounts
+            {
+                get
+                {
+                    return RecipientAccounts;
+                }
+                set
+                {
+                    RecipientAccounts = value;
+                }
+            }
+            public RecipientRecipientAccountPaginationJsonHelper()
+            {
+
+            }
+
+        }
+
+
         protected class RecipientJsonHelper
         {
             private string id;
@@ -165,7 +155,11 @@ namespace PaymentRails.JsonHelpers
             private string gravatarUrl;
 
             private Compliance compliance;
-            private PayoutJsonHelper payout;
+            private List<RecipientAccount> accounts;
+            //private RecipientRecipientAccountPaginationJsonHelper accounts;
+            //private RecipientAccountListJsonHelper account;
+            //private RecipientAccountJsonHelper account;
+            //private PayoutJsonHelper payout;
             private Address address;
 
             #region properties
@@ -325,6 +319,18 @@ namespace PaymentRails.JsonHelpers
                 }
             }
 
+            public List<RecipientAccount> Accounts
+            {
+                get
+                {
+                    return accounts;
+                }
+                set
+                {
+                    accounts = value;
+                }
+            }
+
             public Compliance Compliance
             {
                 get
@@ -337,20 +343,8 @@ namespace PaymentRails.JsonHelpers
                     compliance = value;
                 }
             }
-
-            public PayoutJsonHelper Payout
-            {
-                get
-                {
-                    return payout;
-                }
-
-                set
-                {
-                    payout = value;
-                }
-            }
-
+          
+ 
             public Address Address
             {
                 get
@@ -365,7 +359,7 @@ namespace PaymentRails.JsonHelpers
             }
             #endregion
 
-            public RecipientJsonHelper(string id, string referenceId, string email, string name, string firstName, string lastName, string type, string status, string timeZone, string language, string dob, string gravatarUrl, Compliance compliance, PayoutJsonHelper payout, Address address)
+            public RecipientJsonHelper(string id, string referenceId, string email, string name, string firstName, string lastName, string type, string status, string timeZone, string language, string dob, string gravatarUrl, Compliance compliance, List<RecipientAccount> accounts, Address address)
             {
                 this.id = id;
                 this.referenceId = referenceId;
@@ -380,7 +374,7 @@ namespace PaymentRails.JsonHelpers
                 this.dob = dob;
                 this.gravatarUrl = gravatarUrl;
                 this.compliance = compliance;
-                this.payout = payout;
+                this.accounts = accounts;
                 this.address = address;
             }
 
@@ -454,7 +448,7 @@ namespace PaymentRails.JsonHelpers
                 }
             }
 
-            public RecipientAccountJsonHelper RecipientAccount
+            public RecipientAccountJsonHelper Account
             {
                 get
                 {
@@ -814,7 +808,7 @@ namespace PaymentRails.JsonHelpers
                 }
             }
 
-            public List<RecipientAccountJsonHelper> RecipientAccounts
+            public List<RecipientAccountJsonHelper> Accounts
             {
                 get
                 {

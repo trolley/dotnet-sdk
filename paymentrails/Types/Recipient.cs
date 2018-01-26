@@ -27,7 +27,7 @@ namespace PaymentRails.Types
         private string gravatarUrl;
 
         private Compliance compliance;
-        private Payout payout;
+        private List<RecipientAccount> recipientAccounts;
         private Address address;
 
         #region Properties
@@ -232,20 +232,26 @@ namespace PaymentRails.Types
             }
         }
         /// <summary>
-        /// The recipient's payout method
+        /// The recipient's Account method
         /// </summary>
-        public Payout Payout
+
+        public List<RecipientAccount> RecipientAccounts
         {
             get
             {
-                return payout;
+                return recipientAccounts;
             }
 
             set
             {
-                payout = value;
+                if (value == null)
+                {
+                    value = new List<RecipientAccount>();
+                }
+                recipientAccounts = value;
             }
         }
+
         /// <summary>
         /// The recipient's address
         /// </summary>
@@ -280,7 +286,7 @@ namespace PaymentRails.Types
         /// <param name="compliance"></param>
         /// <param name="payout"></param>
         /// <param name="address"></param>
-        public Recipient(string id, string type, string referenceId, string email, string name, string firstName, string lastName, string status, string timeZone, string language, string dob, string gravatarUrl, Compliance compliance, Payout payout, Address address)
+        public Recipient(string id, string type, string referenceId, string email, string name, string firstName, string lastName, string status, string timeZone, string language, string dob, string gravatarUrl, Compliance compliance, List<RecipientAccount> recipientAccounts, Address address)
         {
             
             this.Id = id;
@@ -296,7 +302,7 @@ namespace PaymentRails.Types
             this.Dob = dob;
             this.GravatarUrl = gravatarUrl;
             this.Compliance = compliance;
-            this.Payout = payout;
+            this.RecipientAccounts = recipientAccounts;
             this.Address = address;
         }
 
@@ -330,7 +336,7 @@ namespace PaymentRails.Types
                 if (other.id == this.id && other.referenceId == this.referenceId && other.email == this.email && other.name == this.name
                     && other.firstName == this.firstName && other.lastName == this.lastName && other.type == this.type && other.status == this.status
                     && other.timeZone == this.timeZone && other.language == this.language && other.dob == this.dob && other.gravatarUrl == this.gravatarUrl
-                    && other.compliance == this.compliance && other.payout == this.payout && other.address == this.address)
+                    && other.compliance == this.compliance && other.address == this.address)
                     return true;
             }
             return false;
@@ -352,7 +358,7 @@ namespace PaymentRails.Types
         /// <returns>JSON string representation of the object</returns>
         public string ToJson()
         {
-            string payoutString = "null";
+            string recipientAccountString = "null";
             string addressString = "null";
             StringBuilder builder = new StringBuilder();
             builder.Append("{\n");
@@ -367,11 +373,23 @@ namespace PaymentRails.Types
             builder.AppendFormat("\"language\": \"{0}\",\n", this.language);
             builder.AppendFormat("\"dob\": \"{0}\",\n", this.dob);
             builder.AppendFormat("\"gravatarUrl\": \"{0}\",\n", this.gravatarUrl);
-            if (this.payout != null)
+
+
+
+            builder.Append("\"accounts\": [\n");
+            foreach (RecipientAccount recipientAccount in this.recipientAccounts)
             {
-                payoutString = this.payout.ToJson();
+                builder.AppendFormat("{0}", recipientAccount);
+                if (this.recipientAccounts.Last().Id != recipientAccount.Id)
+                {
+                    builder.Append(",");
+                }
+                builder.Append("\n");
             }
-            builder.AppendFormat("\"payout\": {0},\n", payoutString);
+
+
+
+
             if (this.address != null)
             {
                 addressString = this.address.ToJson();
