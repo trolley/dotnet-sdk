@@ -1,9 +1,7 @@
 ﻿using PaymentRails.Exceptions;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PaymentRails.Types
 {
@@ -286,9 +284,10 @@ namespace PaymentRails.Types
         /// <param name="compliance"></param>
         /// <param name="payout"></param>
         /// <param name="address"></param>
-        public Recipient(string id, string type, string referenceId, string email, string name, string firstName, string lastName, string status, string timeZone, string language, string dob, string gravatarUrl, Compliance compliance, List<RecipientAccount> recipientAccounts, Address address)
+
+        public Recipient(string type, string email, string name, string firstName, string lastName, string id = null, string referenceId = null, string status = null, string timeZone = null, string language = null, string dob = null, string gravatarUrl = null, Compliance compliance = null, List<RecipientAccount> recipientAccounts = null, Address address = null)
         {
-            
+
             this.Id = id;
             this.Type = type;
             this.ReferenceId = referenceId;
@@ -305,6 +304,8 @@ namespace PaymentRails.Types
             this.RecipientAccounts = recipientAccounts;
             this.Address = address;
         }
+
+       
 
         public Recipient()
         {
@@ -358,7 +359,7 @@ namespace PaymentRails.Types
         /// <returns>JSON string representation of the object</returns>
         public string ToJson()
         {
-            string recipientAccountString = "null";
+            //string recipientAccountString = "null";
             string addressString = "null";
             StringBuilder builder = new StringBuilder();
             builder.Append("{\n");
@@ -368,11 +369,12 @@ namespace PaymentRails.Types
             builder.AppendFormat("\"firstName\": \"{0}\",\n", this.firstName);
             builder.AppendFormat("\"lastName\": \"{0}\",\n", this.lastName);
             builder.AppendFormat("\"type\": \"{0}\",\n", this.type);
-            builder.AppendFormat("\"status\": \"{0}\",\n", this.status);
+            if (status != null && status != "") { builder.AppendFormat("\"status\": \"{0}\",\n", this.status); }
             builder.AppendFormat("\"timeZone\": \"{0}\",\n", this.timeZone);
             builder.AppendFormat("\"language\": \"{0}\",\n", this.language);
             builder.AppendFormat("\"dob\": \"{0}\",\n", this.dob);
             builder.AppendFormat("\"gravatarUrl\": \"{0}\",\n", this.gravatarUrl);
+            builder.AppendFormat("\"id\": \"{0}\",\n",this.id);
 
 
 
@@ -385,16 +387,18 @@ namespace PaymentRails.Types
                     builder.Append(",");
                 }
                 builder.Append("\n");
+
             }
-
-
-
+            builder.Append("]\n");
+            
 
             if (this.address != null)
             {
                 addressString = this.address.ToJson();
+                builder.Append(",");
+                builder.AppendFormat("\"address\": {0}\n", addressString);
             }
-            builder.AppendFormat("\"address\": {0}\n", addressString);
+
             builder.Append("}");
             return builder.ToString();
         }

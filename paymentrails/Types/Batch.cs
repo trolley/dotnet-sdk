@@ -1,9 +1,7 @@
 ﻿using PaymentRails.Exceptions;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PaymentRails.Types
 {
@@ -190,7 +188,7 @@ namespace PaymentRails.Types
 
             set
             {
-                if(value == null)
+                if (value == null)
                 {
                     value = new List<Payment>();
                 }
@@ -212,9 +210,9 @@ namespace PaymentRails.Types
         /// <param name="createdAt"></param>
         /// <param name="updatedAt"></param>
         /// <param name="id"></param>
-        public Batch(string description, List<Payment> payments, string currency, double amount, int totalPayments, string status, string sentAt, string completedAt, string createdAt, string updatedAt, string id)
-        {
 
+        public Batch(string description, List<Payment> payments, string currency, double amount, int totalPayments=0, string status=null, string sentAt = null, string completedAt = null, string createdAt = null, string updatedAt = null, string id = null)
+        {
             this.Id = id;
             this.Payments = payments;
             this.Status = status;
@@ -226,7 +224,7 @@ namespace PaymentRails.Types
             this.CompletedAt = completedAt;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
-            
+
         }
 
         public static bool operator ==(Batch a, Batch b)
@@ -269,7 +267,7 @@ namespace PaymentRails.Types
                             return true;
                     }
                 }
-                
+
             }
             return false;
         }
@@ -292,13 +290,14 @@ namespace PaymentRails.Types
         {
             StringBuilder builder = new StringBuilder();
             builder.Append("{\n");
-            builder.AppendFormat("\"sourceCurrency\": \"{0}\",\n", this.currency);
+            if (this.currency != "" && this.currency != null) { builder.AppendFormat("\"sourceCurrency\": \"{0}\",\n", this.currency); }
             builder.AppendFormat("\"description\": \"{0}\",\n", this.description);
+
             builder.Append("\"payments\": [\n");
-            foreach(Payment payment in this.payments)
+            foreach (Payment payment in this.payments)
             {
                 builder.AppendFormat("{0}", payment);
-                if(this.payments.Last().Id != payment.Id)
+                if (this.payments.Last() != payment)
                 {
                     builder.Append(",");
                 }

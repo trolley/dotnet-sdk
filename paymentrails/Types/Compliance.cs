@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PaymentRails.Types
+﻿namespace PaymentRails.Types
 {
     /// <summary>
     /// This class shows whether the associated object is compliant with are variety of background checks.

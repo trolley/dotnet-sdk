@@ -1,17 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PaymentRails
+﻿namespace PaymentRails
 {
-   public class PaymentRails_Configuration
+    public class PaymentRails_Configuration
     {
-        private static string apiKey;
-        private static string apiBase = "http://api.railz.io";
+        private string apiKey;
+        private string apiSecret;
+        private string apiBase;
 
-        public static string ApiKey
+        public PaymentRails_Configuration()
+        {
+
+        }
+
+        public PaymentRails_Configuration(string apiKey, string apiSecret, string apiBase)
+        {
+            this.apiKey = apiKey;
+            this.apiSecret = apiSecret;
+            this.apiBase = enviromentToUrl(apiBase);
+        }
+
+        public static PaymentRails_Gateway gateway()
+        {
+            return new PaymentRails_Gateway(new PaymentRails_Configuration());
+        }
+
+        public static PaymentRails_Client client (PaymentRails_Configuration config)
+        {
+            return new PaymentRails_Client(config);
+        }
+
+        public string ApiKey
         {
             get
             {
@@ -22,30 +39,47 @@ namespace PaymentRails
                 apiKey = value;
             }
         }
+        
+        public string ApiSecret
+        {
+            get
+            {
+                return apiSecret;
+            }
+            set
+            {
+                apiSecret = value;
+            }
+        }
 
-        public static string ApiBase
+        public string ApiBase
         {
             get
             {
                 return apiBase;
             }
+            set
+            {
+                apiBase = enviromentToUrl(value);
+            }
         }
 
-        /// <summary>
-        /// Gets the API Base --> change everywhere that this is used to use properties
-        /// </summary>
-        /// <returns>The APiBase</returns>
-        public static String getApiBase()
+
+        public string enviromentToUrl(string enviroment)
         {
-            return PaymentRails_Configuration.apiBase;
-        }
-        /// <summary>
-        /// Sets the API Base --> change everywhere that this is used to use properties
-        /// </summary>
-        /// <param name="apiBase"></param>
-        public static void setApiBase(String apiBase)
-        {
-            PaymentRails_Configuration.apiBase = apiBase;
+            switch (enviroment)
+            {
+                case "integration":
+                    return "http://api.local.dev:3000";
+                case "development":
+                    return "http://api.railz.io";
+                case "sandbox":
+                    return "https://api.paymentrails.com";
+                case "production":
+                    return "https://api.paymentrails.com";
+                default:
+                   return "https://api.paymentrails.com";
+            }
         }
     }
 }

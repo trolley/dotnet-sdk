@@ -1,9 +1,5 @@
 ﻿using PaymentRails.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PaymentRails.Types
 {
@@ -293,8 +289,8 @@ namespace PaymentRails.Types
                 bankPostalCode = value;
             }
         }
-
-        public RecipientAccount(string id, string primary, string currency, string recipientAccountId, string routeType, string recipientFees, string emailAddress, string country, string type, string iban, string accountNum, string accountHolderName, String swiftBic, string branchId, string bankName, string bankId, string bankAddress, string bankCity, string bankRegionCode, string bankPostalCode)
+        public RecipientAccount(string type, string currency, string id, string primary, string country, string iban = null, string accountNum= null, string recipientAccountId=null, string routeType = null, string recipientFees = null, string emailAddress = null, string accountHolderName = null, string swiftBic = null, string branchId = null, string bankName = null, string bankId = null, string bankAddress = null, string bankCity = null, string bankRegionCode = null, string bankPostalCode = null)
+       
         {
             this.Id = id;
             this.Primary = primary;
@@ -383,16 +379,6 @@ namespace PaymentRails.Types
                     throw new InvalidFieldException("RecipientAccount must have a currency if the type is bank-transfer");
                 }
             if (Type == "bank-transfer")
-                if (BranchId == null)
-                {
-                    throw new InvalidFieldException("RecipientAccount must have a branchId if the type is bank-transfer");
-                }
-            if (Type == "bank-transfer")
-                if (BankId == null)
-                {
-                    throw new InvalidFieldException("RecipientAccount must have a bankId if the type is bank-transfer");
-                }
-            if (Type == "bank-transfer")
                 if (AccountNum == null)
                 {
                     throw new InvalidFieldException("RecipientAccount must have an AccountNumber if the type is bank-transfer");
@@ -429,17 +415,23 @@ namespace PaymentRails.Types
             builder.Append("{\n");
             if (Type == "bank-transfer")
             {
-                builder.AppendFormat("\"referenceId\": \"{0}\",\n", this.country);
-                builder.AppendFormat("\"email\": \"{0}\",\n", this.currency);
-                builder.AppendFormat("\"name\": \"{0}\",\n", this.branchId);
-                builder.AppendFormat("\"firstName\": \"{0}\",\n", this.bankId);
-                builder.AppendFormat("\"lastName\": \"{0}\",\n", this.AccountNum);
+                builder.AppendFormat("\"country\": \"{0}\",\n", this.country);
+                builder.AppendFormat("\"type\": \"{0}\",\n", this.type);
+                builder.AppendFormat("\"currency\": \"{0}\",\n", this.currency);
+                builder.AppendFormat("\"branchId\": \"{0}\",\n", this.branchId);
+                builder.AppendFormat("\"bankId\": \"{0}\",\n", this.bankId);
+                builder.AppendFormat("\"iban\": \"{0}\",\n",this.iban);
+                builder.AppendFormat("\"accountNum\": \"{0}\",\n", this.accountNum);
+                builder.AppendFormat("\"primary\": \"{0}\",\n", this.primary);
+                if (accountHolderName != "" && accountHolderName != null) { builder.AppendFormat("\"accountHolderName\": \"{0}\",\n", this.accountHolderName); }
+                builder.AppendFormat("\"swiftBic\": \"{0}\"\n", this.swiftBic);
             }
             else if(Type == "paypal")
             {
-                builder.AppendFormat("\"referenceId\": \"{0}\",\n", this.type);
+                builder.AppendFormat("\"type\": \"{0}\",\n", this.type);
                 builder.AppendFormat("\"email\": \"{0}\",\n", this.emailAddress);
-        
+                builder.AppendFormat("\"primary\": \"{0}\"\n", this.primary);
+
             }
                 builder.Append("}");
                 return builder.ToString();

@@ -53,27 +53,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="ClientTest.cs" />
-    <Compile Include="JsonHelper\RecipientHelperTest.cs" />
-    <Compile Include="JsonHelper\PayoutHelperTest.cs" />
-    <Compile Include="JsonHelper\BalanceHelperTest.cs" />
-    <Compile Include="JsonHelper\BatchHelperTest.cs" />
-    <Compile Include="JsonHelper\PaymentHelperTest.cs" />
-    <Compile Include="MockHttpHandler.cs" />
-    <Compile Include="MockHttpHandlerForClientTests.cs" />
-    <Compile Include="MockResponseContent.cs" />
-    <Compile Include="PaymentRails_IPaymentRailsMappableTest.cs" />
-    <Compile Include="PaymentRails_RecipientTest.cs" />
+    <Compile Include="Integration\PaymentRails_Integration_BatchTest.cs" />
+    <Compile Include="Integration\PaymentRails_Integration_RecipientTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PaymentRails_PayoutMethodsTest.cs" />
-    <Compile Include="PaymentRails_BalancesTest.cs" />
-    <Compile Include="PaymentRails_PaymentTest.cs" />
-    <Compile Include="PaymentRails_BatchesTest.cs" />
-    <Compile Include="Types\RecipientTest.cs" />
-    <Compile Include="Types\PayoutTest.cs" />
-    <Compile Include="Types\PaymentTest.cs" />
-    <Compile Include="Types\BatchTest.cs" />
-    <Compile Include="ValidResponseData.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\paymentrails\paymentrails.csproj">

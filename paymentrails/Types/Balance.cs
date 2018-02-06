@@ -9,9 +9,9 @@ namespace PaymentRails.Types
     {
         private Boolean primary;
         private Double amount;
-        private String currency;
-        private String type;
-        private String accountNumber;
+        private string currency;
+        private string type;
+        private string accountNumber;
 
         #region Properties
         /// <summary>

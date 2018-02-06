@@ -1,9 +1,6 @@
 ﻿using PaymentRails.Exceptions;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PaymentRails.Types
 {
@@ -331,9 +328,10 @@ namespace PaymentRails.Types
         /// <param name="id"></param>
         /// <param name="status"></param>
         /// <param name="compliance"></param>
-        public Payment(Recipient recipient, double sourceAmount, string memo, double targetAmount, string targetCurrency, double exchangeRate,
-            double fees, double recipientFees, double fxRate, string processedAt, string createdAt, string updatedAt,
-            double merchantFees, string sourceCurrency, string batchId, string id, string status, Compliance compliance)
+        public Payment(Recipient recipient, double sourceAmount, string sourceCurrency, double targetAmount, string targetCurrency,string id = null, string memo = null, double exchangeRate = 0,
+            double fees = 0, double recipientFees = 0, double fxRate = 0, string processedAt = null, string createdAt = null, string updatedAt = null,
+            double merchantFees = 0, string batchId = null, string status = null, Compliance compliance= null)
+
         {
             this.SourceAmount = sourceAmount;
             this.TargetAmount = targetAmount;
@@ -405,18 +403,18 @@ namespace PaymentRails.Types
         /// <returns>JSON string representation of the object</returns>
         public string ToJson()
         {
-            String currencyString;
+            string currencyString;
             if (this.sourceAmount > 0)
             {
-                currencyString = String.Format("\"sourceAmount\": {0},\n", this.sourceAmount);
+                currencyString = String.Format("\"sourceAmount\": \"{0}\",\n", this.sourceAmount);
             }
             else
             {
-                currencyString = String.Format("\"targetAmount\": {0},\n\"targetCurrency\": \"{1}\",\n", this.targetAmount, this.TargetCurrency);
+                currencyString = String.Format("\"targetAmount\": \"{0}\",\n\"targetCurrency\": \"{1}\",\n",this.targetAmount, this.TargetCurrency);
             }
             StringBuilder builder = new StringBuilder();
             builder.Append("{\n");
-            builder.AppendFormat("\"memo\":\"{0}\"", this.memo);
+            builder.AppendFormat("\"memo\":\"{0}\",\n", this.memo);
             builder.AppendFormat("\"id\": \"{0}\",\n", this.batchId);
             builder.Append(currencyString);
             builder.Append("\"recipient\": {\n");
