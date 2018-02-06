@@ -35,7 +35,7 @@
 
 **●  message**:  *`string`* 
 
-*An unhandled exception of type 'PaymentRails.Exceptions.AuthenticationException' occurred in PaymentRails.exe*
+*An unhandled exception of type 'PaymentRails.Exceptions.Authorization.Exception' occurred in PaymentRails.exe*
 
 
 

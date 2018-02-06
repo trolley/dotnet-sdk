@@ -52,7 +52,7 @@ class Program
 
 ### Usage
 
-Methods should all have JSDoc comments to help you understand their usage. As mentioned the [full API documentation](http://docs.paymentrails.com)
+Methods should all have C# Doc comments to help you understand their usage. As mentioned the [full API documentation](http://docs.paymentrails.com)
 is the best source of information about the API.
 
 For more information please read the [C# API docs](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/docs/) is available. The best starting point is:

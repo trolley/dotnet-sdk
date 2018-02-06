@@ -35,9 +35,8 @@
 
 **●  message**:  *`string`* 
 
-*Inherited from Error.message*
 
-*Defined in /Users/koblas/repos/paymentrails/paymentrails_dotnet/node_modules/typedoc/node_modules/typescript/paymentrails/lib.es5.d.ts:874*
+*An unhandled exception of type 'PaymentRails.Exceptions.UnexpectedException' occurred in PaymentRails.exe*
 
 
 
