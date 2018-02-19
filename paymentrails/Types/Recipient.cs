@@ -1,4 +1,5 @@
-﻿using PaymentRails.Exceptions;
+﻿using Newtonsoft.Json;
+using PaymentRails.Exceptions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,261 +12,24 @@ namespace PaymentRails.Types
     /// </summary>
     public class Recipient : IPaymentRailsMappable
     {
-        private string id;
-        private string referenceId;
-        private string email;
-        private string name;
-        private string firstName;
-        private string lastName;
-        private string type;
-        private string status;
-        private string timeZone;
-        private string language;
-        private string dob;
-        private string gravatarUrl;
+        public string id;
+        public string referenceId;
+        public string email;
+        public string name;
+        public string firstName;
+        public string lastName;
+        public string type;
+        public string status;
+        public string timeZone;
+        public string language;
+        public string dob;
+        public string gravatarUrl;
 
-        private Compliance compliance;
-        private List<RecipientAccount> recipientAccounts;
-        private Address address;
+        public Compliance compliance;
+        [JsonProperty("accounts")]
+        public List<RecipientAccount> recipientAccounts;
+        public Address address;
 
-        #region Properties
-        /// <summary>
-        /// The recipient's id
-        /// </summary>
-        public string Id
-        {
-            get
-            {
-                return id;
-            }
-
-            set
-            {
-                id = value;
-            }
-        }
-        /// <summary>
-        /// The recipient's reference id
-        /// </summary>
-        public string ReferenceId
-        {
-            get
-            {
-                return referenceId;
-            }
-
-            set
-            {
-                referenceId = value;
-            }
-        }
-        /// <summary>
-        /// the recipient's email
-        /// </summary>
-        public string Email
-        {
-            get
-            {
-                return email;
-            }
-
-            set
-            {
-                
-                email = value;
-            }
-        }
-        /// <summary>
-        /// The recipients full name if he is an individual or the buisiness name
-        /// </summary>
-        public string Name
-        {
-            get
-            {
-                return name;
-            }
-
-            set
-            {
-              
-                name = value;
-            }
-        }
-        /// <summary>
-        /// The recipient's full name
-        /// </summary>
-        public string FirstName
-        {
-            get
-            {
-                return firstName;
-            }
-
-            set
-            {
-                
-                firstName = value;
-            }
-        }
-        /// <summary>
-        /// The recipient's last name
-        /// </summary>
-        public string LastName
-        {
-            get
-            {
-                return lastName;
-            }
-
-            set
-            {
-                
-                lastName = value;
-            }
-        }
-        /// <summary>
-        /// The type of recipient (individual or business)
-        /// </summary>
-        public string Type
-        {
-            get
-            {
-                return type;
-            }
-
-            set
-            {
-             
-                type = value;
-            }
-        }
-        /// <summary>
-        /// The recipient's status
-        /// </summary>
-        public string Status
-        {
-            get
-            {
-                return status;
-            }
-
-            set
-            {
-                status = value;
-            }
-        }
-        /// <summary>
-        /// The recipient's TimeZone
-        /// </summary>
-        public string TimeZone
-        {
-            get
-            {
-                return timeZone;
-            }
-
-            set
-            {
-                timeZone = value;
-            }
-        }
-        /// <summary>
-        /// The recipient's language
-        /// </summary>
-        public string Language
-        {
-            get
-            {
-                return language;
-            }
-
-            set
-            {
-                language = value;
-            }
-        }
-        /// <summary>
-        /// The recipient's Date of Birth
-        /// </summary>
-        public string Dob
-        {
-            get
-            {
-                return dob;
-            }
-
-            set
-            {
-                dob = value;
-            }
-        }
-        /// <summary>
-        /// The recipient's gravatar URL
-        /// </summary>
-        public string GravatarUrl
-        {
-            get
-            {
-                return gravatarUrl;
-            }
-
-            set
-            {
-                gravatarUrl = value;
-            }
-        }
-        /// <summary>
-        /// The recipient's current compliance status
-        /// </summary>
-        public Compliance Compliance
-        {
-            get
-            {
-                return compliance;
-            }
-
-            set
-            {
-                compliance = value;
-            }
-        }
-        /// <summary>
-        /// The recipient's Account method
-        /// </summary>
-
-        public List<RecipientAccount> RecipientAccounts
-        {
-            get
-            {
-                return recipientAccounts;
-            }
-
-            set
-            {
-                if (value == null)
-                {
-                    value = new List<RecipientAccount>();
-                }
-                recipientAccounts = value;
-            }
-        }
-
-        /// <summary>
-        /// The recipient's address
-        /// </summary>
-        public Address Address
-        {
-            get
-            {
-                return address;
-            }
-
-            set
-            {
-                address = value;
-            }
-        }
-        #endregion
         /// <summary>
         /// The constructor to instantiate a recipient object
         /// </summary>
@@ -288,21 +52,21 @@ namespace PaymentRails.Types
         public Recipient(string type, string email, string name, string firstName, string lastName, string id = null, string referenceId = null, string status = null, string timeZone = null, string language = null, string dob = null, string gravatarUrl = null, Compliance compliance = null, List<RecipientAccount> recipientAccounts = null, Address address = null)
         {
 
-            this.Id = id;
-            this.Type = type;
-            this.ReferenceId = referenceId;
-            this.Email = email;
-            this.Name = name;
-            this.FirstName = firstName;
-            this.LastName = lastName;
-            this.Status = status;
-            this.TimeZone = timeZone;
-            this.Language = language;
-            this.Dob = dob;
-            this.GravatarUrl = gravatarUrl;
-            this.Compliance = compliance;
-            this.RecipientAccounts = recipientAccounts;
-            this.Address = address;
+            this.id = id;
+            this.type = type;
+            this.referenceId = referenceId;
+            this.email = email;
+            this.name = name;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.status = status;
+            this.timeZone = timeZone;
+            this.language = language;
+            this.dob = dob;
+            this.gravatarUrl = gravatarUrl;
+            this.compliance = compliance;
+            this.recipientAccounts = recipientAccounts;
+            this.address = address;
         }
 
        
@@ -374,23 +138,24 @@ namespace PaymentRails.Types
             builder.AppendFormat("\"language\": \"{0}\",\n", this.language);
             builder.AppendFormat("\"dob\": \"{0}\",\n", this.dob);
             builder.AppendFormat("\"gravatarUrl\": \"{0}\",\n", this.gravatarUrl);
-            builder.AppendFormat("\"id\": \"{0}\",\n",this.id);
+            builder.AppendFormat("\"id\": \"{0}\"\n",this.id);
 
-
-
-            builder.Append("\"accounts\": [\n");
-            foreach (RecipientAccount recipientAccount in this.recipientAccounts)
+            if (this.recipientAccounts != null)
             {
-                builder.AppendFormat("{0}", recipientAccount);
-                if (this.recipientAccounts.Last().Id != recipientAccount.Id)
-                {
-                    builder.Append(",");
-                }
-                builder.Append("\n");
 
+                builder.Append(",\"accounts\": [\n");
+                foreach (RecipientAccount recipientAccount in this.recipientAccounts)
+                {
+                    builder.AppendFormat("{0}", recipientAccount);
+                    if (this.recipientAccounts.Last().id != recipientAccount.id)
+                    {
+                        builder.Append(",");
+                    }
+                    builder.Append("\n");
+
+                }
+                builder.Append("]\n");
             }
-            builder.Append("]\n");
-            
 
             if (this.address != null)
             {
@@ -413,30 +178,30 @@ namespace PaymentRails.Types
         /// <returns>weather the object is ready to be sent to the Payment Rails API</returns>
         public bool IsMappable()
         {
-            if (Type == null)
+            if (type == null)
             {
                 throw new InvalidFieldException("Recipient must have a type");
             }
-            if (Type == "individual")
-                if (LastName == null)
+            if (type == "individual")
+                if (lastName == null)
                 {
                     throw new InvalidFieldException("Recipient must have a last name if the type is individual");
                 }
-            if (Type == "individual")
-                if (FirstName == null)
+            if (type == "individual")
+                if (firstName == null)
                 {
                     throw new InvalidFieldException("Recipient must have a first name if the type is individual");
                 }
             
-            if (Type == "business")
-                if (Name == null)
+            if (type == "business")
+                if (name == null)
                 {
                     throw new InvalidFieldException("Recipient must have a name if the type is business");
                 }
 
-            if (Email == null)
+            if (email == null)
             {
-                if (Id == null)
+                if (id == null)
                 {
                     throw new InvalidFieldException("Recipient must have an email");
                 }

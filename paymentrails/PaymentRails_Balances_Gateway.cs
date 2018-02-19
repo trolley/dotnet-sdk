@@ -17,7 +17,7 @@ namespace PaymentRails
 
         public Dictionary<String, Types.Balance> find(string type = "")
         {
-            string endPoint = "/v1/profile/balances/" + type;
+            string endPoint = "/v1/balances/" + type;
             string response = this.gateway.client.get(endPoint);
             Dictionary<String, Types.Balance> balanceDictionary = JsonHelpers.BalanceHelper.JsonToBalanceDictionary(response);
             return balanceDictionary;

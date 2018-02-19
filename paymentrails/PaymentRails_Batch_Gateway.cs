@@ -1,6 +1,9 @@
-﻿using PaymentRails.Types;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using PaymentRails.Types;
 using System.Collections.Generic;
 using System.Text;
+using System.Web.Script.Serialization;
 
 namespace PaymentRails
 {
@@ -15,14 +18,12 @@ namespace PaymentRails
             this.config = gateway.config;
         }
 
-
         public Batch find(string batch_id)
         {
             string endPoint = "/v1/batches/" + batch_id;
             string response = this.gateway.client.get(endPoint);
-            Batch batch = JsonHelpers.BatchHelper.JsonToBatch(response);
 
-            return batch;
+            return batchFactory(response);
         }
 
         public List<Batch> search(int page, int pageNumber)
@@ -34,14 +35,13 @@ namespace PaymentRails
         {
             string endPoint = "/v1/batches/";
             string response = this.gateway.client.post(endPoint, body);
-            Batch createdBatch = JsonHelpers.BatchHelper.JsonToBatch(response);
 
-            return createdBatch;
+            return batchFactory(response);
         }
 
         public bool update(Batch batch)
         {
-            string endPoint = "/v1/batches/" + batch.Id;
+            string endPoint = "/v1/batches/" + batch.id;
             string response = this.gateway.client.patch(endPoint, batch);
             return true;
         }
@@ -55,7 +55,7 @@ namespace PaymentRails
 
         public bool delete(Batch batch)
         {
-            return delete(batch.Id);
+            return delete(batch.id);
         }
 
         public List<Batch> search(string term = "", int page = 1, int pageSize = 10)
@@ -65,8 +65,8 @@ namespace PaymentRails
             string endPoint = builder.ToString();
 
             string response = this.gateway.client.get(endPoint);
-            List<Batch> batches = JsonHelpers.BatchHelper.JsonToBatchList(response);
-            return batches;
+
+            return batchListFactory(response);
         }
 
         public Batch generateQuote(string batch_id)
@@ -77,13 +77,12 @@ namespace PaymentRails
 
             Batch batch = new Batch(null, null, null, 0);
             string response = this.gateway.client.post(endPoint, batch);
-            Batch createdBatch = JsonHelpers.BatchHelper.JsonToBatch(response);
-            return createdBatch;
+            return batchFactory(response);
         }
 
         public Batch generateQuote(Batch batch)
         {
-            return generateQuote(batch.Id);
+            return generateQuote(batch.id);
         }
 
         public Batch processBatch(string batch_id)
@@ -94,13 +93,13 @@ namespace PaymentRails
 
             Batch batch = new Batch(null, null, null, 0);
             string response = this.gateway.client.post(endPoint, batch);
-            Batch createdBatch = JsonHelpers.BatchHelper.JsonToBatch(response);
-            return createdBatch;
+          
+            return batchFactory(response);
         }
 
         public Batch proccessBatch(Batch batch)
         {
-            return processBatch(batch.Id);
+            return processBatch(batch.id);
         }
 
         public string summary(string batch_id)
@@ -109,10 +108,18 @@ namespace PaymentRails
             builder.AppendFormat("/v1/batches/{0}/summary", batch_id);
             string endPoint = builder.ToString();
 
-            string response = this.gateway.client.get(endPoint);
-            return response;
-
+            return this.gateway.client.get(endPoint);
         }
-
+        private Batch batchFactory(string response)
+        {
+            Batch batch = JsonHelpers.BatchHelper.JsonToBatch(response);
+            return batch;
+        }
+        private List<Batch> batchListFactory(string response)
+        {
+            var tempData = JObject.Parse(response)["batches"];
+            List<Batch> batches = JsonConvert.DeserializeObject<List<Batch>>(tempData.ToString());
+            return batches;
+        }
     }
 }

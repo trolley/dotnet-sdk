@@ -67,7 +67,7 @@ namespace PaymentRails
         /// <returns></returns>
         public static bool delete(Batch batch)
         {
-            return delete(batch.Id);
+            return delete(batch.id);
         }
         /// <summary>
         /// Lists all batches based on queries
@@ -97,7 +97,7 @@ namespace PaymentRails
         /// <returns></returns>
         public static Batch generateQuote(Batch batch)
         {
-            return generateQuote(batch.Id);
+            return generateQuote(batch.id);
         }
         /// <summary>
         /// Starts Processing a batch based on the batch id
@@ -115,7 +115,7 @@ namespace PaymentRails
         /// <returns>The response</returns>
         public static Batch proccessBatch(Batch batch)
         {
-            return processBatch(batch.Id);
+            return processBatch(batch.id);
         }
         /// <summary>
         /// Retrieves a summary based on the batch id

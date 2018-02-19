@@ -1,4 +1,6 @@
-﻿using PaymentRails.Types;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using PaymentRails.Types;
 using System.Collections.Generic;
 using System.Text;
 
@@ -24,8 +26,8 @@ namespace PaymentRails
             string endPoint = builder.ToString();
 
             string response = this.gateway.client.get(endPoint);
-            List<RecipientAccount> recipientAccounts = JsonHelpers.RecipientAccountHelper.JsonToRecipientAccountList(response);
-            return recipientAccounts;
+
+            return recipientListFactory(response);
         }
 
         public RecipientAccount find(string recipient_id, string recipient_account_id)
@@ -35,8 +37,8 @@ namespace PaymentRails
             string endPoint = builder.ToString();
 
             string response = this.gateway.client.get(endPoint);
-            RecipientAccount recipientAccount = JsonHelpers.RecipientAccountHelper.JsonToRecipientAccount(response);
-            return recipientAccount;
+
+            return recipientFactory(response);
         }
 
         public RecipientAccount create(string recipient_id, RecipientAccount recipientAccount)
@@ -46,19 +48,18 @@ namespace PaymentRails
             string endPoint = builder.ToString();
             string response = this.gateway.client.post(endPoint, recipientAccount);
 
-            RecipientAccount createdRecipientAccount = JsonHelpers.RecipientAccountHelper.JsonToRecipientAccount(response);
-            return createdRecipientAccount;
+            return recipientFactory(response);
         }
 
         public RecipientAccount update(string recipient_id, RecipientAccount recipientAccount)
         {
             StringBuilder builder = new StringBuilder();
-            builder.AppendFormat("/v1/recipients/{0}/accounts/{1}", recipient_id,recipientAccount.Id);
+            builder.AppendFormat("/v1/recipients/{0}/accounts/{1}", recipient_id,recipientAccount.id);
             string endPoint = builder.ToString();
 
             string response = this.gateway.client.patch(endPoint, recipientAccount);
-            RecipientAccount updatedRecipientAccount = JsonHelpers.RecipientAccountHelper.JsonToRecipientAccount(response);
-            return updatedRecipientAccount;
+
+            return recipientFactory(response);
         }
 
        
@@ -70,6 +71,19 @@ namespace PaymentRails
 
             string response = this.gateway.client.delete(endPoint);
             return true;
+        }
+
+        private RecipientAccount recipientFactory(string response)
+        {
+            var tempData = JObject.Parse(response)["account"];
+            RecipientAccount recipientAccount = JsonConvert.DeserializeObject<RecipientAccount>(tempData.ToString());
+            return recipientAccount;
+        }
+        private List<RecipientAccount> recipientListFactory(string response)
+        {
+            var tempData = JObject.Parse(response)["accounts"];
+            List<RecipientAccount> recipientsAccounts = JsonConvert.DeserializeObject<List<RecipientAccount>>(tempData.ToString());
+            return recipientsAccounts;
         }
     }
 }

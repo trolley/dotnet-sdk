@@ -66,7 +66,7 @@ namespace PaymentRails
         /// <returns>The response</returns>
         public static bool delete(Recipient recipient)
         {
-            return delete(recipient.Id);
+            return delete(recipient.id);
         }
         /// <summary>
         /// Lists all recipients based on queries

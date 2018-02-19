@@ -56,7 +56,7 @@ namespace PaymentRails
         /// <returns></returns>
         public static bool delete(string recipient_id, RecipientAccount recipientAccount)
         {
-            return delete(recipient_id, recipientAccount.Id);
+            return delete(recipient_id, recipientAccount.id);
         }
 
         /// <summary>

@@ -1,4 +1,6 @@
-﻿using PaymentRails.Types;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using PaymentRails.Types;
 using System.Collections.Generic;
 using System.Text;
 
@@ -24,25 +26,23 @@ namespace PaymentRails
         {
             string endPoint = "/v1/payments/" + payment_id;
             string response = this.gateway.client.get(endPoint);
-            Payment payment = JsonHelpers.PaymentHelper.JsonToPayment(response);
-            return payment;
+            return paymentFactory(response);
         }
 
         public Payment create(Payment payment)
         {
             StringBuilder builder = new StringBuilder();
-            builder.AppendFormat("/v1/batches/{0}/payments", payment.BatchId);
+            builder.AppendFormat("/v1/batches/{0}/payments", payment.batchId);
             string endPoint = builder.ToString();
 
             string response = this.gateway.client.post(endPoint, payment);
-            Payment createdPayment = JsonHelpers.PaymentHelper.JsonToPayment(response);
-            return createdPayment;
+            return paymentFactory(response);
         }
 
         public bool update(Payment payment)
         {
             StringBuilder builder = new StringBuilder();
-            builder.AppendFormat("/v1/batches/{0}/payments{1}", payment.BatchId, payment.Id);
+            builder.AppendFormat("/v1/batches/{0}/payments/{1}", payment.batchId, payment.id);
             string endPoint = builder.ToString();
 
             string response = this.gateway.client.patch(endPoint, payment);
@@ -61,7 +61,7 @@ namespace PaymentRails
 
         public bool delete(Payment payment)
         {
-            return delete(payment.Id, payment.BatchId);
+            return delete(payment.id, payment.batchId);
         }
 
         public List<Payment> search(string term = "", int page = 1, int pageSize = 10, string batchId = "")
@@ -81,7 +81,19 @@ namespace PaymentRails
             }
 
             string jsonResponse = this.gateway.client.get(endPoint);
-            List<Payment> payments = JsonHelpers.PaymentHelper.JsonToPaymentList(jsonResponse);
+            return paymentListFactory(jsonResponse);
+        }
+
+        private Payment paymentFactory(string response)
+        {
+            var tempData = JObject.Parse(response)["payment"];
+            Payment payment = JsonConvert.DeserializeObject<Payment>(tempData.ToString());
+            return payment;
+        }
+        private List<Payment> paymentListFactory(string response)
+        {
+            var tempData = JObject.Parse(response)["payments"];
+            List<Payment> payments = JsonConvert.DeserializeObject<List<Payment>>(tempData.ToString());
             return payments;
         }
     }

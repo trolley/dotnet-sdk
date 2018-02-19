@@ -11,191 +11,20 @@ namespace PaymentRails.Types
     /// </summary>
     public class Batch : IPaymentRailsMappable
     {
-        private string id;
-        private string status;
-        private double amount;
-        private int totalPayments;
-        private string currency;
-        private string description;
-        private string sentAt;
-        private string completedAt;
-        private string createdAt;
-        private string updatedAt;
+        public string id;
+        public string status;
+        public double amount;
+        public int totalPayments;
+        public string currency;
+        public string description;
+        public string sentAt;
+        public string completedAt;
+        public string createdAt;
+        public string updatedAt;
 
-        private List<Payment> payments;
+        public List<Payment> payments;
 
-        #region Properties
-        /// <summary>
-        /// The batch id
-        /// </summary>
-        public string Id
-        {
-            get
-            {
-                return id;
-            }
-
-            set
-            {
-                id = value;
-            }
-        }
-        /// <summary>
-        /// The current status of the batch
-        /// </summary>
-        public string Status
-        {
-            get
-            {
-                return status;
-            }
-
-            set
-            {
-                status = value;
-            }
-        }
-        /// <summary>
-        /// The total value of the batch
-        /// </summary>
-        public double Amount
-        {
-            get
-            {
-                return amount;
-            }
-
-            set
-            {
-                amount = value;
-            }
-        }
-        /// <summary>
-        /// The number of payments in the batch
-        /// </summary>
-        public int TotalPayments
-        {
-            get
-            {
-                return totalPayments;
-            }
-
-            set
-            {
-                totalPayments = value;
-            }
-        }
-        /// <summary>
-        /// The currency code of the batch
-        /// </summary>
-        public string Currency
-        {
-            get
-            {
-                return currency;
-            }
-
-            set
-            {
-                currency = value;
-            }
-        }
-        /// <summary>
-        /// A short description of what the batch is for
-        /// </summary>
-        public string Description
-        {
-            get
-            {
-                return description;
-            }
-
-            set
-            {
-                description = value;
-            }
-        }
-        /// <summary>
-        /// when the batch was sent
-        /// </summary>
-        public string SentAt
-        {
-            get
-            {
-                return sentAt;
-            }
-
-            set
-            {
-                sentAt = value;
-            }
-        }
-        /// <summary>
-        /// when the batch was completed
-        /// </summary>
-        public string CompletedAt
-        {
-            get
-            {
-                return completedAt;
-            }
-
-            set
-            {
-                completedAt = value;
-            }
-        }
-        /// <summary>
-        /// when the batch was created
-        /// </summary>
-        public string CreatedAt
-        {
-            get
-            {
-                return createdAt;
-            }
-
-            set
-            {
-                createdAt = value;
-            }
-        }
-        /// <summary>
-        /// when the batch was last updated
-        /// </summary>
-        public string UpdatedAt
-        {
-            get
-            {
-                return updatedAt;
-            }
-
-            set
-            {
-                updatedAt = value;
-            }
-        }
-        /// <summary>
-        /// The list of payments included in the batch
-        /// If you retrieve a list of batches from the API this field will not be set.
-        /// </summary>
-        public List<Payment> Payments
-        {
-            get
-            {
-                return payments;
-            }
-
-            set
-            {
-                if (value == null)
-                {
-                    value = new List<Payment>();
-                }
-                payments = value;
-            }
-        }
-        #endregion
+    
         /// <summary>
         /// Constructor to instantiate a batch
         /// </summary>
@@ -213,20 +42,20 @@ namespace PaymentRails.Types
 
         public Batch(string description, List<Payment> payments, string currency, double amount, int totalPayments=0, string status=null, string sentAt = null, string completedAt = null, string createdAt = null, string updatedAt = null, string id = null)
         {
-            this.Id = id;
-            this.Payments = payments;
-            this.Status = status;
-            this.Amount = amount;
-            this.TotalPayments = totalPayments;
-            this.Currency = currency;
-            this.Description = description;
-            this.SentAt = sentAt;
-            this.CompletedAt = completedAt;
-            this.CreatedAt = createdAt;
-            this.UpdatedAt = updatedAt;
+            this.id = id;
+            this.payments = payments;
+            this.status = status;
+            this.amount = amount;
+            this.totalPayments = totalPayments;
+            this.currency = currency;
+            this.description = description;
+            this.sentAt = sentAt;
+            this.completedAt = completedAt;
+            this.createdAt = createdAt;
+            this.updatedAt = updatedAt;
 
         }
-
+        public Batch() { }
         public static bool operator ==(Batch a, Batch b)
         {
             if (System.Object.ReferenceEquals(a, b))
@@ -256,7 +85,7 @@ namespace PaymentRails.Types
                     && other.createdAt == this.createdAt && other.updatedAt == this.updatedAt)
                 {
                     // use sequence equals to check if the payments list matches
-                    if (other.Payments != null)
+                    if (other.payments != null)
                     {
                         if (this.payments != null && other.payments.SequenceEqual(this.payments))
                             return true;
@@ -291,19 +120,23 @@ namespace PaymentRails.Types
             StringBuilder builder = new StringBuilder();
             builder.Append("{\n");
             if (this.currency != "" && this.currency != null) { builder.AppendFormat("\"sourceCurrency\": \"{0}\",\n", this.currency); }
-            builder.AppendFormat("\"description\": \"{0}\",\n", this.description);
+            builder.AppendFormat("\"description\": \"{0}\"\n", this.description);
 
-            builder.Append("\"payments\": [\n");
-            foreach (Payment payment in this.payments)
+            if (this.payments != null)
             {
-                builder.AppendFormat("{0}", payment);
-                if (this.payments.Last() != payment)
+                builder.Append(",\"payments\": [\n");
+                foreach (Payment payment in this.payments)
                 {
-                    builder.Append(",");
+                    builder.AppendFormat("{0}", payment);
+                    if (this.payments.Last() != payment)
+                    {
+                        builder.Append(",");
+                    }
+                    builder.Append("\n");
                 }
-                builder.Append("\n");
+                builder.Append("]\n");
             }
-            builder.Append("]\n");
+
             builder.Append("}");
 
             return builder.ToString();
@@ -316,15 +149,18 @@ namespace PaymentRails.Types
         /// <returns>weather the object is ready to be sent to the Payment Rails API</returns>
         public bool IsMappable()
         {
-            foreach (Payment p in Payments)
+            if (payments != null)
             {
-                if (p.SourceCurrency == null)
+                foreach (Payment p in payments)
                 {
-                    if (p.TargetCurrency == null)
+                    if (p.sourceCurrency == null)
                     {
-                        if (Currency == null)
+                        if (p.targetCurrency == null)
                         {
-                            throw new InvalidFieldException("Batch must have a Currency if not all payment have currency's");
+                            if (currency == null)
+                            {
+                                throw new InvalidFieldException("Batch must have a Currency if not all payment have currency's");
+                            }
                         }
                     }
                 }

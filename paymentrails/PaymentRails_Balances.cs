@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PaymentRails.Types;
+using System;
 using System.Collections.Generic;
 
 namespace PaymentRails

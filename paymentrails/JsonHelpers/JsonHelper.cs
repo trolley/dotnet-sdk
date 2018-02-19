@@ -53,7 +53,7 @@ namespace PaymentRails.JsonHelpers
                 foreach (PaymentJsonHelper p in helper.Payments.Payments)
                 {
                     payments.Add(PaymentJsonHelperToPayment(p));
-                    payments.Last().BatchId = helper.Id;
+                    payments.Last().batchId = helper.Id;
                 }
             }
             Batch batch = new Batch(helper.Description, payments, helper.Currency, helper.Amount, helper.TotalPayments, helper.Status,

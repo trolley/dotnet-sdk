@@ -1,4 +1,6 @@
-﻿using PaymentRails.Types;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using PaymentRails.Types;
 using System.Collections.Generic;
 using System.Text;
 
@@ -18,29 +20,29 @@ namespace PaymentRails
         {
             string endPoint = "/v1/recipients";
             string response = this.gateway.client.get(endPoint);
-            List<Recipient> recipients = JsonHelpers.RecipientHelper.JsonToRecipientList(response);
-            return recipients;
+
+            return recipientListFactory(response);
         }
 
         public Recipient find(string recipient_id)
         {
             string endPoint = "/v1/recipients/" + recipient_id;
             string response = this.gateway.client.get(endPoint);
-            Recipient createdRecipient = JsonHelpers.RecipientHelper.JsonToRecipient(response);
-            return createdRecipient;
-        }
 
+            return recipientFactory(response);
+        }
+        
         public Recipient create(Recipient recipient)
         {
             string endPoint = "/v1/recipients";
             string response = this.gateway.client.post(endPoint, recipient);
-            Recipient createdRecipient = JsonHelpers.RecipientHelper.JsonToRecipient(response);
-            return createdRecipient;
+
+            return recipientFactory(response);
         }
 
         public bool update(Recipient recipient)
         {
-            string endPoint = "/v1/recipients/" + recipient.Id;
+            string endPoint = "/v1/recipients/" + recipient.id;
             string response = this.gateway.client.patch(endPoint, recipient);
             return true;
         }
@@ -54,7 +56,7 @@ namespace PaymentRails
 
         public bool delete(Recipient recipient)
         {
-            return delete(recipient.Id);
+            return delete(recipient.id);
         }
 
         public List<Recipient> search(string term = "", int page = 1, int pageSize = 10)
@@ -65,8 +67,8 @@ namespace PaymentRails
             string endPoint = builder.ToString();
 
             string jsonResponse = this.gateway.client.get(endPoint);
-            List<Recipient> recipients = JsonHelpers.RecipientHelper.JsonToRecipientList(jsonResponse);
-            return recipients;
+
+            return recipientListFactory(jsonResponse);
         }
 
         public List<Recipient> search(int page, int pageNumber)
@@ -74,5 +76,17 @@ namespace PaymentRails
             return search("", page, pageNumber);
         }
 
+        private Recipient recipientFactory(string response)
+        {
+            var tempData = JObject.Parse(response)["recipient"];
+            Recipient recipient = JsonConvert.DeserializeObject<Recipient>(tempData.ToString());
+            return recipient;
+        }
+        private List<Recipient> recipientListFactory(string response)
+        {
+            var tempData = JObject.Parse(response)["recipients"];
+            List<Recipient> recipients = JsonConvert.DeserializeObject<List<Recipient>>(tempData.ToString());
+            return recipients;
+        }
     }
 }

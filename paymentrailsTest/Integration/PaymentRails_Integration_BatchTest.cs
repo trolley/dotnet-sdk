@@ -25,7 +25,7 @@ namespace paymentrailsTest
             recipient = gateway.recipient.create(recipient);
       
             RecipientAccount recipientAccount = new RecipientAccount("bank-transfer", "EUR", null, null, "DE", "DE89 3704 0044 0532 0130 00", "123456");
-            recipientAccount = gateway.recipientAccount.create(recipient.Id, recipientAccount);
+            recipientAccount = gateway.recipientAccount.create(recipient.id, recipientAccount);
 
             return recipient;
         }
@@ -41,7 +41,7 @@ namespace paymentrailsTest
             Batch batch = new Batch("Integration Test Create", null, "USD", 0);
             batch = gateway.batch.create(batch);
             Assert.IsNotNull(batch);
-            Assert.IsNotNull(batch.Id);
+            Assert.IsNotNull(batch.id);
 
             List<Batch> batches = gateway.batch.search();
             Assert.IsTrue(batches.Count > 0);
@@ -52,21 +52,21 @@ namespace paymentrailsTest
             Batch batch = new Batch("Integration Test Create", null, "USD", 0);
             batch = gateway.batch.create(batch);
             Assert.IsNotNull(batch);
-            Assert.IsNotNull(batch.Id);
+            Assert.IsNotNull(batch.id);
 
             List<Batch> batches = gateway.batch.search();
             Assert.IsTrue(batches.Count > 0);
 
-            Batch newBatch = new Batch("Integration Update", null, null, 0, 0, null, null, null, null, null, batch.Id);
+            Batch newBatch = new Batch("Integration Update", null, null, 0, 0, null, null, null, null, null, batch.id);
             bool response = gateway.batch.update(newBatch);
             Assert.IsTrue(response);
 
-            Batch findBatch = gateway.batch.find(batch.Id);
+            Batch findBatch = gateway.batch.find(batch.id);
 
-            Assert.AreEqual("Integration Update", findBatch.Description);
-            Assert.AreEqual("open", findBatch.Status);
+            Assert.AreEqual("Integration Update", findBatch.description);
+            Assert.AreEqual("open", findBatch.status);
 
-            response = gateway.batch.delete(batch.Id);
+            response = gateway.batch.delete(batch.id);
             Assert.IsTrue(response);
 
         }
@@ -76,8 +76,8 @@ namespace paymentrailsTest
         {
             Recipient recipientAlpha = createRecipient();
             Recipient recipientBeta = createRecipient();
-            Payment paymentAlpha = new Payment(recipientAlpha, 10.00, "EUR",0,null,null);
-  
+            Payment paymentAlpha = new Payment(recipientAlpha, 10.00, "EUR", 0, null, null);
+
             Payment paymentBeta = new Payment(recipientBeta, 10.00, "EUR", 0, null, null);
             List<Payment> payments = new List<Payment>();
             payments.Add(paymentAlpha);
@@ -88,16 +88,16 @@ namespace paymentrailsTest
 
 
             Assert.IsNotNull(batch);
-            Assert.IsNotNull(batch.Id);
+            Assert.IsNotNull(batch.id);
 
-            Batch findBatch = gateway.batch.find(batch.Id);
+            Batch findBatch = gateway.batch.find(batch.id);
             Assert.IsNotNull(findBatch);
-            Assert.AreEqual(2, findBatch.Payments.Count);
+            Assert.AreEqual(2, findBatch.payments.Count);
 
-            List<Payment> findPayments = findBatch.Payments;
+            List<Payment> findPayments = findBatch.payments;
             foreach (Payment payment in findPayments)
             {
-                Assert.AreEqual("pending", payment.Status);
+                Assert.AreEqual("pending", payment.status);
             }
         }
 
@@ -108,18 +108,19 @@ namespace paymentrailsTest
             Batch batch = new Batch("Integration Test Payments", null, "EUR", 0);
             batch = gateway.batch.create(batch);
             Assert.IsNotNull(batch);
-            Assert.IsNotNull(batch.Id);
+            Assert.IsNotNull(batch.id);
 
             Recipient recipient = createRecipient();
             Payment payment = new Payment(recipient, 10.00, "EUR", 0, null, null);
-            payment.BatchId = batch.Id;
+            payment.batchId = batch.id;
             payment = gateway.payment.create(payment);
 
             Assert.IsNotNull(payment);
-            Assert.IsNotNull(payment.Id);
+            Assert.IsNotNull(payment.id);
 
-            payment.SourceAmount = 20.00;
-            payment.BatchId = batch.Id;
+            payment.sourceAmount = 20.00;
+            payment.batchId = batch.id;
+
             bool response = gateway.payment.update(payment);
             Assert.IsTrue(response);
 
@@ -142,10 +143,10 @@ namespace paymentrailsTest
             Batch batch = new Batch("Integration Test Payments", payments, "USD", 0);
             batch = gateway.batch.create(batch);
 
-            Batch quote = gateway.batch.generateQuote(batch.Id);
+            Batch quote = gateway.batch.generateQuote(batch.id);
             Assert.IsNotNull(quote);
 
-            Batch start = gateway.batch.processBatch(batch.Id);
+            Batch start = gateway.batch.processBatch(batch.id);
             Assert.IsNotNull(start);
         }
     }

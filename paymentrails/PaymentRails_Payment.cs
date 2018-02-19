@@ -64,7 +64,7 @@ namespace PaymentRails
         /// <returns>The response</returns>
         public static bool delete(Payment payment)
         {
-            return delete(payment.Id, payment.BatchId);
+            return delete(payment.id, payment.batchId);
         }
 
         /// <summary>
