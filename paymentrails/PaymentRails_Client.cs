@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Text;
 using System.Net.Http;
-using System.Net;
-using System.Linq;
 using PaymentRails.Exceptions;
 using PaymentRails.Types;
+using System.Security.Cryptography;
 
 namespace PaymentRails
 {
@@ -13,59 +12,13 @@ namespace PaymentRails
     /// </summary>
     public class PaymentRails_Client
     {
-        private static PaymentRails_Client clientInstance;
-        private HttpClient httpClient;
-        
-        /// <summary>
-        /// The client instance
-        /// </summary>
-        public static PaymentRails_Client ClientInstance
-        {
-            get
-            {
-                if (clientInstance == null)
-                {
-                    clientInstance = new PaymentRails_Client(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate });
-                }
-                return clientInstance;
-            }
-        }
-        
-        /// <summary>
-        /// The HttpMessageHandler
-        /// </summary>
-        public static HttpMessageHandler HttpMessageHandler
-        {
-            set
-            {
-                if (clientInstance == null)
-                {
-                    CreateClient(); // feelsbadman
-                }
-                clientInstance.httpClient.Dispose();
-                clientInstance.httpClient = new HttpClient(value);
-                clientInstance.httpClient.BaseAddress = new Uri(PaymentRails_Configuration.ApiBase);
-            }
-        }
+        public PaymentRails_Configuration config;
 
-        /// <summary>
-        /// One paramter constructor
-        /// </summary>
-        /// <param name="handler"></param>
-        private PaymentRails_Client(HttpMessageHandler handler)
+        private HttpClient httpClient;
+
+        public PaymentRails_Client(PaymentRails_Configuration config)
         {
-            this.httpClient = new HttpClient(handler);
-            this.httpClient.BaseAddress = new Uri(PaymentRails_Configuration.ApiBase);
-        }
-        /// <summary>
-        /// Factory method to create an instance
-        /// 
-        /// Kept for the sake of not breaking everything while transitioning to singleton
-        /// </summary>
-        /// <returns>The instance of PaymentRails_Client</returns>
-        public static PaymentRails_Client CreateClient()
-        {
-            return ClientInstance;
+            this.config = config;
         }
 
         /// <summary>
@@ -73,24 +26,24 @@ namespace PaymentRails
         /// </summary>
         /// <param name="endPoint">The api endPoint</param>
         /// <returns>The response</returns>
-        public String get(String endPoint)
+        public string get(string endPoint)
         {
             string result = "";
-            try
-            {
-                UpdateApiKey();
+            try {
+                httpClient = createRequest(endPoint, "GET");
                 HttpResponseMessage response = httpClient.GetAsync(endPoint).Result;
+
                 result = response.Content.ReadAsStringAsync().Result;
-                response.EnsureSuccessStatusCode();
+                if ((int)response.StatusCode != 200)
+                {
+                    throwStatusCodeException((int)response.StatusCode, response.Content.ReadAsStringAsync().Result);
+                }
             }
-            catch (System.Net.Http.HttpRequestException e)
+            catch (System.Net.Http.HttpRequestException)
             {
                 throw new InvalidStatusCodeException(result);
             }
-            catch(System.AggregateException e)
-            {
-                throw new InvalidServerRequest("An error occured while sending the request.");
-            }
+
             return result;
         }
 
@@ -100,160 +53,178 @@ namespace PaymentRails
         /// <param name="endPoint">The api endPoint</param>
         /// <param name="stringBody">The request payload</param>
         /// <returns>The Response</returns>
-        public String post(String endPoint, IPaymentRailsMappable body) // change body to accept IJsonMappable objects
+        public string post(string endPoint, IPaymentRailsMappable body)
         {
             body.IsMappable();
             HttpContent jsonBody = convertBody(body.ToJson());
-            string result = "";
+            string result= "";
             try
             {
-
-                UpdateApiKey();
+                httpClient = createRequest(endPoint, "POST", body);
                 HttpResponseMessage response = httpClient.PostAsync(endPoint, jsonBody).Result;
                 result = response.Content.ReadAsStringAsync().Result;
-                response.EnsureSuccessStatusCode();
-            
+                if ((int)response.StatusCode != 200)
+                {
+                    throwStatusCodeException((int)response.StatusCode, response.Content.ReadAsStringAsync().Result);
+                }
+
             }
-            catch (System.Net.Http.HttpRequestException e)
+            catch (System.Net.Http.HttpRequestException)
             {
                 throw new InvalidStatusCodeException(result);
 
             }
-            catch (System.AggregateException e)
-            {
-                throw new InvalidServerRequest("An error occured while sending the request.");
-            }
+
             return result;
         }
 
         /// <summary>
-        /// Method used to post to endpoints with no data, this is used for endpoints such as
-        /// batch/:batch_id/generate_quote
-        /// </summary>
-        /// <param name="endpoint">The api endPoint</param>
-        /// <returns></returns>
-        public string PostEmpty(String endPoint)
-        {
-            HttpContent jsonBody = convertBody("");
-            string result = "";
-            try
-            {
-
-                UpdateApiKey();
-                HttpResponseMessage response = httpClient.PostAsync(endPoint, jsonBody).Result;
-                result = response.Content.ReadAsStringAsync().Result;
-                response.EnsureSuccessStatusCode();
-            }
-            catch (System.Net.Http.HttpRequestException e)
-            {
-                throw new InvalidStatusCodeException(result);
-
-            }
-            catch (System.AggregateException e)
-            {
-                throw new InvalidServerRequest("An error occured while sending the request.");
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// Makes a POST request to API
+        /// Makes a PATCH request to API
         /// </summary>
         /// <param name="endPoint">The api endPoint</param>
         /// <param name="stringBody">The request payload</param>
         /// <returns>The response</returns>
-        public String patch(String endPoint, IPaymentRailsMappable body) // change body to accept IJsonMappable objects
+        public string patch(string endPoint, IPaymentRailsMappable body)
         {
             body.IsMappable();
             HttpContent jsonBody = convertBody(body.ToJson());
             string result = "";
             try
             {
-                UpdateApiKey();
-                //  HttpResponseMessage response = client.PatchAsync(endPoint, body).Result;
+                httpClient = createRequest(endPoint, "PATCH", body);
+
                 var request = new HttpRequestMessage(new HttpMethod("PATCH"), endPoint) { Content = jsonBody };
                 System.Threading.Tasks.Task<HttpResponseMessage> responseTask = httpClient.SendAsync(request);
 
                 HttpResponseMessage response = responseTask.Result;
                 result = response.Content.ReadAsStringAsync().Result;
-                response.EnsureSuccessStatusCode();
+                if ((int)response.StatusCode != 200)
+                {
+                    throwStatusCodeException((int)response.StatusCode, response.Content.ReadAsStringAsync().Result);
+                }
             }
-            catch (System.Net.Http.HttpRequestException e)
+            catch (System.Net.Http.HttpRequestException)
             {
                 throw new InvalidStatusCodeException(result);
-            }
-            catch (System.AggregateException e)
-            {
-                throw new InvalidServerRequest("An error occured while sending the request.");
             }
             return result;
 
         }
+
         /// <summary>
         /// Makes A DELETE request to API
         /// </summary>
         /// <param name="endPoint">The api endPoint</param>
         /// <returns>The response</returns>
-        public String delete(String endPoint)
+        public string delete(string endPoint)
         {
             string result = "";
             try
             {
-                UpdateApiKey();
+                httpClient = createRequest(endPoint, "DELETE");
                 HttpResponseMessage response = httpClient.DeleteAsync(endPoint).Result;
                 result = response.Content.ReadAsStringAsync().Result;
-                response.EnsureSuccessStatusCode();
+                if ((int)response.StatusCode != 200)
+                {
+                    throwStatusCodeException((int)response.StatusCode, response.Content.ReadAsStringAsync().Result);
+                }
             }
-            catch (System.Net.Http.HttpRequestException e)
+            catch (System.Net.Http.HttpRequestException)
             {
                 throw new InvalidStatusCodeException(result);
             }
-            catch (System.AggregateException e)
-            {
-                throw new InvalidServerRequest("An error occured while sending the request.");
-            }
+
             return result;
         }
 
-        /// <summary>
-        /// Converts String into HTTPContent
-        /// </summary>
-        /// <param name="body">The request payload</param>
-        /// <returns>The HTTPContent</returns>
-        private HttpContent convertBody(String body)
+
+        private HttpContent convertBody(string body)
         {
             HttpContent content = new StringContent(body, UTF8Encoding.UTF8, "application/json");
             return content;
         }
 
-        /// <summary>
-        /// Function that checks the API key and updates it if it has changed in the PaymentRails config
-        /// </summary>
-        private static void UpdateApiKey()
+        private HttpClient createRequest(string endPoint, string method, IPaymentRailsMappable body = null)
         {
-            if (clientInstance.httpClient.DefaultRequestHeaders.Contains("x-api-key"))
+            try
             {
-                if (ApiKeyUpdated())
-                {
-                    clientInstance.httpClient.DefaultRequestHeaders.Remove("x-api-key");
-                    clientInstance.httpClient.DefaultRequestHeaders.Add("x-api-key", PaymentRails_Configuration.ApiKey);
-                }
+                httpClient = new HttpClient();
+                httpClient.BaseAddress = new Uri(this.config.ApiBase);
+
+                TimeSpan epochTicks = new TimeSpan(new DateTime(1970, 1, 1).Ticks);
+                TimeSpan unixTicks = new TimeSpan(DateTime.UtcNow.Ticks) - epochTicks;
+                int unixTime = (int)unixTicks.TotalSeconds;
+
+                var authorization = generateAuthorization(unixTime + "", endPoint, method, body);
+
+                httpClient.DefaultRequestHeaders.Add("Authorization", authorization);
+                httpClient.DefaultRequestHeaders.Add("X-PR-Timestamp", unixTime + "");
+                return httpClient;
+
             }
-            else
+            catch (System.Net.Http.HttpRequestException e)
             {
-                clientInstance.httpClient.DefaultRequestHeaders.Add("x-api-key", PaymentRails_Configuration.ApiKey);
+                throw new InvalidStatusCodeException(e.Message);
             }
+
         }
 
-
-        /// <summary>
-        /// Function that checks if the api key has changed
-        /// </summary>
-        /// <returns>A bool representing if the api key has changed</returns>
-        private static bool ApiKeyUpdated()
+        private string generateAuthorization(string timeStamp, string endPoint, string method, IPaymentRailsMappable body)
         {
-            var s = clientInstance.httpClient.DefaultRequestHeaders.GetValues("x-api-key");
-            return s.First() != PaymentRails_Configuration.ApiKey;
+            string newBody = "";
+            if (body != null)
+            {
+                newBody = body.ToJson();
+            }
+
+            string message = timeStamp + "\n" + method + "\n" + endPoint + "\n" + newBody + "\n";
+
+            if (this.config.ApiSecret == null || this.config.ApiSecret == "")
+            {
+                throw new InvalidCredentialsException("API Secret must be provided.");
+            }
+            if (this.config.ApiKey == null || this.config.ApiKey == "")
+            {
+                throw new InvalidCredentialsException("API Key must be provided.");
+            }
+            var signature = GetHash(message, this.config.ApiSecret);
+
+            return "prsign " + this.config.ApiKey + ":" + signature;
+        }
+
+        private string GetHash(string text, string key)
+        {
+            ASCIIEncoding encoding = new ASCIIEncoding();
+            Byte[] textBytes = encoding.GetBytes(text);
+            Byte[] keyBytes = encoding.GetBytes(key);
+
+            HMACSHA256 hash = new HMACSHA256(keyBytes);
+            Byte[] hashBytes = hash.ComputeHash(textBytes);
+
+            return BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+        }
+
+        private void throwStatusCodeException(int statusCode, string message = "")
+        {
+            switch (statusCode)
+            {
+                case 400:
+                    throw new MalformedUrlException(message);
+                case 401:
+                    throw new AuthenticationException(message);
+                case 403:
+                    throw new AuthorizationException(message);
+                case 404:
+                    throw new NotFoundException(message);
+                case 429:
+                    throw new TooManyRequestsException(message);
+                case 500:
+                    throw new ServerErrorException(message);
+                case 503:
+                    throw new DownForMaintenanceException(message);
+                default:
+                    throw new UnexpectedException(message);
+            }
         }
     }
 

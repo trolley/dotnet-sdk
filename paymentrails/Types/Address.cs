@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace PaymentRails.Types
 {
@@ -143,7 +139,7 @@ namespace PaymentRails.Types
         /// <param name="phone"></param>
         /// <param name="country"></param>
         /// <param name="region"></param>
-        public Address(string street1, string street2, string city, string postalCode, string phone, string country, string region)
+        public Address(string street1, string city, string country, string region, string postalCode= null, string street2= null, string phone=null)
         {
             this.street1 = street1;
             this.street2 = street2;

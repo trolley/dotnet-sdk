@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PaymentRails.Exceptions
 {
@@ -22,14 +18,14 @@ namespace PaymentRails.Exceptions
         }
 
 
-        public InvalidFieldException(String message) : base(message)
+        public InvalidFieldException(string message) : base(message)
 
         {
 
         }
 
 
-        public InvalidFieldException(String message, Exception innerException) : base(message, innerException)
+        public InvalidFieldException(string message, Exception innerException) : base(message, innerException)
 
         {
 

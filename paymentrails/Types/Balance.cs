@@ -7,93 +7,11 @@ namespace PaymentRails.Types
     /// </summary>
     public class Balance
     {
-        private Boolean primary;
-        private Double amount;
-        private String currency;
-        private String type;
-        private String accountNumber;
-
-        #region Properties
-        /// <summary>
-        /// Whether or not this balance is your primary balance
-        /// </summary>
-        public bool Primary
-        {
-            get
-            {
-                return primary;
-            }
-
-            set
-            {
-                primary = value;
-            }
-        }
-
-        /// <summary>
-        /// The amount of money available for this balance
-        /// </summary>
-        public double Amount
-        {
-            get
-            {
-                return amount;
-            }
-
-            set
-            {
-                amount = value;
-            }
-        }
-
-        /// <summary>
-        /// The currency type of this balance
-        /// </summary>
-        public string Currency
-        {
-            get
-            {
-                return currency;
-            }
-
-            set
-            {
-                currency = value;
-            }
-        }
-
-        /// <summary>
-        /// The type of balance this is such as a PaymentRails or a Paypal balance
-        /// </summary>
-        public string Type
-        {
-            get
-            {
-                return type;
-            }
-
-            set
-            {
-                type = value;
-            }
-        }
-
-        /// <summary>
-        /// The account number associated with this balance
-        /// </summary>
-        public string AccountNumber
-        {
-            get
-            {
-                return accountNumber;
-            }
-
-            set
-            {
-                accountNumber = value;
-            }
-        }
-        #endregion
+        public Boolean primary;
+        public Double amount;
+        public string currency;
+        public string type;
+        public string accountNumber;
 
         public Balance() { }
 

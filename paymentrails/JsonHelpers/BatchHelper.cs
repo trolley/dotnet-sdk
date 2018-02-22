@@ -2,9 +2,6 @@
 using PaymentRails.Types;
 using System.Web.Script.Serialization;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PaymentRails.JsonHelpers
 {
@@ -51,7 +48,7 @@ namespace PaymentRails.JsonHelpers
             {
                 return BatchJsonHelperToBatch(helper.Batch);
             }
-            return null; // exception?
+            return null;
         }
     }
 }

@@ -1,42 +1,82 @@
-# **Payment**
-
-## About
-This class that represents a Payment
-
-## **Related Types**
----
-+ [Compliance](Compliance.md)
-+ [Recipient](Recipient.md)
+[Payment Rails C# SDK](../README.md) > [PaymentInput](../types/payment.md)
 
 
-## **Properties**
----
 
-Name | type | description | 
----|---|---
-recipient| Recipient | The recipient of the payment
-sourceAmount| double | The amount of the payment
-memo| string | A memo for the payment
-targetAmount| double | The amount that the recipient will receive
-targetCurrency| string | Target currency code 3 letters ISO code
-exchangeRate| double | The payment exchange rate
-fees| double | The payment fees
-recipientFees| double | Fees incurred by the recipient
-fxRate| double | The fx rate of the payment
-processedAt| string | The date that the payment was processed
-createdAt| string |The date that the payment was created
-updatedAt| string |The date that the payment was updated last
-merchantFees| double | Fees incurred by the merchant
-sourceCurrency|  string | Source currency code
-batchId| string | The batch id (B-XXXXXXXXXXXXXXXX)
-id| string | The payment id (P-XXXXXXXXXXXXXXXX)
-status| string | The payment status
-compliance| Compliance | The compliance information of the payment
+# Types: Payment
 
-## **Methods**
----
-Name | Return Type | Description
---- | --- | --- 
-ToJson | string | Converts the object to a JSON string with all fields required for a POST or a Patch request.
-IsMappable | Boolean | Determines weather the Object has the required fields to be POSTed to the API. This method throws an InvalidFieldException if the object is not valid.
- 
+*__type__*: Payment
+
+
+
+## Properties
+<a id="memo"></a>
+
+### «Optional» memo
+
+**●  memo**:  *`undefined`⎮`string`* 
+
+*Defined in [Types/Batch.ts:22](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Batch.cs#L22)*
+
+
+
+
+
+
+___
+
+<a id="recipient"></a>
+
+###  recipient
+
+**●  recipient**:  *`object`* 
+
+*Defined in [Types/Batch.ts:23](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Batch.cs#L23)*
+
+
+#### Type declaration
+
+«Optional»  email: `undefined`⎮`string`
+«Optional»  id: `undefined`⎮`string`
+«Optional»  referenceId: `undefined`⎮`string`
+
+
+
+
+___
+
+<a id="sourceamount"></a>
+
+### «Optional» sourceAmount
+
+**●  sourceAmount**:  *`undefined`⎮`string`* 
+
+*Defined in [Types/Batch.ts:19](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Batch.cs#L19)*
+
+
+
+
+___
+
+<a id="targetamount"></a>
+
+### «Optional» targetAmount
+
+**●  targetAmount**:  *`undefined`⎮`string`* 
+
+*Defined in [Types/Batch.ts:20](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Batch.cs#L20)*
+
+
+
+
+___
+
+<a id="targetcurrency"></a>
+
+### «Optional» targetCurrency
+
+**●  targetCurrency**:  *`undefined`⎮`string`* 
+
+*Defined in [Types/Batch.ts:21](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Batch.cs#L21)*
+
+
+___

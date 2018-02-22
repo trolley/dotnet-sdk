@@ -1,33 +1,39 @@
-# **Batch**
-
-## About
-This class that represents a Batch
-
-## **Related Types**
----
-+ [Payment](Payment.md)
+[Payment Rails C# SDK](../README.md) > [BatchInput](../types/batch.md)
 
 
-## **Properties**
----
 
-Name | type | description | 
----|---|---
-description | string | A description of the batch
-payments | List<Payment> | A list of all the payents in the batch
-currency | double | The batch currency type
-amount | double | The amount of money
-totalPayments | int  | Amount of payments in the batch
-status | string | The status of the batch (pending, active, accepted, complete)
-sentAt | string | The date that the batch was send
-completedAt | string | The date that the batch was completed
-createdAt | string | The date that the batch was created
-updatedAt | string | The date that the batch was last updated
-id | string | The batch id (B-XXXXXXXXXXXXXXXX)
+# Types: Batch
 
-## **Methods**
----
-Name | Return Type | Description
---- | --- | --- 
-ToJson | string | Converts the object to a JSON string with all fields required for a POST or a Patch request.
-IsMappable | Boolean | Determines weather the Object has the required fields to be POSTed to the API. This method throws an InvalidFieldException if the object is not valid.
+
+## Properties
+<a id="description"></a>
+
+###  description
+
+**●  description**:  *`undefined`⎮`string`* 
+
+*Defined in [Types/Batch.ts:15](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Batch.cs#L15)*
+
+
+
+
+
+
+___
+
+<a id="sourcecurrency"></a>
+
+###  sourceCurrency
+
+**●  sourceCurrency**:  *`undefined`⎮`string`* 
+
+*Defined in [Types/Batch.ts:14](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Batch.cs#L14)*
+
+
+
+
+
+
+___
+
+

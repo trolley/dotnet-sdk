@@ -11,7 +11,7 @@ namespace PaymentRails.JsonHelpers
         /// </summary>
         /// <param name="jsonString"></param>
         /// <returns>The Balance object representation of the JSON string</returns>
-        public static Dictionary<String, Types.Balance> JsonToBalanceDictionary(String jsonString)
+        public static Dictionary<String, Types.Balance> JsonToBalanceDictionary(string jsonString)
         {
             if(jsonString == null || jsonString == "")
             {

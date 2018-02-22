@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using PaymentRails.Types;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PaymentRails.JsonHelpers
 {
@@ -13,44 +11,36 @@ namespace PaymentRails.JsonHelpers
         protected static Recipient RecipientJsonHelperToRecipient(RecipientJsonHelper helper)
         {
             List<RecipientAccount> accounts = null;
-            
+
             if (helper.Accounts != null)
             {
                 accounts = new List<RecipientAccount>();
                 foreach (RecipientAccount p in helper.Accounts)
                 {
                     accounts.Add(p);
-                    //accounts.Add(RecipientAccountJsonHelperToRecipientAccount(p));
-                    //accounts.Last().BatchId = helper.Id;
                 }
             }
-
-            Recipient recipient = new Recipient(helper.Id, helper.Type, helper.ReferenceId, helper.Email, helper.Name,
-                helper.FirstName, helper.LastName, helper.Status, helper.TimeZone, helper.Language,
-                helper.Dob, helper.GravatarUrl, helper.Compliance, accounts, helper.Address);
+            
+            Recipient recipient = new Recipient(helper.Type, helper.Email, helper.Name, helper.FirstName, helper.LastName, helper.Id, helper.ReferenceId, helper.Status, helper.TimeZone, helper.Language, helper.Dob, helper.GravatarUrl, helper.Compliance, accounts, helper.Address);
             return recipient;
         }
 
         protected static RecipientAccount RecipientAccountJsonHelperToRecipientAccount(RecipientAccountJsonHelper helper)
-        {     
-            RecipientAccount recipientAccount = new RecipientAccount(helper.Id, helper.Primary, helper.Currency, helper.RecipientAccountId, helper.RouteType,
-                helper.RecipientFees, helper.EmailAddress, helper.Country, helper.Type, helper.Iban,
-                helper.AccountNum, helper.AccountHolderName, helper.SwiftBic, helper.BranchId, helper.BankName, helper.BankId, helper.BankAddress, helper.BankCity, helper.BankRegionCode, helper.BankPostalCode);
-
+        {
+            RecipientAccount recipientAccount = new RecipientAccount(helper.Type, helper.Currency, helper.Id, helper.Primary, helper.Country, helper.Iban, helper.AccountNum, helper.RecipientAccountId, helper.RouteType, helper.RecipientFees, helper.EmailAddress, helper.AccountHolderName,helper.SwiftBic, helper.BranchId, helper.BankName, helper.BankId, helper.BankAddress, helper.BankCity, helper.BankRegionCode, helper.BankPostalCode);
             return recipientAccount;
         }
 
         protected static Payment PaymentJsonHelperToPayment(PaymentJsonHelper helper)
         {
             string batchId = null;
-            if(helper.Batch != null)
+            if (helper.Batch != null)
             {
                 batchId = helper.Batch.Id;
             }
             Recipient recipient = RecipientJsonHelperToRecipient(helper.Recipient);
-            Payment payment = new Payment(recipient, helper.SourceAmount, helper.Memo, helper.TargetAmount, helper.TargetCurrency, helper.ExchangeRate,
-                helper.Fees, helper.RecipientFees, helper.FxRate, helper.ProcessedAt, helper.CreatedAt, helper.UpdatedAt, helper.MerchantFees, helper.SourceCurrency,
-                batchId, helper.Id, helper.Status, helper.Compliance);
+
+            Payment payment = new Payment(recipient, helper.SourceAmount, helper.SourceCurrency, helper.TargetAmount, helper.TargetCurrency, helper.Id, helper.Memo, helper.ExchangeRate, helper.Fees,helper.RecipientFees, helper.FxRate,helper.ProcessedAt, helper.CreatedAt, helper.UpdatedAt,helper.MerchantFees,batchId, helper.Status, helper.Compliance);
             return payment;
         }
 
@@ -63,13 +53,14 @@ namespace PaymentRails.JsonHelpers
                 foreach (PaymentJsonHelper p in helper.Payments.Payments)
                 {
                     payments.Add(PaymentJsonHelperToPayment(p));
-                    payments.Last().BatchId = helper.Id;
+                    payments.Last().batchId = helper.Id;
                 }
             }
             Batch batch = new Batch(helper.Description, payments, helper.Currency, helper.Amount, helper.TotalPayments, helper.Status,
                 helper.SentAt, helper.CompletedAt, helper.CreatedAt, helper.UpdatedAt, helper.Id);
             return batch;
         }
+
         #endregion
 
         #region Recipient classes
@@ -118,8 +109,8 @@ namespace PaymentRails.JsonHelpers
 
         protected class RecipientRecipientAccountPaginationJsonHelper
         {
-            private List<RecipientAccountJsonHelper> recipientAccounts;
-            
+            //private List<RecipientAccountJsonHelper> recipientAccounts;
+
             public List<RecipientAccountJsonHelper> RecipientAccounts
             {
                 get
@@ -156,10 +147,6 @@ namespace PaymentRails.JsonHelpers
 
             private Compliance compliance;
             private List<RecipientAccount> accounts;
-            //private RecipientRecipientAccountPaginationJsonHelper accounts;
-            //private RecipientAccountListJsonHelper account;
-            //private RecipientAccountJsonHelper account;
-            //private PayoutJsonHelper payout;
             private Address address;
 
             #region properties
@@ -343,8 +330,8 @@ namespace PaymentRails.JsonHelpers
                     compliance = value;
                 }
             }
-          
- 
+
+
             public Address Address
             {
                 get
@@ -758,7 +745,7 @@ namespace PaymentRails.JsonHelpers
             }
             #endregion
 
-            public RecipientAccountJsonHelper(string id, string primary, string currency, string recipientAccountId, string routeType, string recipientFees, string emailAddress, string country, string type, string iban, string accountNum, string accountHolderName, String swiftBic, string branchId, string bankName, string bankId, string bankAddress, string bankCity, string bankRegionCode, string bankPostalCode)
+            public RecipientAccountJsonHelper(string id, string primary, string currency, string recipientAccountId, string routeType, string recipientFees, string emailAddress, string country, string type, string iban, string accountNum, string accountHolderName, string swiftBic, string branchId, string bankName, string bankId, string bankAddress, string bankCity, string bankRegionCode, string bankPostalCode)
             {
                 this.Id = id;
                 this.Primary = primary;
@@ -1151,7 +1138,7 @@ namespace PaymentRails.JsonHelpers
             }
         }
 
-        protected new class BankAccountHelper
+        protected class BankAccountHelper
         {
             private string institution;
             private string branchNum;
@@ -1752,7 +1739,7 @@ namespace PaymentRails.JsonHelpers
 
             }
         }
-       
+
         protected class PaymentListJsonHelper
         {
             private bool ok;
@@ -2036,7 +2023,7 @@ namespace PaymentRails.JsonHelpers
 
             }
         }
-        
+
         protected class BatchListJsonHelper
         {
             private bool ok;
@@ -2079,8 +2066,9 @@ namespace PaymentRails.JsonHelpers
 
             }
         }
-        
+
         #endregion
+
 
         #region Misc classes
         protected class PaginationJsonHelper
