@@ -163,7 +163,7 @@ namespace PaymentRails.Types
                 builder.AppendFormat("\"bankId\": \"{0}\",\n", this.bankId);
                 builder.AppendFormat("\"iban\": \"{0}\",\n",this.iban);
                 builder.AppendFormat("\"accountNum\": \"{0}\",\n", this.accountNum);
-                builder.AppendFormat("\"isPrimary\": \"{0}\",\n", this.primary);
+                builder.AppendFormat("\"primary\": {0},\n", this.primary);
                 if (accountHolderName != "" && accountHolderName != null) { builder.AppendFormat("\"accountHolderName\": \"{0}\",\n", this.accountHolderName); }
                 builder.AppendFormat("\"swiftBic\": \"{0}\"\n", this.swiftBic);
             }
@@ -171,7 +171,7 @@ namespace PaymentRails.Types
             {
                 builder.AppendFormat("\"type\": \"{0}\",\n", this.type);
                 builder.AppendFormat("\"email\": \"{0}\",\n", this.emailAddress);
-                builder.AppendFormat("\"isPrimary\": \"{0}\"\n", this.primary);
+                builder.AppendFormat("\"primary\": {0}\n", this.primary);
 
             }
                 builder.Append("}");
