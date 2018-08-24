@@ -24,7 +24,7 @@ namespace paymentrailsTest
             Recipient recipient = new Recipient("individual", "test.create" + uuid + "@example.com", null, "Tom", "Jones", null, null, null, null, null, "1990-01-01", null, null, null, address);
             recipient = gateway.recipient.create(recipient);
       
-            RecipientAccount recipientAccount = new RecipientAccount("bank-transfer", "EUR", null, null, "DE", "DE89 3704 0044 0532 0130 00", "123456");
+            RecipientAccount recipientAccount = new RecipientAccount("bank-transfer", "EUR", null, "true", "DE", "DE89 3704 0044 0532 0130 00", "123456");
             recipientAccount = gateway.recipientAccount.create(recipient.id, recipientAccount);
 
             return recipient;
