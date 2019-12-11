@@ -109,21 +109,22 @@ namespace PaymentRails.Types
             {
                 throw new InvalidFieldException("RecipientAccount must have a type");
             }
+
             if (type == "bank-transfer")
+            {
                 if (country == null)
                 {
                     throw new InvalidFieldException("RecipientAccount must have a country if the type is bank-transfer");
                 }
-            if (type == "bank-transfer")
                 if (currency == null)
                 {
                     throw new InvalidFieldException("RecipientAccount must have a currency if the type is bank-transfer");
                 }
-            if (type == "bank-transfer")
-                if (accountNum == null)
+                if (accountNum == null && iban == null)
                 {
-                    throw new InvalidFieldException("RecipientAccount must have an AccountNumber if the type is bank-transfer");
+                    throw new InvalidFieldException("RecipientAccount must have an AccountNumber or an IBAN if the type is bank-transfer");
                 }
+            }
 
             if (type == "paypal")
                 if (emailAddress == null)
@@ -161,7 +162,7 @@ namespace PaymentRails.Types
                 builder.AppendFormat("\"currency\": \"{0}\",\n", this.currency);
                 builder.AppendFormat("\"branchId\": \"{0}\",\n", this.branchId);
                 builder.AppendFormat("\"bankId\": \"{0}\",\n", this.bankId);
-                builder.AppendFormat("\"iban\": \"{0}\",\n",this.iban);
+                if (iban != "" && iban != null) { builder.AppendFormat("\"iban\": \"{0}\",\n", this.iban); }
                 builder.AppendFormat("\"accountNum\": \"{0}\",\n", this.accountNum);
                 builder.AppendFormat("\"primary\": {0},\n", this.primary);
                 if (accountHolderName != "" && accountHolderName != null) { builder.AppendFormat("\"accountHolderName\": \"{0}\",\n", this.accountHolderName); }
@@ -174,10 +175,10 @@ namespace PaymentRails.Types
                 builder.AppendFormat("\"primary\": {0}\n", this.primary);
 
             }
-                builder.Append("}");
-                return builder.ToString();
-            
 
+            builder.Append("}");
+
+            return builder.ToString();
         }
     }
 }
