@@ -1,18 +1,16 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>PaymentRails.PaymentRailsDotNetSDK</id>
+    <id>PaymentRails.SDK</id>
     <version>1.0.1</version>
     <title>$title$</title>
-    <authors>Jesse Tremblay, Jesse Silber</authors>
-    <owners>PaymentRailsJesse</owners>
-    <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
-    <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
-    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
+    <authors>Jesse Tremblay, Jesse Silber, Joshua Cunningham</authors>
+    <owners>PaymentRailsJesse, fronugget</owners>
+    <projectUrl>https://github.com/PaymentRails/paymentrails_dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>$description$</description>
-    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <description>An SDK to interface with the Payment Rails API (https://www.paymentrails.com/)</description>
+    <releaseNotes>Recipient Accounts without IBAN fixed.</releaseNotes>
     <copyright>Copyright 2017</copyright>
-    <tags>Tag1 Tag2</tags>
+    <tags>sdk PaymentRails</tags>
   </metadata>
 </package>
