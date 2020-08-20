@@ -1,8 +1,9 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿// using Newtonsoft.Json;
+// using Newtonsoft.Json.Linq;
 using PaymentRails.Types;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json;
 
 namespace PaymentRails
 {
@@ -86,14 +87,22 @@ namespace PaymentRails
 
         private Payment paymentFactory(string response)
         {
-            var tempData = JObject.Parse(response)["payment"];
-            Payment payment = JsonConvert.DeserializeObject<Payment>(tempData.ToString());
+            JsonDocument rawResponse = JsonDocument.Parse(response);
+            string jsonPayment = rawResponse.RootElement.GetProperty("payment").GetString();
+            Payment payment = JsonSerializer.Deserialize<Payment>(jsonPayment);
+
+            // var tempData = JObject.Parse(response)["payment"];
+            // Payment payment = JsonConvert.DeserializeObject<Payment>(tempData.ToString());
             return payment;
         }
         private List<Payment> paymentListFactory(string response)
         {
-            var tempData = JObject.Parse(response)["payments"];
-            List<Payment> payments = JsonConvert.DeserializeObject<List<Payment>>(tempData.ToString());
+            JsonDocument rawResponse = JsonDocument.Parse(response);
+            string jsonPayments = rawResponse.RootElement.GetProperty("payments").GetString();
+            List<Payment> payments = JsonSerializer.Deserialize<List<Payment>>(jsonPayments);
+
+            // var tempData = JObject.Parse(response)["payments"];
+            // List<Payment> payments = JsonConvert.DeserializeObject<List<Payment>>(tempData.ToString());
             return payments;
         }
     }

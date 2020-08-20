@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web.Script.Serialization;
+using System.Text.Json;
+// using System.Web.Script.Serialization;
 
 namespace PaymentRails.JsonHelpers
 {
@@ -17,7 +18,7 @@ namespace PaymentRails.JsonHelpers
             {
                 throw new ArgumentException("JSON must be provided");
             }
-            JsonBalancesHelper helper = new JavaScriptSerializer().Deserialize<JsonBalancesHelper>(jsonString);
+            JsonBalancesHelper helper = JsonSerializer.Deserialize<JsonBalancesHelper>(jsonString);
             Dictionary<String, Types.Balance> balances = null;
             if (helper.ok)
             {

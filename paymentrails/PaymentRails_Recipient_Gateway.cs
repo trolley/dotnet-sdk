@@ -1,8 +1,11 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 using PaymentRails.Types;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json;
+using paymentrails.JsonHelpers;
 
 namespace PaymentRails
 {
@@ -79,12 +82,42 @@ namespace PaymentRails
         private Recipient recipientFactory(string response)
         {
             var tempData = JObject.Parse(response)["recipient"];
+            // JsonDocument rawResponse = JsonDocument.Parse(response);
+            // Console.WriteLine(rawResponse);
+            // Console.WriteLine(rawResponse.RootElement.GetProperty("recipient"));
+            // Console.WriteLine(rawResponse.RootElement.GetProperty("recipient").GetType());
+
+
+            // string jsonRecipient = rawResponse.RootElement.GetProperty("recipient").ToString();
+
+
+            // Console.WriteLine("JsonRecipient");
+            // Console.WriteLine(jsonRecipient);
+
+            JsonSerializerOptions options = new JsonSerializerOptions {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            };
+
+            options.Converters.Add(new JsonCustomConverter());
+
+            // Recipient recipient = JsonSerializer.Deserialize<Recipient>(jsonRecipient, options);
+
+            // Console.WriteLine("Recipient");
+            // Console.WriteLine(recipient);
+
+            // Console.WriteLine("Recipient ID");
+            // Console.WriteLine(recipient.id);
+
+            // JsonElement element = Json
             Recipient recipient = JsonConvert.DeserializeObject<Recipient>(tempData.ToString());
             return recipient;
         }
         private List<Recipient> recipientListFactory(string response)
         {
             var tempData = JObject.Parse(response)["recipients"];
+            // JsonDocument rawResponse = JsonDocument.Parse(response);
+            // var jsonRecipients = rawResponse.RootElement.GetProperty("recipients").GetString();
+            // List<Recipient> recipients = JsonSerializer.Deserialize<List<Recipient>>(jsonRecipients);
             List<Recipient> recipients = JsonConvert.DeserializeObject<List<Recipient>>(tempData.ToString());
             return recipients;
         }

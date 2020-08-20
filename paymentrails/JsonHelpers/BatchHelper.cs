@@ -1,7 +1,8 @@
 ﻿using System;
 using PaymentRails.Types;
-using System.Web.Script.Serialization;
+// using System.Web.Script.Serialization;
 using System.Collections.Generic;
+using System.Text.Json;
 
 namespace PaymentRails.JsonHelpers
 {
@@ -19,7 +20,7 @@ namespace PaymentRails.JsonHelpers
                 throw new ArgumentException("JSON must be provided");
             }
 
-            BatchListJsonHelper helper = new JavaScriptSerializer().Deserialize<BatchListJsonHelper>(jsonResponse);
+            BatchListJsonHelper helper = JsonSerializer.Deserialize<BatchListJsonHelper>(jsonResponse);
             List<Batch> batches = new List<Batch>();
             if (helper.Ok)
             {
@@ -43,7 +44,7 @@ namespace PaymentRails.JsonHelpers
                 throw new ArgumentException("JSON must be provided");
             }
 
-            BatchResponseJsonHelper helper = new JavaScriptSerializer().Deserialize<BatchResponseJsonHelper>(jsonResponse);
+            BatchResponseJsonHelper helper = JsonSerializer.Deserialize<BatchResponseJsonHelper>(jsonResponse);
             if (helper.Ok)
             {
                 return BatchJsonHelperToBatch(helper.Batch);
