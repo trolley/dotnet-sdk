@@ -31,6 +31,9 @@
     <Copyright>Copyright 2020</Copyright>
     <Authors>Jesse Tremblay, Jesse Silber, Joshua Cunningham</Authors>
     <PackageTags>netcore sdk PaymentRails</PackageTags>
+    <RepositoryUrl>https://github.com/PaymentRails/paymentrails_dotnet/tree/netcore2.1</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Web.Extensions" />

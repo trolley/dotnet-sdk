@@ -32,15 +32,16 @@ The library is hosted on github [here](https://github.com/PaymentRails/paymentra
 
 ```csharp
 // A simple c# application using the Payment Rails SDK
-using paymentrails.Types;
-using paymentrails;
+using PaymentRails;
+using PaymentRails.Types;
+
 
 class Program
 {
     static void Main(string[] args)
     {
         // set your API key
-		var client = new PaymentRails_Gateway("YOUR-API-KEY", "YOUR-SECRET-KEY", "production");
+		var client = new PaymentRails.Gateway("YOUR-API-KEY", "YOUR-SECRET-KEY");
         Recipient response = client.recipient.find("R-4q7zxMa26hpZhx7ULApBGw");
         Console.WriteLine(response.Id);
         
