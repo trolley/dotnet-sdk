@@ -1,9 +1,8 @@
-﻿// using Newtonsoft.Json;
-// using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using PaymentRails.Types;
 using System.Collections.Generic;
 using System.Text;
-using System.Text.Json;
 
 namespace PaymentRails
 {
@@ -76,23 +75,14 @@ namespace PaymentRails
 
         private RecipientAccount recipientFactory(string response)
         {
-
-            JsonDocument rawResponse = JsonDocument.Parse(response);
-            string jsonAccount = rawResponse.RootElement.GetProperty("account").GetString();
-            RecipientAccount recipientAccount = JsonSerializer.Deserialize<RecipientAccount>(jsonAccount);
-
-            // var tempData = JObject.Parse(response)["account"];
-            // RecipientAccount recipientAccount = JsonConvert.DeserializeObject<RecipientAccount>(tempData.ToString());
+            var tempData = JObject.Parse(response)["account"];
+            RecipientAccount recipientAccount = JsonConvert.DeserializeObject<RecipientAccount>(tempData.ToString());
             return recipientAccount;
         }
         private List<RecipientAccount> recipientListFactory(string response)
         {
-            JsonDocument rawResponse = JsonDocument.Parse(response);
-            string jsonAccount = rawResponse.RootElement.GetProperty("account").GetString();
-            List<RecipientAccount> recipientAccounts = JsonSerializer.Deserialize<List<RecipientAccount>>(jsonAccount);
-
-            // var tempData = JObject.Parse(response)["accounts"];
-            // List<RecipientAccount> recipientsAccounts = JsonConvert.DeserializeObject<List<RecipientAccount>>(tempData.ToString());
+            var tempData = JObject.Parse(response)["accounts"];
+            List<RecipientAccount> recipientAccounts = JsonConvert.DeserializeObject<List<RecipientAccount>>(tempData.ToString());
             return recipientAccounts;
         }
     }

@@ -1,21 +1,18 @@
-﻿// using Newtonsoft.Json;
-// using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using PaymentRails.Types;
 using System.Collections.Generic;
 using System.Text;
-using System.Text.Json;
 
 namespace PaymentRails
 {
     public class PaymentRails_Payment_Gateway
     {
         PaymentRails_Gateway gateway;
-        PaymentRails_Configuration config;
 
         public PaymentRails_Payment_Gateway(PaymentRails_Gateway gateway)
         {
             this.gateway = gateway;
-            this.config = gateway.config;
         }
 
         public List<Payment> search(int page, int pageNumber)
@@ -87,22 +84,22 @@ namespace PaymentRails
 
         private Payment paymentFactory(string response)
         {
-            JsonDocument rawResponse = JsonDocument.Parse(response);
+            /*JsonDocument rawResponse = JsonDocument.Parse(response);
             string jsonPayment = rawResponse.RootElement.GetProperty("payment").GetString();
             Payment payment = JsonSerializer.Deserialize<Payment>(jsonPayment);
-
-            // var tempData = JObject.Parse(response)["payment"];
-            // Payment payment = JsonConvert.DeserializeObject<Payment>(tempData.ToString());
+*/
+            var tempData = JObject.Parse(response)["payment"];
+            Payment payment = JsonConvert.DeserializeObject<Payment>(tempData.ToString());
             return payment;
         }
         private List<Payment> paymentListFactory(string response)
         {
-            JsonDocument rawResponse = JsonDocument.Parse(response);
+            /*JsonDocument rawResponse = JsonDocument.Parse(response);
             string jsonPayments = rawResponse.RootElement.GetProperty("payments").GetString();
-            List<Payment> payments = JsonSerializer.Deserialize<List<Payment>>(jsonPayments);
+            List<Payment> payments = JsonSerializer.Deserialize<List<Payment>>(jsonPayments);*/
 
-            // var tempData = JObject.Parse(response)["payments"];
-            // List<Payment> payments = JsonConvert.DeserializeObject<List<Payment>>(tempData.ToString());
+            var tempData = JObject.Parse(response)["payments"];
+            List<Payment> payments = JsonConvert.DeserializeObject<List<Payment>>(tempData.ToString());
             return payments;
         }
     }

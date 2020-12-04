@@ -1,9 +1,8 @@
-﻿// using Newtonsoft.Json;
-// using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using PaymentRails.Types;
 using System.Collections.Generic;
 using System.Text;
-using System.Text.Json;
 
 namespace PaymentRails
 {
@@ -117,11 +116,8 @@ namespace PaymentRails
         }
         private List<Batch> batchListFactory(string response)
         {
-            JsonDocument rawResponse = JsonDocument.Parse(response);
-            string jsonBatches = rawResponse.RootElement.GetProperty("batches").GetString();
-            List<Batch> batches = JsonSerializer.Deserialize<List<Batch>>(jsonBatches);
-            // var tempData = JObject.Parse(response)["batches"];
-            // List<Batch> batches = JsonConvert.DeserializeObject<List<Batch>>(tempData.ToString());
+            var tempData = JObject.Parse(response)["batches"];
+            List<Batch> batches = JsonConvert.DeserializeObject<List<Batch>>(tempData.ToString());
             return batches;
         }
     }

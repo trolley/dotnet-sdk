@@ -1,9 +1,8 @@
-﻿// using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using PaymentRails.Exceptions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.Json.Serialization;
 
 namespace PaymentRails.Types
 {
@@ -27,8 +26,8 @@ namespace PaymentRails.Types
         public string gravatarUrl;
 
         public Compliance compliance;
-        // [JsonProperty("accounts")]
-        [JsonPropertyName("accounts")]
+        [JsonProperty("accounts")]
+
         public List<RecipientAccount> recipientAccounts { get; set; }
         public Address address;
 

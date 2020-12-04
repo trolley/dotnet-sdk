@@ -1,8 +1,9 @@
-﻿using PaymentRails.Types;
+﻿using Newtonsoft.Json;
+using PaymentRails.Types;
 using System;
 using System.Collections.Generic;
 // using System.Web.Script.Serialization;
-using System.Text.Json;
+// using System.Text.Json;
 
 namespace PaymentRails.JsonHelpers
 {
