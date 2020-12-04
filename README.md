@@ -41,7 +41,7 @@ class Program
     static void Main(string[] args)
     {
         // set your API key
-		var client = new PaymentRails.Gateway("YOUR-API-KEY", "YOUR-SECRET-KEY");
+	var client = new PaymentRails.Gateway("YOUR-API-KEY", "YOUR-SECRET-KEY");
         Recipient response = client.recipient.find("R-4q7zxMa26hpZhx7ULApBGw");
         Console.WriteLine(response.Id);
         
