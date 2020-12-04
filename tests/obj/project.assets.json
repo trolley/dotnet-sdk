@@ -1953,7 +1953,7 @@
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
-      "PaymentRails.NetCore.SDK/1.0.2.35": {
+      "PaymentRails.NetCore.SDK/1.0.2": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
@@ -6666,7 +6666,7 @@
         "system.xml.xpath.xmldocument.nuspec"
       ]
     },
-    "PaymentRails.NetCore.SDK/1.0.2.35": {
+    "PaymentRails.NetCore.SDK/1.0.2": {
       "type": "project",
       "path": "../paymentrails/paymentrails.csproj",
       "msbuildProject": "../paymentrails/paymentrails.csproj"
@@ -6677,7 +6677,7 @@
       "MSTest.TestAdapter >= 2.0.0",
       "MSTest.TestFramework >= 2.0.0",
       "Microsoft.NET.Test.Sdk >= 16.2.0",
-      "PaymentRails.NetCore.SDK >= 1.0.2.35",
+      "PaymentRails.NetCore.SDK >= 1.0.2",
       "coverlet.collector >= 1.0.1"
     ]
   },
