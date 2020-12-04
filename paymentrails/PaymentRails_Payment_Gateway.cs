@@ -84,20 +84,12 @@ namespace PaymentRails
 
         private Payment paymentFactory(string response)
         {
-            /*JsonDocument rawResponse = JsonDocument.Parse(response);
-            string jsonPayment = rawResponse.RootElement.GetProperty("payment").GetString();
-            Payment payment = JsonSerializer.Deserialize<Payment>(jsonPayment);
-*/
             var tempData = JObject.Parse(response)["payment"];
             Payment payment = JsonConvert.DeserializeObject<Payment>(tempData.ToString());
             return payment;
         }
         private List<Payment> paymentListFactory(string response)
         {
-            /*JsonDocument rawResponse = JsonDocument.Parse(response);
-            string jsonPayments = rawResponse.RootElement.GetProperty("payments").GetString();
-            List<Payment> payments = JsonSerializer.Deserialize<List<Payment>>(jsonPayments);*/
-
             var tempData = JObject.Parse(response)["payments"];
             List<Payment> payments = JsonConvert.DeserializeObject<List<Payment>>(tempData.ToString());
             return payments;

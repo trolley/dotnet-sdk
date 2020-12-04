@@ -20,7 +20,7 @@ namespace PaymentRails.JsonHelpers
             {
                 throw new ArgumentException("JSON must be provided");
             }
-            RecipientAccountListJsonHelper helper = JsonSerializer.Deserialize<RecipientAccountListJsonHelper>(jsonResponse);
+            RecipientAccountListJsonHelper helper = JsonConvert.DeserializeObject<RecipientAccountListJsonHelper>(jsonResponse);
             
             List<RecipientAccount> recipientAccounts = new List<RecipientAccount>();
        
@@ -46,7 +46,7 @@ namespace PaymentRails.JsonHelpers
                 throw new ArgumentException("JSON must be provided");
             }
 
-            RecipientAccountResponseHelper helper = JsonSerializer.Deserialize<RecipientAccountResponseHelper>(jsonResponse);
+            RecipientAccountResponseHelper helper = JsonConvert.DeserializeObject<RecipientAccountResponseHelper>(jsonResponse);
             if (helper.Ok)
             {
                 return RecipientAccountJsonHelperToRecipientAccount(helper.Account);

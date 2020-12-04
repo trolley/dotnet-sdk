@@ -25,7 +25,7 @@
             this.payment = new PaymentRails_Payment_Gateway(this);
         }
 
-        public PaymentRails_Gateway(string apiKey, string apiSecret, string apiBase):this(new PaymentRails_Configuration(apiKey, apiSecret, apiBase))
+        public PaymentRails_Gateway(string apiKey, string apiSecret, string apiBase = "production"):this(new PaymentRails_Configuration(apiKey, apiSecret, apiBase))
         {
         }
 

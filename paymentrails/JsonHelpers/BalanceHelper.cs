@@ -1,10 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-// using System.Text.Json;
-// using System.Web.Script.Serialization;
 using PaymentRails.Types;
-// using System.Web.Script.Serialization;
 
 namespace PaymentRails.JsonHelpers
 {
@@ -22,7 +19,7 @@ namespace PaymentRails.JsonHelpers
             {
                 throw new ArgumentException("JSON must be provided");
             }
-            BalanceListJsonHelper helper = JsonSerializer.Deserialize<BalanceListJsonHelper>(jsonString);
+            BalanceListJsonHelper helper = JsonConvert.DeserializeObject<BalanceListJsonHelper>(jsonString);
             List<Balance> balances = new List<Balance>();
             if (helper.Ok)
             {
