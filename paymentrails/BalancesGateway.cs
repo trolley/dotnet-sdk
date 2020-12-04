@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
 using System.Collections.Generic;
 using PaymentRails.Types;
 
@@ -15,15 +14,31 @@ namespace PaymentRails
             this.gateway = gateway;
         }
 
-        public List<Balance> find()
+        public List<Balance> find(string type = "all")
+        {
+            if (type == "all")
+            {
+                return all();
+            }
+
+            string endPoint = "/v1/balances/" + type;
+
+            string response = this.gateway.client.get(endPoint);
+
+            return balanceListFactory(response);
+
+        }
+            
+
+        public List<Balance> all()
         {
             string endPoint = "/v1/balances/";
-            Console.WriteLine("fart");
 
             string response = this.gateway.client.get(endPoint);
 
             return balanceListFactory(response);
         }
+
 
         private List<Balance> balanceListFactory(string response)
         {

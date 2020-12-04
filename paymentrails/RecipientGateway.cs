@@ -9,12 +9,10 @@ namespace PaymentRails
     public class RecipientGateway
     {
         Gateway gateway;
-        Configuration config;
 
         public RecipientGateway(Gateway gateway)
         {
             this.gateway = gateway;
-            this.config = gateway.config;  
         }
         public List<Types.Recipient> all()
         {
