@@ -11,13 +11,13 @@ namespace paymentrailsTest
     [TestClass]
     public class PaymentRails_Integration_RecipientTest
     {
-        PaymentRails_Gateway gateway;
+        Gateway gateway;
 
 
         [TestInitialize]
         public void Init()
         {
-            gateway = new PaymentRails_Gateway("YOUR-API-KEY", "YOUR-API-SECRET", "production");
+            gateway = new Gateway("YOUR-API-KEY", "YOUR-API-SECRET", "production");
         }
 
         [TestMethod]

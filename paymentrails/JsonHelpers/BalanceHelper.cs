@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using PaymentRails.Types;
 
 namespace PaymentRails.JsonHelpers
 {
@@ -13,14 +12,14 @@ namespace PaymentRails.JsonHelpers
         /// <param name="jsonString"></param>
         /// <returns>The Balance object representation of the JSON string</returns>
 
-        public static List<Balance> JsonToBalanceList(string jsonString)
+        public static List<Types.Balance> JsonToBalanceList(string jsonString)
         {
             if (jsonString == null || jsonString == "")
             {
                 throw new ArgumentException("JSON must be provided");
             }
             BalanceListJsonHelper helper = JsonConvert.DeserializeObject<BalanceListJsonHelper>(jsonString);
-            List<Balance> balances = new List<Balance>();
+            List<Types.Balance> balances = new List<Types.Balance>();
             if (helper.Ok)
             {
                 foreach(BalanceJsonHelper b in helper.Balances)

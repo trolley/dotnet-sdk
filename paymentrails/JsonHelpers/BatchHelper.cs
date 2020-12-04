@@ -12,7 +12,7 @@ namespace PaymentRails.JsonHelpers
         /// </summary>
         /// <param name="jsonResponse"></param>
         /// <returns>The List of Batches that the JSON object represented</returns>
-        public static List<Batch> JsonToBatchList(string jsonResponse)
+        public static List<Types.Batch> JsonToBatchList(string jsonResponse)
         {
             if (jsonResponse == null || jsonResponse == "")
             {
@@ -20,7 +20,7 @@ namespace PaymentRails.JsonHelpers
             }
 
             BatchListJsonHelper helper = JsonConvert.DeserializeObject<BatchListJsonHelper>(jsonResponse);
-            List<Batch> batches = new List<Batch>();
+            List<Types.Batch> batches = new List<Types.Batch>();
             if (helper.Ok)
             {
                 foreach (BatchJsonHelper b in helper.Batches)
@@ -36,7 +36,7 @@ namespace PaymentRails.JsonHelpers
         /// </summary>
         /// <param name="jsonResponse"></param>
         /// <returns>The Batch that the JSON string represented</returns>
-        public static Batch JsonToBatch(string jsonResponse)
+        public static Types.Batch JsonToBatch(string jsonResponse)
         {
             if (jsonResponse == null || jsonResponse == "")
             {

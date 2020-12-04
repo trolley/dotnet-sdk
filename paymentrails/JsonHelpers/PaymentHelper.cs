@@ -14,14 +14,14 @@ namespace PaymentRails.JsonHelpers
         /// </summary>
         /// <param name="jsonResponse"></param>
         /// <returns>The List of Payment that the JSON object represented</returns>
-        public static List<Payment> JsonToPaymentList(string jsonResponse)
+        public static List<Types.Payment> JsonToPaymentList(string jsonResponse)
         {
             if (jsonResponse == null || jsonResponse == "")
             {
                 throw new ArgumentException("JSON must be provided");
             }
             PaymentListJsonHelper helper = JsonConvert.DeserializeObject<PaymentListJsonHelper>(jsonResponse);
-            List<Payment> payments = new List<Payment>();
+            List<Types.Payment> payments = new List<Types.Payment>();
 
             if (helper.Ok)
             {
@@ -37,14 +37,14 @@ namespace PaymentRails.JsonHelpers
         /// </summary>
         /// <param name="jsonResponse"></param>
         /// <returns>The Payment that the JSON object represented</returns>
-        public static Payment JsonToPayment(string jsonResponse)
+        public static Types.Payment JsonToPayment(string jsonResponse)
         {
             if (jsonResponse == null || jsonResponse == "")
             {
                 throw new ArgumentException("JSON must be provided");
             }
             PaymentResponseJsonHelper helper = JsonConvert.DeserializeObject<PaymentResponseJsonHelper>(jsonResponse);
-            Payment payment = PaymentJsonHelperToPayment(helper.Payment);
+            Types.Payment payment = PaymentJsonHelperToPayment(helper.Payment);
             return payment;
         }
     }

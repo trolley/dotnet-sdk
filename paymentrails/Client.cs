@@ -10,13 +10,13 @@ namespace PaymentRails
     /// <summary>
     /// A Class that makes HTTP Requests to the API.
     /// </summary>
-    public class PaymentRails_Client
+    public class Client
     {
-        public PaymentRails_Configuration config;
+        public Configuration config;
 
         private HttpClient httpClient;
 
-        public PaymentRails_Client(PaymentRails_Configuration config)
+        public Client(Configuration config)
         {
             this.config = config;
         }

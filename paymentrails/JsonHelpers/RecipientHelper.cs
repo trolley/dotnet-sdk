@@ -12,14 +12,14 @@ namespace PaymentRails.JsonHelpers
         /// </summary>
         /// <param name="jsonResponse"></param>
         /// <returns>The List of Recipients that the JSON object represented</returns>
-        public static List<Recipient> JsonToRecipientList(string jsonResponse)
+        public static List<Types.Recipient> JsonToRecipientList(string jsonResponse)
         {
             if (jsonResponse == null || jsonResponse == "")
             {
                 throw new ArgumentException("JSON must be provided");
             }
             RecipientListJsonHelper helper = JsonConvert.DeserializeObject<RecipientListJsonHelper>(jsonResponse);
-            List<Recipient> recipients = new List<Recipient>();
+            List<Types.Recipient> recipients = new List<Types.Recipient>();
             if (helper.Ok)
             {
                 foreach (RecipientJsonHelper r in helper.Recipients)
@@ -34,7 +34,7 @@ namespace PaymentRails.JsonHelpers
         /// </summary>
         /// <param name="jsonResponse"></param>
         /// <returns>The Recipient that the JSON object represented</returns>
-        public static Recipient JsonToRecipient(string jsonResponse)
+        public static Types.Recipient JsonToRecipient(string jsonResponse)
         {
             if (jsonResponse == null || jsonResponse == "")
             {
@@ -46,7 +46,7 @@ namespace PaymentRails.JsonHelpers
             {
                 return RecipientJsonHelperToRecipient(helper.Recipient);
             }
-            return new Recipient();
+            return new Types.Recipient();
         }
     }
 }

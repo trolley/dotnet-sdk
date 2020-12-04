@@ -8,55 +8,55 @@ namespace PaymentRails.JsonHelpers
     public abstract class JsonHelper
     {
         #region Helper to type Mapping functions
-        protected static Recipient RecipientJsonHelperToRecipient(RecipientJsonHelper helper)
+        protected static Types.Recipient RecipientJsonHelperToRecipient(RecipientJsonHelper helper)
         {
-            List<RecipientAccount> accounts = null;
+            List<Types.RecipientAccount> accounts = null;
 
             if (helper.Accounts != null)
             {
-                accounts = new List<RecipientAccount>();
-                foreach (RecipientAccount p in helper.Accounts)
+                accounts = new List<Types.RecipientAccount>();
+                foreach (Types.RecipientAccount p in helper.Accounts)
                 {
                     accounts.Add(p);
                 }
             }
-            
-            Recipient recipient = new Recipient(helper.Type, helper.Email, helper.Name, helper.FirstName, helper.LastName, helper.Id, helper.ReferenceId, helper.Status, helper.TimeZone, helper.Language, helper.Dob, helper.GravatarUrl, helper.Compliance, accounts, helper.Address);
+
+            Types.Recipient recipient = new Types.Recipient(helper.Type, helper.Email, helper.Name, helper.FirstName, helper.LastName, helper.Id, helper.ReferenceId, helper.Status, helper.TimeZone, helper.Language, helper.Dob, helper.GravatarUrl, helper.Compliance, accounts, helper.Address);
             return recipient;
         }
 
-        protected static RecipientAccount RecipientAccountJsonHelperToRecipientAccount(RecipientAccountJsonHelper helper)
+        protected static Types.RecipientAccount RecipientAccountJsonHelperToRecipientAccount(RecipientAccountJsonHelper helper)
         {
-            RecipientAccount recipientAccount = new RecipientAccount(helper.Type, helper.Currency, helper.Id, helper.Primary, helper.Country, helper.Iban, helper.AccountNum, helper.RecipientAccountId, helper.RouteType, helper.RecipientFees, helper.EmailAddress, helper.AccountHolderName,helper.SwiftBic, helper.BranchId, helper.BankName, helper.BankId, helper.BankAddress, helper.BankCity, helper.BankRegionCode, helper.BankPostalCode);
+            Types.RecipientAccount recipientAccount = new Types.RecipientAccount(helper.Type, helper.Currency, helper.Id, helper.Primary, helper.Country, helper.Iban, helper.AccountNum, helper.RecipientAccountId, helper.RouteType, helper.RecipientFees, helper.EmailAddress, helper.AccountHolderName, helper.SwiftBic, helper.BranchId, helper.BankName, helper.BankId, helper.BankAddress, helper.BankCity, helper.BankRegionCode, helper.BankPostalCode);
             return recipientAccount;
         }
 
-        protected static Payment PaymentJsonHelperToPayment(PaymentJsonHelper helper)
+        protected static Types.Payment PaymentJsonHelperToPayment(PaymentJsonHelper helper)
         {
             string batchId = null;
             if (helper.Batch != null)
             {
                 batchId = helper.Batch.Id;
             }
-            Recipient recipient = RecipientJsonHelperToRecipient(helper.Recipient);
+            Types.Recipient recipient = RecipientJsonHelperToRecipient(helper.Recipient);
 
-            Payment payment = new Payment(recipient, helper.SourceAmount, helper.SourceCurrency, helper.TargetAmount, helper.TargetCurrency, helper.Id, helper.Memo, helper.ExchangeRate, helper.Fees,helper.RecipientFees, helper.FxRate,helper.ProcessedAt, helper.CreatedAt, helper.UpdatedAt,helper.MerchantFees,batchId, helper.Status, helper.Compliance);
+            Types.Payment payment = new Types.Payment(recipient, helper.SourceAmount, helper.SourceCurrency, helper.TargetAmount, helper.TargetCurrency, helper.Id, helper.Memo, helper.ExchangeRate, helper.Fees, helper.RecipientFees, helper.FxRate, helper.ProcessedAt, helper.CreatedAt, helper.UpdatedAt, helper.MerchantFees, batchId, helper.Status, helper.Compliance);
             return payment;
         }
 
-        protected static Batch BatchJsonHelperToBatch(BatchJsonHelper helper)
+        protected static Types.Batch BatchJsonHelperToBatch(BatchJsonHelper helper)
         {
-            List<Payment> payments = null;
+            List<Types.Payment> payments = null;
             if (helper.Payments != null)
             {
-                payments = new List<Payment>();
+                payments = new List<Types.Payment>();
                 foreach (PaymentJsonHelper p in helper.Payments.Payments)
                 {
                     payments.Add(PaymentJsonHelperToPayment(p));
                     payments.Last().batchId = helper.Id;
                 }
             }
-            Batch batch = new Batch(helper.Description, payments, helper.Currency, helper.Amount, helper.TotalPayments, helper.Status,
+            Types.Batch batch = new Types.Batch(helper.Description, payments, helper.Currency, helper.Amount, helper.TotalPayments, helper.Status,
                 helper.SentAt, helper.CompletedAt, helper.CreatedAt, helper.UpdatedAt, helper.Id);
             return batch;
         }
@@ -160,7 +160,7 @@ namespace PaymentRails.JsonHelpers
             private string gravatarUrl;
 
             private Compliance compliance;
-            private List<RecipientAccount> accounts;
+            private List<Types.RecipientAccount> accounts;
             private Address address;
 
             #region properties
@@ -320,7 +320,7 @@ namespace PaymentRails.JsonHelpers
                 }
             }
 
-            public List<RecipientAccount> Accounts
+            public List<Types.RecipientAccount> Accounts
             {
                 get
                 {
@@ -360,7 +360,7 @@ namespace PaymentRails.JsonHelpers
             }
             #endregion
 
-            public RecipientJsonHelper(string id, string referenceId, string email, string name, string firstName, string lastName, string type, string status, string timeZone, string language, string dob, string gravatarUrl, Compliance compliance, List<RecipientAccount> accounts, Address address)
+            public RecipientJsonHelper(string id, string referenceId, string email, string name, string firstName, string lastName, string type, string status, string timeZone, string language, string dob, string gravatarUrl, Compliance compliance, List<Types.RecipientAccount> accounts, Address address)
             {
                 this.id = id;
                 this.referenceId = referenceId;

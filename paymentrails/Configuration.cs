@@ -1,31 +1,31 @@
 ﻿namespace PaymentRails
 {
-    public class PaymentRails_Configuration
+    public class Configuration
     {
         private string apiKey;
         private string apiSecret;
         private string apiBase;
 
-        public PaymentRails_Configuration()
+        public Configuration()
         {
 
         }
 
-        public PaymentRails_Configuration(string apiKey, string apiSecret, string apiBase)
+        public Configuration(string apiKey, string apiSecret, string apiBase)
         {
             this.apiKey = apiKey;
             this.apiSecret = apiSecret;
             this.apiBase = enviromentToUrl(apiBase);
         }
 
-        public static PaymentRails_Gateway gateway()
+        public static Gateway gateway()
         {
-            return new PaymentRails_Gateway(new PaymentRails_Configuration());
+            return new Gateway(new Configuration());
         }
 
-        public static PaymentRails_Client client (PaymentRails_Configuration config)
+        public static Client client (Configuration config)
         {
-            return new PaymentRails_Client(config);
+            return new Client(config);
         }
 
         public string ApiKey
@@ -72,7 +72,7 @@
                 case "integration":
                     return "http://api.local.dev:3000";
                 case "development":
-                    return "http://api.railz.io";
+                    return "https://api.railz.io";
                 case "sandbox":
                     return "https://api.paymentrails.com";
                 case "production":
