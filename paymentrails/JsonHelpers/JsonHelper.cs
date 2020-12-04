@@ -61,6 +61,20 @@ namespace PaymentRails.JsonHelpers
             return batch;
         }
 
+        protected static Balance BalanceJsonHelperToBalance(BalanceJsonHelper helper)
+        {
+
+            //List<Balance> balances = new List<Balance>();
+            //foreach (BalanceJsonHelper b in helper.Payments.Payments)
+            //{
+            //    payments.Add(PaymentJsonHelperToPayment(p));
+            //    payments.Last().batchId = helper.Id;
+            //}
+            Balance helperBalance = helper.Balance;
+            Balance balance = helperBalance;
+            return balance;
+        }
+
         #endregion
 
         #region Recipient classes
@@ -821,15 +835,27 @@ namespace PaymentRails.JsonHelpers
         }
         #endregion
         #region Balance classes
-        protected struct JsonBalancesHelper
+        protected struct BalanceJsonHelper
         {
-            public Boolean ok { get; set; }
-            public Dictionary<String, Balance> balances { get; set; }
+            public Boolean Ok { get; set; }
+            public Balance Balance { get; set; }
 
-            public JsonBalancesHelper(bool ok, Dictionary<string, Balance> balances) : this()
+            public BalanceJsonHelper(bool ok, Balance balance) : this()
             {
-                this.ok = ok;
-                this.balances = balances;
+                this.Ok = ok;
+                this.Balance = balance;
+            }
+        }
+
+        protected struct BalanceListJsonHelper
+        {
+            public Boolean Ok { get; set; }
+            public List<BalanceJsonHelper> Balances { get; set; }
+
+            public BalanceListJsonHelper(bool ok, List<BalanceJsonHelper> balances) : this()
+            {
+                this.Ok = ok;
+                this.Balances = balances;
             }
         }
         #endregion

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using PaymentRails.Types;
 
 namespace PaymentRails
 {
@@ -15,12 +16,13 @@ namespace PaymentRails
             this.config = gateway.config;
         }
 
-        public Dictionary<String, Types.Balance> find(string type = "")
+        public List<Balance> find()
         {
-            string endPoint = "/v1/balances/" + type;
+            string endPoint = "/v1/balances/";
+            Console.WriteLine("fart");
             string response = this.gateway.client.get(endPoint);
-            Dictionary<String, Types.Balance> balanceDictionary = JsonHelpers.BalanceHelper.JsonToBalanceDictionary(response);
-            return balanceDictionary;
+            List<Balance> balanceList = JsonHelpers.BalanceHelper.JsonToBalanceList(response);
+            return balanceList;
         }
     }
 }

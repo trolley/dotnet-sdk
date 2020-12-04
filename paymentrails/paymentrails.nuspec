@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>PaymentRails.SDK</id>
-    <version>1.0.1</version>
+    <id>PaymentRails.NetCore.SDK</id>
+    <version>1.0.2</version>
     <title>$title$</title>
     <authors>Jesse Tremblay, Jesse Silber, Joshua Cunningham</authors>
     <owners>PaymentRailsJesse, fronugget</owners>
