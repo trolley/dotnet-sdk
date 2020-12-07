@@ -2,7 +2,8 @@ name: Netcore SDK Build
 
 on:
   push:
-    branches: [ netcore2.1 ]
+    branches:
+      - netcore2.1
 
 jobs:
   build:
