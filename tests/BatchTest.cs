@@ -37,7 +37,7 @@ namespace tests
         [TestMethod]
         public void testCreate()
         {
-            Batch batch = new Batch("Integration Test Create", null, "USD", 0);
+            Batch batch = new Batch("Integration Test Create", null, Config.TEST_BALANCE_CURRENCY, 0);
             batch = gateway.batch.create(batch);
             Assert.IsNotNull(batch);
             Assert.IsNotNull(batch.id);
@@ -48,7 +48,7 @@ namespace tests
         [TestMethod]
         public void testUpdate()
         {
-            Batch batch = new Batch("Integration Test Create", null, "USD", 0);
+            Batch batch = new Batch("Integration Test Create", null, Config.TEST_BALANCE_CURRENCY, 0);
             batch = gateway.batch.create(batch);
             Assert.IsNotNull(batch);
             Assert.IsNotNull(batch.id);
@@ -82,7 +82,7 @@ namespace tests
             payments.Add(paymentAlpha);
             payments.Add(paymentBeta);
 
-            Batch batch = new Batch("Integration Test Payments", payments, "USD", 0);
+            Batch batch = new Batch("Integration Test Payments", payments, Config.TEST_BALANCE_CURRENCY, 0);
             batch = gateway.batch.create(batch);
 
 
@@ -104,7 +104,7 @@ namespace tests
         public void testPayments()
         {
 
-            Batch batch = new Batch("Integration Test Payments", null, "EUR", 0);
+            Batch batch = new Batch("Integration Test Payments", null, Config.TEST_BALANCE_CURRENCY, 0);
             batch = gateway.batch.create(batch);
             Assert.IsNotNull(batch);
             Assert.IsNotNull(batch.id);
@@ -139,7 +139,7 @@ namespace tests
             payments.Add(paymentAlpha);
             payments.Add(paymentBeta);
 
-            Batch batch = new Batch("Integration Test Payments", payments, "USD", 0);
+            Batch batch = new Batch("Integration Test Payments", payments, Config.TEST_BALANCE_CURRENCY, 0);
             batch = gateway.batch.create(batch);
 
             Batch quote = gateway.batch.generateQuote(batch.id);
