@@ -2,7 +2,8 @@ name: Netcore SDK Build
 
 on:
   push:
-    branches: [ netcore2.1 ]
+    branches:
+      - netcore2.1
 
 jobs:
   build:
@@ -17,5 +18,12 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --configuration Release --no-restore
-    - name: Test
-      run: dotnet test --no-restore --verbosity normal
+#     - name: Test
+#       run: dotnet test --no-restore --verbosity normal
+    - name: Publish to NuGet
+      uses: brandedoutcast/publish-nuget@v2
+      with:
+        PROJECT_FILE_PATH: paymentrails/paymentrails.csproj
+#         VERSION_REGEX: '^\s*<PackageVersion>(.*)<\/PackageVersion>\s*$'
+        TAG_FORMAT: '*'
+        NUGET_KEY: ${{secrets.NUGET_API_KEY}}
