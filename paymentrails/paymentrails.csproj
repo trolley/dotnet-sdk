@@ -26,8 +26,8 @@
     <RootNamespace>PaymentRails</RootNamespace>
     <PackageId>PaymentRails.NetCore.SDK</PackageId>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.4</Version>
-    <PackageDescription>The official Payment Rails NETCore SDK to interface with the Payment Rails API (https://www.paymentrails.com/)</PackageDescription>
+    <Version>1.0.5</Version>
+    <PackageDescription>The official Payment Rails NET Core and NET Standard SDK to interface with the Payment Rails API (https://www.paymentrails.com/)</PackageDescription>
     <Copyright>Copyright 2020</Copyright>
     <Authors>Jesse Tremblay, Jesse Silber, Joshua Cunningham</Authors>
     <PackageTags>netcore sdk PaymentRails</PackageTags>
