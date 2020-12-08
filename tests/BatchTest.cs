@@ -148,5 +148,22 @@ namespace tests
             Batch start = gateway.batch.processBatch(batch.id);
             Assert.IsNotNull(start);
         }
+
+        [TestMethod]
+        public void testFailure()
+        {
+            try
+            {
+                Batch batch = new Batch("Integration Test Payments", null, "MVR", 0);
+                batch = gateway.batch.create(batch);
+            }
+            catch (Exception e)
+            {
+                Assert.IsNotNull(e);
+            }
+
+
+
+        }
     }
 }

@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
 namespace PaymentRails.Exceptions
 {
-    public class InvalidStatusCodeException : SystemException
+    public class InvalidStatusCodeException : Exception
     {
         /// <summary>
 
@@ -26,14 +25,6 @@ namespace PaymentRails.Exceptions
 
 
         public InvalidStatusCodeException(string message, Exception innerException) : base(message, innerException)
-
-        {
-
-        }
-
-       
-
-        protected InvalidStatusCodeException(SerializationInfo info, StreamingContext context) : base(info, context)
 
         {
 
