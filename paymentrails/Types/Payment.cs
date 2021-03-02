@@ -129,11 +129,11 @@ namespace PaymentRails.Types
             string currencyString;
             if (this.sourceAmount > 0)
             {
-                currencyString = String.Format("\"sourceAmount\": \"{0}\",\n", this.sourceAmount);
+                currencyString = String.Format("\"sourceAmount\": \"{0:0:00}\",\n", this.sourceAmount);
             }
             else
             {
-                currencyString = String.Format("\"targetAmount\": \"{0}\",\n\"targetCurrency\": \"{1}\",\n",this.targetAmount, this.targetCurrency);
+                currencyString = String.Format("\"targetAmount\": \"{0:0.00}\",\n\"targetCurrency\": \"{1:0.00}\",\n", this.targetAmount, this.targetCurrency);
             }
             StringBuilder builder = new StringBuilder();
             builder.Append("{\n");

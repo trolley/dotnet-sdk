@@ -14,9 +14,6 @@
         "outputPath": "D:\\Git\\paymentrails_dotnet\\paymentrails\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
           "C:\\Users\\Joshua\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -27,14 +24,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "D:\\Git\\paymentrails_dotnet\\paymentrails\\bin\\Release": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp2.0": {
+            "targetAlias": "netcoreapp2.0",
             "projectReferences": {}
           },
           "netstandard1.3": {
+            "targetAlias": "netstandard1.3",
             "projectReferences": {}
           }
         },
@@ -46,6 +44,7 @@
       },
       "frameworks": {
         "netcoreapp2.0": {
+          "targetAlias": "netcoreapp2.0",
           "dependencies": {
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
@@ -68,9 +67,10 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         },
         "netstandard1.3": {
+          "targetAlias": "netstandard1.3",
           "dependencies": {
             "NETStandard.Library": {
               "target": "Package",
@@ -82,7 +82,7 @@
               "version": "[12.0.3, )"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -96,9 +96,6 @@
         "outputPath": "D:\\Git\\paymentrails_dotnet\\tests\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
           "C:\\Users\\Joshua\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -109,11 +106,11 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "D:\\Git\\paymentrails_dotnet\\paymentrails\\bin\\Release": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp2.0": {
+            "targetAlias": "netcoreapp2.0",
             "projectReferences": {
               "D:\\Git\\paymentrails_dotnet\\paymentrails\\paymentrails.csproj": {
                 "projectPath": "D:\\Git\\paymentrails_dotnet\\paymentrails\\paymentrails.csproj"
@@ -121,6 +118,7 @@
             }
           },
           "netstandard1.3": {
+            "targetAlias": "netstandard1.3",
             "projectReferences": {
               "D:\\Git\\paymentrails_dotnet\\paymentrails\\paymentrails.csproj": {
                 "projectPath": "D:\\Git\\paymentrails_dotnet\\paymentrails\\paymentrails.csproj"
@@ -136,6 +134,7 @@
       },
       "frameworks": {
         "netcoreapp2.0": {
+          "targetAlias": "netcoreapp2.0",
           "dependencies": {
             "MSTest.TestAdapter": {
               "target": "Package",
@@ -170,9 +169,10 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         },
         "netstandard1.3": {
+          "targetAlias": "netstandard1.3",
           "dependencies": {
             "MSTest.TestAdapter": {
               "target": "Package",
@@ -196,7 +196,7 @@
               "version": "[1.0.1, )"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }
