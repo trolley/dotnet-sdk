@@ -477,7 +477,7 @@ namespace PaymentRails.JsonHelpers
         protected class RecipientAccountJsonHelper
         {
             private string id;
-            private string primary;
+            private bool primary;
             private string currency;
             private string recipientAccountId;
             private string routeType;
@@ -511,7 +511,7 @@ namespace PaymentRails.JsonHelpers
                 }
             }
 
-            public string Primary
+            public bool Primary
             {
                 get
                 {
@@ -759,7 +759,7 @@ namespace PaymentRails.JsonHelpers
             }
             #endregion
 
-            public RecipientAccountJsonHelper(string id, string primary, string currency, string recipientAccountId, string routeType, string recipientFees, string emailAddress, string country, string type, string iban, string accountNum, string accountHolderName, string swiftBic, string branchId, string bankName, string bankId, string bankAddress, string bankCity, string bankRegionCode, string bankPostalCode)
+            public RecipientAccountJsonHelper(string id, bool primary, string currency, string recipientAccountId, string routeType, string recipientFees, string emailAddress, string country, string type, string iban, string accountNum, string accountHolderName, string swiftBic, string branchId, string bankName, string bankId, string bankAddress, string bankCity, string bankRegionCode, string bankPostalCode)
             {
                 this.Id = id;
                 this.Primary = primary;

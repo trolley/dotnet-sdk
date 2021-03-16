@@ -4,6 +4,7 @@ using System.Net.Http;
 using PaymentRails.Exceptions;
 using PaymentRails.Types;
 using System.Security.Cryptography;
+using Newtonsoft.Json;
 
 namespace PaymentRails
 {

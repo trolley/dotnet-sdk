@@ -1,5 +1,5 @@
 ﻿using PaymentRails.Exceptions;
-using System.Text;
+using Newtonsoft.Json;
 
 namespace PaymentRails.Types
 {
@@ -10,7 +10,7 @@ namespace PaymentRails.Types
   public class RecipientAccount : IPaymentRailsMappable
   {
     public string id;
-    public string primary;
+    public bool primary;
     public string currency;
     public string recipientAccountId;
     public string routeType;
@@ -30,7 +30,7 @@ namespace PaymentRails.Types
     public string bankRegionCode;
     public string bankPostalCode;
 
-    public RecipientAccount(string type, string currency, string id, string primary, string country, string iban = null, string accountNum = null, string recipientAccountId = null, string routeType = null, string recipientFees = null, string emailAddress = null, string accountHolderName = null, string swiftBic = null, string branchId = null, string bankName = null, string bankId = null, string bankAddress = null, string bankCity = null, string bankRegionCode = null, string bankPostalCode = null)
+    public RecipientAccount(string type, string currency, string id, bool primary, string country, string iban = null, string accountNum = null, string recipientAccountId = null, string routeType = null, string recipientFees = null, string emailAddress = null, string accountHolderName = null, string swiftBic = null, string branchId = null, string bankName = null, string bankId = null, string bankAddress = null, string bankCity = null, string bankRegionCode = null, string bankPostalCode = null)
 
     {
       this.id = id;
@@ -152,33 +152,14 @@ namespace PaymentRails.Types
     /// <returns>JSON string representation of the object</returns>
     public string ToJson()
     {
+        JsonSerializerSettings settings = new JsonSerializerSettings
+        {
+            StringEscapeHandling = StringEscapeHandling.EscapeNonAscii,
+            NullValueHandling = NullValueHandling.Ignore,
+            Formatting = Formatting.Indented
+        };
 
-      StringBuilder builder = new StringBuilder();
-      builder.Append("{\n");
-      if (type == "bank-transfer")
-      {
-        builder.AppendFormat("\"country\": \"{0}\",\n", this.country);
-        builder.AppendFormat("\"type\": \"{0}\",\n", this.type);
-        builder.AppendFormat("\"currency\": \"{0}\",\n", this.currency);
-        builder.AppendFormat("\"branchId\": \"{0}\",\n", this.branchId);
-        builder.AppendFormat("\"bankId\": \"{0}\",\n", this.bankId);
-        if (iban != "" && iban != null) { builder.AppendFormat("\"iban\": \"{0}\",\n", this.iban); }
-        builder.AppendFormat("\"accountNum\": \"{0}\",\n", this.accountNum);
-        builder.AppendFormat("\"primary\": {0},\n", this.primary);
-        if (accountHolderName != "" && accountHolderName != null) { builder.AppendFormat("\"accountHolderName\": \"{0}\",\n", this.accountHolderName); }
-        builder.AppendFormat("\"swiftBic\": \"{0}\"\n", this.swiftBic);
-      }
-      else if (type == "paypal")
-      {
-        builder.AppendFormat("\"type\": \"{0}\",\n", this.type);
-        builder.AppendFormat("\"emailAddress\": \"{0}\",\n", this.emailAddress);
-        builder.AppendFormat("\"primary\": {0}\n", this.primary);
-
-      }
-
-      builder.Append("}");
-
-      return builder.ToString();
+        return JsonConvert.SerializeObject(this, settings);
     }
   }
 }

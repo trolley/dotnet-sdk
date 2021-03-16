@@ -10,3 +10,4 @@ D:\Git\paymentrails_dotnet\tests\obj\Release\netstandard1.3\tests.AssemblyInfo.c
 D:\Git\paymentrails_dotnet\tests\obj\Release\netstandard1.3\tests.csproj.CopyComplete
 D:\Git\paymentrails_dotnet\tests\obj\Release\netstandard1.3\tests.dll
 D:\Git\paymentrails_dotnet\tests\obj\Release\netstandard1.3\tests.pdb
+D:\Git\paymentrails_dotnet\tests\obj\Release\netstandard1.3\tests.csproj.CoreCompileInputs.cache
