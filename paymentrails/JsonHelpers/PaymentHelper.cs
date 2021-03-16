@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using PaymentRails.Types;
-using System.Web.Script.Serialization;
+// using System.Web.Script.Serialization;
 using System.Collections.Generic;
+// using System.Text.Json;
 
 namespace PaymentRails.JsonHelpers
 {
@@ -12,14 +14,14 @@ namespace PaymentRails.JsonHelpers
         /// </summary>
         /// <param name="jsonResponse"></param>
         /// <returns>The List of Payment that the JSON object represented</returns>
-        public static List<Payment> JsonToPaymentList(string jsonResponse)
+        public static List<Types.Payment> JsonToPaymentList(string jsonResponse)
         {
             if (jsonResponse == null || jsonResponse == "")
             {
                 throw new ArgumentException("JSON must be provided");
             }
-            PaymentListJsonHelper helper = new JavaScriptSerializer().Deserialize<PaymentListJsonHelper>(jsonResponse);
-            List<Payment> payments = new List<Payment>();
+            PaymentListJsonHelper helper = JsonConvert.DeserializeObject<PaymentListJsonHelper>(jsonResponse);
+            List<Types.Payment> payments = new List<Types.Payment>();
 
             if (helper.Ok)
             {
@@ -35,14 +37,14 @@ namespace PaymentRails.JsonHelpers
         /// </summary>
         /// <param name="jsonResponse"></param>
         /// <returns>The Payment that the JSON object represented</returns>
-        public static Payment JsonToPayment(string jsonResponse)
+        public static Types.Payment JsonToPayment(string jsonResponse)
         {
             if (jsonResponse == null || jsonResponse == "")
             {
                 throw new ArgumentException("JSON must be provided");
             }
-            PaymentResponseJsonHelper helper = new JavaScriptSerializer().Deserialize<PaymentResponseJsonHelper>(jsonResponse);
-            Payment payment = PaymentJsonHelperToPayment(helper.Payment);
+            PaymentResponseJsonHelper helper = JsonConvert.DeserializeObject<PaymentResponseJsonHelper>(jsonResponse);
+            Types.Payment payment = PaymentJsonHelperToPayment(helper.Payment);
             return payment;
         }
     }

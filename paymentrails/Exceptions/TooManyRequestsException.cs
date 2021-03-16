@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
 namespace PaymentRails.Exceptions
 {
-    class TooManyRequestsException : SystemException
+    class TooManyRequestsException : Exception
     {
         /// <summary>
 
@@ -26,14 +25,6 @@ namespace PaymentRails.Exceptions
 
 
         public TooManyRequestsException(string message, Exception innerException) : base(message, innerException)
-
-        {
-
-        }
-
-
-
-        protected TooManyRequestsException(SerializationInfo info, StreamingContext context) : base(info, context)
 
         {
 

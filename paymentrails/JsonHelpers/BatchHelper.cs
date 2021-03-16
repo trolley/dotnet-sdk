@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using PaymentRails.Types;
-using System.Web.Script.Serialization;
 using System.Collections.Generic;
+using System;
 
 namespace PaymentRails.JsonHelpers
 {
@@ -12,15 +12,15 @@ namespace PaymentRails.JsonHelpers
         /// </summary>
         /// <param name="jsonResponse"></param>
         /// <returns>The List of Batches that the JSON object represented</returns>
-        public static List<Batch> JsonToBatchList(string jsonResponse)
+        public static List<Types.Batch> JsonToBatchList(string jsonResponse)
         {
             if (jsonResponse == null || jsonResponse == "")
             {
                 throw new ArgumentException("JSON must be provided");
             }
 
-            BatchListJsonHelper helper = new JavaScriptSerializer().Deserialize<BatchListJsonHelper>(jsonResponse);
-            List<Batch> batches = new List<Batch>();
+            BatchListJsonHelper helper = JsonConvert.DeserializeObject<BatchListJsonHelper>(jsonResponse);
+            List<Types.Batch> batches = new List<Types.Batch>();
             if (helper.Ok)
             {
                 foreach (BatchJsonHelper b in helper.Batches)
@@ -36,14 +36,15 @@ namespace PaymentRails.JsonHelpers
         /// </summary>
         /// <param name="jsonResponse"></param>
         /// <returns>The Batch that the JSON string represented</returns>
-        public static Batch JsonToBatch(string jsonResponse)
+        public static Types.Batch JsonToBatch(string jsonResponse)
         {
             if (jsonResponse == null || jsonResponse == "")
             {
                 throw new ArgumentException("JSON must be provided");
             }
 
-            BatchResponseJsonHelper helper = new JavaScriptSerializer().Deserialize<BatchResponseJsonHelper>(jsonResponse);
+            BatchResponseJsonHelper helper = JsonConvert.DeserializeObject<BatchResponseJsonHelper>(jsonResponse);
+
             if (helper.Ok)
             {
                 return BatchJsonHelperToBatch(helper.Batch);

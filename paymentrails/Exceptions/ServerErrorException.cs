@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
 namespace PaymentRails.Exceptions
 {
-    public class ServerErrorException : SystemException
+    public class ServerErrorException : Exception
     {
         /// <summary>
 
@@ -26,14 +25,6 @@ namespace PaymentRails.Exceptions
 
 
         public ServerErrorException(string message, Exception innerException) : base(message, innerException)
-
-        {
-
-        }
-
-       
-
-        protected ServerErrorException(SerializationInfo info, StreamingContext context) : base(info, context)
 
         {
 

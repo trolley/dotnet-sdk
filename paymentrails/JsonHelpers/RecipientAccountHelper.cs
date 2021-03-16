@@ -1,7 +1,9 @@
-﻿using PaymentRails.Types;
+﻿using Newtonsoft.Json;
+using PaymentRails.Types;
 using System;
 using System.Collections.Generic;
-using System.Web.Script.Serialization;
+// using System.Web.Script.Serialization;
+// using System.Text.Json;
 
 namespace PaymentRails.JsonHelpers
 {
@@ -12,15 +14,15 @@ namespace PaymentRails.JsonHelpers
         /// </summary>
         /// <param name="jsonResponse"></param>
         /// <returns>The List of Recipients that the JSON object represented</returns>
-        public static List<RecipientAccount> JsonToRecipientAccountList(string jsonResponse)
+        public static List<Types.RecipientAccount> JsonToRecipientAccountList(string jsonResponse)
         {
             if (jsonResponse == null || jsonResponse == "")
             {
                 throw new ArgumentException("JSON must be provided");
             }
-            RecipientAccountListJsonHelper helper = new JavaScriptSerializer().Deserialize<RecipientAccountListJsonHelper>(jsonResponse);
-            
-            List<RecipientAccount> recipientAccounts = new List<RecipientAccount>();
+            RecipientAccountListJsonHelper helper = JsonConvert.DeserializeObject<RecipientAccountListJsonHelper>(jsonResponse);
+
+            List<Types.RecipientAccount> recipientAccounts = new List<Types.RecipientAccount>();
        
 
             if (helper.Ok)
@@ -37,19 +39,19 @@ namespace PaymentRails.JsonHelpers
         /// </summary>
         /// <param name="jsonResponse"></param>
         /// <returns>The Recipient that the JSON object represented</returns>
-        public static RecipientAccount JsonToRecipientAccount(string jsonResponse)
+        public static Types.RecipientAccount JsonToRecipientAccount(string jsonResponse)
         {
             if (jsonResponse == null || jsonResponse == "")
             {
                 throw new ArgumentException("JSON must be provided");
             }
 
-            RecipientAccountResponseHelper helper = new JavaScriptSerializer().Deserialize<RecipientAccountResponseHelper>(jsonResponse);
+            RecipientAccountResponseHelper helper = JsonConvert.DeserializeObject<RecipientAccountResponseHelper>(jsonResponse);
             if (helper.Ok)
             {
                 return RecipientAccountJsonHelperToRecipientAccount(helper.Account);
             }
-            return new RecipientAccount();
+            return new Types.RecipientAccount();
         }
     }
 }

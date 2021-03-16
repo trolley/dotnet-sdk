@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
 namespace PaymentRails.Exceptions
 {
@@ -26,14 +25,6 @@ namespace PaymentRails.Exceptions
 
 
         public MalformedUrlException(string message, Exception innerException) : base(message, innerException)
-
-        {
-
-        }
-
-
-
-        protected MalformedUrlException(SerializationInfo info, StreamingContext context) : base(info, context)
 
         {
 

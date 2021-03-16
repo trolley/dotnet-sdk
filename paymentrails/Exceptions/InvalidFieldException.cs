@@ -30,14 +30,6 @@ namespace PaymentRails.Exceptions
         {
 
         }
-
-
-
-        protected InvalidFieldException(SerializationInfo info, StreamingContext context) : base(info, context)
-
-        {
-
-        }
     }
 }
 

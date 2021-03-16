@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using PaymentRails.Types;
 using System.Collections.Generic;
-using System.Web.Script.Serialization;
 
 namespace PaymentRails.JsonHelpers
 {
@@ -12,14 +12,14 @@ namespace PaymentRails.JsonHelpers
         /// </summary>
         /// <param name="jsonResponse"></param>
         /// <returns>The List of Recipients that the JSON object represented</returns>
-        public static List<Recipient> JsonToRecipientList(string jsonResponse)
+        public static List<Types.Recipient> JsonToRecipientList(string jsonResponse)
         {
             if (jsonResponse == null || jsonResponse == "")
             {
                 throw new ArgumentException("JSON must be provided");
             }
-            RecipientListJsonHelper helper = new JavaScriptSerializer().Deserialize<RecipientListJsonHelper>(jsonResponse);
-            List<Recipient> recipients = new List<Recipient>();
+            RecipientListJsonHelper helper = JsonConvert.DeserializeObject<RecipientListJsonHelper>(jsonResponse);
+            List<Types.Recipient> recipients = new List<Types.Recipient>();
             if (helper.Ok)
             {
                 foreach (RecipientJsonHelper r in helper.Recipients)
@@ -34,19 +34,19 @@ namespace PaymentRails.JsonHelpers
         /// </summary>
         /// <param name="jsonResponse"></param>
         /// <returns>The Recipient that the JSON object represented</returns>
-        public static Recipient JsonToRecipient(string jsonResponse)
+        public static Types.Recipient JsonToRecipient(string jsonResponse)
         {
             if (jsonResponse == null || jsonResponse == "")
             {
                 throw new ArgumentException("JSON must be provided");
             }
 
-            RecipientResponseHelper helper = new JavaScriptSerializer().Deserialize<RecipientResponseHelper>(jsonResponse);
+            RecipientResponseHelper helper = JsonConvert.DeserializeObject<RecipientResponseHelper>(jsonResponse);
             if (helper.Ok)
             {
                 return RecipientJsonHelperToRecipient(helper.Recipient);
             }
-            return new Recipient();
+            return new Types.Recipient();
         }
     }
 }

@@ -3,8 +3,8 @@ name: Netcore SDK Publish
 on:
   workflow_run:
     workflows: ["Netcore SDK Build"]
-    branches: 
-      netcore2.1
+    branches:
+      - netcore2.1
     types:
       - completed
 
