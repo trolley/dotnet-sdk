@@ -43,7 +43,9 @@ namespace PaymentRails
             builder.AppendFormat("/v1/batches/{0}/payments/{1}", payment.batchId, payment.id);
             string endPoint = builder.ToString();
 
-            string response = this.gateway.client.patch(endPoint, payment);
+            Types.Payment cleanPayment = updateablePayment(payment);
+
+            string response = this.gateway.client.patch(endPoint, cleanPayment);
             return true;
         }
 
@@ -93,6 +95,16 @@ namespace PaymentRails
             var tempData = JObject.Parse(response)["payments"];
             List<Types.Payment> payments = JsonConvert.DeserializeObject<List<Types.Payment>>(tempData.ToString());
             return payments;
+        }
+
+        private Types.Payment updateablePayment(Types.Payment payment)
+        {
+            if (payment.amount > 0)
+            {
+                payment.sourceAmount = 0;
+                payment.targetAmount = 0;
+            }
+            return payment;
         }
     }
 }
