@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "TXLRZb72GGv4nTphc6CxIytb2XYxnECpAPKZfoVLjT8SY/CI4Xtj0plTLiLIAy70jjiY6DalFQ0lba+XErQO2A==",
+  "dgSpecHash": "h4yED4h/B0fQKByZjKdYn/K9gNIc2DLv4sObOi3dCDZifUiLmHqLKrRX1mFfiiRoA7aaBoIsMtIoEpqKwuemcA==",
   "success": true,
   "projectFilePath": "D:\\Git\\paymentrails_dotnet\\tests\\tests.csproj",
   "expectedPackageFiles": [
@@ -131,8 +131,7 @@
     "C:\\Users\\Joshua\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\Joshua\\.nuget\\packages\\system.xml.xmlserializer\\4.0.11\\system.xml.xmlserializer.4.0.11.nupkg.sha512",
     "C:\\Users\\Joshua\\.nuget\\packages\\system.xml.xpath\\4.0.1\\system.xml.xpath.4.0.1.nupkg.sha512",
-    "C:\\Users\\Joshua\\.nuget\\packages\\system.xml.xpath.xmldocument\\4.0.1\\system.xml.xpath.xmldocument.4.0.1.nupkg.sha512",
-    "C:\\Users\\Joshua\\.nuget\\packages\\paymentrails.netcore.sdk\\1.0.5\\paymentrails.netcore.sdk.1.0.5.nupkg.sha512"
+    "C:\\Users\\Joshua\\.nuget\\packages\\system.xml.xpath.xmldocument\\4.0.1\\system.xml.xpath.xmldocument.4.0.1.nupkg.sha512"
   ],
   "logs": []
 }

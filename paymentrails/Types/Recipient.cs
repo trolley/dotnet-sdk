@@ -1,8 +1,6 @@
 ﻿using Newtonsoft.Json;
 using PaymentRails.Exceptions;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace PaymentRails.Types
 {
@@ -117,6 +115,7 @@ namespace PaymentRails.Types
         {
             return this.ToJson();
         }
+
         /// <summary>
         /// Returns a JSON string representation of the object formatted to be compliant with
         /// the Payment Rails API post and patch endpoints
@@ -124,49 +123,13 @@ namespace PaymentRails.Types
         /// <returns>JSON string representation of the object</returns>
         public string ToJson()
         {
-            //string recipientAccountString = "null";
-            string addressString = "null";
-            StringBuilder builder = new StringBuilder();
-            builder.Append("{\n");
-            builder.AppendFormat("\"referenceId\": \"{0}\",\n", this.referenceId);
-            builder.AppendFormat("\"email\": \"{0}\",\n", this.email);
-            builder.AppendFormat("\"name\": \"{0}\",\n", this.name);
-            builder.AppendFormat("\"firstName\": \"{0}\",\n", this.firstName);
-            builder.AppendFormat("\"lastName\": \"{0}\",\n", this.lastName);
-            builder.AppendFormat("\"type\": \"{0}\",\n", this.type);
-            if (status != null && status != "") { builder.AppendFormat("\"status\": \"{0}\",\n", this.status); }
-            builder.AppendFormat("\"timeZone\": \"{0}\",\n", this.timeZone);
-            builder.AppendFormat("\"language\": \"{0}\",\n", this.language);
-            builder.AppendFormat("\"dob\": \"{0}\",\n", this.dob);
-            builder.AppendFormat("\"gravatarUrl\": \"{0}\",\n", this.gravatarUrl);
-            builder.AppendFormat("\"id\": \"{0}\"\n",this.id);
-
-            if (this.recipientAccounts != null)
+            JsonSerializerSettings settings = new JsonSerializerSettings
             {
+                StringEscapeHandling = StringEscapeHandling.EscapeNonAscii,
+                NullValueHandling = NullValueHandling.Ignore
+            };
 
-                builder.Append(",\"accounts\": [\n");
-                foreach (RecipientAccount recipientAccount in this.recipientAccounts)
-                {
-                    builder.AppendFormat("{0}", recipientAccount);
-                    if (this.recipientAccounts.Last().id != recipientAccount.id)
-                    {
-                        builder.Append(",");
-                    }
-                    builder.Append("\n");
-
-                }
-                builder.Append("]\n");
-            }
-
-            if (this.address != null)
-            {
-                addressString = this.address.ToJson();
-                builder.Append(",");
-                builder.AppendFormat("\"address\": {0}\n", addressString);
-            }
-
-            builder.Append("}");
-            return builder.ToString();
+            return JsonConvert.SerializeObject(this, Formatting.Indented, settings);
         }
 
         /// <summary>
