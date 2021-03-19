@@ -1,6 +1,6 @@
 ﻿using PaymentRails.Exceptions;
-using System;
-using System.Text;
+using PaymentRails.Converters;
+using Newtonsoft.Json;
 
 namespace PaymentRails.Types
 {
@@ -10,6 +10,10 @@ namespace PaymentRails.Types
     /// </summary>
     public class Payment : IPaymentRailsMappable
     {
+        // recommended fields
+        public double amount;
+        public string currency;
+        //
         public double sourceAmount;
         public string targetCurrency;
         public double exchangeRate;
@@ -51,9 +55,9 @@ namespace PaymentRails.Types
         /// <param name="id"></param>
         /// <param name="status"></param>
         /// <param name="compliance"></param>
-        public Payment(Recipient recipient, double sourceAmount, string sourceCurrency, double targetAmount, string targetCurrency,string id = null, string memo = null, double exchangeRate = 0,
+        public Payment(Recipient recipient, double sourceAmount, string sourceCurrency, double targetAmount, string targetCurrency, string id = null, string memo = null, double exchangeRate = 0,
             double fees = 0, double recipientFees = 0, double fxRate = 0, string processedAt = null, string createdAt = null, string updatedAt = null,
-            double merchantFees = 0, string batchId = null, string status = null, Compliance compliance= null)
+            double merchantFees = 0, string batchId = null, string status = null, Compliance compliance = null)
 
         {
             this.sourceAmount = sourceAmount;
@@ -74,6 +78,16 @@ namespace PaymentRails.Types
             this.status = status;
             this.recipient = recipient;
             this.compliance = compliance;
+        }
+
+        [JsonConstructor]
+        public Payment(Recipient recipient, double amount, string currency, double sourceAmount = 0, string sourceCurrency = null, double targetAmount = 0, string targetCurrency = null, string id = null, string memo = null, double exchangeRate = 0,
+            double fees = 0, double recipientFees = 0, double fxRate = 0, string processedAt = null, string createdAt = null, string updatedAt = null,
+            double merchantFees = 0, string batchId = null, string status = null, Compliance compliance = null) : this(recipient, sourceAmount, sourceCurrency, targetAmount, targetCurrency, id, memo, exchangeRate, fees, recipientFees, fxRate, processedAt, createdAt, updatedAt, merchantFees, batchId, status, compliance)
+
+        {
+            this.amount = amount;
+            this.currency = currency;
         }
 
         public static bool operator ==(Payment a, Payment b)
@@ -126,26 +140,16 @@ namespace PaymentRails.Types
         /// <returns>JSON string representation of the object</returns>
         public string ToJson()
         {
-            string currencyString;
-            if (this.sourceAmount > 0)
+            JsonSerializerSettings settings = new JsonSerializerSettings
             {
-                currencyString = String.Format("\"sourceAmount\": \"{0}\",\n", this.sourceAmount);
-            }
-            else
-            {
-                currencyString = String.Format("\"targetAmount\": \"{0}\",\n\"targetCurrency\": \"{1}\",\n",this.targetAmount, this.targetCurrency);
-            }
-            StringBuilder builder = new StringBuilder();
-            builder.Append("{\n");
-            builder.AppendFormat("\"memo\":\"{0}\",\n", this.memo);
-            builder.AppendFormat("\"id\": \"{0}\",\n", this.batchId);
-            builder.Append(currencyString);
-            builder.Append("\"recipient\": {\n");
-            builder.AppendFormat("\"id\": \"{0}\",\n", this.recipient.id);
-            builder.AppendFormat("\"email\": \"{0}\"\n", this.recipient.email);
-            builder.Append("}\n");
-            builder.Append("}");
-            return builder.ToString();
+                StringEscapeHandling = StringEscapeHandling.EscapeNonAscii,
+                NullValueHandling = NullValueHandling.Ignore,
+                DefaultValueHandling = DefaultValueHandling.Ignore,
+                Formatting = Formatting.Indented,
+                Converters = { new NumberToStringConverter() }
+            };
+
+            return JsonConvert.SerializeObject(this, settings);
         }
         /// <summary>
         /// Function that checks if a IPaymentRailsMappable object has all required fields to be sent
@@ -161,13 +165,17 @@ namespace PaymentRails.Types
                 throw new InvalidFieldException("Payment must have a Recipient.");
             }
 
-            if (sourceAmount <= 0)
+            if (sourceAmount <= 0 && amount <= 0)
             {
                 if (targetAmount <= 0)
                 {
-                    throw new InvalidFieldException("Payment must have a Target Amount if it does not have a Source Amount.");
+                    throw new InvalidFieldException("Payment must have a Target Amount if it does not have a Source Amount or an Amount.");
                 }
 
+            }
+            if (sourceAmount > 0 && sourceCurrency == null)
+            {
+                throw new InvalidFieldException("Payment must have a Source Currency ");
             }
             if (targetAmount > 0 && targetCurrency == null)
             {

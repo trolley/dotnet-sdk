@@ -47,5 +47,24 @@ namespace PaymentRails.JsonHelpers
             Types.Payment payment = PaymentJsonHelperToPayment(helper.Payment);
             return payment;
         }
+        internal sealed class FormatNumbersAsTextConverter : JsonConverter
+        {
+            public override bool CanRead => false;
+            public override bool CanWrite => true;
+            public override bool CanConvert(Type type) => type == typeof(int);
+
+            public override void WriteJson(
+                JsonWriter writer, object value, JsonSerializer serializer)
+            {
+                int number = (int)value;
+                writer.WriteValue(number.ToString());
+            }
+
+            public override object ReadJson(
+                JsonReader reader, Type type, object existingValue, JsonSerializer serializer)
+            {
+                throw new NotSupportedException();
+            }
+        }
     }
 }

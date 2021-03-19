@@ -85,7 +85,6 @@ namespace tests
             Batch batch = new Batch("Integration Test Payments", payments, Config.TEST_BALANCE_CURRENCY, 0);
             batch = gateway.batch.create(batch);
 
-
             Assert.IsNotNull(batch);
             Assert.IsNotNull(batch.id);
 
@@ -110,12 +109,13 @@ namespace tests
             Assert.IsNotNull(batch.id);
 
             Recipient recipient = createRecipient();
-            Payment payment = new Payment(recipient, 10.00, "EUR", 0, null, null);
+            Payment payment = new Payment(recipient, 10.92, "EUR");
             payment.batchId = batch.id;
             payment = gateway.payment.create(payment);
 
             Assert.IsNotNull(payment);
             Assert.IsNotNull(payment.id);
+            Assert.AreEqual(payment.amount, 10.92);
 
             payment.sourceAmount = 20.00;
             payment.batchId = batch.id;
@@ -161,9 +161,6 @@ namespace tests
             {
                 Assert.IsNotNull(e);
             }
-
-
-
         }
     }
 }

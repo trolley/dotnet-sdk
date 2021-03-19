@@ -11,7 +11,7 @@
           "MSTest.TestAdapter": "2.0.0",
           "MSTest.TestFramework": "2.0.0",
           "Microsoft.NET.Test.Sdk": "16.2.0",
-          "PaymentRails.NetCore.SDK": "1.0.6",
+          "PaymentRails.NetCore.SDK": "1.0.7",
           "coverlet.collector": "1.0.1"
         },
         "runtime": {
@@ -839,7 +839,7 @@
           }
         }
       },
-      "PaymentRails.NetCore.SDK/1.0.6": {
+      "PaymentRails.NetCore.SDK/1.0.7": {
         "dependencies": {
           "Newtonsoft.Json": "12.0.3"
         },
@@ -1296,7 +1296,7 @@
       "path": "system.xml.xpath.xmldocument/4.0.1",
       "hashPath": "system.xml.xpath.xmldocument.4.0.1.nupkg.sha512"
     },
-    "PaymentRails.NetCore.SDK/1.0.6": {
+    "PaymentRails.NetCore.SDK/1.0.7": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
