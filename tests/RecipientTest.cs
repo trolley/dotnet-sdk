@@ -78,6 +78,28 @@ namespace tests
         }
 
         [TestMethod]
+        public void testAddress()
+        {
+            string uuid = Guid.NewGuid().ToString();
+            Recipient recipient = new Recipient("individual", "test.create" + uuid + "@example.com", null, "Tom", "Jones", null, null, null, null, null, "1990-01-01", null, null, null, null);
+            recipient.address = new Address("street1", "city", "US", "AL", "12345");
+            Recipient createdRecipient = gateway.recipient.create(recipient);
+
+            Assert.AreEqual("US", createdRecipient.address.Country);
+/*
+            bool response = gateway.recipient.update(recipient);
+
+            Recipient fetchResult = gateway.recipient.find(recipient.id);
+            Assert.AreEqual("Bób", fetchResult.firstName);
+
+            bool result = gateway.recipient.delete(fetchResult);
+            Assert.IsTrue(result);
+
+            Recipient fetchDeletedResult = gateway.recipient.find(fetchResult.id);
+            Assert.AreEqual("archived", fetchDeletedResult.status);*/
+        }
+
+        [TestMethod]
         public void testAccount()
         {
             string uuid = Guid.NewGuid().ToString();

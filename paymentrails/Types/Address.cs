@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace PaymentRails.Types
 {
@@ -7,13 +8,13 @@ namespace PaymentRails.Types
     /// </summary>
     public class Address : IPaymentRailsMappable
     {
-        private string street1;
-        private string street2;
-        private string city;
-        private string postalCode;
-        private string phone;
-        private string country;
-        private string region;
+        public string street1;
+        public string street2;
+        public string city;
+        public string postalCode;
+        public string phone;
+        public string country;
+        public string region;
 
         #region properties
         /// <summary>
@@ -195,7 +196,7 @@ namespace PaymentRails.Types
             if (obj != null && obj.GetType() == this.GetType())
             {
                 Address other = (Address)obj;
-                if (other.street1 == this.street1 && other.Street2 == this.Street2 && other.city == this.city && other.postalCode == this.postalCode
+                if (other.street1 == this.street1 && other.street2 == this.street2 && other.city == this.city && other.postalCode == this.postalCode
                     && other.phone == this.phone && other.country == this.country && other.region == this.region)
                     return true;
             }
@@ -213,12 +214,20 @@ namespace PaymentRails.Types
         /// <returns>The results of calling ToJson</returns>
         public override string ToString()
         {
-            return this.ToJson();
+            return ToJson();
         }
         
         public string ToJson()
         {
-            StringBuilder builder = new StringBuilder();
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                /*StringEscapeHandling = StringEscapeHandling.EscapeNonAscii,
+                NullValueHandling = NullValueHandling.Ignore,
+                Formatting = Formatting.Indented,*/
+            };
+            return JsonConvert.SerializeObject(this, settings);
+
+            /*StringBuilder builder = new StringBuilder();
             builder.Append("{\n");
             builder.AppendFormat("\"street1\": \"{0}\",\n", this.street1);
             builder.AppendFormat("\"street2\": \"{0}\",\n", this.street2);
@@ -228,7 +237,7 @@ namespace PaymentRails.Types
             builder.AppendFormat("\"country\": \"{0}\",\n", this.country);
             builder.AppendFormat("\"region\": \"{0}\"\n", this.region);
             builder.Append("}");
-            return builder.ToString();
+            return builder.ToString();*/
         }
 
         public bool IsMappable()

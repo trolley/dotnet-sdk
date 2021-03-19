@@ -41,7 +41,7 @@ namespace PaymentRails
         public bool update(Types.Recipient recipient)
         {
             string endPoint = "/v1/recipients/" + recipient.id;
-            string response = this.gateway.client.patch(endPoint, recipient);
+            gateway.client.patch(endPoint, recipient);
             return true;
         }
 
