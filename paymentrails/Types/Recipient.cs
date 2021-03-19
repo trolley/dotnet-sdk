@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
 using PaymentRails.Exceptions;
+using PaymentRails.Converters;
 using System.Collections.Generic;
+using System;
 
 namespace PaymentRails.Types
 {
@@ -126,10 +128,10 @@ namespace PaymentRails.Types
             JsonSerializerSettings settings = new JsonSerializerSettings
             {
                 StringEscapeHandling = StringEscapeHandling.EscapeNonAscii,
-                NullValueHandling = NullValueHandling.Ignore
+                NullValueHandling = NullValueHandling.Ignore,
+                Formatting = Formatting.Indented,
             };
-
-            return JsonConvert.SerializeObject(this, Formatting.Indented, settings);
+            return JsonConvert.SerializeObject(this, settings);
         }
 
         /// <summary>
