@@ -29,8 +29,9 @@ namespace PaymentRails.Types
     public string bankCity;
     public string bankRegionCode;
     public string bankPostalCode;
+    public MailingAddress mailing;
 
-    public RecipientAccount(string type, string currency, string id, bool primary, string country, string iban = null, string accountNum = null, string recipientAccountId = null, string routeType = null, string recipientFees = null, string emailAddress = null, string accountHolderName = null, string swiftBic = null, string branchId = null, string bankName = null, string bankId = null, string bankAddress = null, string bankCity = null, string bankRegionCode = null, string bankPostalCode = null)
+    public RecipientAccount(string type, string currency, string id, bool primary, string country, string iban = null, string accountNum = null, string recipientAccountId = null, string routeType = null, string recipientFees = null, string emailAddress = null, string accountHolderName = null, string swiftBic = null, string branchId = null, string bankName = null, string bankId = null, string bankAddress = null, string bankCity = null, string bankRegionCode = null, string bankPostalCode = null, MailingAddress mailing = null)
 
     {
       this.id = id;
@@ -53,6 +54,7 @@ namespace PaymentRails.Types
       this.bankCity = bankCity;
       this.bankRegionCode = bankRegionCode;
       this.bankPostalCode = bankPostalCode;
+      this.mailing = mailing;
     }
 
     public RecipientAccount()

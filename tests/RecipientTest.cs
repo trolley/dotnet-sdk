@@ -42,11 +42,11 @@ namespace tests
         {
             string uuid = System.Guid.NewGuid().ToString();
 
-            Recipient recipient = new Recipient("individual", "test.create" + uuid + "@example.com", null, "T髆", "J醤es", null, null, null, null, null, "1990-01-01");
+            Recipient recipient = new Recipient("individual", "test.create" + uuid + "@example.com", null, "T贸m", "J贸nes", null, null, null, null, null, "1990-01-01");
             recipient = gateway.recipient.create(recipient);
             Assert.IsNotNull(recipient);
-            Assert.AreEqual("T髆", recipient.firstName);
-            Assert.AreEqual("J醤es", recipient.lastName);
+            Assert.AreEqual("T贸m", recipient.firstName);
+            Assert.AreEqual("J贸nes", recipient.lastName);
             Assert.IsNotNull(recipient.email.IndexOf(uuid));
             Assert.IsNotNull(recipient.id);
         }
@@ -60,7 +60,7 @@ namespace tests
             Assert.AreEqual("Tom", recipient.firstName);
             Assert.AreEqual("incomplete", recipient.status);
 
-            recipient.firstName = "B骲";
+            recipient.firstName = "B贸b";
             recipient.address.Country = "US";
             recipient.status = null;
             bool response = gateway.recipient.update(recipient);
@@ -68,7 +68,7 @@ namespace tests
             Assert.IsTrue(response);
 
             Recipient fetchResult = gateway.recipient.find(recipient.id);
-            Assert.AreEqual("B骲", fetchResult.firstName);
+            Assert.AreEqual("B贸b", fetchResult.firstName);
 
             bool result = gateway.recipient.delete(fetchResult);
             Assert.IsTrue(result);
@@ -86,17 +86,6 @@ namespace tests
             Recipient createdRecipient = gateway.recipient.create(recipient);
 
             Assert.AreEqual("US", createdRecipient.address.Country);
-/*
-            bool response = gateway.recipient.update(recipient);
-
-            Recipient fetchResult = gateway.recipient.find(recipient.id);
-            Assert.AreEqual("B骲", fetchResult.firstName);
-
-            bool result = gateway.recipient.delete(fetchResult);
-            Assert.IsTrue(result);
-
-            Recipient fetchDeletedResult = gateway.recipient.find(fetchResult.id);
-            Assert.AreEqual("archived", fetchDeletedResult.status);*/
         }
 
         [TestMethod]
@@ -122,6 +111,16 @@ namespace tests
             recipientAccount = gateway.recipientAccount.create(recipient.id, recipientAccount);
             Assert.IsNotNull(recipientAccount);
 
+            Recipient usRecipient = new Recipient("individual", "test.accountCheck" + uuid + "@example.com", null, "Tom", "Jones Check", null, null, null, null, null, "1990-01-01", null, null, null, new Address("719 anderson dr", "Los Altos", "US", "CA", "94024"));
+            usRecipient = gateway.recipient.create(usRecipient);
+            RecipientAccount recipientCheckAccount = new RecipientAccount
+            {
+                type = "check",
+                mailing = new MailingAddress("Tom Jones", "719 anderson dr", "Los Altos", "US", "CA", "94024")
+            };
+
+            recipientCheckAccount = gateway.recipientAccount.create(usRecipient.id, recipientCheckAccount);
+            Assert.IsNotNull(recipientCheckAccount);
 
             RecipientAccount findAccount = gateway.recipientAccount.find(recipient.id, recipientAccount.id);
             Assert.AreEqual(recipientAccount.iban, findAccount.iban);

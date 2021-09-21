@@ -1,0 +1,14 @@
+/Users/joshua/Documents/git/paymentrails_dotnet/tests/bin/Debug/netstandard1.3/tests.deps.json
+/Users/joshua/Documents/git/paymentrails_dotnet/tests/bin/Debug/netstandard1.3/tests.dll
+/Users/joshua/Documents/git/paymentrails_dotnet/tests/bin/Debug/netstandard1.3/tests.pdb
+/Users/joshua/Documents/git/paymentrails_dotnet/tests/bin/Debug/netstandard1.3/PaymentRails.dll
+/Users/joshua/Documents/git/paymentrails_dotnet/tests/bin/Debug/netstandard1.3/PaymentRails.pdb
+/Users/joshua/Documents/git/paymentrails_dotnet/tests/bin/Debug/netstandard1.3/PaymentRails.dll.config
+/Users/joshua/Documents/git/paymentrails_dotnet/tests/obj/Debug/netstandard1.3/tests.GeneratedMSBuildEditorConfig.editorconfig
+/Users/joshua/Documents/git/paymentrails_dotnet/tests/obj/Debug/netstandard1.3/tests.AssemblyInfoInputs.cache
+/Users/joshua/Documents/git/paymentrails_dotnet/tests/obj/Debug/netstandard1.3/tests.AssemblyInfo.cs
+/Users/joshua/Documents/git/paymentrails_dotnet/tests/obj/Debug/netstandard1.3/tests.csproj.CoreCompileInputs.cache
+/Users/joshua/Documents/git/paymentrails_dotnet/tests/obj/Debug/netstandard1.3/tests.csproj.CopyComplete
+/Users/joshua/Documents/git/paymentrails_dotnet/tests/obj/Debug/netstandard1.3/tests.dll
+/Users/joshua/Documents/git/paymentrails_dotnet/tests/obj/Debug/netstandard1.3/tests.pdb
+/Users/joshua/Documents/git/paymentrails_dotnet/tests/obj/Debug/netstandard1.3/tests.csproj.AssemblyReference.cache
