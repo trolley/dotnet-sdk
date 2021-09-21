@@ -5,7 +5,7 @@
   },
   "projects": {
     "/Users/joshua/Documents/git/paymentrails_dotnet/paymentrails/paymentrails.csproj": {
-      "version": "1.0.7",
+      "version": "1.0.8",
       "restore": {
         "projectUniqueName": "/Users/joshua/Documents/git/paymentrails_dotnet/paymentrails/paymentrails.csproj",
         "projectName": "PaymentRails.NetCore.SDK",
