@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>PaymentRails.NetCore.SDK</id>
-    <version>1.0.2</version>
+    <version>1.0.9</version>
     <title>$title$</title>
     <authors>Jesse Tremblay, Jesse Silber, Joshua Cunningham</authors>
     <owners>PaymentRailsJesse, joshuapr</owners>
