@@ -1,9 +1,10 @@
-# Payment Rails C# SDK
+# Payment Rails[^1] C# SDK
 
 A native C# SDK for the Payment Rails API
 
 For more information about the API as well as C# code samples check out the [full API documentation](http://docs.paymentrails.com)
 
+[^1]: [Payment Rails is now Trolley](https://www.trolley.com/payment-rails-is-now-trolley-series-a), we'll be updating our SDKs to support the new domain during the first half of 2022.
 
 ## Installation
 
