@@ -24,6 +24,8 @@ namespace PaymentRails.Types
         public string language;
         public string dob;
         public string gravatarUrl;
+        public string routeType;
+        public string routeMinimum;
 
         public Compliance compliance;
         [JsonProperty("accounts")]
@@ -46,11 +48,13 @@ namespace PaymentRails.Types
         /// <param name="language"></param>
         /// <param name="dob"></param>
         /// <param name="gravatarUrl"></param>
+        /// <param name="routeType"></param>
+        /// <param name="routeMinimum"></param>
         /// <param name="compliance"></param>
         /// <param name="payout"></param>
         /// <param name="address"></param>
 
-        public Recipient(string type, string email, string name, string firstName, string lastName, string id = null, string referenceId = null, string status = null, string timeZone = null, string language = null, string dob = null, string gravatarUrl = null, Compliance compliance = null, List<RecipientAccount> recipientAccounts = null, Address address = null)
+        public Recipient(string type, string email, string name, string firstName, string lastName, string id = null, string referenceId = null, string status = null, string timeZone = null, string language = null, string dob = null, string gravatarUrl = null, string routeType = null, int routeMinimum = 0, Compliance compliance = null, List<RecipientAccount> recipientAccounts = null, Address address = null)
         {
 
             this.id = id;
@@ -65,6 +69,8 @@ namespace PaymentRails.Types
             this.language = language;
             this.dob = dob;
             this.gravatarUrl = gravatarUrl;
+            this.routeType = routeType;
+            this.routeMinimum = routeMinimum;
             this.compliance = compliance;
             this.recipientAccounts = recipientAccounts;
             this.address = address;
@@ -99,10 +105,22 @@ namespace PaymentRails.Types
             if (obj != null && obj.GetType() == this.GetType())
             {
                 Recipient other = (Recipient)obj;
-                if (other.id == this.id && other.referenceId == this.referenceId && other.email == this.email && other.name == this.name
-                    && other.firstName == this.firstName && other.lastName == this.lastName && other.type == this.type && other.status == this.status
-                    && other.timeZone == this.timeZone && other.language == this.language && other.dob == this.dob && other.gravatarUrl == this.gravatarUrl
-                    && other.compliance == this.compliance && other.address == this.address)
+                if (other.id == this.id 
+                && other.referenceId == this.referenceId 
+                && other.email == this.email 
+                && other.name == this.name
+                && other.firstName == this.firstName 
+                && other.lastName == this.lastName 
+                && other.type == this.type 
+                && other.status == this.status
+                && other.timeZone == this.timeZone 
+                && other.language == this.language 
+                && other.dob == this.dob 
+                && other.gravatarUrl == this.gravatarUrl
+                && other.routeType == this.routeType
+                && other.routeMinimum == this.routeMinimum
+                && other.compliance == this.compliance 
+                && other.address == this.address)
                     return true;
             }
             return false;
