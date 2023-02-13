@@ -1,4 +1,4 @@
-[Payment Rails C# SDK](../README.md) > [Exceptions](../packages/exceptions.md) > [Authorization](../classes/exceptions.authorization.md)
+[Trolley C# SDK](../README.md) > [Exceptions](../packages/exceptions.md) > [Authorization](../classes/exceptions.authorization.md)
 
 
 

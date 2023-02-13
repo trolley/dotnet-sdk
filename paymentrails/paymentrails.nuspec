@@ -2,15 +2,15 @@
 <package >
   <metadata>
     <id>PaymentRails.NetCore.SDK</id>
-    <version>1.0.9</version>
+    <version>1.0.10</version>
     <title>$title$</title>
-    <authors>Jesse Tremblay, Jesse Silber, Joshua Cunningham</authors>
+    <authors>Jesse Tremblay, Jesse Silber, Joshua Cunningham, Aman Aalam</authors>
     <owners>PaymentRailsJesse, joshuapr</owners>
     <projectUrl>https://github.com/PaymentRails/paymentrails_dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>The official Payment Rails NETCore SDK to interface with the Payment Rails API (https://www.paymentrails.com/)</description>
-    <releaseNotes>NetCore version, balances fix</releaseNotes>
+    <description>The official Trolley NETCore SDK to interface with the Trolley API (https://www.trolley.com/)</description>
+    <releaseNotes>Trolley rebranding in possible places, added routeMinimum attribute and a Trolley header</releaseNotes>
     <copyright>Copyright 2020</copyright>
-    <tags>netcore sdk PaymentRails</tags>
+    <tags>netcore sdk PaymentRails Trolley</tags>
   </metadata>
 </package>

@@ -1,4 +1,4 @@
-[Payment Rails C# SDK](../README.md) > [PaymentRails_Recipient_Gateway](../classes/PaymentRails_Recipient_Gateway.md)
+[Trolley C# SDK](../README.md) > [PaymentRails_Recipient_Gateway](../classes/PaymentRails_Recipient_Gateway.md)
 
 
 
@@ -64,7 +64,7 @@ ___
 
 
 
-Find a specific recipient by their Payment Rails recipient ID
+Find a specific recipient by their Trolley recipient ID
 
     Recipient recipient = client.recipient.find('R-1234');
 
@@ -73,7 +73,7 @@ Find a specific recipient by their Payment Rails recipient ID
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| recipientId | `string`   |  The Payment Rails recipient ID (e.g. R-xyzzy) |
+| recipientId | `string`   |  The Trolley recipient ID (e.g. R-xyzzy) |
 
 
 
@@ -107,8 +107,8 @@ Delete the given recipient.
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| recipientId | `string`   |  The Payment Rails recipient ID (e.g. R-xyzzy) |
-| recipient | `Recipient`   |  The Payment Rails recipient object |
+| recipientId | `string`   |  The Trolley recipient ID (e.g. R-xyzzy) |
+| recipient | `Recipient`   |  The Trolley recipient object |
 
 
 

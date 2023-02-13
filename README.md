@@ -1,10 +1,10 @@
-# Payment Rails[^1] C# SDK
+# Trolley C# SDK (Previously Payment Rails[^1])
 
-A native C# SDK for the Payment Rails API
+A native C# SDK for Trolley.
 
-For more information about the API as well as C# code samples check out the [full API documentation](http://docs.paymentrails.com)
+For more information about the API as well as C# code samples check out the [full API documentation](https://docs.trolley.com)
 
-[^1]: [Payment Rails is now Trolley](https://www.trolley.com/payment-rails-is-now-trolley-series-a), we'll be updating our SDKs to support the new domain during the first half of 2022.
+[^1]: [Payment Rails is now Trolley](https://www.trolley.com/payment-rails-is-now-trolley-series-a). We're in the process of updating our SDKs to support the new domain. In this transition phase, you might still see "PaymentRails" at some places.
 
 ## Installation
 
@@ -15,7 +15,7 @@ For more information about the API as well as C# code samples check out the [ful
 #
 ### To install the reference: 
 #### with dll  
-In Solution Explorer, right-click the project node and click Add Reference. Selec the dll in the file explorer and confirm your selection.
+In Solution Explorer, right-click the project node and click Add Reference. Select the dll in the file explorer and confirm your selection.
 
 #### With NuGet
 Open your package manager console and enter:  
@@ -32,7 +32,7 @@ The library is hosted on github [here](https://github.com/PaymentRails/paymentra
 ### Simple example
 
 ```csharp
-// A simple c# application using the Payment Rails SDK
+// A simple c# application using the Trolley SDK
 using PaymentRails;
 using PaymentRails.Types;
 
@@ -54,7 +54,7 @@ class Program
 
 ### Usage
 
-Methods should all have C# Doc comments to help you understand their usage. As mentioned the [full API documentation](http://docs.paymentrails.com)
+Methods should all have C# Doc comments to help you understand their usage. As mentioned the [full API documentation](https://docs.trolley.com)
 is the best source of information about the API.
 
 For more information please read the [C# API docs](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/docs/) is available. The best starting point is:

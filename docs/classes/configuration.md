@@ -1,4 +1,4 @@
-[Payment Rails C# SDK](../README.md) > [PaymentRails_Configuration](../classes/PaymentRails_Configuration.md)
+[Trolley C# SDK](../README.md) > [PaymentRails_Configuration](../classes/PaymentRails_Configuration.md)
 
 
 
@@ -70,7 +70,7 @@ ___
 
 
 
-Set the Payment Rails API environment that your using
+Set the Trolley API environment that your using
 
 
 **Parameters:**

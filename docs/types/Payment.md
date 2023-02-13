@@ -1,4 +1,4 @@
-[Payment Rails C# SDK](../README.md) > [PaymentInput](../types/payment.md)
+[Trolley C# SDK](../README.md) > [PaymentInput](../types/payment.md)
 
 
 

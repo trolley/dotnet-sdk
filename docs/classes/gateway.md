@@ -1,4 +1,4 @@
-[Payment Rails C# SDK](../README.md) > [Gateway](../classes/gateway.md)
+[Trolley C# SDK](../README.md) > [Gateway](../classes/gateway.md)
 
 
 

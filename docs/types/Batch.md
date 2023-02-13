@@ -1,4 +1,4 @@
-[Payment Rails C# SDK](../README.md) > [BatchInput](../types/batch.md)
+[Trolley C# SDK](../README.md) > [BatchInput](../types/batch.md)
 
 
 

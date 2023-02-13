@@ -4,7 +4,7 @@ using System;
 namespace PaymentRails.Types
 {
     /// <summary>
-    /// This class represents a recipient check account mailing address from the Payment Rails API
+    /// This class represents a recipient check account mailing address from the Trolley API
     /// </summary>
     public class MailingAddress : IPaymentRailsMappable
     {

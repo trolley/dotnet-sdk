@@ -7,7 +7,7 @@ using System;
 namespace PaymentRails.Types
 {
     /// <summary>
-    /// This class is a representation of a Payment Rails Recipient, it can be used to create or update recipients
+    /// This class is a representation of a Trolley Recipient, it can be used to create or update recipients
     /// over the API
     /// </summary>
     public class Recipient : IPaymentRailsMappable
@@ -120,7 +120,7 @@ namespace PaymentRails.Types
 
         /// <summary>
         /// Returns a JSON string representation of the object formatted to be compliant with
-        /// the Payment Rails API post and patch endpoints
+        /// the Trolley API post and patch endpoints
         /// </summary>
         /// <returns>JSON string representation of the object</returns>
         public string ToJson()
@@ -141,7 +141,7 @@ namespace PaymentRails.Types
         /// In order to have a valid recipient the first name and last name must be set if the 
         /// recipient is an individual OR the name must be set if it is a business. An email is also required
         /// </summary>
-        /// <returns>weather the object is ready to be sent to the Payment Rails API</returns>
+        /// <returns>weather the object is ready to be sent to the Trolley API</returns>
         public bool IsMappable()
         {
             if (type == null)
