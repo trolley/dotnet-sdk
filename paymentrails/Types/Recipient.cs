@@ -54,7 +54,7 @@ namespace PaymentRails.Types
         /// <param name="payout"></param>
         /// <param name="address"></param>
 
-        public Recipient(string type, string email, string name, string firstName, string lastName, string id = null, string referenceId = null, string status = null, string timeZone = null, string language = null, string dob = null, string gravatarUrl = null, string routeType = null, int routeMinimum = 0, Compliance compliance = null, List<RecipientAccount> recipientAccounts = null, Address address = null)
+        public Recipient(string type, string email, string name, string firstName, string lastName, string id = null, string referenceId = null, string status = null, string timeZone = null, string language = null, string dob = null, string gravatarUrl = null, string routeType = null, string routeMinimum = null, Compliance compliance = null, List<RecipientAccount> recipientAccounts = null, Address address = null)
         {
 
             this.id = id;
