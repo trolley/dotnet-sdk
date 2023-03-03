@@ -6,7 +6,7 @@ using System.Text;
 namespace PaymentRails.Types
 {
     /// <summary>
-    /// This class represents a Payment Rails batch object, it can be used to create new
+    /// This class represents a Trolley batch object, it can be used to create new
     /// batches or update existing ones
     /// </summary>
     public class Batch : IPaymentRailsMappable
@@ -112,7 +112,7 @@ namespace PaymentRails.Types
         }
         /// <summary>
         /// Returns a JSON string representation of the object formatted to be compliant with
-        /// the Payment Rails API post and patch endpoints
+        /// the Trolley API post and patch endpoints
         /// </summary>
         /// <returns>JSON string representation of the object</returns>
         public string ToJson()
@@ -146,7 +146,7 @@ namespace PaymentRails.Types
         /// this function will throw an exception if any of the fields are not properly set.
         /// For a valid batch valid payments are required
         /// </summary>
-        /// <returns>weather the object is ready to be sent to the Payment Rails API</returns>
+        /// <returns>whether the object is ready to be sent to the Trolley API</returns>
         public bool IsMappable()
         {
             if (payments != null)

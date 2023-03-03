@@ -11,7 +11,7 @@ namespace PaymentRails
     internal class Balances
     {
         /// <summary>
-        /// Retrieves all balances from the Payment Rails API for the specified type,
+        /// Retrieves all balances from the Trolley API for the specified type,
         /// if no type is selected it will return the paymentrails type balances
         /// </summary>
         /// <param name="type">The type of account to fetch the balance from. Can be "paymentrails", "paypal"</param>

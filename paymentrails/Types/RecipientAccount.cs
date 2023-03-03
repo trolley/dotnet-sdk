@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace PaymentRails.Types
 {
   /// <summary>
-  /// This class is a representation of a Payment Rails Recipient, it can be used to create or update recipients
+  /// This class is a representation of a Trolley Recipient, it can be used to create or update recipients
   /// over the API
   /// </summary>
   public class RecipientAccount : IPaymentRailsMappable
@@ -104,7 +104,7 @@ namespace PaymentRails.Types
     /// In order to have a valid bank-transfer recipientAccount the type, country, currency, branchId, bankId accountNumber must be set
     /// In order to have a valid paypal recipientAccount the type and email must be set
     /// </summary>
-    /// <returns>weather the object is ready to be sent to the Payment Rails API</returns>
+    /// <returns>weather the object is ready to be sent to the Trolley API</returns>
     public bool IsMappable()
     {
       if (type == null)
@@ -149,7 +149,7 @@ namespace PaymentRails.Types
     }
     /// <summary>
     /// Returns a JSON string representation of the object formatted to be compliant with
-    /// the Payment Rails API post and patch endpoints
+    /// the Trolley API post and patch endpoints
     /// </summary>
     /// <returns>JSON string representation of the object</returns>
     public string ToJson()

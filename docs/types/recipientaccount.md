@@ -1,4 +1,4 @@
-[Payment Rails C# SDK](../README.md) > [Types/RecipientAccount](../types/recipientaccount.md)
+[Trolley C# SDK](../README.md) > [Types/RecipientAccount](../types/recipientaccount.md)
 
 
 

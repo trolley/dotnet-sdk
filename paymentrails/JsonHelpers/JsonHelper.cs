@@ -21,7 +21,7 @@ namespace PaymentRails.JsonHelpers
                 }
             }
 
-            Types.Recipient recipient = new Types.Recipient(helper.Type, helper.Email, helper.Name, helper.FirstName, helper.LastName, helper.Id, helper.ReferenceId, helper.Status, helper.TimeZone, helper.Language, helper.Dob, helper.GravatarUrl, helper.Compliance, accounts, helper.Address);
+            Types.Recipient recipient = new Types.Recipient(helper.Type, helper.Email, helper.Name, helper.FirstName, helper.LastName, helper.Id, helper.ReferenceId, helper.Status, helper.TimeZone, helper.Language, helper.Dob, helper.GravatarUrl, helper.RouteType, helper.RouteMinimum, helper.Compliance, accounts, helper.Address);
             return recipient;
         }
 
@@ -158,6 +158,8 @@ namespace PaymentRails.JsonHelpers
             private string language;
             private string dob;
             private string gravatarUrl;
+            private string routeType;
+            private string routeMinium;
 
             private Compliance compliance;
             private List<Types.RecipientAccount> accounts;
@@ -317,6 +319,32 @@ namespace PaymentRails.JsonHelpers
                 set
                 {
                     gravatarUrl = value;
+                }
+            }
+
+            public string RouteType
+            {
+                get
+                {
+                    return routeType;
+                }
+
+                set
+                {
+                    routeType = value;
+                }
+            }
+
+            public string RouteMinimum
+            {
+                get
+                {
+                    return routeMinium;
+                }
+
+                set
+                {
+                    routeMinium = value;
                 }
             }
 

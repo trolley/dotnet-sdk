@@ -160,6 +160,7 @@ namespace PaymentRails
 
                 httpClient.DefaultRequestHeaders.Add("Authorization", authorization);
                 httpClient.DefaultRequestHeaders.Add("X-PR-Timestamp", unixTime + "");
+                httpClient.DefaultRequestHeaders.Add("Trolley-Source", "dotnet-sdk_1.0.10");
                 return httpClient;
 
             }

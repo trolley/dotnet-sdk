@@ -3,7 +3,7 @@
 namespace PaymentRails.Types
 {
     /// <summary>
-    /// This class is a representation of a Payment Rails bank account, the data in this class can
+    /// This class is a representation of a Trolley bank account, the data in this class can
     /// be sent over the API to create new recipient bank accounts or update existing ones if the 
     /// targeted recipient already has a bank account.
     /// </summary>
@@ -264,7 +264,7 @@ namespace PaymentRails.Types
         }
         /// <summary>
         /// Returns a JSON string representation of the object formatted to be compliant with
-        /// the Payment Rails API post and patch endpoints
+        /// the Trolley API post and patch endpoints
         /// </summary>
         /// <returns>JSON string representation of the object</returns>
         public string ToJson()
@@ -325,7 +325,7 @@ namespace PaymentRails.Types
         /// Function that checks if a IPaymentRailsMappable object has all required fields to be sent
         /// this function will throw an exception if any of the fields are not properly set.
         /// </summary>
-        /// <returns>weather the object is ready to be sent to the Payment Rails API</returns>
+        /// <returns>weather the object is ready to be sent to the Trolley API</returns>
         public bool IsMappable()
         {
             return true;

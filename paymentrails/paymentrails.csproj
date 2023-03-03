@@ -26,11 +26,11 @@
     <RootNamespace>PaymentRails</RootNamespace>
     <PackageId>PaymentRails.NetCore.SDK</PackageId>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.9</Version>
-    <PackageDescription>The official Payment Rails NET Core and NET Standard SDK to interface with the Payment Rails API (https://www.paymentrails.com/)</PackageDescription>
+    <Version>1.0.10</Version>
+    <PackageDescription>The official Trolley NET Core and NET Standard SDK to interface with the Trolley API (https://www.trolley.com/)</PackageDescription>
     <Copyright>Copyright 2020</Copyright>
-    <Authors>Jesse Tremblay, Jesse Silber, Joshua Cunningham</Authors>
-    <PackageTags>netcore sdk PaymentRails</PackageTags>
+    <Authors>Jesse Tremblay, Jesse Silber, Joshua Cunningham, Aman Aalam</Authors>
+    <PackageTags>netcore sdk PaymentRails Trolley</PackageTags>
     <RepositoryUrl>https://github.com/PaymentRails/paymentrails_dotnet/tree/netcore2.1</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>

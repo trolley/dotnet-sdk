@@ -3,7 +3,7 @@
 namespace PaymentRails.Types
 {
     /// <summary>
-    /// This class is a representation of a merchant balance from the Payment Rails API
+    /// This class is a representation of a merchant balance from the Trolley API
     /// </summary>
     public class Balance
     {

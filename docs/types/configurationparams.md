@@ -1,4 +1,4 @@
-[Payment Rails C# SDK](../README.md) > [PaymentRails_ConfigurationParams](../types/configurationparams.md)
+[Trolley C# SDK](../README.md) > [PaymentRails_ConfigurationParams](../types/configurationparams.md)
 
 
 
@@ -32,7 +32,7 @@ ___
 
 
 
-The Payment Rails public key
+The Trolley public key
 
 
 
@@ -49,7 +49,7 @@ ___
 
 
 
-The Payment Rails private key
+The Trolley private key
 
 
 

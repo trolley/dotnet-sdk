@@ -1,4 +1,4 @@
-[Payment Rails C# SDK](../README.md) > [RecipientAccountGateway](../classes/recipientaccountgateway.md)
+[Trolley C# SDK](../README.md) > [RecipientAccountGateway](../classes/recipientaccountgateway.md)
 
 
 
@@ -32,7 +32,7 @@
 
 
 
-Fetch all of the accounts for a given Payment Rails recipient
+Fetch all of the accounts for a given Trolley recipient
 
     List<RecipientAccount> accounts = client.recipientAccount.findAll('R-1234');
 *__throws__*: {NotFound} if recipient doesn't exist
@@ -43,7 +43,7 @@ Fetch all of the accounts for a given Payment Rails recipient
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| recipientId | `string`   |  The Payment Rails recipient ID (e.g. R-xyzzy) |
+| recipientId | `string`   |  The Trolley recipient ID (e.g. R-xyzzy) |
 
 
 
@@ -81,7 +81,7 @@ Create a new recipient account
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| recipientId | `string`   |  The Payment Rails recipient ID (e.g. R-xyzzy) |
+| recipientId | `string`   |  The Trolley recipient ID (e.g. R-xyzzy) |
 | body | `RecipientAccount`   |  Account information |
 
 
@@ -108,7 +108,7 @@ ___
 
 
 
-Fetch a specific account for a given Payment Rails recipient
+Fetch a specific account for a given Trolley recipient
 
     RecipientAccount account = client.recipientAccount.find('R-1234', 'A-789');
 *__throws__*: {NotFound} if account or recipient don't exist
@@ -119,8 +119,8 @@ Fetch a specific account for a given Payment Rails recipient
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| recipientId | `string`   |  The Payment Rails recipient ID (e.g. R-xyzzy) |
-| accountId | `string`   |  The Payment Rails account ID (e.g. A-xyzzy) |
+| recipientId | `string`   |  The Trolley recipient ID (e.g. R-xyzzy) |
+| accountId | `string`   |  The Trolley account ID (e.g. A-xyzzy) |
 
 
 
@@ -155,8 +155,8 @@ Delete the given recipient account. This will only return success, otherwise it 
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| recipientId | `string`   |  The Payment Rails recipient ID (e.g. R-xyzzy) |
-| accountId | `string`   |  The Payment Rails account ID (e.g. A-xyzzy) |
+| recipientId | `string`   |  The Trolley recipient ID (e.g. R-xyzzy) |
+| accountId | `string`   |  The Trolley account ID (e.g. A-xyzzy) |
 
 
 
@@ -193,8 +193,8 @@ Update a recipient account. Note: Updating an account will create a new account 
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| recipientId | `string`   |  The Payment Rails recipient ID (e.g. R-xyzzy) |
-| accountId | `string`   |  The Payment Rails account ID (e.g. A-xyzzy) |
+| recipientId | `string`   |  The Trolley recipient ID (e.g. R-xyzzy) |
+| accountId | `string`   |  The Trolley account ID (e.g. A-xyzzy) |
 | body | `any`   |  Account information |
 
 

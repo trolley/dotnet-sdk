@@ -1,4 +1,4 @@
-[Payment Rails C# SDK](../README.md) > [Exceptions](../modules/exceptions.md) > [BaseException](../classes/exceptions.baseexception.md)
+[Trolley C# SDK](../README.md) > [Exceptions](../modules/exceptions.md) > [BaseException](../classes/exceptions.baseexception.md)
 
 
 

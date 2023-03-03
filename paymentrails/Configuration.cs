@@ -74,11 +74,11 @@
                 case "development":
                     return "https://api.railz.io";
                 case "sandbox":
-                    return "https://api.paymentrails.com";
+                    return "https://api.trolley.com";
                 case "production":
-                    return "https://api.paymentrails.com";
+                    return "https://api.trolley.com";
                 default:
-                   return "https://api.paymentrails.com";
+                   return "https://api.trolley.com";
             }
         }
     }

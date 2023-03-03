@@ -1,4 +1,4 @@
-[Payment Rails C# SDK](../README.md) > [PaymentGateway](../classes/paymentgateway.md)
+[Trolley C# SDK](../README.md) > [PaymentGateway](../classes/paymentgateway.md)
 
 
 
@@ -44,7 +44,7 @@ Create a new payment in a batch
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| batchId | `string`   |  Payment Rails payment id (e.g. "B-xx999bb") |
+| batchId | `string`   |  Trolley payment id (e.g. "B-xx999bb") |
 | body | `any`   |  Payment information |
 
 
@@ -80,7 +80,7 @@ Find a specific payment
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| paymentId | `string`   |  Payment Rails payment id (e.g. "P-aabccc") |
+| paymentId | `string`   |  Trolley payment id (e.g. "P-aabccc") |
 
 
 
@@ -115,8 +115,8 @@ Delete a given payment -- Note you can only delete non processed payments
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| paymentId | `string`   |  Payment Rails payment id (e.g. "P-aabccc") |
-| batchId | `string`   |  Payment Rails payment id (e.g. "B-xx999bb") |
+| paymentId | `string`   |  Trolley payment id (e.g. "P-aabccc") |
+| batchId | `string`   |  Trolley payment id (e.g. "B-xx999bb") |
 
 
 
@@ -149,7 +149,7 @@ Search for payments in a given batch
 
 | Param | Type | Default value | Description |
 | ------ | ------ | ------ | ------ |
-| batchId | `string`  | - |   Payment Rails payment id (e.g. "B-xx999bb") |
+| batchId | `string`  | - |   Trolley payment id (e.g. "B-xx999bb") |
 | page | `number`  | 1 |   Page number (1 based) |
 | pageSize | `number`  | 10 |   Page size (0...1000) |
 | term | `string`  | &quot;&quot; |   Any search terms to look for |
@@ -189,8 +189,8 @@ Update a given payment
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| paymentId | `string`   |  Payment Rails payment id (e.g. "P-aabccc") |
-| batchId | `string`   |  Payment Rails payment id (e.g. "B-xx999bb") |
+| paymentId | `string`   |  Trolley payment id (e.g. "P-aabccc") |
+| batchId | `string`   |  Trolley payment id (e.g. "B-xx999bb") |
 | body | `any`   |  Payment update information |
 
 

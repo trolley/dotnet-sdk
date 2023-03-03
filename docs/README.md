@@ -1,7 +1,7 @@
 
 
 
-#  Payment Rails C# SDK
+#  Trolley C# SDK
 
 ## Index
 
@@ -33,7 +33,7 @@
 ---
 
 
-Create a client for the Payment Rails C# API
+Create a client for the Trolley C# SDK
 
 
 	var client = new PaymentRails_Gateway("MY_PUBLIC_KEY", "MY_PRIVATE_KEY", "production");

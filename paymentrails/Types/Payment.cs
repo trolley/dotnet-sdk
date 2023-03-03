@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 namespace PaymentRails.Types
 {
     /// <summary>
-    /// This class represents a Payment Rails Payment, it can be used to create new payments or update
+    /// This class represents a Trolley Payment, it can be used to create new payments or update
     /// existing payments over the API
     /// </summary>
     public class Payment : IPaymentRailsMappable
@@ -135,7 +135,7 @@ namespace PaymentRails.Types
         }
         /// <summary>
         /// Returns a JSON string representation of the object formatted to be compliant with
-        /// the Payment Rails API post and patch endpoints
+        /// the Trolley API post and patch endpoints
         /// </summary>
         /// <returns>JSON string representation of the object</returns>
         public string ToJson()
@@ -157,7 +157,7 @@ namespace PaymentRails.Types
         /// For a payment the recipient and batch id are mandatory
         /// source amount or target amount and currency are also required
         /// </summary>
-        /// <returns>weather the object is ready to be sent to the Payment Rails API</returns>
+        /// <returns>weather the object is ready to be sent to the Trolley API</returns>
         public bool IsMappable()
         {
             if (recipient == null)

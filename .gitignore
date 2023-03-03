@@ -5,3 +5,7 @@ paymentrailsTest/obj/**
 paymentrailsTest/bin/**
 TestResults
 .vs/**
+tests/bin/**
+tests/bin
+tests/obj/**
+tests/obj
