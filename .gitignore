@@ -5,7 +5,8 @@ paymentrailsTest/obj/**
 paymentrailsTest/bin/**
 TestResults
 .vs/**
+.vscode/**
 tests/bin/**
-tests/bin
+tests/bin/
 tests/obj/**
-tests/obj
+tests/obj/

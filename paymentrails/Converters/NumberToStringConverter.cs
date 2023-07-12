@@ -12,7 +12,7 @@ namespace PaymentRails.Converters
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             double number = (double)value;
-            writer.WriteValue(number.ToString());
+            writer.WriteValue(String.Format("{0:0.00}", number));
         }
 
         public override object ReadJson(
