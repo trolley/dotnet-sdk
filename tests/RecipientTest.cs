@@ -103,11 +103,17 @@ namespace tests
             Assert.IsNotNull(recipient.email.IndexOf(uuid));
             Assert.IsNotNull(recipient.id);
 
-            RecipientAccount recipientAccount = new RecipientAccount("bank-transfer", "EUR", null, true, "FR", "FR14 2004 1010 0505 0001 3M02 606", "123456");
+            RecipientAccount recipientAccount = new RecipientAccount("bank-transfer", "CAD", null, true, "CA");
+            recipientAccount.accountNum = "1234567";
+            recipientAccount.bankId = "003";
+            recipientAccount.branchId = "47261";
             recipientAccount = gateway.recipientAccount.create(recipient.id, recipientAccount);
             Assert.IsNotNull(recipientAccount);
 
-            recipientAccount = new RecipientAccount("bank-transfer", "EUR", null, true, "DE", "DE89 3704 0044 0532 0130 00", "123456");
+            recipientAccount = new RecipientAccount("bank-transfer", "CAD", null, true, "CA");
+            recipientAccount.accountNum = "1234578";
+            recipientAccount.bankId = "003";
+            recipientAccount.branchId = "47261";
             recipientAccount = gateway.recipientAccount.create(recipient.id, recipientAccount);
             Assert.IsNotNull(recipientAccount);
 
@@ -127,7 +133,7 @@ namespace tests
 
             List<RecipientAccount> recipientAccounts = gateway.recipientAccount.findAll(recipient.id);
             Assert.AreEqual(2, recipientAccounts.Count);
-            Assert.AreEqual(recipientAccounts[0].currency, "EUR");
+            Assert.AreEqual(recipientAccounts[0].currency, "CAD");
 
             bool response = gateway.recipientAccount.delete(recipient.id, recipientAccount.id);
             Assert.IsTrue(response);

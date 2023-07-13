@@ -46,6 +46,44 @@ namespace tests
         }
 
         [TestMethod]
+        public void testCreatePayments()
+        {
+            //Prepare - Create recipient
+            string uuid = System.Guid.NewGuid().ToString();
+            Recipient recipient = new Recipient("individual", "test.create" + uuid + "@example.com", null, "Tom", "Jones", null, null, null, null, null, "1990-01-01");
+            recipient = paymentrails.recipient.create(recipient);
+            Assert.IsNotNull(recipient);
+
+            //Prepare - Create Recipient Account
+            RecipientAccount recipientAccount = new RecipientAccount("bank-transfer", "CAD", null, true, "CA");
+            recipientAccount.accountNum = "1234567";
+            recipientAccount.bankId = "003";
+            recipientAccount.branchId = "47261";
+            recipientAccount = paymentrails.recipientAccount.create(recipient.id, recipientAccount);
+            Assert.IsNotNull(recipientAccount);
+
+            //Prepare - Create batch
+            Batch batch = new Batch("Integration Test Create", null, "USD", 0);
+            batch = paymentrails.batch.create(batch);
+            Assert.IsNotNull(batch);
+
+            //Create Payment
+            Payment payment = new Payment(recipient, 1.20, "USD");
+            payment.batchId = batch.id;
+            payment = paymentrails.payment.create(payment);
+            Assert.IsNotNull(payment);
+
+            //Cleanup - Delete Recipient
+            Boolean deleteResult = paymentrails.recipient.delete(recipient.id);
+            Assert.IsTrue(deleteResult);
+
+
+            //Cleanup - Delete Batch
+            deleteResult = paymentrails.batch.delete(batch.id);
+            Assert.IsTrue(deleteResult);
+        }
+
+        [TestMethod]
         public void testOldPaymentsSearch()
         {
             List<Payment> payments = paymentrails.payment.search("", 1, 5);

@@ -11,8 +11,9 @@
           "MSTest.TestAdapter": "2.0.0",
           "MSTest.TestFramework": "2.0.0",
           "Microsoft.NET.Test.Sdk": "16.2.0",
-          "PaymentRails.NetCore.SDK": "1.0.9",
-          "coverlet.collector": "1.0.1"
+          "PaymentRails.NetCore.SDK": "1.0.10",
+          "coverlet.collector": "1.0.1",
+          "PaymentRails": "1.0.2.0"
         },
         "runtime": {
           "tests.dll": {}
@@ -148,7 +149,7 @@
       "Microsoft.TestPlatform.TestHost/16.2.0": {
         "dependencies": {
           "Microsoft.TestPlatform.ObjectModel": "16.2.0",
-          "Newtonsoft.Json": "12.0.3"
+          "Newtonsoft.Json": "13.0.2"
         },
         "runtime": {
           "lib/netstandard1.5/Microsoft.TestPlatform.CommunicationUtilities.dll": {
@@ -326,11 +327,11 @@
           }
         }
       },
-      "Newtonsoft.Json/12.0.3": {
+      "Newtonsoft.Json/13.0.2": {
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
-            "assemblyVersion": "12.0.0.0",
-            "fileVersion": "12.0.3.23909"
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.2.27524"
           }
         }
       },
@@ -839,12 +840,20 @@
           }
         }
       },
-      "PaymentRails.NetCore.SDK/1.0.9": {
+      "PaymentRails.NetCore.SDK/1.0.10": {
         "dependencies": {
-          "Newtonsoft.Json": "12.0.3"
+          "Newtonsoft.Json": "13.0.2"
         },
         "runtime": {
           "PaymentRails.dll": {}
+        }
+      },
+      "PaymentRails/1.0.2.0": {
+        "runtime": {
+          "PaymentRails.dll": {
+            "assemblyVersion": "1.0.2.0",
+            "fileVersion": "1.0.2.0"
+          }
         }
       }
     }
@@ -925,12 +934,12 @@
       "path": "mstest.testframework/2.0.0",
       "hashPath": "mstest.testframework.2.0.0.nupkg.sha512"
     },
-    "Newtonsoft.Json/12.0.3": {
+    "Newtonsoft.Json/13.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
-      "path": "newtonsoft.json/12.0.3",
-      "hashPath": "newtonsoft.json.12.0.3.nupkg.sha512"
+      "sha512": "sha512-R2pZ3B0UjeyHShm9vG+Tu0EBb2lC8b0dFzV9gVn50ofHXh9Smjk6kTn7A/FdAsC8B5cKib1OnGYOXxRBz5XQDg==",
+      "path": "newtonsoft.json/13.0.2",
+      "hashPath": "newtonsoft.json.13.0.2.nupkg.sha512"
     },
     "runtime.native.System/4.3.0": {
       "type": "package",
@@ -1296,8 +1305,13 @@
       "path": "system.xml.xpath.xmldocument/4.0.1",
       "hashPath": "system.xml.xpath.xmldocument.4.0.1.nupkg.sha512"
     },
-    "PaymentRails.NetCore.SDK/1.0.9": {
+    "PaymentRails.NetCore.SDK/1.0.10": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PaymentRails/1.0.2.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

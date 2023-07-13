@@ -2,14 +2,14 @@
 <package >
   <metadata>
     <id>PaymentRails.NetCore.SDK</id>
-    <version>1.0.10</version>
+    <version>1.0.11</version>
     <title>$title$</title>
     <authors>Jesse Tremblay, Jesse Silber, Joshua Cunningham, Aman Aalam</authors>
     <owners>PaymentRailsJesse, joshuapr</owners>
     <projectUrl>https://github.com/PaymentRails/paymentrails_dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>The official Trolley NETCore SDK to interface with the Trolley API (https://www.trolley.com/)</description>
-    <releaseNotes>Trolley rebranding in possible places, added routeMinimum attribute and a Trolley header</releaseNotes>
+    <releaseNotes>Fixed issue with parsing double to String (Issue #6)</releaseNotes>
     <copyright>Copyright 2020</copyright>
     <tags>netcore sdk PaymentRails Trolley</tags>
   </metadata>
