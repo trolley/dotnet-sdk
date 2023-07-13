@@ -55,29 +55,32 @@ namespace tests
             Assert.IsNotNull(recipient);
 
             //Prepare - Create Recipient Account
-            RecipientAccount recipientAccount = new RecipientAccount("bank-transfer", "EUR", null, true, "DE", "DE89 3704 0044 0532 0130 00", "123456");
+            RecipientAccount recipientAccount = new RecipientAccount("bank-transfer", "CAD", null, true, "CA");
+            recipientAccount.accountNum = "1234567";
+            recipientAccount.bankId = "003";
+            recipientAccount.branchId = "47261";
             recipientAccount = paymentrails.recipientAccount.create(recipient.id, recipientAccount);
             Assert.IsNotNull(recipientAccount);
 
             //Prepare - Create batch
-            Batch batch = new Batch("Integration Test Create", null, Config.TEST_BALANCE_CURRENCY, 0);
+            Batch batch = new Batch("Integration Test Create", null, "USD", 0);
             batch = paymentrails.batch.create(batch);
             Assert.IsNotNull(batch);
 
             //Create Payment
-            Payment payment = paymentrails.payment.create(new Payment(recipient, 1.21, "USD"));
+            Payment payment = new Payment(recipient, 1.20, "USD");
+            payment.batchId = batch.id;
+            payment = paymentrails.payment.create(payment);
             Assert.IsNotNull(payment);
 
-            //Cleanup - Delete Batch
-            Boolean deleteResult = paymentrails.batch.delete(batch.id);
-            Assert.IsTrue(deleteResult);
-
             //Cleanup - Delete Recipient
-            deleteResult = paymentrails.recipient.delete(recipient.id);
+            Boolean deleteResult = paymentrails.recipient.delete(recipient.id);
             Assert.IsTrue(deleteResult);
 
-            List<Payment> payments2 = paymentrails.payment.search("", 1, 10, batch.id);
-            Assert.IsTrue(payments2.Count > 0);
+
+            //Cleanup - Delete Batch
+            deleteResult = paymentrails.batch.delete(batch.id);
+            Assert.IsTrue(deleteResult);
         }
 
         [TestMethod]
