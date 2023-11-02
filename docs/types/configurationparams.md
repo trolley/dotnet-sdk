@@ -1,4 +1,4 @@
-[Trolley C# SDK](../README.md) > [PaymentRails_ConfigurationParams](../types/configurationparams.md)
+[Trolley C# SDK](../README.md) > [Trolley_ConfigurationParams](../types/configurationparams.md)
 
 
 
@@ -11,7 +11,7 @@
 
 **●  environment**:  *"production"⎮"sandbox"⎮"integration"⎮"development"* 
 
-*Defined in [PaymentRails_Configuration.ts:15](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Configuration.cs#L15)*
+*Defined in [Trolley_Configuration.ts:15](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Configuration.cs#L15)*
 
 
 
@@ -28,7 +28,7 @@ ___
 
 **●  key**:  *`string`* 
 
-*Defined in [PaymentRails_Configuration.ts:7](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Configuration.cs#L7)*
+*Defined in [Trolley_Configuration.ts:7](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Configuration.cs#L7)*
 
 
 
@@ -45,7 +45,7 @@ ___
 
 **●  secret**:  *`string`* 
 
-*Defined in [PaymentRails_Configuration.ts:11](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Configuration.cs#L11)*
+*Defined in [Trolley_Configuration.ts:11](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Configuration.cs#L11)*
 
 
 

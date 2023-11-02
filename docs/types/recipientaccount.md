@@ -15,7 +15,7 @@
 
 **●  accountHolderName**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/RecipientAccount.cs:23](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/Types/RecipientAccount.cs#L23)*
+*Defined in [Types/RecipientAccount.cs:23](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Types/RecipientAccount.cs#L23)*
 
 
 
@@ -29,7 +29,7 @@ ___
 
 **●  accountNum**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/RecipientAccount.cs:22](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/Types/RecipientAccount.cs#L22)*
+*Defined in [Types/RecipientAccount.cs:22](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Types/RecipientAccount.cs#L22)*
 
 
 
@@ -43,7 +43,7 @@ ___
 
 **●  bankAddress**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/RecipientAccount.cs:28](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/Types/RecipientAccount.cs#L28)*
+*Defined in [Types/RecipientAccount.cs:28](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Types/RecipientAccount.cs#L28)*
 
 
 
@@ -57,7 +57,7 @@ ___
 
 **●  bankCity**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/RecipientAccount.cs:29](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/Types/RecipientAccount.cs#L29)*
+*Defined in [Types/RecipientAccount.cs:29](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Types/RecipientAccount.cs#L29)*
 
 
 
@@ -71,7 +71,7 @@ ___
 
 **●  bankId**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/RecipientAccount.cs:26](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/Types/RecipientAccount.cs#L26)*
+*Defined in [Types/RecipientAccount.cs:26](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Types/RecipientAccount.cs#L26)*
 
 
 
@@ -85,7 +85,7 @@ ___
 
 **●  bankName**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/RecipientAccount.cs:27](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/Types/RecipientAccount.cs#L27)*
+*Defined in [Types/RecipientAccount.cs:27](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Types/RecipientAccount.cs#L27)*
 
 
 
@@ -99,7 +99,7 @@ ___
 
 **●  bankPostalCode**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/RecipientAccount.cs:31](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/Types/RecipientAccount.cs#L31)*
+*Defined in [Types/RecipientAccount.cs:31](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Types/RecipientAccount.cs#L31)*
 
 
 
@@ -113,7 +113,7 @@ ___
 
 **●  bankRegionCode**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/RecipientAccount.cs:30](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/Types/RecipientAccount.cs#L30)*
+*Defined in [Types/RecipientAccount.cs:30](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Types/RecipientAccount.cs#L30)*
 
 
 
@@ -127,7 +127,7 @@ ___
 
 **●  branchId**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/RecipientAccount.cs:25](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/Types/RecipientAccount.cs#L25)*
+*Defined in [Types/RecipientAccount.cs:25](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Types/RecipientAccount.cs#L25)*
 
 
 
@@ -141,7 +141,7 @@ ___
 
 **●  country**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/RecipientAccount.cs:19](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/Types/RecipientAccount.cs#L19)*
+*Defined in [Types/RecipientAccount.cs:19](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Types/RecipientAccount.cs#L19)*
 
 
 
@@ -155,7 +155,7 @@ ___
 
 **●  currency**:  *`string`*  = ""
 
-*Defined in [Types/RecipientAccount.cs:11](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/Types/RecipientAccount.cs#L11)*
+*Defined in [Types/RecipientAccount.cs:11](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Types/RecipientAccount.cs#L11)*
 
 
 
@@ -169,7 +169,7 @@ ___
 
 **●  emailAddress**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/RecipientAccount.cs:16](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/Types/RecipientAccount.cs#L16)*
+*Defined in [Types/RecipientAccount.cs:16](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Types/RecipientAccount.cs#L16)*
 
 
 
@@ -183,7 +183,7 @@ ___
 
 **●  iban**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/RecipientAccount.cs:21](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/Types/RecipientAccount.cs#L21)*
+*Defined in [Types/RecipientAccount.cs:21](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Types/RecipientAccount.cs#L21)*
 
 
 
@@ -197,7 +197,7 @@ ___
 
 **●  id**:  *`string`*  = ""
 
-*Defined in [Types/RecipientAccount.cs:9](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/Types/RecipientAccount.cs#L9)*
+*Defined in [Types/RecipientAccount.cs:9](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Types/RecipientAccount.cs#L9)*
 
 
 
@@ -211,7 +211,7 @@ ___
 
 **●  primary**:  *`boolean`*  = false
 
-*Defined in [Types/RecipientAccount.cs:10](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/Types/RecipientAccount.cs#L10)*
+*Defined in [Types/RecipientAccount.cs:10](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Types/RecipientAccount.cs#L10)*
 
 
 
@@ -225,7 +225,7 @@ ___
 
 **●  recipientFees**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/RecipientAccount.cs:13](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/Types/RecipientAccount.cs#L13)*
+*Defined in [Types/RecipientAccount.cs:13](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Types/RecipientAccount.cs#L13)*
 
 
 
@@ -239,7 +239,7 @@ ___
 
 **●  routeType**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/RecipientAccount.cs:12](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/Types/RecipientAccount.cs#L12)*
+*Defined in [Types/RecipientAccount.cs:12](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Types/RecipientAccount.cs#L12)*
 
 
 
@@ -253,7 +253,7 @@ ___
 
 **●  swiftBic**:  *`string`⎮`null`* 
 
-*Defined in [Types/RecipientAccount.cs:24](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/Types/RecipientAccount.cs#L24)*
+*Defined in [Types/RecipientAccount.cs:24](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Types/RecipientAccount.cs#L24)*
 
 
 
@@ -267,7 +267,7 @@ ___
 
 **●  type**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/RecipientAccount.cs:20](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/Types/RecipientAccount.cs#L20)*
+*Defined in [Types/RecipientAccount.cs:20](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Types/RecipientAccount.cs#L20)*
 
 
 

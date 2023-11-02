@@ -35,7 +35,7 @@
 
 **●  message**:  *`string`* 
 
-*An unhandled exception of type 'PaymentRails.Exceptions.Authorization.Exception' occurred in PaymentRails.exe*
+*An unhandled exception of type 'Trolley.Exceptions.Authorization.Exception' occurred in Trolley.exe*
 
 
 
@@ -51,7 +51,7 @@ ___
 
 *AuthorizationException*
 
-*Defined in /Users/koblas/repos/paymentrails/paymentrails_dotnet/node_modules/typedoc/node_modules/typescript/paymentrails/lib.es5.d.ts:873*
+*Defined in /Users/koblas/repos/trolley/dotnet-sdk/node_modules/typedoc/node_modules/typescript/trolley/lib.es5.d.ts:873*
 
 
 
@@ -69,7 +69,7 @@ ___
 
 *Overrides Error.stack*
 
-*Defined in /Users/koblas/repos/paymentrails/paymentrails_dotnet/node_modules/typedoc/node_modules/typescript/paymentrails/lib.es5.d.ts:875*
+*Defined in /Users/koblas/repos/trolley/dotnet-sdk/node_modules/typedoc/node_modules/typescript/trolley/lib.es5.d.ts:875*
 
 
 

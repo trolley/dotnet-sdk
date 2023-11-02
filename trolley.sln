@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29609.76
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "trolley", "trolley\trolley.csproj", "{97DAB652-EB26-4139-BEC8-B725B19EDE66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "tests\tests.csproj", "{F9B78A2E-5A93-4B1B-BBC6-BF1BB4D8B59E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{97DAB652-EB26-4139-BEC8-B725B19EDE66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97DAB652-EB26-4139-BEC8-B725B19EDE66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97DAB652-EB26-4139-BEC8-B725B19EDE66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97DAB652-EB26-4139-BEC8-B725B19EDE66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9B78A2E-5A93-4B1B-BBC6-BF1BB4D8B59E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9B78A2E-5A93-4B1B-BBC6-BF1BB4D8B59E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9B78A2E-5A93-4B1B-BBC6-BF1BB4D8B59E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9B78A2E-5A93-4B1B-BBC6-BF1BB4D8B59E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FC132D01-1F6D-48CD-BD19-7245169C3C8A}
+	EndGlobalSection
+EndGlobal

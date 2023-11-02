@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Var8k6K7Ln7KmTY4Qprvyu0ar0pNMqM5qMIA5cMQ9d2ZIrsRhe/7PjYKDEJ6lIyeu7N7TvyjiwQAx8AlIrjZzw==",
+  "dgSpecHash": "pi8PGz6wFEwbFofpurXQ22YQkLszAQOnPmnodP2Y7STajyb1J0YLoLWVBS+GTt1l0jankwLhfuG2E0Yfj8pKvw==",
   "success": true,
-  "projectFilePath": "/Users/amanalam/src/sdk_dotnet/tests/tests.csproj",
+  "projectFilePath": "/Users/amanalam/src/dotnet-sdk/tests/tests.csproj",
   "expectedPackageFiles": [
     "/Users/amanalam/.nuget/packages/coverlet.collector/6.0.0/coverlet.collector.6.0.0.nupkg.sha512",
     "/Users/amanalam/.nuget/packages/microsoft.codecoverage/17.7.2/microsoft.codecoverage.17.7.2.nupkg.sha512",

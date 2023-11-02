@@ -1,5 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PaymentRails.Types;
+using Trolley.Types;
 using System;
 using System.Collections.Generic;
 
@@ -9,12 +9,12 @@ namespace tests
     public class RecipientTest
     {
 
-        PaymentRails.Gateway gateway;
+        Trolley.Gateway gateway;
 
         [TestInitialize]
         public void Init()
         {
-            gateway = new PaymentRails.Gateway(Config.TEST_API_KEY, Config.TEST_API_SECRET);
+            gateway = new Trolley.Gateway(Config.TEST_API_KEY, Config.TEST_API_SECRET);
         }
 
         [TestMethod]

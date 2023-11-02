@@ -36,7 +36,7 @@
 Create a client for the Trolley C# SDK
 
 
-	var client = new PaymentRails_Gateway("MY_PUBLIC_KEY", "MY_PRIVATE_KEY", "production");
+	var client = new Trolley_Gateway("MY_PUBLIC_KEY", "MY_PRIVATE_KEY", "production");
 
 **Parameters:**
 
@@ -44,7 +44,7 @@ Create a client for the Trolley C# SDK
 | ------ | ------ | ------ |
 | publicKey | [String]   |  The public key |
 | secretKey | [String]   |  The secret key |
-| enviroment | [String]   |  The enviroment which should be used |
+| environment | [String]   |  The environment which should be used |
 
 
 

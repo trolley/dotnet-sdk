@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\paymentrails\paymentrails.csproj" />
+    <ProjectReference Include="..\trolley\trolley.csproj" />
   </ItemGroup>
 
 </Project>

@@ -24,9 +24,9 @@
 
 ###  balances
 
-**●  balances**:  *[PaymentRails_Balances_Gateway](balancesgateway.md)* 
+**●  balances**:  *[Trolley_Balances_Gateway](balancesgateway.md)* 
 
-*Defined in [PaymentRails_Gateway.md:15]*
+*Defined in [Trolley_Gateway.md:15]*
 
 
 
@@ -38,9 +38,9 @@ ___
 
 ###  batch
 
-**●  batch**:  *[PaymentRails_Batch_Gateway](batchgateway.md)* 
+**●  batch**:  *[Trolley_Batch_Gateway](batchgateway.md)* 
 
-*Defined in [PaymentRails_Gateway.cs:13](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Gateway.cs#L13)*
+*Defined in [Trolley_Gateway.cs:13](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Gateway.cs#L13)*
 
 
 
@@ -52,9 +52,9 @@ ___
 
 ###  client
 
-**●  client**:  *`PaymentRails_Client`* 
+**●  client**:  *`Trolley_Client`* 
 
-*Defined in [PaymentRails_Gateway.cs:11](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Gateway.cs#L11)*
+*Defined in [Trolley_Gateway.cs:11](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Gateway.cs#L11)*
 
 
 
@@ -66,9 +66,9 @@ ___
 
 ###  config
 
-**●  config**:  *[PaymentRails_Configuration](configuration.md)* 
+**●  config**:  *[Trolley_Configuration](configuration.md)* 
 
-*Defined in [PaymentRails_Gateway.cs:10](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Gateway.cs#L10)*
+*Defined in [Trolley_Gateway.cs:10](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Gateway.cs#L10)*
 
 
 
@@ -80,9 +80,9 @@ ___
 
 ###  payment
 
-**●  payment**:  *[PaymentRails_Payment_Gateway](paymentgateway.md)* 
+**●  payment**:  *[Trolley_Payment_Gateway](paymentgateway.md)* 
 
-*Defined in [Gateway.cs:16](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Gateway.cs#L16)*
+*Defined in [Gateway.cs:16](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Gateway.cs#L16)*
 
 
 
@@ -94,9 +94,9 @@ ___
 
 ###  recipient
 
-**●  recipient**:  *[PaymentRails_Recipient_Gateway](recipientgateway.md)* 
+**●  recipient**:  *[Trolley_Recipient_Gateway](recipientgateway.md)* 
 
-*Defined in [PaymentRails_Gateway.cs:12](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Gateway.cs#L12)*
+*Defined in [Trolley_Gateway.cs:12](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Gateway.cs#L12)*
 
 
 
@@ -108,9 +108,9 @@ ___
 
 ###  recipientAccount
 
-**●  PaymentRails_RecipientAccount**:  *[PaymentRails_RecipientAccount_Gateway](recipientaccountgateway.md)* 
+**●  Trolley_RecipientAccount**:  *[Trolley_RecipientAccount_Gateway](recipientaccountgateway.md)* 
 
-*Defined in [PaymentRails_Gateway.cs:14](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Gateway.cs#L14)*
+*Defined in [Trolley_Gateway.cs:14](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Gateway.cs#L14)*
 
 
 
