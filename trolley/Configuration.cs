@@ -11,7 +11,7 @@
 
         }
 
-        public Configuration(string apiKey, string apiSecret, string apiBase)
+        public Configuration(string apiKey, string apiSecret, string apiBase="production")
         {
             this.apiKey = apiKey;
             this.apiSecret = apiSecret;
@@ -69,12 +69,9 @@
         {
             switch (enviroment)
             {
-                case "integration":
-                    return "http://api.local.dev:3000";
                 case "development":
-                    return "https://api.railz.io";
-                case "sandbox":
-                    return "https://api.trolley.com";
+                    // TODO: Return base url from env file
+                    return "";
                 case "production":
                     return "https://api.trolley.com";
                 default:

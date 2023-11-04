@@ -11,4 +11,5 @@ tests/bin/
 tests/obj/**
 tests/obj/
 tests/.vs/**
+tests/.env
 .DS_Store

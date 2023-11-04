@@ -13,7 +13,8 @@ namespace tests
         [TestInitialize]
         public void Init()
         {
-            gateway = new Trolley.Gateway(Config.TEST_API_KEY, Config.TEST_API_SECRET);
+            Config config = new Config();
+            gateway = new Trolley.Gateway(config.ACCESS_KEY, config.SECRET_KEY);
         }
 
         private Recipient createRecipient()

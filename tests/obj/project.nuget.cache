@@ -17,5 +17,12 @@
     "/Users/amanalam/.nuget/packages/nuget.frameworks/6.5.0/nuget.frameworks.6.5.0.nupkg.sha512",
     "/Users/amanalam/.nuget/packages/system.reflection.metadata/1.6.0/system.reflection.metadata.1.6.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file /Users/amanalam/src/dotnet-sdk/tests/obj/project.nuget.cache : Value cannot be null. (Parameter 'value')"
+    }
+  ]
 }
