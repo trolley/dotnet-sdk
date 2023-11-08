@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "pi8PGz6wFEwbFofpurXQ22YQkLszAQOnPmnodP2Y7STajyb1J0YLoLWVBS+GTt1l0jankwLhfuG2E0Yfj8pKvw==",
+  "dgSpecHash": "inyK1ctTUFwMSz+Owpajb9FtvwU4uwDHRUuykhnbrcNgyMvrn/4aUxasItQvOrgg3sQYTUHwz2pnPhEsNxr+rg==",
   "success": true,
   "projectFilePath": "/Users/amanalam/src/dotnet-sdk/tests/tests.csproj",
   "expectedPackageFiles": [
@@ -17,12 +17,5 @@
     "/Users/amanalam/.nuget/packages/nuget.frameworks/6.5.0/nuget.frameworks.6.5.0.nupkg.sha512",
     "/Users/amanalam/.nuget/packages/system.reflection.metadata/1.6.0/system.reflection.metadata.1.6.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file /Users/amanalam/src/dotnet-sdk/tests/obj/project.nuget.cache : Value cannot be null. (Parameter 'value')"
-    }
-  ]
+  "logs": []
 }

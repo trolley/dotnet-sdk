@@ -14,7 +14,7 @@ namespace Trolley.Types
         public string id;
         public string status;
         public double amount;
-        public int totalPayments;
+        public double totalPayments;
         public string currency;
         public string description;
         public string sentAt;

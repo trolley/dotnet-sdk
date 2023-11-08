@@ -29,7 +29,7 @@ namespace tests
         [TestMethod]
         public void Smoke()
         {
-            List<Payment> payments = trolley.payment.search();
+            List<Payment> payments = trolley.payment.search().payments;
             Assert.IsTrue(payments.Count > 0);
         }
 
@@ -39,10 +39,10 @@ namespace tests
             List<Batch> batches = trolley.batch.search();
             
             Batch batch = batches.Find(x => x.totalPayments > 0);
-            List<Payment> payments1 = trolley.payment.search(batch.id);
+            List<Payment> payments1 = trolley.payment.search(batch.id).payments;
             Assert.IsTrue(payments1.Count > 0);
 
-            List<Payment> payments2 = trolley.payment.search("", 1, 10, batch.id);
+            List<Payment> payments2 = trolley.payment.search("", 1, 10, batch.id).payments;
             Assert.IsTrue(payments2.Count > 0);
         }
 
@@ -87,7 +87,7 @@ namespace tests
         [TestMethod]
         public void testOldPaymentsSearch()
         {
-            List<Payment> payments = trolley.payment.search("", 1, 5);
+            List<Payment> payments = trolley.payment.search("", 1, 5).payments;
             Assert.AreEqual(5, payments.Count);
         }
 
@@ -98,7 +98,7 @@ namespace tests
             status.Add("failed");
 
             PaymentQueryParams queryParams = new PaymentQueryParams { status = status };
-            List<Payment> payments = trolley.payment.search(queryParams);
+            List<Payment> payments = trolley.payment.search(queryParams).payments;
 
             Assert.IsTrue(payments.Count > 0);
             Assert.IsFalse(payments.Exists(x => x.status != "failed"));
@@ -124,6 +124,19 @@ namespace tests
             PaymentQueryParams queryParams4 = new PaymentQueryParams { status = status };
             Assert.AreEqual("page=1&pageSize=10&status=failed,returned", queryParams4.buildQueryString());
 
+        }
+
+        [TestMethod]
+        public void testFetchAllPayments()
+        {
+            var allPayments = trolley.payment.listAllPayments();
+            int itemCount = 0;
+            foreach (Payment payment in allPayments)
+            {
+                Assert.IsNotNull(payment.id);
+                itemCount++;
+            }
+            Assert.IsTrue(itemCount > 0);
         }
 
     }

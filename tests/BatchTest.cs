@@ -167,5 +167,16 @@ namespace tests
                 Assert.IsNotNull(e);
             }
         }
+
+        [TestMethod]
+        public void testGetAllPayments()
+        {
+            List<Payment> payments = gateway.payment.search(new PaymentQueryParams()).payments;
+            foreach (Payment p in payments)
+            {
+                Console.WriteLine("Payment ID: " + p.id);
+            }
+
+        }
     }
 }
