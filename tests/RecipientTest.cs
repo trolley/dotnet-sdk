@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Trolley.Types;
 using System;
 using System.Collections.Generic;
+using System.Net;
 
 namespace tests
 {
@@ -55,7 +56,13 @@ namespace tests
         public void testLifecycle()
         {
             string uuid = Guid.NewGuid().ToString();
-            Recipient recipient = new Recipient("individual", "test.create" + uuid + "@example.com", null, "Tom", "Jones", null, null, null, null, null, "1990-01-01", null, null, null, null);
+            Recipient recipient = new Recipient();
+            recipient.type = "individual";
+            recipient.email = "test.create" + uuid + "@example.com";
+            recipient.firstName = "Tom";
+            recipient.lastName = "Jones";
+            recipient.dob = "1990-01-01";
+
             recipient = gateway.recipient.create(recipient);
             Assert.IsNotNull(recipient);
             Assert.AreEqual("Tom", recipient.firstName);
@@ -82,7 +89,12 @@ namespace tests
         public void testAddress()
         {
             string uuid = Guid.NewGuid().ToString();
-            Recipient recipient = new Recipient("individual", "test.create" + uuid + "@example.com", null, "Tom", "Jones", null, null, null, null, null, "1990-01-01", null, null, null, null);
+            Recipient recipient = new Recipient();
+            recipient.type = "individual";
+            recipient.email = "test.create" + uuid + "@example.com";
+            recipient.firstName = "Tom";
+            recipient.lastName = "Jones";
+            recipient.dob = "1990-01-01";
             recipient.address = new Address("street1", "city", "US", "AL", "12345");
             Recipient createdRecipient = gateway.recipient.create(recipient);
 
@@ -95,7 +107,14 @@ namespace tests
             string uuid = Guid.NewGuid().ToString();
 
             Address address = new Address("123 Wolfstrasse", "Berlin", "DE", "123123");
-            Recipient recipient = new Recipient("individual", "test.create" + uuid + "@example.com", null, "Tom", "Jones", null, null, null, null, null, null, null, "1990-01-01", null, null, null, address);
+            Recipient recipient = new Recipient();
+            recipient.type = "individual";
+            recipient.email = "test.create" + uuid + "@example.com";
+            recipient.firstName = "Tom";
+            recipient.lastName = "Jones";
+            recipient.dob = "1990-01-01";
+            recipient.address = address;
+
             recipient = gateway.recipient.create(recipient);
 
             Assert.IsNotNull(recipient);
@@ -118,7 +137,14 @@ namespace tests
             recipientAccount = gateway.recipientAccount.create(recipient.id, recipientAccount);
             Assert.IsNotNull(recipientAccount);
 
-            Recipient usRecipient = new Recipient("individual", "test.accountCheck" + uuid + "@example.com", null, "Tom", "Jones Check", null, null, null, null, null, null, null, "1990-01-01", null, null, null, new Address("719 anderson dr", "Los Altos", "US", "CA", "94024"));
+            Recipient usRecipient = new Recipient();
+            usRecipient.type = "individual";
+            usRecipient.email = "test.accountCheck" + uuid + "@example.com";
+            usRecipient.firstName = "Tom";
+            usRecipient.lastName = "Jones Check";
+            usRecipient.dob = "1990-01-01";
+            usRecipient.address = new Address("719 anderson dr", "Los Altos", "US", "CA", "94024");
+
             usRecipient = gateway.recipient.create(usRecipient);
             RecipientAccount recipientCheckAccount = new RecipientAccount
             {

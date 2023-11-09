@@ -21,7 +21,13 @@ namespace tests
         {
             string uuid = Guid.NewGuid().ToString();
             Address address = new Address("123 Wolfstrasse", "Berlin", "DE", null, "123123");
-            Recipient recipient = new Recipient("individual", "test.create" + uuid + "@example.com", null, "Tom", "Jones", null, null, null, null, null, null, null, "1990-01-01", null, null, null, address);
+            Recipient recipient = new Recipient();
+            recipient.type = "individual";
+            recipient.email = "test.create" + uuid + "@example.com";
+            recipient.firstName = "Tom";
+            recipient.lastName = "Jones";
+            recipient.dob = "1990-01-01";
+            recipient.address = address;
             recipient = gateway.recipient.create(recipient);
 
             RecipientAccount recipientAccount = new RecipientAccount("bank-transfer", "CAD", null, true, "CA");
