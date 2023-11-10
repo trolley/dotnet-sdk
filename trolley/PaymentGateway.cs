@@ -19,7 +19,7 @@ namespace Trolley
         public Types.Payment find(string payment_id)
         {
             string endPoint = "/v1/payments/" + payment_id;
-            string response = this.gateway.client.get(endPoint);
+            string response = this.gateway.client.Get(endPoint);
             return paymentFactory(response);
         }
 
@@ -29,7 +29,7 @@ namespace Trolley
             builder.AppendFormat("/v1/batches/{0}/payments", payment.batchId);
             string endPoint = builder.ToString();
 
-            string response = this.gateway.client.post(endPoint, payment);
+            string response = this.gateway.client.Post(endPoint, payment);
             return paymentFactory(response);
         }
 
@@ -41,7 +41,7 @@ namespace Trolley
 
             Types.Payment cleanPayment = updateablePayment(payment);
 
-            string response = this.gateway.client.patch(endPoint, cleanPayment);
+            string response = this.gateway.client.Patch(endPoint, cleanPayment);
             return true;
         }
 
@@ -51,7 +51,7 @@ namespace Trolley
             builder.AppendFormat("/v1/batches/{0}/payments/{1}", batchId, paymentId);
             string endPoint = builder.ToString();
 
-            string response = this.gateway.client.delete(endPoint);
+            string response = this.gateway.client.Delete(endPoint);
             return true;
         }
 
@@ -101,7 +101,7 @@ namespace Trolley
         {
             string endPoint = "/v1/payments?&" + queryParams.buildQueryString();
             
-            string jsonResponse = this.gateway.client.get(endPoint);
+            string jsonResponse = this.gateway.client.Get(endPoint);
             return paymentListFactory(jsonResponse);
         }
 
@@ -111,7 +111,7 @@ namespace Trolley
             builder.AppendFormat("/v1/batches/{0}/payments?&{1}", batchId, queryParams.buildQueryString());
             string endPoint = builder.ToString();
 
-            string jsonResponse = this.gateway.client.get(endPoint);
+            string jsonResponse = this.gateway.client.Get(endPoint);
 
             return paymentListFactory(jsonResponse);
         }

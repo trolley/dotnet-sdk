@@ -28,17 +28,17 @@ namespace Trolley
         /// </summary>
         /// <param name="endPoint">The api endPoint</param>
         /// <returns>The response</returns>
-        public string get(string endPoint)
+        public string Get(string endPoint)
         {
             string result = "";
             try {
-                httpClient = createRequest(endPoint, "GET");
+                httpClient = CreateRequest(endPoint, "GET");
                 HttpResponseMessage response = httpClient.GetAsync(endPoint).Result;
 
                 result = response.Content.ReadAsStringAsync().Result;
                 if ((int)response.StatusCode != 200)
                 {
-                    throwStatusCodeException((int)response.StatusCode, response.Content.ReadAsStringAsync().Result);
+                    ThrowStatusCodeException((int)response.StatusCode, response.Content.ReadAsStringAsync().Result);
                 }
             }
             catch (HttpRequestException)
@@ -55,19 +55,19 @@ namespace Trolley
         /// <param name="endPoint">The api endPoint</param>
         /// <param name="stringBody">The request payload</param>
         /// <returns>The Response</returns>
-        public string post(string endPoint, ITrolleyMappable body)
+        public string Post(string endPoint, ITrolleyMappable body)
         {
             body.IsMappable();
-            HttpContent jsonBody = convertBody(body.ToJson());
+            HttpContent jsonBody = ConvertBody(body.ToJson());
             string result= "";
             try
             {
-                httpClient = createRequest(endPoint, "POST", body);
+                httpClient = CreateRequest(endPoint, "POST", body);
                 HttpResponseMessage response = httpClient.PostAsync(endPoint, jsonBody).Result;
                 result = response.Content.ReadAsStringAsync().Result;
                 if ((int)response.StatusCode != 200)
                 {
-                    throwStatusCodeException((int)response.StatusCode, response.Content.ReadAsStringAsync().Result);
+                    ThrowStatusCodeException((int)response.StatusCode, response.Content.ReadAsStringAsync().Result);
                 }
 
             }
@@ -86,14 +86,14 @@ namespace Trolley
         /// <param name="endPoint">The api endPoint</param>
         /// <param name="stringBody">The request payload</param>
         /// <returns>The response</returns>
-        public string patch(string endPoint, ITrolleyMappable body)
+        public string Patch(string endPoint, ITrolleyMappable body)
         {
             body.IsMappable();
-            HttpContent jsonBody = convertBody(body.ToJson());
+            HttpContent jsonBody = ConvertBody(body.ToJson());
             string result = "";
             try
             {
-                httpClient = createRequest(endPoint, "PATCH", body);
+                httpClient = CreateRequest(endPoint, "PATCH", body);
 
                 var request = new HttpRequestMessage(new HttpMethod("PATCH"), endPoint) { Content = jsonBody };
                 Task<HttpResponseMessage> responseTask = httpClient.SendAsync(request);
@@ -102,7 +102,7 @@ namespace Trolley
                 result = response.Content.ReadAsStringAsync().Result;
                 if ((int)response.StatusCode != 200)
                 {
-                    throwStatusCodeException((int)response.StatusCode, response.Content.ReadAsStringAsync().Result);
+                    ThrowStatusCodeException((int)response.StatusCode, response.Content.ReadAsStringAsync().Result);
                 }
             }
             catch (HttpRequestException)
@@ -119,7 +119,7 @@ namespace Trolley
         /// <param name="endPoint">The api endPoint</param>
         /// <param name="body">The request body</param>
         /// <returns>The response</returns>
-        public string delete(string endPoint, string body = null)
+        public string Delete(string endPoint, string body = null)
         {
             string result = "";
             HttpResponseMessage response = null;
@@ -127,13 +127,13 @@ namespace Trolley
             {
                 if(body == null)
                 {
-                    httpClient = createRequest(endPoint, "DELETE");
+                    httpClient = CreateRequest(endPoint, "DELETE");
                     response = httpClient.DeleteAsync(endPoint).Result;
                 }
                 else
                 {
-                    httpClient = createRequest(endPoint, "DELETE", null, body);
-                    HttpContent jsonBody = convertBody(body);
+                    httpClient = CreateRequest(endPoint, "DELETE", null, body);
+                    HttpContent jsonBody = ConvertBody(body);
 
                     var request = new HttpRequestMessage(new HttpMethod("DELETE"), endPoint) { Content = jsonBody };
                     Task<HttpResponseMessage> responseTask = httpClient.SendAsync(request);
@@ -145,7 +145,7 @@ namespace Trolley
                 result = response.Content.ReadAsStringAsync().Result;
                 if ((int)response.StatusCode != 200)
                 {
-                    throwStatusCodeException((int)response.StatusCode, response.Content.ReadAsStringAsync().Result);
+                    ThrowStatusCodeException((int)response.StatusCode, response.Content.ReadAsStringAsync().Result);
                 }
             }
             catch (HttpRequestException)
@@ -157,13 +157,13 @@ namespace Trolley
         }
 
 
-        private HttpContent convertBody(string body)
+        private HttpContent ConvertBody(string body)
         {
             HttpContent content = new StringContent(body, UTF8Encoding.UTF8, "application/json");
             return content;
         }
 
-        private HttpClient createRequest(string endPoint, string method, ITrolleyMappable body = null, string bodyStr = null)
+        private HttpClient CreateRequest(string endPoint, string method, ITrolleyMappable body = null, string bodyStr = null)
         {
             try
             {
@@ -179,7 +179,7 @@ namespace Trolley
                     bodyStr = body.ToJson();
                 }
 
-                var authorization = generateAuthorization(unixTime + "", endPoint, method, bodyStr);
+                var authorization = GenerateAuthorization(unixTime + "", endPoint, method, bodyStr);
 
                 httpClient.DefaultRequestHeaders.Add("Authorization", authorization);
                 httpClient.DefaultRequestHeaders.Add("X-PR-Timestamp", unixTime + "");
@@ -194,7 +194,7 @@ namespace Trolley
 
         }
 
-        private string generateAuthorization(string timeStamp, string endPoint, string method, string body)
+        private string GenerateAuthorization(string timeStamp, string endPoint, string method, string body)
         {
 
             string message = timeStamp + "\n" + method + "\n" + endPoint + "\n" + body + "\n";
@@ -224,7 +224,7 @@ namespace Trolley
             return BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
         }
 
-        private void throwStatusCodeException(int statusCode, string message = "")
+        private void ThrowStatusCodeException(int statusCode, string message = "")
         {
             switch (statusCode)
             {

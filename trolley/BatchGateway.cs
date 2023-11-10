@@ -17,7 +17,7 @@ namespace Trolley
         public Types.Batch find(string batch_id)
         {
             string endPoint = "/v1/batches/" + batch_id;
-            string response = this.gateway.client.get(endPoint);
+            string response = this.gateway.client.Get(endPoint);
 
             return batchFactory(response);
         }
@@ -30,7 +30,7 @@ namespace Trolley
         public Types.Batch create(Types.Batch body)
         {
             string endPoint = "/v1/batches/";
-            string response = this.gateway.client.post(endPoint, body);
+            string response = this.gateway.client.Post(endPoint, body);
 
             return batchFactory(response);
         }
@@ -38,14 +38,14 @@ namespace Trolley
         public bool update(Types.Batch batch)
         {
             string endPoint = "/v1/batches/" + batch.id;
-            string response = this.gateway.client.patch(endPoint, batch);
+            string response = this.gateway.client.Patch(endPoint, batch);
             return true;
         }
 
         public bool delete(string batch_id)
         {
             string endPoint = "/v1/batches/" + batch_id;
-            string response = this.gateway.client.delete(endPoint);
+            string response = this.gateway.client.Delete(endPoint);
             return true;
         }
 
@@ -60,7 +60,7 @@ namespace Trolley
             builder.AppendFormat("/v1/batches/?&search={0}&page={1}&pageSize={2}", term,page,pageSize);
             string endPoint = builder.ToString();
 
-            string response = this.gateway.client.get(endPoint);
+            string response = this.gateway.client.Get(endPoint);
 
             return batchListFactory(response);
         }
@@ -72,7 +72,7 @@ namespace Trolley
             string endPoint = builder.ToString();
 
             Types.Batch batch = new Types.Batch(null, null, null, 0);
-            string response = this.gateway.client.post(endPoint, batch);
+            string response = this.gateway.client.Post(endPoint, batch);
             return batchFactory(response);
         }
 
@@ -88,7 +88,7 @@ namespace Trolley
             string endPoint = builder.ToString();
 
             Types.Batch batch = new Types.Batch(null, null, null, 0);
-            string response = this.gateway.client.post(endPoint, batch);
+            string response = this.gateway.client.Post(endPoint, batch);
           
             return batchFactory(response);
         }
@@ -104,7 +104,7 @@ namespace Trolley
             builder.AppendFormat("/v1/batches/{0}/summary", batch_id);
             string endPoint = builder.ToString();
 
-            return this.gateway.client.get(endPoint);
+            return this.gateway.client.Get(endPoint);
         }
         private Types.Batch batchFactory(string response)
         {

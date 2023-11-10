@@ -30,7 +30,7 @@ namespace Trolley
             {
                 endPoint += $"&search={searchTerm}";
             }
-            string response = this.gateway.client.get(endPoint);
+            string response = this.gateway.client.Get(endPoint);
             return new Recipients(RecipientListFactory(response), MetaFactory(response));
         }
 
@@ -67,7 +67,7 @@ namespace Trolley
         public Recipient Get(string recipientId)
         {
             string endPoint = "/v1/recipients/" + recipientId;
-            string response = this.gateway.client.get(endPoint);
+            string response = this.gateway.client.Get(endPoint);
 
             return RecipientFactory(response);
         }
@@ -80,7 +80,7 @@ namespace Trolley
         public Recipient Create(Recipient recipient)
         {
             string endPoint = "/v1/recipients";
-            string response = this.gateway.client.post(endPoint, recipient);
+            string response = this.gateway.client.Post(endPoint, recipient);
 
             return RecipientFactory(response);
         }
@@ -103,7 +103,7 @@ namespace Trolley
             }
 
             string endPoint = "/v1/recipients/" + recipientId;
-            gateway.client.patch(endPoint, recipient);
+            gateway.client.Patch(endPoint, recipient);
             return true;
         }
 
@@ -115,7 +115,7 @@ namespace Trolley
         public bool Delete(string recipientId)
         {
             string endPoint = "/v1/recipients/" + recipientId;
-            string response = this.gateway.client.delete(endPoint);
+            string response = this.gateway.client.Delete(endPoint);
             return true;
         }
 
@@ -139,7 +139,7 @@ namespace Trolley
 
             string body = JsonConvert.SerializeObject(deleteBody, settings);
             string endPoint = "/v1/recipients/";
-            string response = this.gateway.client.delete(endPoint, body);
+            string response = this.gateway.client.Delete(endPoint, body);
             return true;
         }
 
@@ -156,7 +156,7 @@ namespace Trolley
                 throw new MissingFieldException("recipientId can not be null or empty.");
             }
             string endPoint = $"/v1/recipients/{recipientId}/logs?page={page}&pageSize={pageSize}";
-            string response = this.gateway.client.get(endPoint);
+            string response = this.gateway.client.Get(endPoint);
             return new Logs(LogsFactory(response), MetaFactory(response));
         }
 
@@ -203,7 +203,7 @@ namespace Trolley
                 throw new MissingFieldException("recipientId can not be null or empty.");
             }
             string endPoint = $"/v1/recipients/{recipientId}/payments?page={page}&pageSize={pageSize}";
-            string response = this.gateway.client.get(endPoint);
+            string response = this.gateway.client.Get(endPoint);
             PaymentGateway paymentGateway = new PaymentGateway(null);
             return paymentGateway.paymentListFactory(response);
         }

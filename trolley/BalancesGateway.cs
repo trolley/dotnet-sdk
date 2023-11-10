@@ -23,7 +23,7 @@ namespace Trolley
 
             string endPoint = "/v1/balances/" + type;
 
-            string response = this.gateway.client.get(endPoint);
+            string response = this.gateway.client.Get(endPoint);
 
             return balanceListFactory(response);
 
@@ -34,7 +34,7 @@ namespace Trolley
         {
             string endPoint = "/v1/balances/";
 
-            string response = this.gateway.client.get(endPoint);
+            string response = this.gateway.client.Get(endPoint);
 
             return balanceListFactory(response);
         }
