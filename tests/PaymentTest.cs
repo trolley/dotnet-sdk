@@ -36,7 +36,7 @@ namespace tests
         [TestMethod]
         public void testFindBatchPayments()
         {
-            List<Batch> batches = trolley.batch.Search();
+            List<Batch> batches = trolley.batch.Search().batches;
             
             Batch batch = batches.Find(x => x.totalPayments > 0);
             List<Payment> payments1 = trolley.payment.Search(batch.id).payments;
