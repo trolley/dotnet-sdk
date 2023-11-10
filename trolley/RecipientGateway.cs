@@ -122,12 +122,12 @@ namespace Trolley
         /// <summary>
         /// Delete multiple recipients by id
         /// </summary>
-        /// <param name="recipientIds">A <c>List<string></c> object containing recipinet IDs to delete</param>
+        /// <param name="recipientIds">An array of string containing recipinet IDs to delete</param>
         /// <returns>True if delete operation succeeded</returns>
-        public bool Delete(List<string> recipientIds)
+        public bool Delete(params string[] recipientIds)
         {
             
-            var deleteBody = new Dictionary<string, List<string>>
+            var deleteBody = new Dictionary<string, string[]>
             {
                 { "ids", recipientIds }
             };
