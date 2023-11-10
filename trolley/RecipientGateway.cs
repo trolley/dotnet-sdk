@@ -26,7 +26,7 @@ namespace Trolley
         public Recipients ListAllRecipients(string searchTerm = null, int page = 1, int pageSize = 10)
         {
             string endPoint = $"/v1/recipients?page={page}&pageSize={pageSize}";
-            if(searchTerm != null || searchTerm.Length>0)
+            if(searchTerm != null && searchTerm.Length>0)
             {
                 endPoint += $"&search={searchTerm}";
             }
