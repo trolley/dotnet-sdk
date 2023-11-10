@@ -27,7 +27,7 @@ namespace Trolley.Types
         public string routeType;
         public string routeMinimum;
         public Compliance compliance;
-        private string estimatedFees;
+        public string estimatedFees;
         public Address address;
 
         [JsonProperty("accounts")]

@@ -28,7 +28,7 @@ namespace tests
             recipient.lastName = "Jones";
             recipient.dob = "1990-01-01";
             recipient.address = address;
-            recipient = gateway.recipient.create(recipient);
+            recipient = gateway.recipient.Create(recipient);
 
             RecipientAccount recipientAccount = new RecipientAccount("bank-transfer", "CAD", null, true, "CA");
             recipientAccount.accountNum = "1234567";
@@ -178,10 +178,13 @@ namespace tests
         public void testGetAllPayments()
         {
             List<Payment> payments = gateway.payment.search(new PaymentQueryParams()).payments;
+            int itemCount = 0;
             foreach (Payment p in payments)
             {
-                Console.WriteLine("Payment ID: " + p.id);
+                Assert.IsNotNull(p.id);
+                itemCount++;
             }
+            Assert.IsTrue(itemCount > 0);
 
         }
     }

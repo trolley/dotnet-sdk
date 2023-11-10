@@ -52,7 +52,7 @@ namespace tests
             //Prepare - Create recipient
             string uuid = System.Guid.NewGuid().ToString();
             Recipient recipient = new Recipient("individual", "test.create" + uuid + "@example.com", null, "Tom", "Jones", null, null, null, null, null, "1990-01-01");
-            recipient = trolley.recipient.create(recipient);
+            recipient = trolley.recipient.Create(recipient);
             Assert.IsNotNull(recipient);
 
             //Prepare - Create Recipient Account
@@ -75,7 +75,7 @@ namespace tests
             Assert.IsNotNull(payment);
 
             //Cleanup - Delete Recipient
-            Boolean deleteResult = trolley.recipient.delete(recipient.id);
+            Boolean deleteResult = trolley.recipient.Delete(recipient.id);
             Assert.IsTrue(deleteResult);
 
 

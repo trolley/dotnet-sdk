@@ -116,14 +116,14 @@ namespace Trolley
             return paymentListFactory(jsonResponse);
         }
 
-        private Types.Payment paymentFactory(string response)
+        public Types.Payment paymentFactory(string response)
         {
             var tempData = JObject.Parse(response)["payment"];
             Types.Payment payment = JsonConvert.DeserializeObject<Types.Payment>(tempData.ToString());
             return payment;
         }
 
-        private Payments paymentListFactory(string response)
+        public Payments paymentListFactory(string response)
         {
             var tempData = JObject.Parse(response)["payments"];
             List<Types.Payment> paymentsFromResponse = JsonConvert.DeserializeObject<List<Types.Payment>>(tempData.ToString(), new JsonSerializerSettings

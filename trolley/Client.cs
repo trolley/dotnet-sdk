@@ -3,8 +3,9 @@ using System.Text;
 using System.Net.Http;
 using Trolley.Exceptions;
 using Trolley.Types;
+using Trolley.Types.Supporting;
 using System.Security.Cryptography;
-using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace Trolley
 {
@@ -40,7 +41,7 @@ namespace Trolley
                     throwStatusCodeException((int)response.StatusCode, response.Content.ReadAsStringAsync().Result);
                 }
             }
-            catch (System.Net.Http.HttpRequestException)
+            catch (HttpRequestException)
             {
                 throw new InvalidStatusCodeException(result);
             }
@@ -70,7 +71,7 @@ namespace Trolley
                 }
 
             }
-            catch (System.Net.Http.HttpRequestException)
+            catch (HttpRequestException)
             {
                 throw new InvalidStatusCodeException(result);
 
@@ -95,7 +96,7 @@ namespace Trolley
                 httpClient = createRequest(endPoint, "PATCH", body);
 
                 var request = new HttpRequestMessage(new HttpMethod("PATCH"), endPoint) { Content = jsonBody };
-                System.Threading.Tasks.Task<HttpResponseMessage> responseTask = httpClient.SendAsync(request);
+                Task<HttpResponseMessage> responseTask = httpClient.SendAsync(request);
 
                 HttpResponseMessage response = responseTask.Result;
                 result = response.Content.ReadAsStringAsync().Result;
@@ -104,7 +105,7 @@ namespace Trolley
                     throwStatusCodeException((int)response.StatusCode, response.Content.ReadAsStringAsync().Result);
                 }
             }
-            catch (System.Net.Http.HttpRequestException)
+            catch (HttpRequestException)
             {
                 throw new InvalidStatusCodeException(result);
             }
@@ -113,24 +114,41 @@ namespace Trolley
         }
 
         /// <summary>
-        /// Makes A DELETE request to API
+        /// Makes A DELETE request with body to API
         /// </summary>
         /// <param name="endPoint">The api endPoint</param>
+        /// <param name="body">The request body</param>
         /// <returns>The response</returns>
-        public string delete(string endPoint)
+        public string delete(string endPoint, string body = null)
         {
             string result = "";
+            HttpResponseMessage response = null;
             try
             {
-                httpClient = createRequest(endPoint, "DELETE");
-                HttpResponseMessage response = httpClient.DeleteAsync(endPoint).Result;
+                if(body == null)
+                {
+                    httpClient = createRequest(endPoint, "DELETE");
+                    response = httpClient.DeleteAsync(endPoint).Result;
+                }
+                else
+                {
+                    httpClient = createRequest(endPoint, "DELETE", null, body);
+                    HttpContent jsonBody = convertBody(body);
+
+                    var request = new HttpRequestMessage(new HttpMethod("DELETE"), endPoint) { Content = jsonBody };
+                    Task<HttpResponseMessage> responseTask = httpClient.SendAsync(request);
+
+                    response = responseTask.Result;
+                }
+                
+                
                 result = response.Content.ReadAsStringAsync().Result;
                 if ((int)response.StatusCode != 200)
                 {
                     throwStatusCodeException((int)response.StatusCode, response.Content.ReadAsStringAsync().Result);
                 }
             }
-            catch (System.Net.Http.HttpRequestException)
+            catch (HttpRequestException)
             {
                 throw new InvalidStatusCodeException(result);
             }
@@ -145,7 +163,7 @@ namespace Trolley
             return content;
         }
 
-        private HttpClient createRequest(string endPoint, string method, ITrolleyMappable body = null)
+        private HttpClient createRequest(string endPoint, string method, ITrolleyMappable body = null, string bodyStr = null)
         {
             try
             {
@@ -156,30 +174,30 @@ namespace Trolley
                 TimeSpan unixTicks = new TimeSpan(DateTime.UtcNow.Ticks) - epochTicks;
                 int unixTime = (int)unixTicks.TotalSeconds;
 
-                var authorization = generateAuthorization(unixTime + "", endPoint, method, body);
+                if (body != null)
+                {
+                    bodyStr = body.ToJson();
+                }
+
+                var authorization = generateAuthorization(unixTime + "", endPoint, method, bodyStr);
 
                 httpClient.DefaultRequestHeaders.Add("Authorization", authorization);
                 httpClient.DefaultRequestHeaders.Add("X-PR-Timestamp", unixTime + "");
-                httpClient.DefaultRequestHeaders.Add("Trolley-Source", "dotnet-sdk_1.0.10");
+                httpClient.DefaultRequestHeaders.Add("Trolley-Source", $"dotnet-sdk_{SemVer.MAJOR}.{SemVer.PATCH}.{SemVer.MINOR}");
                 return httpClient;
 
             }
-            catch (System.Net.Http.HttpRequestException e)
+            catch (HttpRequestException e)
             {
                 throw new InvalidStatusCodeException(e.Message);
             }
 
         }
 
-        private string generateAuthorization(string timeStamp, string endPoint, string method, ITrolleyMappable body)
+        private string generateAuthorization(string timeStamp, string endPoint, string method, string body)
         {
-            string newBody = "";
-            if (body != null)
-            {
-                newBody = body.ToJson();
-            }
 
-            string message = timeStamp + "\n" + method + "\n" + endPoint + "\n" + newBody + "\n";
+            string message = timeStamp + "\n" + method + "\n" + endPoint + "\n" + body + "\n";
 
             if (this.config.ApiSecret == null || this.config.ApiSecret == "")
             {

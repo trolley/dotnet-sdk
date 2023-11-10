@@ -22,7 +22,7 @@ namespace tests
         [TestMethod]
         public void Smoke()
         {
-            List<Recipient> recipients = gateway.recipient.all();
+            List<Recipient> recipients = gateway.recipient.ListAllRecipients(null, 1, 20).recipients;
             Assert.IsTrue(recipients.Count > 0);
         }
 
@@ -32,26 +32,28 @@ namespace tests
             string uuid = System.Guid.NewGuid().ToString();
 
             Recipient recipient = new Recipient("individual", "test.create" + uuid + "@example.com", null, "Tom", "Jones", null, null, null, null, null, "1990-01-01");
-            recipient = gateway.recipient.create(recipient);
+            recipient = gateway.recipient.Create(recipient);
             Assert.IsNotNull(recipient);
             Assert.AreEqual("Tom", recipient.firstName);
             Assert.AreEqual("Jones", recipient.lastName);
             Assert.IsNotNull(recipient.email.IndexOf(uuid));
             Assert.IsNotNull(recipient.id);
         }
+
         [TestMethod]
         public void testCreateASCII()
         {
             string uuid = System.Guid.NewGuid().ToString();
 
             Recipient recipient = new Recipient("individual", "test.create" + uuid + "@example.com", null, "Tóm", "Jónes", null, null, null, null, null, "1990-01-01");
-            recipient = gateway.recipient.create(recipient);
+            recipient = gateway.recipient.Create(recipient);
             Assert.IsNotNull(recipient);
             Assert.AreEqual("Tóm", recipient.firstName);
             Assert.AreEqual("Jónes", recipient.lastName);
             Assert.IsNotNull(recipient.email.IndexOf(uuid));
             Assert.IsNotNull(recipient.id);
         }
+
         [TestMethod]
         public void testLifecycle()
         {
@@ -63,7 +65,7 @@ namespace tests
             recipient.lastName = "Jones";
             recipient.dob = "1990-01-01";
 
-            recipient = gateway.recipient.create(recipient);
+            recipient = gateway.recipient.Create(recipient);
             Assert.IsNotNull(recipient);
             Assert.AreEqual("Tom", recipient.firstName);
             Assert.AreEqual("incomplete", recipient.status);
@@ -71,17 +73,18 @@ namespace tests
             recipient.firstName = "Bób";
             recipient.address.Country = "US";
             recipient.status = null;
-            bool response = gateway.recipient.update(recipient);
+
+            bool response = gateway.recipient.Update(recipient.id, recipient);
             Assert.IsNotNull(recipient);
             Assert.IsTrue(response);
 
-            Recipient fetchResult = gateway.recipient.find(recipient.id);
+            Recipient fetchResult = gateway.recipient.Get(recipient.id);
             Assert.AreEqual("Bób", fetchResult.firstName);
 
-            bool result = gateway.recipient.delete(fetchResult);
+            bool result = gateway.recipient.Delete(fetchResult.id);
             Assert.IsTrue(result);
 
-            Recipient fetchDeletedResult = gateway.recipient.find(fetchResult.id);
+            Recipient fetchDeletedResult = gateway.recipient.Get(fetchResult.id);
             Assert.AreEqual("archived", fetchDeletedResult.status);
         }
 
@@ -96,7 +99,7 @@ namespace tests
             recipient.lastName = "Jones";
             recipient.dob = "1990-01-01";
             recipient.address = new Address("street1", "city", "US", "AL", "12345");
-            Recipient createdRecipient = gateway.recipient.create(recipient);
+            Recipient createdRecipient = gateway.recipient.Create(recipient);
 
             Assert.AreEqual("US", createdRecipient.address.Country);
         }
@@ -115,7 +118,7 @@ namespace tests
             recipient.dob = "1990-01-01";
             recipient.address = address;
 
-            recipient = gateway.recipient.create(recipient);
+            recipient = gateway.recipient.Create(recipient);
 
             Assert.IsNotNull(recipient);
             Assert.AreEqual("Tom", recipient.firstName);
@@ -145,7 +148,7 @@ namespace tests
             usRecipient.dob = "1990-01-01";
             usRecipient.address = new Address("719 anderson dr", "Los Altos", "US", "CA", "94024");
 
-            usRecipient = gateway.recipient.create(usRecipient);
+            usRecipient = gateway.recipient.Create(usRecipient);
             RecipientAccount recipientCheckAccount = new RecipientAccount
             {
                 type = "check",
@@ -167,6 +170,90 @@ namespace tests
 
             recipientAccounts = gateway.recipientAccount.findAll(recipient.id);
             Assert.AreEqual(1, recipientAccounts.Count);
+        }
+
+        [TestMethod]
+        public void TestMultipleDelete()
+        {
+            string uuid = Guid.NewGuid().ToString();
+            Recipient recipient = new Recipient();
+            recipient.type = "individual";
+            recipient.email = "test.create.netsdk" + uuid + "@example.com";
+            recipient.firstName = "Tom";
+            recipient.lastName = "Jones";
+            recipient.dob = "1990-01-01";
+            recipient.address = new Address("street1", "city", "US", "AL", "12345");
+            Recipient createdRecipient1 = gateway.recipient.Create(recipient);
+
+            Assert.AreEqual("Tom", createdRecipient1.firstName);
+
+            uuid = Guid.NewGuid().ToString();
+            recipient.email = "test.create.netsdk" + uuid + "@example.com";
+            recipient.firstName = "John";
+            recipient.lastName = "Smith";
+            Recipient createdRecipient2 = gateway.recipient.Create(recipient);
+
+            Assert.AreEqual("John", createdRecipient2.firstName);
+
+            List<string> recipientIds = new List<string>();
+            recipientIds.Add(createdRecipient1.id);
+            recipientIds.Add(createdRecipient2.id);
+            bool delResult = gateway.recipient.Delete(recipientIds);
+
+            Assert.IsTrue(delResult);
+        }
+
+        [TestMethod]
+        public void TestListAllRecipients()
+        {
+            List<Recipient> recipients = gateway.recipient.ListAllRecipients("", 1, 10).recipients;
+            Assert.IsTrue(recipients.Count > 0);
+
+            var allRecipients = gateway.recipient.ListAllRecipients("");
+            int itemCount = 0;
+            foreach (Recipient r in allRecipients)
+            {
+                Assert.IsNotNull(r.id);
+                itemCount++;
+            }
+            Assert.IsTrue(itemCount > 0);
+        }
+
+        [TestMethod]
+        public void TestRecipientLogs()
+        {
+            string recipientId = "<RECIPIENT_ID>";
+
+            List<Log> logs = gateway.recipient.GetAllLogs(recipientId, 1, 10).logs;
+            Assert.IsTrue(logs.Count > 0);
+
+            var logsEnumerable = gateway.recipient.GetAllLogs(recipientId);
+            int itemCount = 0;
+            foreach (Log l in logsEnumerable)
+            {
+                Assert.IsNotNull(l.createdAt);
+                itemCount++;
+            }
+            Assert.IsTrue(itemCount > 0);
+        }
+
+        [TestMethod]
+        public void TestRecipientPayments()
+        {
+            string recipientId = "<RECIPIENT_ID>";
+
+            List<Payment> payments = gateway.recipient.GetAllPayments(recipientId, 1, 10).payments;
+            Assert.IsTrue(payments.Count > 0);
+
+
+            var paymentsEnumerable = gateway.recipient.GetAllPayments(recipientId);
+            int itemCount = 0;
+            foreach (Payment p in paymentsEnumerable)
+            {
+                Assert.IsNotNull(p.id);
+                itemCount++;
+            }
+            Assert.IsTrue(itemCount > 0);
         }
     }
 }
