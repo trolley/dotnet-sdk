@@ -15,7 +15,7 @@ namespace Trolley
         /// <returns>A batch object that the batch id belongs to</returns>
         public static Types.Batch find(string batch_id)
         {
-           return  Configuration.gateway().batch.find(batch_id);
+           return  Configuration.gateway().batch.Get(batch_id);
             
         }
         /// <summary>
@@ -39,7 +39,7 @@ namespace Trolley
         /// <returns>The newly created batch object</returns>
         public static Types.Batch create(Types.Batch body)
         {
-            return Configuration.gateway().batch.create(body);
+            return Configuration.gateway().batch.Create(body);
             
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace Trolley
         /// <returns>The response</returns>
         public static bool update(Types.Batch batch)
         {
-            return Configuration.gateway().batch.update(batch);
+            return Configuration.gateway().batch.Update(batch);
         }
         /// <summary>
         /// Deletes a batch based on the batch id
@@ -58,7 +58,7 @@ namespace Trolley
         /// <returns>The response</returns>
         public static bool delete(string batch_id)
         {
-            return Configuration.gateway().batch.delete(batch_id);
+            return Configuration.gateway().batch.Delete(batch_id);
         }
         /// <summary>
         /// Deletes a batch based on a batch object
@@ -78,7 +78,7 @@ namespace Trolley
         /// <returns>A list of batches</returns>
         public static List<Types.Batch> search(string term = "", int page = 1, int pageSize = 10)
         {
-            return Configuration.gateway().batch.search(term, page,pageSize);
+            return Configuration.gateway().batch.Search(term, page,pageSize);
 
         }
         /// <summary>
@@ -88,7 +88,7 @@ namespace Trolley
         /// <returns>The response</returns>
         public static Types.Batch generateQuote(string batch_id)
         {
-            return Configuration.gateway().batch.generateQuote(batch_id);
+            return Configuration.gateway().batch.GenerateQuote(batch_id);
         }
         /// <summary>
         /// Generates a quote based on a batch object
@@ -106,7 +106,7 @@ namespace Trolley
         /// <returns>The response</returns>
         public static Types.Batch processBatch(string batch_id)
         {
-            return Configuration.gateway().batch.processBatch(batch_id);
+            return Configuration.gateway().batch.ProcessBatch(batch_id);
         }
         /// <summary>
         /// Starts Processing a batch based on the batch object
@@ -124,7 +124,7 @@ namespace Trolley
         /// <returns>The response</returns>
         public static string summary(string batch_id)
         {
-            return Configuration.gateway().batch.summary(batch_id);
+            return Configuration.gateway().batch.Summary(batch_id);
 
         }
 

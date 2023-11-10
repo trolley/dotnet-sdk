@@ -42,41 +42,41 @@ namespace tests
         [TestMethod]
         public void testAll_smokeTest()
         {
-            List<Batch> batches = gateway.batch.search();
+            List<Batch> batches = gateway.batch.Search();
             Assert.IsNotNull(batches);
         }
         [TestMethod]
         public void testCreate()
         {
             Batch batch = new Batch("Integration Test Create", null, Config.TEST_BALANCE_CURRENCY, 0);
-            batch = gateway.batch.create(batch);
+            batch = gateway.batch.Create(batch);
             Assert.IsNotNull(batch);
             Assert.IsNotNull(batch.id);
 
-            List<Batch> batches = gateway.batch.search();
+            List<Batch> batches = gateway.batch.Search();
             Assert.IsTrue(batches.Count > 0);
         }
         [TestMethod]
         public void testUpdate()
         {
             Batch batch = new Batch("Integration Test Create", null, Config.TEST_BALANCE_CURRENCY, 0);
-            batch = gateway.batch.create(batch);
+            batch = gateway.batch.Create(batch);
             Assert.IsNotNull(batch);
             Assert.IsNotNull(batch.id);
 
-            List<Batch> batches = gateway.batch.search();
+            List<Batch> batches = gateway.batch.Search();
             Assert.IsTrue(batches.Count > 0);
 
             Batch newBatch = new Batch("Integration Update", null, null, 0, 0, null, null, null, null, null, batch.id);
-            bool response = gateway.batch.update(newBatch);
+            bool response = gateway.batch.Update(newBatch);
             Assert.IsTrue(response);
 
-            Batch findBatch = gateway.batch.find(batch.id);
+            Batch findBatch = gateway.batch.Get(batch.id);
 
             Assert.AreEqual("Integration Update", findBatch.description);
             Assert.AreEqual("open", findBatch.status);
 
-            response = gateway.batch.delete(batch.id);
+            response = gateway.batch.Delete(batch.id);
             Assert.IsTrue(response);
 
         }
@@ -94,12 +94,12 @@ namespace tests
             payments.Add(paymentBeta);
 
             Batch batch = new Batch("Integration Test Payments", payments, Config.TEST_BALANCE_CURRENCY, 0);
-            batch = gateway.batch.create(batch);
+            batch = gateway.batch.Create(batch);
 
             Assert.IsNotNull(batch);
             Assert.IsNotNull(batch.id);
 
-            Batch findBatch = gateway.batch.find(batch.id);
+            Batch findBatch = gateway.batch.Get(batch.id);
             Assert.IsNotNull(findBatch);
             Assert.AreEqual(2, findBatch.payments.Count);
 
@@ -115,7 +115,7 @@ namespace tests
         {
 
             Batch batch = new Batch("Integration Test Payments", null, Config.TEST_BALANCE_CURRENCY, 0);
-            batch = gateway.batch.create(batch);
+            batch = gateway.batch.Create(batch);
             Assert.IsNotNull(batch);
             Assert.IsNotNull(batch.id);
 
@@ -151,12 +151,12 @@ namespace tests
             payments.Add(paymentBeta);
 
             Batch batch = new Batch("Integration Test Payments", payments, Config.TEST_BALANCE_CURRENCY, 0);
-            batch = gateway.batch.create(batch);
+            batch = gateway.batch.Create(batch);
 
-            Batch quote = gateway.batch.generateQuote(batch.id);
+            Batch quote = gateway.batch.GenerateQuote(batch.id);
             Assert.IsNotNull(quote);
 
-            Batch start = gateway.batch.processBatch(batch.id);
+            Batch start = gateway.batch.ProcessBatch(batch.id);
             Assert.IsNotNull(start);
         }
 
@@ -166,7 +166,7 @@ namespace tests
             try
             {
                 Batch batch = new Batch("Integration Test Payments", null, "MVR", 0);
-                batch = gateway.batch.create(batch);
+                batch = gateway.batch.Create(batch);
             }
             catch (Exception e)
             {

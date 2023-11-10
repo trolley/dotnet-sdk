@@ -36,7 +36,7 @@ namespace tests
         [TestMethod]
         public void testFindBatchPayments()
         {
-            List<Batch> batches = trolley.batch.search();
+            List<Batch> batches = trolley.batch.Search();
             
             Batch batch = batches.Find(x => x.totalPayments > 0);
             List<Payment> payments1 = trolley.payment.Search(batch.id).payments;
@@ -65,7 +65,7 @@ namespace tests
 
             //Prepare - Create batch
             Batch batch = new Batch("Integration Test Create", null, "USD", 0);
-            batch = trolley.batch.create(batch);
+            batch = trolley.batch.Create(batch);
             Assert.IsNotNull(batch);
 
             //Create Payment
@@ -80,7 +80,7 @@ namespace tests
 
 
             //Cleanup - Delete Batch
-            deleteResult = trolley.batch.delete(batch.id);
+            deleteResult = trolley.batch.Delete(batch.id);
             Assert.IsTrue(deleteResult);
         }
 

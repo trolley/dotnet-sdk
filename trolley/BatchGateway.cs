@@ -14,47 +14,42 @@ namespace Trolley
             this.gateway = gateway;
         }
 
-        public Types.Batch find(string batch_id)
+        public Types.Batch Get(string batchId)
         {
-            string endPoint = "/v1/batches/" + batch_id;
+            string endPoint = "/v1/batches/" + batchId;
             string response = this.gateway.client.Get(endPoint);
 
-            return batchFactory(response);
+            return BatchFactory(response);
         }
 
-        public List<Types.Batch> search(int page, int pageNumber)
+        public List<Types.Batch> Search(int page, int pageNumber)
         {
             return Batch.search("", page, pageNumber);
         }
 
-        public Types.Batch create(Types.Batch body)
+        public Types.Batch Create(Types.Batch body)
         {
             string endPoint = "/v1/batches/";
             string response = this.gateway.client.Post(endPoint, body);
 
-            return batchFactory(response);
+            return BatchFactory(response);
         }
 
-        public bool update(Types.Batch batch)
+        public bool Update(Types.Batch batch)
         {
             string endPoint = "/v1/batches/" + batch.id;
             string response = this.gateway.client.Patch(endPoint, batch);
             return true;
         }
 
-        public bool delete(string batch_id)
+        public bool Delete(string batchId)
         {
-            string endPoint = "/v1/batches/" + batch_id;
+            string endPoint = "/v1/batches/" + batchId;
             string response = this.gateway.client.Delete(endPoint);
             return true;
         }
 
-        public bool delete(Types.Batch batch)
-        {
-            return delete(batch.id);
-        }
-
-        public List<Types.Batch> search(string term = "", int page = 1, int pageSize = 10)
+        public List<Types.Batch> Search(string term = "", int page = 1, int pageSize = 10)
         {
             StringBuilder builder = new StringBuilder();
             builder.AppendFormat("/v1/batches/?&search={0}&page={1}&pageSize={2}", term,page,pageSize);
@@ -62,56 +57,48 @@ namespace Trolley
 
             string response = this.gateway.client.Get(endPoint);
 
-            return batchListFactory(response);
+            return BatchListFactory(response);
         }
 
-        public Types.Batch generateQuote(string batch_id)
+        public Types.Batch GenerateQuote(string batchId)
         {
             StringBuilder builder = new StringBuilder();
-            builder.AppendFormat("/v1/batches/{0}/generate-quote", batch_id);
+            builder.AppendFormat("/v1/batches/{0}/generate-quote", batchId);
             string endPoint = builder.ToString();
 
             Types.Batch batch = new Types.Batch(null, null, null, 0);
             string response = this.gateway.client.Post(endPoint, batch);
-            return batchFactory(response);
+            return BatchFactory(response);
         }
 
-        public Types.Batch generateQuote(Types.Batch batch)
-        {
-            return generateQuote(batch.id);
-        }
-
-        public Types.Batch processBatch(string batch_id)
+        public Types.Batch ProcessBatch(string batchId)
         {
             StringBuilder builder = new StringBuilder();
-            builder.AppendFormat("/v1/batches/{0}/start-processing", batch_id);
+            builder.AppendFormat("/v1/batches/{0}/start-processing", batchId);
             string endPoint = builder.ToString();
 
             Types.Batch batch = new Types.Batch(null, null, null, 0);
             string response = this.gateway.client.Post(endPoint, batch);
           
-            return batchFactory(response);
+            return BatchFactory(response);
         }
 
-        public Types.Batch proccessBatch(Types.Batch batch)
-        {
-            return processBatch(batch.id);
-        }
-
-        public string summary(string batch_id)
+        public string Summary(string batchId)
         {
             StringBuilder builder = new StringBuilder();
-            builder.AppendFormat("/v1/batches/{0}/summary", batch_id);
+            builder.AppendFormat("/v1/batches/{0}/summary", batchId);
             string endPoint = builder.ToString();
 
             return this.gateway.client.Get(endPoint);
         }
-        private Types.Batch batchFactory(string response)
+
+        private Types.Batch BatchFactory(string response)
         {
             Types.Batch batch = JsonHelpers.BatchHelper.JsonToBatch(response);
             return batch;
         }
-        private List<Types.Batch> batchListFactory(string response)
+
+        private List<Types.Batch> BatchListFactory(string response)
         {
             var tempData = JObject.Parse(response)["batches"];
             List<Types.Batch> batches = JsonConvert.DeserializeObject<List<Types.Batch>>(tempData.ToString());
