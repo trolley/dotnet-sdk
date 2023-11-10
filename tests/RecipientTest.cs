@@ -195,9 +195,11 @@ namespace tests
 
             Assert.AreEqual("John", createdRecipient2.firstName);
 
-            List<string> recipientIds = new List<string>();
-            recipientIds.Add(createdRecipient1.id);
-            recipientIds.Add(createdRecipient2.id);
+            List<string> recipientIds = new List<string>
+            {
+                createdRecipient1.id,
+                createdRecipient2.id
+            };
             bool delResult = gateway.recipient.Delete(recipientIds);
 
             Assert.IsTrue(delResult);
