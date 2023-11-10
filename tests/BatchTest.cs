@@ -122,7 +122,7 @@ namespace tests
             Recipient recipient = createRecipient();
             Payment payment = new Payment(recipient, 10.92, "EUR");
             payment.batchId = batch.id;
-            payment = gateway.payment.create(payment);
+            payment = gateway.payment.Create(payment);
 
             Assert.IsNotNull(payment);
             Assert.IsNotNull(payment.id);
@@ -131,10 +131,10 @@ namespace tests
             payment.sourceAmount = 20.00;
             payment.batchId = batch.id;
 
-            bool response = gateway.payment.update(payment);
+            bool response = gateway.payment.Update(payment);
             Assert.IsTrue(response);
 
-            response = gateway.payment.delete(payment);
+            response = gateway.payment.Delete(payment);
             Assert.IsTrue(response);
         }
 
@@ -177,7 +177,7 @@ namespace tests
         [TestMethod]
         public void testGetAllPayments()
         {
-            List<Payment> payments = gateway.payment.search(new PaymentQueryParams()).payments;
+            List<Payment> payments = gateway.payment.Search(new PaymentQueryParams()).payments;
             int itemCount = 0;
             foreach (Payment p in payments)
             {

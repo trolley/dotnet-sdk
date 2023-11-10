@@ -205,7 +205,7 @@ namespace Trolley
             string endPoint = $"/v1/recipients/{recipientId}/payments?page={page}&pageSize={pageSize}";
             string response = this.gateway.client.Get(endPoint);
             PaymentGateway paymentGateway = new PaymentGateway(null);
-            return paymentGateway.paymentListFactory(response);
+            return paymentGateway.PaymentListFactory(response);
         }
 
         /// <summary>

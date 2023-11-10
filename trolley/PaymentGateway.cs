@@ -16,36 +16,36 @@ namespace Trolley
             this.gateway = gateway;
         }    
 
-        public Types.Payment find(string payment_id)
+        public Payment Get(string paymentId)
         {
-            string endPoint = "/v1/payments/" + payment_id;
+            string endPoint = "/v1/payments/" + paymentId;
             string response = this.gateway.client.Get(endPoint);
-            return paymentFactory(response);
+            return PaymentFactory(response);
         }
 
-        public Types.Payment create(Types.Payment payment)
+        public Payment Create(Payment payment)
         {
             StringBuilder builder = new StringBuilder();
             builder.AppendFormat("/v1/batches/{0}/payments", payment.batchId);
             string endPoint = builder.ToString();
 
             string response = this.gateway.client.Post(endPoint, payment);
-            return paymentFactory(response);
+            return PaymentFactory(response);
         }
 
-        public bool update(Types.Payment payment)
+        public bool Update(Payment payment)
         {
             StringBuilder builder = new StringBuilder();
             builder.AppendFormat("/v1/batches/{0}/payments/{1}", payment.batchId, payment.id);
             string endPoint = builder.ToString();
 
-            Types.Payment cleanPayment = updateablePayment(payment);
+            Payment cleanPayment = UpdateablePayment(payment);
 
             string response = this.gateway.client.Patch(endPoint, cleanPayment);
             return true;
         }
 
-        public bool delete(string paymentId, string batchId)
+        public bool Delete(string paymentId, string batchId)
         {
             StringBuilder builder = new StringBuilder();
             builder.AppendFormat("/v1/batches/{0}/payments/{1}", batchId, paymentId);
@@ -55,18 +55,18 @@ namespace Trolley
             return true;
         }
 
-        public bool delete(Types.Payment payment)
+        public bool Delete(Payment payment)
         {
-            return delete(payment.id, payment.batchId);
+            return Delete(payment.id, payment.batchId);
         }
 
-        public IEnumerable<Payment> listAllPayments(string searchTerm = "", string batchId = "")
+        public IEnumerable<Payment> ListAllPayments(string searchTerm = "", string batchId = "")
         {
             int page = 1;
             bool shouldPaginate = true;
             while (shouldPaginate)
             {
-                Payments p = search(searchTerm, page, 10, batchId);
+                Payments p = Search(searchTerm, page, 10, batchId);
                 foreach (Payment payment in p.payments)
                 {
                     yield return payment;
@@ -80,32 +80,32 @@ namespace Trolley
             }
         }
 
-        public Payments search(int page, int pageNumber)
+        public Payments Search(int page, int pageNumber)
         {
-            return search("", page, pageNumber, "");
+            return Search("", page, pageNumber, "");
         }
 
-        public Payments search(string term = null, int page = 1, int pageSize = 10, string batchId = "")
+        public Payments Search(string term = null, int page = 1, int pageSize = 10, string batchId = "")
         {
             PaymentQueryParams queryParams = new PaymentQueryParams { page = page, pageSize = pageSize, term = term };
 
-            return batchId != "" ? search(batchId, queryParams) : search(queryParams);
+            return batchId != "" ? Search(batchId, queryParams) : Search(queryParams);
         }
 
-        public Payments search(string batchId)
+        public Payments Search(string batchId)
         {
-            return search(batchId, new PaymentQueryParams()); 
+            return Search(batchId, new PaymentQueryParams()); 
         }
 
-        public Payments search(PaymentQueryParams queryParams)
+        public Payments Search(PaymentQueryParams queryParams)
         {
             string endPoint = "/v1/payments?&" + queryParams.buildQueryString();
             
             string jsonResponse = this.gateway.client.Get(endPoint);
-            return paymentListFactory(jsonResponse);
+            return PaymentListFactory(jsonResponse);
         }
 
-        public Payments search(string batchId, PaymentQueryParams queryParams)
+        public Payments Search(string batchId, PaymentQueryParams queryParams)
         {
             StringBuilder builder = new StringBuilder();
             builder.AppendFormat("/v1/batches/{0}/payments?&{1}", batchId, queryParams.buildQueryString());
@@ -113,20 +113,20 @@ namespace Trolley
 
             string jsonResponse = this.gateway.client.Get(endPoint);
 
-            return paymentListFactory(jsonResponse);
+            return PaymentListFactory(jsonResponse);
         }
 
-        public Types.Payment paymentFactory(string response)
+        public Payment PaymentFactory(string response)
         {
             var tempData = JObject.Parse(response)["payment"];
-            Types.Payment payment = JsonConvert.DeserializeObject<Types.Payment>(tempData.ToString());
+            Payment payment = JsonConvert.DeserializeObject<Payment>(tempData.ToString());
             return payment;
         }
 
-        public Payments paymentListFactory(string response)
+        public Payments PaymentListFactory(string response)
         {
             var tempData = JObject.Parse(response)["payments"];
-            List<Types.Payment> paymentsFromResponse = JsonConvert.DeserializeObject<List<Types.Payment>>(tempData.ToString(), new JsonSerializerSettings
+            List<Payment> paymentsFromResponse = JsonConvert.DeserializeObject<List<Payment>>(tempData.ToString(), new JsonSerializerSettings
             {
                 NullValueHandling = NullValueHandling.Ignore,
                 MissingMemberHandling = MissingMemberHandling.Ignore
@@ -143,7 +143,7 @@ namespace Trolley
             return payments;
         }
 
-        private Types.Payment updateablePayment(Types.Payment payment)
+        private Payment UpdateablePayment(Payment payment)
         {
             if (payment.amount > 0)
             {
