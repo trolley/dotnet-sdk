@@ -42,7 +42,7 @@ namespace tests
         [TestMethod]
         public void testAll_smokeTest()
         {
-            List<Batch> batches = gateway.batch.Search();
+            List<Batch> batches = gateway.batch.Search().batches;
             Assert.IsNotNull(batches);
         }
         [TestMethod]
@@ -53,7 +53,7 @@ namespace tests
             Assert.IsNotNull(batch);
             Assert.IsNotNull(batch.id);
 
-            List<Batch> batches = gateway.batch.Search();
+            List<Batch> batches = gateway.batch.Search().batches;
             Assert.IsTrue(batches.Count > 0);
         }
         [TestMethod]
@@ -64,7 +64,7 @@ namespace tests
             Assert.IsNotNull(batch);
             Assert.IsNotNull(batch.id);
 
-            List<Batch> batches = gateway.batch.Search();
+            List<Batch> batches = gateway.batch.Search().batches;
             Assert.IsTrue(batches.Count > 0);
 
             Batch newBatch = new Batch("Integration Update", null, null, 0, 0, null, null, null, null, null, batch.id);
@@ -186,6 +186,42 @@ namespace tests
             }
             Assert.IsTrue(itemCount > 0);
 
+        }
+
+        [TestMethod]
+        public void TestGetAllBatches()
+        {
+            List<Batch> batches = gateway.batch.ListAllBatches(null, 1, 10).batches;
+            Assert.IsTrue(batches.Count > 0);
+
+            var allBatches = gateway.batch.ListAllBatches(null);
+            int itemCount = 0;
+            foreach (Batch b in allBatches)
+            {
+                Assert.IsNotNull(b.id);
+                itemCount++;
+            }
+            Assert.IsTrue(itemCount > 0);
+        }
+
+        [TestMethod]
+        public void TestDeleteMultipleBatches()
+        {
+            Batch b1 = new Batch();
+            b1.currency = "CAD";
+            b1.description = "Batch 1 for .Net SDK Test : Delete Multiple";
+            Batch batch1 = gateway.batch.Create(b1);
+            Assert.IsNotNull(batch1.id);
+
+            Batch b2 = new Batch();
+            b2.currency = "CAD";
+            b2.description = "Batch 2 for .Net SDK Test : Delete Multiple";
+            Batch batch2 = gateway.batch.Create(b1);
+            Assert.IsNotNull(batch2.id);
+
+            bool deleteResult = gateway.batch.Delete(batch1.id, batch2.id);
+            Assert.IsTrue(deleteResult);
+            
         }
     }
 }
