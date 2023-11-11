@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace tests
 {
     [TestClass]
-    public class PaymentTest
+    public class OfflinePaymentTest
     {
 
         private TestContext testContextInstance;
