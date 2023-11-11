@@ -9,6 +9,7 @@
         public BalancesGateway balances;
         public BatchGateway batch;
         public PaymentGateway payment;
+        public OfflinePaymentGateway offlinePayment;
 
         public string apiKey;
         public string apiSecret;
@@ -23,6 +24,7 @@
             this.balances = new BalancesGateway(this);
             this.batch = new BatchGateway(this);
             this.payment = new PaymentGateway(this);
+            this.offlinePayment = new OfflinePaymentGateway(this);
         }
 
         public Gateway(string apiKey, string apiSecret, string apiBase = "production"):this(new Configuration(apiKey, apiSecret, apiBase))
