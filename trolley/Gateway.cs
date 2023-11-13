@@ -11,6 +11,7 @@
         public PaymentGateway payment;
         public OfflinePaymentGateway offlinePayment;
         public InvoiceGateway invoice;
+        public InvoiceLineGateway invoiceLine;
 
         public string apiKey;
         public string apiSecret;
@@ -27,6 +28,7 @@
             this.payment = new PaymentGateway(this);
             this.offlinePayment = new OfflinePaymentGateway(this);
             this.invoice = new InvoiceGateway(this);
+            this.invoiceLine = new InvoiceLineGateway(this);
         }
 
         public Gateway(string apiKey, string apiSecret, string apiBase = "production"):this(new Configuration(apiKey, apiSecret, apiBase))

@@ -28,7 +28,7 @@ namespace tests
         }
 
         [TestMethod]
-        public void TestLifecycle()
+        public void TestInvoiceLifecycle()
         {
             //Prepare - Create recipient
             string uuid = Guid.NewGuid().ToString();
@@ -75,5 +75,56 @@ namespace tests
             bool deleteResult = gateway.recipient.Delete(recipient.id);
             Assert.IsTrue(deleteResult);
         }
-    }
+
+        [TestMethod]
+        public void TestInvoiceLines()
+        {
+            //Prepare - Create recipient
+            string uuid = Guid.NewGuid().ToString();
+            Recipient recipient = new Recipient("individual", "test.create" + uuid + "@example.com", null, "Tom", "Jones", null, null, null, null, null, "1990-01-01");
+            recipient = gateway.recipient.Create(recipient);
+            Assert.IsNotNull(recipient.id);
+
+            //Test - Create an Invoice
+            Invoice invoiceRequest = new Invoice();
+            InvoiceLine invoiceLine = new InvoiceLine();
+            invoiceLine.description = ".Net SDK Integration Test Invoice Line";
+            invoiceLine.unitAmount = new Amount("100.00", "USD");
+            invoiceRequest.recipientId = recipient.id;
+            invoiceRequest.description = ".Net SDK Integration Test";
+            invoiceRequest.lines = new List<InvoiceLine>() { invoiceLine };
+            Invoice invoice = gateway.invoice.Create(invoiceRequest);
+            Assert.IsTrue(invoice.description.Contains(".Net SDK"));
+
+            //Test - Create an Invoice Line
+            InvoiceLine invoiceLineRequest = new InvoiceLine();
+            invoiceLineRequest.description = ".Net SDK Integration Test Invoice Line";
+            invoiceLineRequest.unitAmount = new Amount("120.00", "USD");
+            Invoice invoiceWithLines = gateway.invoiceLine.Create(invoice.id, invoiceLineRequest);
+            Assert.IsTrue(invoiceWithLines.lines.Count == 2);
+
+            //Test - Update an Invoice Line
+            invoiceLineRequest = new InvoiceLine();
+            invoiceLineRequest.invoiceLineId = invoiceWithLines.lines[1].id;
+            invoiceLineRequest.unitAmount = new Amount("150.00", "USD");
+            invoiceWithLines = gateway.invoiceLine.Update(invoiceWithLines.id, invoiceLineRequest);
+            Assert.AreEqual("150.00", invoiceWithLines.lines[1].unitAmount.value);
+
+            //Test - Delete Invoice Lines
+            invoice = gateway.invoiceLine.Delete(invoiceWithLines.id,
+                invoiceWithLines.lines[0].id,
+                invoiceWithLines.lines[1].id);
+            Assert.AreEqual(0, invoice.lines.Count);
+
+            //Test - Delete an Invoice
+            bool delResult = gateway.invoice.Delete(invoice.id);
+            Assert.IsTrue(delResult);
+
+            //Cleanup - Delete Recipient
+            bool deleteResult = gateway.recipient.Delete(recipient.id);
+            Assert.IsTrue(deleteResult);
+        }
+
+    }    
 }
+
