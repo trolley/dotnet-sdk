@@ -7,7 +7,7 @@ namespace Trolley.Types
     /// </summary>
     public class Balance
     {
-        public Boolean primary;
+        public bool primary;
         public Double amount;
         public string currency;
         public string type;
