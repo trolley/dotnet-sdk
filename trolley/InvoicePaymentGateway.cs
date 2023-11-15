@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System;
 using Trolley.Types.Supporting;
 using System.Text;
+using Trolley.JsonHelpers;
 
 namespace Trolley
 {
@@ -31,13 +32,6 @@ namespace Trolley
         {
             string body = "";
 
-            JsonSerializerSettings settings = new JsonSerializerSettings()
-            {
-                StringEscapeHandling = StringEscapeHandling.EscapeNonAscii,
-                NullValueHandling = NullValueHandling.Ignore,
-                Formatting = Formatting.Indented,
-            };
-
             if (batchId != null)
             {
                 var requestBody = new
@@ -46,7 +40,7 @@ namespace Trolley
                     ids = invoicePaymentParts
                 };
 
-                body = JsonConvert.SerializeObject(requestBody, settings);
+                body = JsonConvert.SerializeObject(requestBody, SerializerHelper.GetSerializerSettings());
             }
             else
             {
@@ -55,7 +49,7 @@ namespace Trolley
                     ids = invoicePaymentParts
                 };
 
-                body = JsonConvert.SerializeObject(requestBody, settings);
+                body = JsonConvert.SerializeObject(requestBody, SerializerHelper.GetSerializerSettings());
             }
 
             string endPoint = "/v1/invoices/payment/create/";
@@ -117,14 +111,7 @@ namespace Trolley
         /// <param name="pageSize"></param>
         /// <exception cref="MissingFieldException"></exception>
         public InvoicePayments Search(string[] invoiceIds, string[] paymentIds, int page = 1, int pageSize = 10)
-        {         
-            JsonSerializerSettings settings = new JsonSerializerSettings()
-            {
-                StringEscapeHandling = StringEscapeHandling.EscapeNonAscii,
-                NullValueHandling = NullValueHandling.Ignore,
-                Formatting = Formatting.Indented,
-            };
-
+        {
             if (invoiceIds.Length == 0 && paymentIds.Length == 0)
             {
                 throw new MissingFieldException("Either invoiceIds or paymentIds need to be set.");
@@ -135,11 +122,11 @@ namespace Trolley
 
             if (invoiceIds != null && invoiceIds.Length >= 0)
             {
-                builder.AppendFormat("\n\"invoiceIds\" : {0},", JsonConvert.SerializeObject(invoiceIds, settings));
+                builder.AppendFormat("\n\"invoiceIds\" : {0},", JsonConvert.SerializeObject(invoiceIds, SerializerHelper.GetSerializerSettings()));
             }
             if (paymentIds != null && paymentIds.Length >= 0)
             {
-                builder.AppendFormat("\n\"paymentIds\" : {0},", JsonConvert.SerializeObject(paymentIds, settings));
+                builder.AppendFormat("\n\"paymentIds\" : {0},", JsonConvert.SerializeObject(paymentIds, SerializerHelper.GetSerializerSettings()));
             }
             
 

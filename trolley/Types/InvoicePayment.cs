@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using Trolley.JsonHelpers;
 using Trolley.Types.Supporting;
 
 namespace Trolley.Types
@@ -71,13 +72,7 @@ namespace Trolley.Types
         /// <returns>JSON string representation of the object</returns>
         public string ToJson()
         {
-            JsonSerializerSettings settings = new JsonSerializerSettings
-            {
-                StringEscapeHandling = StringEscapeHandling.EscapeNonAscii,
-                NullValueHandling = NullValueHandling.Ignore,
-                Formatting = Formatting.Indented,
-            };
-            return JsonConvert.SerializeObject(this, settings);
+            return JsonConvert.SerializeObject(this, SerializerHelper.GetSerializerSettings());
         }
 
         /// <summary>

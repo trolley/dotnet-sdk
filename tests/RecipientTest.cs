@@ -3,6 +3,8 @@ using Trolley.Types;
 using System;
 using System.Collections.Generic;
 using System.Net;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace tests
 {
@@ -11,11 +13,12 @@ namespace tests
     {
 
         Trolley.Gateway gateway;
+        Config config;
 
         [TestInitialize]
         public void Init()
         {   
-            Config config = new Config();
+            config = new Config();
             gateway = new Trolley.Gateway(config.ACCESS_KEY, config.SECRET_KEY);
         }
 
@@ -52,6 +55,15 @@ namespace tests
             Assert.AreEqual("Jónes", recipient.lastName);
             Assert.IsNotNull(recipient.email.IndexOf(uuid));
             Assert.IsNotNull(recipient.id);
+        }
+
+        public static string Serialize(object o, StringEscapeHandling stringEscapeHandling)
+        {
+            StringWriter wr = new StringWriter();
+            var jsonWriter = new JsonTextWriter(wr);
+            jsonWriter.StringEscapeHandling = stringEscapeHandling;
+            new JsonSerializer().Serialize(jsonWriter, o);
+            return wr.ToString();
         }
 
         [TestMethod]
@@ -219,7 +231,7 @@ namespace tests
         [TestMethod]
         public void TestRecipientLogs()
         {
-            string recipientId = "<RECIPIENT_ID>";
+            string recipientId = config.RECIPIENT_ID;
 
             List<Log> logs = gateway.recipient.GetAllLogs(recipientId, 1, 10).logs;
             Assert.IsTrue(logs.Count > 0);
@@ -237,7 +249,7 @@ namespace tests
         [TestMethod]
         public void TestRecipientPayments()
         {
-            string recipientId = "<RECIPIENT_ID>";
+            string recipientId = config.RECIPIENT_ID;
 
             List<Payment> payments = gateway.recipient.GetAllPayments(recipientId, 1, 10).payments;
             Assert.IsTrue(payments.Count > 0);
@@ -256,7 +268,7 @@ namespace tests
         [TestMethod]
         public void TestRecipientOfflinePayments()
         {
-            string recipientId = "<RECIPIENT_ID>";
+            string recipientId = config.RECIPIENT_ID;
 
             List<OfflinePayment> offlinePayments = gateway.recipient.GetAllOfflinePayments(recipientId, null, 1, 10).offlinePayments;
             Assert.IsTrue(offlinePayments.Count > 0);

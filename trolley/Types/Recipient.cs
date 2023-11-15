@@ -4,6 +4,7 @@ using Trolley.Converters;
 using System.Collections.Generic;
 using System;
 using Trolley.Types.Supporting;
+using Trolley.JsonHelpers;
 
 namespace Trolley.Types
 {
@@ -158,13 +159,7 @@ namespace Trolley.Types
         /// <returns>JSON string representation of the object</returns>
         public string ToJson()
         {
-            JsonSerializerSettings settings = new JsonSerializerSettings
-            {
-                StringEscapeHandling = StringEscapeHandling.EscapeNonAscii,
-                NullValueHandling = NullValueHandling.Ignore,
-                Formatting = Formatting.Indented,
-            };
-            return JsonConvert.SerializeObject(this, settings);
+            return JsonConvert.SerializeObject(this, SerializerHelper.GetSerializerSettings());
         }
 
         /// <summary>
