@@ -821,6 +821,14 @@
             "fileVersion": "1.0.2.0"
           }
         }
+      },
+      "PaymentRails/1.0.2.0": {
+        "runtime": {
+          "PaymentRails.dll": {
+            "assemblyVersion": "1.0.2.0",
+            "fileVersion": "1.0.2.0"
+          }
+        }
       }
     }
   },
