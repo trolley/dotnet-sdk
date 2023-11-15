@@ -16,6 +16,10 @@ namespace Trolley
             this.gateway = gateway;
         }
 
+        public InvoiceGateway()
+        {
+        }
+
         /// <summary>
         /// Get an invoice by invoice ID.
         /// </summary>
@@ -162,7 +166,7 @@ namespace Trolley
         /// </summary>
         /// <param name="response">API Response containing recipient object</param>
         /// <returns><c>Invoice</c></returns>
-        private Invoice InvoiceFactory(string response)
+        public Invoice InvoiceFactory(string response)
         {
             return JsonConvert.DeserializeObject<Invoice>(JObject.Parse(response)["invoice"].ToString());
         }
