@@ -62,7 +62,7 @@
             },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
-              "version": "[17.7.2, )"
+              "version": "[17.8.0, )"
             },
             "coverlet.collector": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -102,7 +102,7 @@
             },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
-              "version": "[17.7.2, )"
+              "version": "[17.8.0, )"
             },
             "NETStandard.Library": {
               "suppressParent": "All",

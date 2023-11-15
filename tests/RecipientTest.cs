@@ -195,10 +195,7 @@ namespace tests
 
             Assert.AreEqual("John", createdRecipient2.firstName);
 
-            List<string> recipientIds = new List<string>();
-            recipientIds.Add(createdRecipient1.id);
-            recipientIds.Add(createdRecipient2.id);
-            bool delResult = gateway.recipient.Delete(recipientIds);
+            bool delResult = gateway.recipient.Delete(createdRecipient1.id, createdRecipient2.id);
 
             Assert.IsTrue(delResult);
         }
@@ -251,6 +248,24 @@ namespace tests
             foreach (Payment p in paymentsEnumerable)
             {
                 Assert.IsNotNull(p.id);
+                itemCount++;
+            }
+            Assert.IsTrue(itemCount > 0);
+        }
+
+        [TestMethod]
+        public void TestRecipientOfflinePayments()
+        {
+            string recipientId = "<RECIPIENT_ID>";
+
+            List<OfflinePayment> offlinePayments = gateway.recipient.GetAllOfflinePayments(recipientId, null, 1, 10).offlinePayments;
+            Assert.IsTrue(offlinePayments.Count > 0);
+
+            var op = gateway.recipient.GetAllOfflinePayments(recipientId, null);
+            int itemCount = 0;
+            foreach(OfflinePayment offlinePayment in op)
+            {
+                Assert.IsNotNull(offlinePayment.id);
                 itemCount++;
             }
             Assert.IsTrue(itemCount > 0);

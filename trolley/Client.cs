@@ -53,16 +53,39 @@ namespace Trolley
         /// Makes a POST request to API
         /// </summary>
         /// <param name="endPoint">The api endPoint</param>
-        /// <param name="stringBody">The request payload</param>
+        /// <param name="body">The request payload</param>
         /// <returns>The Response</returns>
         public string Post(string endPoint, ITrolleyMappable body)
         {
-            body.IsMappable();
-            HttpContent jsonBody = ConvertBody(body.ToJson());
-            string result= "";
+            if (body.IsMappable())
+            {
+                return Post(endPoint, body.ToString());
+            }
+            else
+            {
+                throw new InvalidFieldException("Provided ITrolleyMappable object is not Mappable.");
+            }
+        }
+
+        /// <summary>
+        /// Post method with string body
+        /// </summary>
+        /// <param name="endPoint"></param>
+        /// <param name="body"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidStatusCodeException"></exception>
+        public string Post(string endPoint, string body)
+        {
+            if (body == null)
+            {
+                body = "";
+            }
+
+            HttpContent jsonBody = ConvertBody(body);
+            string result = "";
             try
             {
-                httpClient = CreateRequest(endPoint, "POST", body);
+                httpClient = CreateRequest(endPoint, "POST", null, body);
                 HttpResponseMessage response = httpClient.PostAsync(endPoint, jsonBody).Result;
                 result = response.Content.ReadAsStringAsync().Result;
                 if ((int)response.StatusCode != 200)
