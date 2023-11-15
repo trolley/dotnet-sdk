@@ -21,20 +21,17 @@ namespace tests
         [TestMethod]
         public void Smoke()
         {
-            List<Balance> balances = gateway.balances.all();
+            List<Balance> balances = gateway.balances.GetAllBalances();
             Assert.IsTrue(balances.Count > 0);
         }
 
         [TestMethod]
-        public void testFind()
+        public void testGetAllBalances()
         {
-            List<Balance> allBalances = gateway.balances.find("all");
-            Assert.IsTrue(allBalances.Count > 0);
-
-            List<Balance> prBalances = gateway.balances.find("paymentrails");
+            List<Balance> prBalances = gateway.balances.GetTrolleyBalances();
             Assert.IsTrue(prBalances.Count >= 0);
 
-            List<Balance> paypalBalances = gateway.balances.find("paypal");
+            List<Balance> paypalBalances = gateway.balances.GetPaypalBalances();
             Assert.IsTrue(paypalBalances.Count >= 0);
         }
     }

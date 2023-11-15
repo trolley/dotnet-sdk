@@ -22,7 +22,7 @@ namespace Trolley
             builder.AppendFormat("/v1/recipients/{0}/accounts", recipient_id);
             string endPoint = builder.ToString();
 
-            string response = this.gateway.client.get(endPoint);
+            string response = this.gateway.client.Get(endPoint);
 
             return recipientListFactory(response);
         }
@@ -33,7 +33,7 @@ namespace Trolley
             builder.AppendFormat("/v1/recipients/{0}/accounts/{1}", recipient_id,recipient_account_id);
             string endPoint = builder.ToString();
 
-            string response = this.gateway.client.get(endPoint);
+            string response = this.gateway.client.Get(endPoint);
 
             return recipientFactory(response);
         }
@@ -43,7 +43,7 @@ namespace Trolley
             StringBuilder builder = new StringBuilder();
             builder.AppendFormat("/v1/recipients/{0}/accounts", recipient_id);
             string endPoint = builder.ToString();
-            string response = this.gateway.client.post(endPoint, recipientAccount);
+            string response = this.gateway.client.Post(endPoint, recipientAccount);
 
             return recipientFactory(response);
         }
@@ -54,7 +54,7 @@ namespace Trolley
             builder.AppendFormat("/v1/recipients/{0}/accounts/{1}", recipient_id,recipientAccount.id);
             string endPoint = builder.ToString();
 
-            string response = this.gateway.client.patch(endPoint, recipientAccount);
+            string response = this.gateway.client.Patch(endPoint, recipientAccount);
 
             return recipientFactory(response);
         }
@@ -66,7 +66,7 @@ namespace Trolley
             builder.AppendFormat("/v1/recipients/{0}/accounts/{1}", recipient_id, recipient_account_id);
             string endPoint = builder.ToString();
 
-            gateway.client.delete(endPoint);
+            gateway.client.Delete(endPoint);
             return true;
         }
 

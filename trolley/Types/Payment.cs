@@ -1,6 +1,7 @@
 ﻿using Trolley.Exceptions;
 using Trolley.Converters;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Trolley.Types
 {
@@ -13,7 +14,7 @@ namespace Trolley.Types
         // recommended fields
         public double amount;
         public string currency;
-        //
+        
         public double sourceAmount;
         public string targetCurrency;
         public double exchangeRate;
@@ -33,6 +34,36 @@ namespace Trolley.Types
 
         public Recipient recipient;
         public Compliance compliance;
+
+        public Batch batch;
+        public bool isSupplyPayment;
+        public double? returnedAmount;
+        public string category;
+        public RecipientAccount account;
+        public List<string> tags;
+        public string externalId;
+        public string payoutMethod;
+        public string methodDisplay;
+        public string checkNumber;
+        public double? withholdingAmount;
+        public string withholdingCurrency;
+        public double? equivalentWithholdingAmount;
+        public string equivalentWithholdingCurrency;
+        public bool coverFees;
+        public List<string> errors;
+        public string estimatedDeliveryAt;
+        public bool forceUsTaxActivity;
+        public string initiatedAt;
+        public string merchantId;
+        public string returnedAt;
+        public string returnedNote;
+        public List<string> returnedReason;
+        public double? routeMinimum;
+        public string routeType;
+        public string settledAt;
+        public double? taxBasisAmount;
+        public string taxBasisCurrency;
+        public bool taxReportable;
 
         /// <summary>
         /// The constructor to instantiate a payment

@@ -21,7 +21,7 @@ namespace Trolley.JsonHelpers
                 }
             }
 
-            Types.Recipient recipient = new Types.Recipient(helper.Type, helper.Email, helper.Name, helper.FirstName, helper.LastName, helper.Id, helper.ReferenceId, helper.Status, helper.TimeZone, helper.Language, helper.Dob, helper.GravatarUrl, helper.RouteType, helper.RouteMinimum, helper.Compliance, accounts, helper.Address);
+            Types.Recipient recipient = new Types.Recipient(helper.Type, helper.Email, helper.Name, helper.FirstName, helper.LastName, helper.Id, helper.ReferenceId, helper.Status, helper.Language, helper.Dob, helper.GravatarUrl, helper.RouteType, helper.RouteMinimum, helper.Compliance, accounts, helper.Address);
             return recipient;
         }
 
