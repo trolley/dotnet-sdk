@@ -28,7 +28,7 @@
 
 
 
-*Defined in [RecipientAccountGateway.ts:33](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_RecipientAccountGateway.cs#L33)*
+*Defined in [RecipientAccountGateway.ts:33](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_RecipientAccountGateway.cs#L33)*
 
 
 
@@ -65,7 +65,7 @@ ___
 
 
 
-*Defined in [RecipientAccountGateway.ts:79](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_RecipientAccountGateway.cs#L79)*
+*Defined in [RecipientAccountGateway.ts:79](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_RecipientAccountGateway.cs#L79)*
 
 
 
@@ -104,7 +104,7 @@ ___
 
 
 
-*Defined in [RecipientAccountGateway.ts:52](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_RecipientAccountGateway.cs#L52)*
+*Defined in [RecipientAccountGateway.ts:52](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_RecipientAccountGateway.cs#L52)*
 
 
 
@@ -142,7 +142,7 @@ ___
 ► **remove**(recipientId: *`string`*, recipientAccount: *`RecipientAccount`*): `boolean`
 
 
-*Defined in [RecipientAccountGateway.ts:121](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_RecipientAccountGateway.cs#L121)*
+*Defined in [RecipientAccountGateway.ts:121](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_RecipientAccountGateway.cs#L121)*
 
 
 
@@ -178,7 +178,7 @@ ___
 
 
 
-*Defined in [RecipientAccountGateway.ts:102](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_RecipientAccountGateway.cs#L102)*
+*Defined in [RecipientAccountGateway.ts:102](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_RecipientAccountGateway.cs#L102)*
 
 
 

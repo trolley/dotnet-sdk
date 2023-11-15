@@ -12,7 +12,7 @@
 
 **●  description**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/Batch.ts:15](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Batch.cs#L15)*
+*Defined in [Types/Batch.ts:15](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Batch.cs#L15)*
 
 
 
@@ -27,7 +27,7 @@ ___
 
 **●  sourceCurrency**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/Batch.ts:14](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Batch.cs#L14)*
+*Defined in [Types/Batch.ts:14](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Batch.cs#L14)*
 
 
 

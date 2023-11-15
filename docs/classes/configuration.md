@@ -1,16 +1,16 @@
-[Trolley C# SDK](../README.md) > [PaymentRails_Configuration](../classes/PaymentRails_Configuration.md)
+[Trolley C# SDK](../README.md) > [Trolley_Configuration](../classes/Trolley_Configuration.md)
 
 
 
-# Class: PaymentRails_Configuration
+# Class: Trolley_Configuration
 
 ## Index
 
 ### Properties
 
-* [apiBase](PaymentRails_Configuration.md#apibase)
-* [apiKey](PaymentRails_Configuration.md#apikey)
-* [apiSecret](PaymentRails_Configuration.md#apisecret)
+* [apiBase](Trolley_Configuration.md#apibase)
+* [apiKey](Trolley_Configuration.md#apikey)
+* [apiSecret](Trolley_Configuration.md#apisecret)
 
 
 
@@ -23,7 +23,7 @@
 
 **●  apiBase**:  *`string`* 
 
-*Defined in [PaymentRails_Configuration.cs:35](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Configuration.cs#L35)*
+*Defined in [Trolley_Configuration.cs:35](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Configuration.cs#L35)*
 
 
 
@@ -37,7 +37,7 @@ ___
 
 **●  apiKey**:  *`string`* 
 
-*Defined in [PaymentRails_Configuration.cs:33](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Configuration.cs#L33)*
+*Defined in [Trolley_Configuration.cs:33](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Configuration.cs#L33)*
 
 
 
@@ -51,7 +51,7 @@ ___
 
 **●  apiSecret**:  *`string`* 
 
-*Defined in [PaymentRails_Configuration.cs:34](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Configuration.cs#L34)*
+*Defined in [Trolley_Configuration.cs:34](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Configuration.cs#L34)*
 
 
 
@@ -66,7 +66,7 @@ ___
 
 
 
-*Defined in [PaymentRails_Configuration.cs:90](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Configuration.cs#L90)*
+*Defined in [Trolley_Configuration.cs:90](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Configuration.cs#L90)*
 
 
 

@@ -1,10 +1,8 @@
-# Trolley C# SDK (Previously Payment Rails[^1])
+# Trolley C# SDK
 
 A native C# SDK for Trolley.
 
 For more information about the API as well as C# code samples check out the [full API documentation](https://docs.trolley.com)
-
-[^1]: [Payment Rails is now Trolley](https://www.trolley.com/payment-rails-is-now-trolley-series-a). We're in the process of updating our SDKs to support the new domain. In this transition phase, you might still see "PaymentRails" at some places.
 
 ## Installation
 
@@ -19,22 +17,24 @@ In Solution Explorer, right-click the project node and click Add Reference. Sele
 
 #### With NuGet
 Open your package manager console and enter:  
-`PM> Install-Package PaymentRails.SDK`
+`PM> Install-Package Trolley.SDK`
 
 
-The library is hosted on github [here](https://github.com/PaymentRails/paymentrails_dotnet)
+The library is hosted on github [here](https://github.com/Trolley/dotnet-sdk)
 
 ## Getting Started
+
 ### Namespaces
-+ PaymentRails
-+ PaymentRails.Types
-+ PaymentRails.Exceptions
++ Trolley
++ Trolley.Types
++ Trolley.Exceptions
+
 ### Simple example
 
 ```csharp
 // A simple c# application using the Trolley SDK
-using PaymentRails;
-using PaymentRails.Types;
+using Trolley;
+using Trolley.Types;
 
 
 class Program
@@ -42,7 +42,7 @@ class Program
     static void Main(string[] args)
     {
         // set your API key
-	var client = new PaymentRails.Gateway("YOUR-API-KEY", "YOUR-SECRET-KEY");
+	var client = new Trolley.Gateway("YOUR-API-KEY", "YOUR-SECRET-KEY");
         Recipient response = client.recipient.find("R-4q7zxMa26hpZhx7ULApBGw");
         Console.WriteLine(response.Id);
         
@@ -57,12 +57,12 @@ class Program
 Methods should all have C# Doc comments to help you understand their usage. As mentioned the [full API documentation](https://docs.trolley.com)
 is the best source of information about the API.
 
-For more information please read the [C# API docs](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/docs/) is available. The best starting point is:
+For more information please read the [C# API docs](https://github.com/Trolley/dotnet-sdk/tree/master/docs/) is available. The best starting point is:
 
 | Data Type | SDK Documentation |
 | ----- | ----- |
-| Batch | [API Docs for Batch](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/docs/classes/batchgateway.md) |
-| Payment | [API Docs for Payment](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/docs/classes/paymentgateway.md) |
-| Recipient | [API Docs for Recipient](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/docs/classes/recipientgateway.md) |
-| Recipient Account | [API Docs for Recipient Account](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/docs/classes/recipientaccountgateway.md) |
+| Batch | [API Docs for Batch](https://github.com/Trolley/dotnet-sdk/tree/master/docs/classes/batchgateway.md) |
+| Payment | [API Docs for Payment](https://github.com/Trolley/dotnet-sdk/tree/master/docs/classes/paymentgateway.md) |
+| Recipient | [API Docs for Recipient](https://github.com/Trolley/dotnet-sdk/tree/master/docs/classes/recipientgateway.md) |
+| Recipient Account | [API Docs for Recipient Account](https://github.com/Trolley/dotnet-sdk/tree/master/docs/classes/recipientaccountgateway.md) |
 

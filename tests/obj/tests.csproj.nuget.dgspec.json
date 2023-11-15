@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/amanalam/src/sdk_dotnet/tests/tests.csproj": {}
+    "/Users/amanalam/src/dotnet-sdk/tests/tests.csproj": {}
   },
   "projects": {
-    "/Users/amanalam/src/sdk_dotnet/paymentrails/paymentrails.csproj": {
-      "version": "1.0.11",
+    "/Users/amanalam/src/dotnet-sdk/tests/tests.csproj": {
+      "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/amanalam/src/sdk_dotnet/paymentrails/paymentrails.csproj",
-        "projectName": "PaymentRails.NetCore.SDK",
-        "projectPath": "/Users/amanalam/src/sdk_dotnet/paymentrails/paymentrails.csproj",
+        "projectUniqueName": "/Users/amanalam/src/dotnet-sdk/tests/tests.csproj",
+        "projectName": "tests",
+        "projectPath": "/Users/amanalam/src/dotnet-sdk/tests/tests.csproj",
         "packagesPath": "/Users/amanalam/.nuget/packages/",
-        "outputPath": "/Users/amanalam/src/sdk_dotnet/paymentrails/obj/",
+        "outputPath": "/Users/amanalam/src/dotnet-sdk/tests/obj/",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "configFilePaths": [
@@ -27,11 +27,19 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "/Users/amanalam/src/dotnet-sdk/trolley/trolley.csproj": {
+                "projectPath": "/Users/amanalam/src/dotnet-sdk/trolley/trolley.csproj"
+              }
+            }
           },
           "netstandard2.0": {
             "targetAlias": "netstandard2.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "/Users/amanalam/src/dotnet-sdk/trolley/trolley.csproj": {
+                "projectPath": "/Users/amanalam/src/dotnet-sdk/trolley/trolley.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -44,9 +52,23 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "Newtonsoft.Json": {
+            "MSTest.TestAdapter": {
               "target": "Package",
-              "version": "[13.0.3, )"
+              "version": "[3.1.1, )"
+            },
+            "MSTest.TestFramework": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.8.0, )"
+            },
+            "coverlet.collector": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.0, )"
             }
           },
           "imports": [
@@ -65,20 +87,34 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.306/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.310/RuntimeIdentifierGraph.json"
         },
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
           "dependencies": {
+            "MSTest.TestAdapter": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "MSTest.TestFramework": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.8.0, )"
+            },
             "NETStandard.Library": {
               "suppressParent": "All",
               "target": "Package",
               "version": "[2.0.3, )",
               "autoReferenced": true
             },
-            "Newtonsoft.Json": {
+            "coverlet.collector": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[13.0.3, )"
+              "version": "[6.0.0, )"
             }
           },
           "imports": [
@@ -92,18 +128,18 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.306/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.310/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/amanalam/src/sdk_dotnet/tests/tests.csproj": {
-      "version": "1.0.0",
+    "/Users/amanalam/src/dotnet-sdk/trolley/trolley.csproj": {
+      "version": "1.0.11",
       "restore": {
-        "projectUniqueName": "/Users/amanalam/src/sdk_dotnet/tests/tests.csproj",
-        "projectName": "tests",
-        "projectPath": "/Users/amanalam/src/sdk_dotnet/tests/tests.csproj",
+        "projectUniqueName": "/Users/amanalam/src/dotnet-sdk/trolley/trolley.csproj",
+        "projectName": "Trolley.NetCore.SDK",
+        "projectPath": "/Users/amanalam/src/dotnet-sdk/trolley/trolley.csproj",
         "packagesPath": "/Users/amanalam/.nuget/packages/",
-        "outputPath": "/Users/amanalam/src/sdk_dotnet/tests/obj/",
+        "outputPath": "/Users/amanalam/src/dotnet-sdk/trolley/obj/",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "configFilePaths": [
@@ -119,19 +155,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {
-              "/Users/amanalam/src/sdk_dotnet/paymentrails/paymentrails.csproj": {
-                "projectPath": "/Users/amanalam/src/sdk_dotnet/paymentrails/paymentrails.csproj"
-              }
-            }
+            "projectReferences": {}
           },
           "netstandard2.0": {
             "targetAlias": "netstandard2.0",
-            "projectReferences": {
-              "/Users/amanalam/src/sdk_dotnet/paymentrails/paymentrails.csproj": {
-                "projectPath": "/Users/amanalam/src/sdk_dotnet/paymentrails/paymentrails.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {
@@ -144,23 +172,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "MSTest.TestAdapter": {
+            "Newtonsoft.Json": {
               "target": "Package",
-              "version": "[3.0.4, )"
-            },
-            "MSTest.TestFramework": {
-              "target": "Package",
-              "version": "[3.0.4, )"
-            },
-            "Microsoft.NET.Test.Sdk": {
-              "target": "Package",
-              "version": "[17.6.3, )"
-            },
-            "coverlet.collector": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[13.0.3, )"
             }
           },
           "imports": [
@@ -179,34 +193,20 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.306/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.310/RuntimeIdentifierGraph.json"
         },
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
           "dependencies": {
-            "MSTest.TestAdapter": {
-              "target": "Package",
-              "version": "[3.0.4, )"
-            },
-            "MSTest.TestFramework": {
-              "target": "Package",
-              "version": "[3.0.4, )"
-            },
-            "Microsoft.NET.Test.Sdk": {
-              "target": "Package",
-              "version": "[17.6.3, )"
-            },
             "NETStandard.Library": {
               "suppressParent": "All",
               "target": "Package",
               "version": "[2.0.3, )",
               "autoReferenced": true
             },
-            "coverlet.collector": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
+            "Newtonsoft.Json": {
               "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[13.0.3, )"
             }
           },
           "imports": [
@@ -220,7 +220,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.306/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.310/RuntimeIdentifierGraph.json"
         }
       }
     }

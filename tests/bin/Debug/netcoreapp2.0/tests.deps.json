@@ -11,9 +11,9 @@
           "MSTest.TestAdapter": "2.0.0",
           "MSTest.TestFramework": "2.0.0",
           "Microsoft.NET.Test.Sdk": "16.2.0",
-          "PaymentRails.NetCore.SDK": "1.0.10",
+          "Trolley.NetCore.SDK": "1.0.10",
           "coverlet.collector": "1.0.1",
-          "PaymentRails": "1.0.2.0"
+          "Trolley": "1.0.2.0"
         },
         "runtime": {
           "tests.dll": {}
@@ -840,17 +840,17 @@
           }
         }
       },
-      "PaymentRails.NetCore.SDK/1.0.10": {
+      "Trolley.NetCore.SDK/1.0.10": {
         "dependencies": {
           "Newtonsoft.Json": "13.0.2"
         },
         "runtime": {
-          "PaymentRails.dll": {}
+          "Trolley.dll": {}
         }
       },
-      "PaymentRails/1.0.2.0": {
+      "Trolley/1.0.2.0": {
         "runtime": {
-          "PaymentRails.dll": {
+          "Trolley.dll": {
             "assemblyVersion": "1.0.2.0",
             "fileVersion": "1.0.2.0"
           }
@@ -1305,12 +1305,12 @@
       "path": "system.xml.xpath.xmldocument/4.0.1",
       "hashPath": "system.xml.xpath.xmldocument.4.0.1.nupkg.sha512"
     },
-    "PaymentRails.NetCore.SDK/1.0.10": {
+    "Trolley.NetCore.SDK/1.0.10": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "PaymentRails/1.0.2.0": {
+    "Trolley/1.0.2.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

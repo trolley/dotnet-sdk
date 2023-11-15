@@ -12,7 +12,7 @@
 
 **●  account**:  *`any`* 
 
-*Defined in [Types/Recipient.cs:30](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Recipient_Gateway.cs#L29)*
+*Defined in [Types/Recipient.cs:30](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Recipient_Gateway.cs#L29)*
 
 
 
@@ -26,7 +26,7 @@ ___
 
 **●  address**:  *`undefined`⎮`object`* 
 
-*Defined in [Types/Recipient.cs:20](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Recipient_Gateway.cs#L20)*
+*Defined in [Types/Recipient.cs:20](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Recipient_Gateway.cs#L20)*
 
 
 
@@ -40,7 +40,7 @@ ___
 
 **●  dob**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/Recipient.cs:15](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Recipient_Gateway.cs#L15)*
+*Defined in [Types/Recipient.cs:15](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Recipient_Gateway.cs#L15)*
 
 
 
@@ -53,7 +53,7 @@ ___
 
 **●  email**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/Recipient.cs:10](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Recipient_Gateway.cs#L10)*
+*Defined in [Types/Recipient.cs:10](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Recipient_Gateway.cs#L10)*
 
 
 
@@ -67,7 +67,7 @@ ___
 
 **●  firstName**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/Recipient.cs:12](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Recipient_Gateway.cs#L12)*
+*Defined in [Types/Recipient.cs:12](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Recipient_Gateway.cs#L12)*
 
 
 
@@ -81,7 +81,7 @@ ___
 
 **●  governmentId**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/Recipient.cs:17](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Recipient_Gateway.cs#L17)*
+*Defined in [Types/Recipient.cs:17](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Recipient_Gateway.cs#L17)*
 
 
 
@@ -95,7 +95,7 @@ ___
 
 **●  language**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/Recipient.cs:19](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Recipient_Gateway.cs#L19)*
+*Defined in [Types/Recipient.cs:19](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Recipient_Gateway.cs#L19)*
 
 
 
@@ -109,7 +109,7 @@ ___
 
 **●  lastName**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/Recipient.cs:13](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Recipient_Gateway.cs#L13)*
+*Defined in [Types/Recipient.cs:13](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Recipient_Gateway.cs#L13)*
 
 
 
@@ -123,7 +123,7 @@ ___
 
 **●  name**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/Recipient.cs:11](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Recipient_Gateway.cs#L11)*
+*Defined in [Types/Recipient.cs:11](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Recipient_Gateway.cs#L11)*
 
 
 
@@ -137,7 +137,7 @@ ___
 
 **●  passport**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/Recipient.cs:18](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Recipient_Gateway.cs#L18)*
+*Defined in [Types/Recipient.cs:18](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Recipient_Gateway.cs#L18)*
 
 
 
@@ -151,7 +151,7 @@ ___
 
 **●  referenceId**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/Recipient.cs:9](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Recipient_Gateway.cs#L9)*
+*Defined in [Types/Recipient.cs:9](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Recipient_Gateway.cs#L9)*
 
 
 
@@ -165,7 +165,7 @@ ___
 
 **●  ssn**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/Recipient.cs:16](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Recipient_Gateway.cs#L16)*
+*Defined in [Types/Recipient.cs:16](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Recipient_Gateway.cs#L16)*
 
 
 
@@ -179,7 +179,7 @@ ___
 
 **●  type**:  *"individual"⎮"business"* 
 
-*Defined in [Types/Recipient.cs:14](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Recipient_Gateway.cs#L14)*
+*Defined in [Types/Recipient.cs:14](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Recipient_Gateway.cs#L14)*
 
 
 

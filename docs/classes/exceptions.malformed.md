@@ -36,7 +36,7 @@
 **●  message**:  *`string`* 
 
 
-*An unhandled exception of type 'PaymentRails.Exceptions.MalformedUrlException' occurred in PaymentRails.exe*
+*An unhandled exception of type 'Trolley.Exceptions.MalformedUrlException' occurred in Trolley.exe*
 
 
 
@@ -52,7 +52,7 @@ ___
 
 *Inherited from Error.name*
 
-*Defined in /Users/koblas/repos/paymentrails/paymentrails_dotnet/node_modules/typedoc/node_modules/typescript/paymentrails/lib.es5.d.ts:873*
+*Defined in /Users/koblas/repos/trolley/dotnet-sdk/node_modules/typedoc/node_modules/typescript/trolley/lib.es5.d.ts:873*
 
 
 
@@ -70,7 +70,7 @@ ___
 
 *Overrides Error.stack*
 
-*Defined in /Users/koblas/repos/paymentrails/paymentrails_dotnet/node_modules/typedoc/node_modules/typescript/paymentrails/lib.es5.d.ts:875*
+*Defined in /Users/koblas/repos/trolley/dotnet-sdk/node_modules/typedoc/node_modules/typescript/trolley/lib.es5.d.ts:875*
 
 
 

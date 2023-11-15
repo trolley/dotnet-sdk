@@ -1,8 +1,8 @@
 packages/**
-paymentrails/bin/**
-paymentrails/obj/**
-paymentrailsTest/obj/**
-paymentrailsTest/bin/**
+trolley/bin/**
+trolley/obj/**
+trolleyTest/obj/**
+trolleyTest/bin/**
 TestResults
 .vs/**
 .vscode/**
@@ -10,3 +10,6 @@ tests/bin/**
 tests/bin/
 tests/obj/**
 tests/obj/
+tests/.vs/**
+tests/.env
+.DS_Store
