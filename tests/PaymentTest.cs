@@ -29,20 +29,20 @@ namespace tests
         [TestMethod]
         public void Smoke()
         {
-            List<Payment> payments = trolley.payment.search().payments;
+            List<Payment> payments = trolley.payment.Search().payments;
             Assert.IsTrue(payments.Count > 0);
         }
 
         [TestMethod]
         public void testFindBatchPayments()
         {
-            List<Batch> batches = trolley.batch.search();
+            List<Batch> batches = trolley.batch.Search().batches;
             
             Batch batch = batches.Find(x => x.totalPayments > 0);
-            List<Payment> payments1 = trolley.payment.search(batch.id).payments;
+            List<Payment> payments1 = trolley.payment.Search(batch.id).payments;
             Assert.IsTrue(payments1.Count > 0);
 
-            List<Payment> payments2 = trolley.payment.search("", 1, 10, batch.id).payments;
+            List<Payment> payments2 = trolley.payment.Search("", 1, 10, batch.id).payments;
             Assert.IsTrue(payments2.Count > 0);
         }
 
@@ -52,7 +52,7 @@ namespace tests
             //Prepare - Create recipient
             string uuid = System.Guid.NewGuid().ToString();
             Recipient recipient = new Recipient("individual", "test.create" + uuid + "@example.com", null, "Tom", "Jones", null, null, null, null, null, "1990-01-01");
-            recipient = trolley.recipient.create(recipient);
+            recipient = trolley.recipient.Create(recipient);
             Assert.IsNotNull(recipient);
 
             //Prepare - Create Recipient Account
@@ -65,29 +65,29 @@ namespace tests
 
             //Prepare - Create batch
             Batch batch = new Batch("Integration Test Create", null, "USD", 0);
-            batch = trolley.batch.create(batch);
+            batch = trolley.batch.Create(batch);
             Assert.IsNotNull(batch);
 
             //Create Payment
             Payment payment = new Payment(recipient, 1.20, "USD");
             payment.batchId = batch.id;
-            payment = trolley.payment.create(payment);
+            payment = trolley.payment.Create(payment);
             Assert.IsNotNull(payment);
 
             //Cleanup - Delete Recipient
-            Boolean deleteResult = trolley.recipient.delete(recipient.id);
+            Boolean deleteResult = trolley.recipient.Delete(recipient.id);
             Assert.IsTrue(deleteResult);
 
 
             //Cleanup - Delete Batch
-            deleteResult = trolley.batch.delete(batch.id);
+            deleteResult = trolley.batch.Delete(batch.id);
             Assert.IsTrue(deleteResult);
         }
 
         [TestMethod]
         public void testOldPaymentsSearch()
         {
-            List<Payment> payments = trolley.payment.search("", 1, 5).payments;
+            List<Payment> payments = trolley.payment.Search("", 1, 5).payments;
             Assert.AreEqual(5, payments.Count);
         }
 
@@ -98,7 +98,7 @@ namespace tests
             status.Add("failed");
 
             PaymentQueryParams queryParams = new PaymentQueryParams { status = status };
-            List<Payment> payments = trolley.payment.search(queryParams).payments;
+            List<Payment> payments = trolley.payment.Search(queryParams).payments;
 
             Assert.IsTrue(payments.Count > 0);
             Assert.IsFalse(payments.Exists(x => x.status != "failed"));
@@ -129,7 +129,7 @@ namespace tests
         [TestMethod]
         public void testFetchAllPayments()
         {
-            var allPayments = trolley.payment.listAllPayments();
+            var allPayments = trolley.payment.ListAllPayments();
             int itemCount = 0;
             foreach (Payment payment in allPayments)
             {

@@ -3,6 +3,7 @@ using Trolley.Exceptions;
 using Trolley.Converters;
 using System.Collections.Generic;
 using System;
+using Trolley.Types.Supporting;
 
 namespace Trolley.Types
 {
@@ -20,18 +21,34 @@ namespace Trolley.Types
         public string lastName;
         public string type;
         public string status;
-        public string timeZone;
         public string language;
         public string dob;
         public string gravatarUrl;
         public string routeType;
         public string routeMinimum;
-
         public Compliance compliance;
-        [JsonProperty("accounts")]
-
-        public List<RecipientAccount> recipientAccounts { get; set; }
+        public string estimatedFees;
         public Address address;
+
+        [JsonProperty("accounts")]
+        public List<RecipientAccount> recipientAccounts { get; set; }
+
+        public string passport;
+        public string updatedAt;
+        public string createdAt;
+        public List<GovernmentId> governmentIds;
+        public string ssn;
+        public string primaryCurrency;
+        public string placeOfBirth;
+        public List<string> tags;
+        public string merchantId;
+        public string payoutMethod;
+        public List<string> contactEmails;
+        public string taxForm;
+        public string taxFormStatus;
+        public string taxWithholdingPercentage;
+
+        //public string timeZone;
 
         /// <summary>
         /// The constructor to instantiate a recipient object
@@ -54,7 +71,7 @@ namespace Trolley.Types
         /// <param name="payout"></param>
         /// <param name="address"></param>
 
-        public Recipient(string type, string email, string name, string firstName, string lastName, string id = null, string referenceId = null, string status = null, string timeZone = null, string language = null, string dob = null, string gravatarUrl = null, string routeType = null, string routeMinimum = null, Compliance compliance = null, List<RecipientAccount> recipientAccounts = null, Address address = null)
+        public Recipient(string type, string email, string name, string firstName, string lastName, string id = null, string referenceId = null, string status = null, string language = null, string dob = null, string gravatarUrl = null, string routeType = null, string routeMinimum = null, Compliance compliance = null, List<RecipientAccount> recipientAccounts = null, Address address = null)
         {
 
             this.id = id;
@@ -65,7 +82,6 @@ namespace Trolley.Types
             this.firstName = firstName;
             this.lastName = lastName;
             this.status = status;
-            this.timeZone = timeZone;
             this.language = language;
             this.dob = dob;
             this.gravatarUrl = gravatarUrl;
@@ -113,7 +129,6 @@ namespace Trolley.Types
                 && other.lastName == this.lastName 
                 && other.type == this.type 
                 && other.status == this.status
-                && other.timeZone == this.timeZone 
                 && other.language == this.language 
                 && other.dob == this.dob 
                 && other.gravatarUrl == this.gravatarUrl

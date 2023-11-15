@@ -13,6 +13,7 @@ namespace Trolley.Types
     {
         public string id;
         public string status;
+        public List<string> tags;
         public double amount;
         public double totalPayments;
         public string currency;
@@ -21,7 +22,7 @@ namespace Trolley.Types
         public string completedAt;
         public string createdAt;
         public string updatedAt;
-
+        public string quoteExpiredAt;
         public List<Payment> payments;
 
     
