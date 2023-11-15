@@ -116,7 +116,67 @@ namespace tests
                 invoiceWithLines.lines[1].id);
             Assert.AreEqual(0, invoice.lines.Count);
 
-            //Test - Delete an Invoice
+            //Cleanup - Delete an Invoice
+            bool delResult = gateway.invoice.Delete(invoice.id);
+            Assert.IsTrue(delResult);
+
+            //Cleanup - Delete Recipient
+            bool deleteResult = gateway.recipient.Delete(recipient.id);
+            Assert.IsTrue(deleteResult);
+        }
+
+        [TestMethod]
+        public void TestInvoicePayment()
+        {
+            //Prepare - Create recipient
+            string uuid = Guid.NewGuid().ToString();
+            Recipient recipient = new Recipient("individual", "test.create" + uuid + "@example.com", null, "Tom", "Jones", null, null, null, null, null, "1990-01-01");
+            recipient = gateway.recipient.Create(recipient);
+            Assert.IsNotNull(recipient.id);
+
+            //Test - Create an Invoice
+            Invoice invoiceRequest = new Invoice();
+            InvoiceLine invoiceLine = new InvoiceLine();
+            invoiceLine.description = ".Net SDK Integration Test Invoice Line";
+            invoiceLine.unitAmount = new Amount("100.00", "USD");
+            invoiceRequest.recipientId = recipient.id;
+            invoiceRequest.description = ".Net SDK Integration Test";
+            invoiceRequest.lines = new List<InvoiceLine>() { invoiceLine };
+            Invoice invoice = gateway.invoice.Create(invoiceRequest);
+            Assert.IsTrue(invoice.description.Contains(".Net SDK"));
+
+            //Test - Create an Invoice Payment
+            InvoicePaymentPart invoicePaymentPartRequest = new InvoicePaymentPart();
+            invoicePaymentPartRequest.invoiceId = invoice.id;
+            invoicePaymentPartRequest.invoiceLineId = invoice.lines[0].id;
+            invoicePaymentPartRequest.amount = new Amount("100.00", "USD");
+            InvoicePayment invPayment = gateway.invoicePayment.Create(null, invoicePaymentPartRequest);
+            Assert.IsNotNull(invPayment.paymentId);
+
+            //Test - Update an Invoice Payment
+            invoicePaymentPartRequest.paymentId = invPayment.paymentId;
+            invoicePaymentPartRequest.amount = new Amount("98.00", "USD");
+            bool updateResult = gateway.invoicePayment.Update(invoicePaymentPartRequest);
+            Assert.IsTrue(updateResult);
+
+            //Test - Search for Invoice Payment
+            InvoicePayments ipayment = gateway.invoicePayment.Search(new string[] { invoice.id }, null, 1, 10);
+            Assert.IsTrue(ipayment.invoicePayments.Count > 0);
+
+            var invoicePaymentsEnumerable = gateway.invoicePayment.Search(new string[] { invoice.id }, null);
+            int itemCount = 0;
+            foreach(InvoicePayment ip in invoicePaymentsEnumerable)
+            {
+                itemCount++;
+                Assert.IsNotNull(ip.paymentId);
+            }
+            Assert.IsTrue(itemCount > 0);
+
+            //Test - Delete an Invoice Payment
+            bool paymentDelResult = gateway.invoicePayment.Delete(invPayment.paymentId, invoice.lines[0].id);
+            Assert.IsTrue(paymentDelResult);
+
+            //Cleanup - Delete an Invoice
             bool delResult = gateway.invoice.Delete(invoice.id);
             Assert.IsTrue(delResult);
 
