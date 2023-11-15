@@ -123,7 +123,6 @@ namespace Trolley.Types
         /// <summary>
         /// Function that checks if a ITrolleyMappable object has all required fields to be sent
         /// this function will throw an exception if any of the fields are not properly set.
-        /// For a valid batch valid payments are required
         /// </summary>
         /// <returns>whether the object is ready to be sent to the Trolley API</returns>
         public bool IsMappable()

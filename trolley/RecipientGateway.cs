@@ -31,7 +31,7 @@ namespace Trolley
                 endPoint += $"&search={searchTerm}";
             }
             string response = this.gateway.client.Get(endPoint);
-            return new Recipients(RecipientListFactory(response), MetaFactory(response));
+            return RecipientListFactory(response);
         }
 
         /// <summary>
@@ -306,9 +306,10 @@ namespace Trolley
         /// </summary>
         /// <param name="response">API Response to extract recipient array from</param>
         /// <returns>List<Recipient></returns>
-        private List<Recipient> RecipientListFactory(string response)
+        private Recipients RecipientListFactory(string response)
         {
-            return JsonConvert.DeserializeObject<List<Recipient>>(JObject.Parse(response)["recipients"].ToString());
+            return new Recipients(JsonConvert.DeserializeObject<List<Recipient>>(JObject.Parse(response)["recipients"].ToString()),
+                JsonConvert.DeserializeObject<Meta>(JObject.Parse(response)["meta"].ToString()));
         }
 
         /// <summary>
