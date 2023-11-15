@@ -14,32 +14,63 @@ namespace Trolley
             this.gateway = gateway;
         }
 
-        public List<Balance> find(string type = "all")
+        /// <summary>
+        /// Get all accounts' balances.
+        /// </summary>
+        /// <returns></returns>
+        public List<Balance> GetAllBalances()
         {
-            if (type == "all")
+            return Get();
+        }
+
+        /// <summary>
+        /// Get Trolley account's balances.
+        /// </summary>
+        /// <returns></returns>
+        public List<Balance> GetTrolleyBalances()
+        {
+            return Get("paymentrails");
+        }
+
+        /// <summary>
+        /// Get PayPal account's balances.
+        /// </summary>
+        /// <returns></returns>
+        public List<Balance> GetPaypalBalances()
+        {
+            return Get("paypal");
+        }
+
+        /// <summary>
+        /// Private method to make the final network calls.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        private List<Balance> Get(string type = null)
+        {
+            string endPoint = "";
+
+            if (type == null )
             {
-                return all();
+                endPoint = "/v1/balances";
+            }
+            else
+            {
+                endPoint = "/v1/balances/" + type;
             }
 
-            string endPoint = "/v1/balances/" + type;
 
             string response = this.gateway.client.Get(endPoint);
 
             return balanceListFactory(response);
 
         }
-            
 
-        public List<Balance> all()
-        {
-            string endPoint = "/v1/balances/";
-
-            string response = this.gateway.client.Get(endPoint);
-
-            return balanceListFactory(response);
-        }
-
-
+        /// <summary>
+        /// Factory method to generate Balance objects from JSON responses.
+        /// </summary>
+        /// <param name="response"></param>
+        /// <returns></returns>
         private List<Balance> balanceListFactory(string response)
         {
             var tempData = JObject.Parse(response)["balances"];

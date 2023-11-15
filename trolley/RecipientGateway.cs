@@ -31,7 +31,7 @@ namespace Trolley
                 endPoint += $"&search={searchTerm}";
             }
             string response = this.gateway.client.Get(endPoint);
-            return new Recipients(RecipientListFactory(response), MetaFactory(response));
+            return RecipientListFactory(response);
         }
 
         /// <summary>
@@ -238,15 +238,57 @@ namespace Trolley
             }
         }
 
-        // TODO: Implement when gateway is implemented
-        public void GetAllOfflinePayments(string recipientId = null, int page = 1, int pageSize = 10)
+        /// <summary>
+        /// Get all offline payments of the recipient, with optional searchTerm and pagination information.
+        /// </summary>
+        /// <param name="recipientId"></param>
+        /// <param name="searchTerm"></param>
+        /// <param name="page"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        /// <exception cref="MissingFieldException"></exception>
+        public OfflinePayments GetAllOfflinePayments(string recipientId, string searchTerm = null, int page = 1, int pageSize = 10)
         {
-            
+            if (recipientId == null || recipientId.Length == 0)
+            {
+                throw new MissingFieldException("recipientId can not be null or empty.");
+            }
+
+            string endPoint = $"/v1/recipients/{recipientId}/offlinePayments?page={page}&pageSize={pageSize}";
+            if (searchTerm != null && searchTerm.Length > 0)
+            {
+                endPoint += $"&search={searchTerm}";
+            }
+            string response = this.gateway.client.Get(endPoint);
+            OfflinePaymentGateway opGateway = new OfflinePaymentGateway(null);
+            return opGateway.OfflinePaymentListFactory(response);
+
         }
 
-        // TODO: Implement when gateway is implemented
-        public void GetAllOfflinePayments(string recipientId = null)
+        /// <summary>
+        /// Get all offline payments of recipient with auto pagination of the result set, 10 items per page.
+        /// </summary>
+        /// <param name="recipientId"></param>
+        /// <param name="searchTerm"></param>
+        /// <returns></returns>
+        public IEnumerable<OfflinePayment> GetAllOfflinePayments(string recipientId = null, string searchTerm = null)
         {
+            int page = 1;
+            bool shouldPaginate = true;
+            while (shouldPaginate)
+            {
+                OfflinePayments op = GetAllOfflinePayments(recipientId, searchTerm, page, 10);
+                foreach (OfflinePayment offlinePayment in op.offlinePayments)
+                {
+                    yield return offlinePayment;
+                }
+
+                page++;
+                if (page > op.meta.pages)
+                {
+                    shouldPaginate = false;
+                }
+            }
         }
 
         /// <summary>
@@ -264,9 +306,10 @@ namespace Trolley
         /// </summary>
         /// <param name="response">API Response to extract recipient array from</param>
         /// <returns>List<Recipient></returns>
-        private List<Recipient> RecipientListFactory(string response)
+        private Recipients RecipientListFactory(string response)
         {
-            return JsonConvert.DeserializeObject<List<Recipient>>(JObject.Parse(response)["recipients"].ToString());
+            return new Recipients(JsonConvert.DeserializeObject<List<Recipient>>(JObject.Parse(response)["recipients"].ToString()),
+                JsonConvert.DeserializeObject<Meta>(JObject.Parse(response)["meta"].ToString()));
         }
 
         /// <summary>
