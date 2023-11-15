@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PaymentRails.Types;
+using Trolley.Types;
 using System;
 using System.Collections.Generic;
 
@@ -9,31 +9,29 @@ namespace tests
     public class BalanceTest
     {
 
-        PaymentRails.Gateway gateway;
+        Trolley.Gateway gateway;
 
         [TestInitialize]
         public void Init()
         {
-            gateway = new PaymentRails.Gateway(Config.TEST_API_KEY, Config.TEST_API_SECRET);
+            Config config = new Config();
+            gateway = new Trolley.Gateway(config.ACCESS_KEY, config.SECRET_KEY);
         }
 
         [TestMethod]
         public void Smoke()
         {
-            List<Balance> balances = gateway.balances.all();
+            List<Balance> balances = gateway.balances.GetAllBalances();
             Assert.IsTrue(balances.Count > 0);
         }
 
         [TestMethod]
-        public void testFind()
+        public void testGetAllBalances()
         {
-            List<Balance> allBalances = gateway.balances.find("all");
-            Assert.IsTrue(allBalances.Count > 0);
-
-            List<Balance> prBalances = gateway.balances.find("paymentrails");
+            List<Balance> prBalances = gateway.balances.GetTrolleyBalances();
             Assert.IsTrue(prBalances.Count >= 0);
 
-            List<Balance> paypalBalances = gateway.balances.find("paypal");
+            List<Balance> paypalBalances = gateway.balances.GetPaypalBalances();
             Assert.IsTrue(paypalBalances.Count >= 0);
         }
     }

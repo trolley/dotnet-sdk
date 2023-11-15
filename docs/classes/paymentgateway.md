@@ -26,7 +26,7 @@
 
 
 
-*Defined in [PaymentGateway.ts:55](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Gateway.cs#L55)*
+*Defined in [PaymentGateway.ts:55](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Gateway.cs#L55)*
 
 
 
@@ -67,7 +67,7 @@ ___
 
 
 
-*Defined in [PaymentGateway.ts:34](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Gateway.cs#L34)*
+*Defined in [PaymentGateway.ts:34](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Gateway.cs#L34)*
 
 
 
@@ -102,7 +102,7 @@ ___
 
 
 
-*Defined in [PaymentGateway.ts:90](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Gateway.cs#L90)*
+*Defined in [PaymentGateway.ts:90](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Gateway.cs#L90)*
 
 
 
@@ -138,7 +138,7 @@ ___
 
 
 
-*Defined in [PaymentGateway.ts:105](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Gateway.cs#L105)*
+*Defined in [PaymentGateway.ts:105](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Gateway.cs#L105)*
 
 
 
@@ -174,7 +174,7 @@ ___
 
 
 
-*Defined in [PaymentGateway.ts:74](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Gateway.cs#L74)*
+*Defined in [PaymentGateway.ts:74](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Gateway.cs#L74)*
 
 
 

@@ -1,27 +1,27 @@
-[Trolley C# SDK](../README.md) > [PaymentRails_Batch_Gateway](../classes/PaymentRails_Batch_Gateway.md)
+[Trolley C# SDK](../README.md) > [Trolley_Batch_Gateway](../classes/Trolley_Batch_Gateway.md)
 
 
 
-# Class: PaymentRails_Batch_Gateway
+# Class: Trolley_Batch_Gateway
 
 
 Gateway class for batches
-*__class__*: PaymentRails_Batch_Gateway
+*__class__*: Trolley_Batch_Gateway
 
 
 ## Index
 
 ### Methods
 
-* [create](PaymentRails_Batch_Gateway.md#create)
-* [find](PaymentRails_Batch_Gateway.md#find)
-* [generateQuote](PaymentRails_Batch_Gateway.md#generatequote)
-* [paymentList](PaymentRails_Batch_Gateway.md#paymentlist)
-* [delete](PaymentRails_Batch_Gateway.md#delete)
-* [search](PaymentRails_Batch_Gateway.md#search)
-* [processBatch](PaymentRails_Batch_Gateway.md#processBatch)
-* [summary](PaymentRails_Batch_Gateway.md#summary)
-* [update](PaymentRails_Batch_Gateway.md#update)
+* [create](Trolley_Batch_Gateway.md#create)
+* [find](Trolley_Batch_Gateway.md#find)
+* [generateQuote](Trolley_Batch_Gateway.md#generatequote)
+* [paymentList](Trolley_Batch_Gateway.md#paymentlist)
+* [delete](Trolley_Batch_Gateway.md#delete)
+* [search](Trolley_Batch_Gateway.md#search)
+* [processBatch](Trolley_Batch_Gateway.md#processBatch)
+* [summary](Trolley_Batch_Gateway.md#summary)
+* [update](Trolley_Batch_Gateway.md#update)
 
 
 
@@ -35,7 +35,7 @@ Gateway class for batches
 
 
 
-*Defined in [PaymentRails_Batch_Gateway.cs:95](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Batch_Gateway.cs#L95)*
+*Defined in [Trolley_Batch_Gateway.cs:95](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Batch_Gateway.cs#L95)*
 
 
 
@@ -79,7 +79,7 @@ ___
 
 
 
-*Defined in [PaymentRails_Batch_Gateway.cs:67](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Batch_Gateway.cs#L67)*
+*Defined in [Trolley_Batch_Gateway.cs:67](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Batch_Gateway.cs#L67)*
 
 
 
@@ -114,7 +114,7 @@ ___
 
 
 
-*Defined in [PaymentRails_Batch_Gateway.cs:182](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Batch_Gateway.cs#L182)*
+*Defined in [Trolley_Batch_Gateway.cs:182](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Batch_Gateway.cs#L182)*
 
 
 
@@ -147,7 +147,7 @@ ___
 
 
 
-*Defined in [PaymentRails_Batch_Gateway.cs:166](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Batch_Gateway.cs#L166)*
+*Defined in [Trolley_Batch_Gateway.cs:166](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Batch_Gateway.cs#L166)*
 
 
 
@@ -182,7 +182,7 @@ ___
 ► **delete**(batch: *`Batch`*): `Boolean`
 
 
-*Defined in [PaymentRails_Batch_Gateway.cs:132](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Batch_Gateway.cs#L132)*
+*Defined in [Trolley_Batch_Gateway.cs:132](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Batch_Gateway.cs#L132)*
 
 
 
@@ -217,7 +217,7 @@ ___
 
 
 
-*Defined in [PaymentRails_Batch_Gateway.cs:146](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Batch_Gateway.cs#L146)*
+*Defined in [Trolley_Batch_Gateway.cs:146](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Batch_Gateway.cs#L146)*
 
 
 
@@ -252,7 +252,7 @@ ___
 
 
 
-*Defined in [PaymentRails_Batch_Gateway.cs:194](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Batch_Gateway.cs#L194)*
+*Defined in [Trolley_Batch_Gateway.cs:194](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Batch_Gateway.cs#L194)*
 
 
 
@@ -285,7 +285,7 @@ ___
 
 
 
-*Defined in [PaymentRails_Batch_Gateway.cs:206](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Batch_Gateway.cs#L206)*
+*Defined in [Trolley_Batch_Gateway.cs:206](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Batch_Gateway.cs#L206)*
 
 
 
@@ -318,7 +318,7 @@ ___
 
 
 
-*Defined in [PaymentRails_Batch_Gateway.cs:117](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Batch_Gateway.cs#L117)*
+*Defined in [Trolley_Batch_Gateway.cs:117](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Batch_Gateway.cs#L117)*
 
 
 

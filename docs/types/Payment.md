@@ -15,7 +15,7 @@
 
 **●  memo**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/Batch.ts:22](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Batch.cs#L22)*
+*Defined in [Types/Batch.ts:22](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Batch.cs#L22)*
 
 
 
@@ -30,7 +30,7 @@ ___
 
 **●  recipient**:  *`object`* 
 
-*Defined in [Types/Batch.ts:23](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Batch.cs#L23)*
+*Defined in [Types/Batch.ts:23](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Batch.cs#L23)*
 
 
 #### Type declaration
@@ -50,7 +50,7 @@ ___
 
 **●  sourceAmount**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/Batch.ts:19](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Batch.cs#L19)*
+*Defined in [Types/Batch.ts:19](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Batch.cs#L19)*
 
 
 
@@ -63,7 +63,7 @@ ___
 
 **●  targetAmount**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/Batch.ts:20](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Batch.cs#L20)*
+*Defined in [Types/Batch.ts:20](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Batch.cs#L20)*
 
 
 
@@ -76,7 +76,7 @@ ___
 
 **●  targetCurrency**:  *`undefined`⎮`string`* 
 
-*Defined in [Types/Batch.ts:21](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Batch.cs#L21)*
+*Defined in [Types/Batch.ts:21](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Batch.cs#L21)*
 
 
 ___

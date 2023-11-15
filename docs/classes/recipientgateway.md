@@ -1,18 +1,18 @@
-[Trolley C# SDK](../README.md) > [PaymentRails_Recipient_Gateway](../classes/PaymentRails_Recipient_Gateway.md)
+[Trolley C# SDK](../README.md) > [Trolley_Recipient_Gateway](../classes/Trolley_Recipient_Gateway.md)
 
 
 
-# Class: PaymentRails_Recipient_Gateway
+# Class: Trolley_Recipient_Gateway
 
 ## Index
 
 ### Methods
 
-* [create](PaymentRails_Recipient_Gateway.md#create)
-* [find](PaymentRails_Recipient_Gateway.md#find)
-* [remove](PaymentRails_Recipient_Gateway.md#remove)
-* [search](PaymentRails_Recipient_Gateway.md#search)
-* [update](PaymentRails_Recipient_Gateway.md#update)
+* [create](Trolley_Recipient_Gateway.md#create)
+* [find](Trolley_Recipient_Gateway.md#find)
+* [remove](Trolley_Recipient_Gateway.md#remove)
+* [search](Trolley_Recipient_Gateway.md#search)
+* [update](Trolley_Recipient_Gateway.md#update)
 
 
 
@@ -27,7 +27,7 @@
 
 
 
-*Defined in [PaymentRails_Recipient_Gateway.cs:82](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Recipient_Gateway.cs#L82)*
+*Defined in [Trolley_Recipient_Gateway.cs:82](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Recipient_Gateway.cs#L82)*
 
 
 
@@ -60,7 +60,7 @@ ___
 ► **find**(recipient: *`Recipient`*): `Recipient`
 
 
-*Defined in [PaymentRails_Recipient_Gateway.cs:58](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Recipient_Gateway.cs#L58)*
+*Defined in [Trolley_Recipient_Gateway.cs:58](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Recipient_Gateway.cs#L58)*
 
 
 
@@ -94,7 +94,7 @@ ___
 
 
 
-*Defined in [PaymentRails_Recipient_Gateway.cs:115](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Recipient_Gateway.cs#L115)*
+*Defined in [Trolley_Recipient_Gateway.cs:115](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Recipient_Gateway.cs#L115)*
 
 
 
@@ -129,7 +129,7 @@ ___
 
 
 
-*Defined in [PaymentRails_Recipient_Gateway.cs:123](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Recipient_Gateway.cs#L123)*
+*Defined in [Trolley_Recipient_Gateway.cs:123](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Recipient_Gateway.cs#L123)*
 
 
 
@@ -161,7 +161,7 @@ ___
 
 
 
-*Defined in [PaymentRails_Recipient_Gateway.cs:100](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Recipient_Gateway.cs#L100)*
+*Defined in [Trolley_Recipient_Gateway.cs:100](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Recipient_Gateway.cs#L100)*
 
 
 

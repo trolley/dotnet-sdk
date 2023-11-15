@@ -1,14 +1,14 @@
-[Trolley C# SDK](../README.md) > [PaymentRails_Balances_Gateway](../classes/PaymentRails_Balances_Gateway.md)
+[Trolley C# SDK](../README.md) > [Trolley_Balances_Gateway](../classes/Trolley_Balances_Gateway.md)
 
 
 
-# Class: PaymentRails_Balances_Gateway
+# Class: Trolley_Balances_Gateway
 
 ## Index
 
 ### Methods
 
-* [find](PaymentRails_Balances_Gateway.md#find)
+* [find](Trolley_Balances_Gateway.md#find)
 
 
 
@@ -27,7 +27,7 @@ ___
 
 
 
-*Defined in [PaymentRails_Balances_Gateway.ts:49](https://github.com/PaymentRails/paymentrails_dotnet/tree/master/paymentrails/PaymentRails_Balances_Gateway.cs#L49)*
+*Defined in [Trolley_Balances_Gateway.ts:49](https://github.com/Trolley/dotnet-sdk/tree/master/trolley/Trolley_Balances_Gateway.cs#L49)*
 
 
 
