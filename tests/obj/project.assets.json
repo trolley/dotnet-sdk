@@ -8,28 +8,17 @@
           "build/netstandard1.0/coverlet.collector.targets": {}
         }
       },
-<<<<<<< HEAD
       "Microsoft.CodeCoverage/17.8.0": {
-=======
-      "Microsoft.CodeCoverage/17.7.2": {
->>>>>>> dev
         "type": "package",
         "build": {
           "build/netstandard2.0/Microsoft.CodeCoverage.props": {},
           "build/netstandard2.0/Microsoft.CodeCoverage.targets": {}
         }
       },
-<<<<<<< HEAD
       "Microsoft.NET.Test.Sdk/17.8.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.CodeCoverage": "17.8.0"
-=======
-      "Microsoft.NET.Test.Sdk/17.7.2": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.CodeCoverage": "17.7.2"
->>>>>>> dev
         },
         "buildMultiTargeting": {
           "buildMultiTargeting/Microsoft.NET.Test.Sdk.props": {}
@@ -138,17 +127,17 @@
           }
         }
       },
-      "Trolley.NetCore.SDK/1.0.11": {
+      "trolleyhq/2.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Newtonsoft.Json": "13.0.3"
         },
         "compile": {
-          "bin/placeholder/Trolley.NetCore.SDK.dll": {}
+          "bin/placeholder/trolleyhq.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Trolley.NetCore.SDK.dll": {}
+          "bin/placeholder/trolleyhq.dll": {}
         }
       }
     },
@@ -159,11 +148,7 @@
           "build/netstandard1.0/coverlet.collector.targets": {}
         }
       },
-<<<<<<< HEAD
       "Microsoft.CodeCoverage/17.8.0": {
-=======
-      "Microsoft.CodeCoverage/17.7.2": {
->>>>>>> dev
         "type": "package",
         "compile": {
           "lib/netcoreapp3.1/Microsoft.VisualStudio.CodeCoverage.Shim.dll": {}
@@ -176,19 +161,11 @@
           "build/netstandard2.0/Microsoft.CodeCoverage.targets": {}
         }
       },
-<<<<<<< HEAD
       "Microsoft.NET.Test.Sdk/17.8.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.CodeCoverage": "17.8.0",
           "Microsoft.TestPlatform.TestHost": "17.8.0"
-=======
-      "Microsoft.NET.Test.Sdk/17.7.2": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.CodeCoverage": "17.7.2",
-          "Microsoft.TestPlatform.TestHost": "17.7.2"
->>>>>>> dev
         },
         "compile": {
           "lib/netcoreapp3.1/_._": {}
@@ -204,11 +181,7 @@
           "buildMultiTargeting/Microsoft.NET.Test.Sdk.props": {}
         }
       },
-<<<<<<< HEAD
       "Microsoft.TestPlatform.ObjectModel/17.8.0": {
-=======
-      "Microsoft.TestPlatform.ObjectModel/17.7.2": {
->>>>>>> dev
         "type": "package",
         "dependencies": {
           "NuGet.Frameworks": "6.5.0",
@@ -305,17 +278,10 @@
           }
         }
       },
-<<<<<<< HEAD
       "Microsoft.TestPlatform.TestHost/17.8.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.TestPlatform.ObjectModel": "17.8.0",
-=======
-      "Microsoft.TestPlatform.TestHost/17.7.2": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.TestPlatform.ObjectModel": "17.7.2",
->>>>>>> dev
           "Newtonsoft.Json": "13.0.1"
         },
         "compile": {
@@ -564,17 +530,17 @@
           }
         }
       },
-      "Trolley.NetCore.SDK/1.0.11": {
+      "trolleyhq/2.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Newtonsoft.Json": "13.0.3"
         },
         "compile": {
-          "bin/placeholder/Trolley.NetCore.SDK.dll": {}
+          "bin/placeholder/trolleyhq.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Trolley.NetCore.SDK.dll": {}
+          "bin/placeholder/trolleyhq.dll": {}
         }
       }
     }
@@ -633,17 +599,10 @@
         "coverlet.collector.nuspec"
       ]
     },
-<<<<<<< HEAD
     "Microsoft.CodeCoverage/17.8.0": {
       "sha512": "KC8SXWbGIdoFVdlxKk9WHccm0llm9HypcHMLUUFabRiTS3SO2fQXNZfdiF3qkEdTJhbRrxhdRxjL4jbtwPq4Ew==",
       "type": "package",
       "path": "microsoft.codecoverage/17.8.0",
-=======
-    "Microsoft.CodeCoverage/17.7.2": {
-      "sha512": "ntbkwIqwszkfCRjxVZOyEQiHauiYsY9NtYjw9ASsoxDSiG8YtV6AGcOAwrAk3TZv2UOq4MrpX+3MYEeMHSb03w==",
-      "type": "package",
-      "path": "microsoft.codecoverage/17.7.2",
->>>>>>> dev
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -702,7 +661,6 @@
         "build/netstandard2.0/zh-Hant/Microsoft.VisualStudio.TraceDataCollector.resources.dll",
         "lib/net462/Microsoft.VisualStudio.CodeCoverage.Shim.dll",
         "lib/netcoreapp3.1/Microsoft.VisualStudio.CodeCoverage.Shim.dll",
-<<<<<<< HEAD
         "microsoft.codecoverage.17.8.0.nupkg.sha512",
         "microsoft.codecoverage.nuspec"
       ]
@@ -711,16 +669,6 @@
       "sha512": "BmTYGbD/YuDHmApIENdoyN1jCk0Rj1fJB0+B/fVekyTdVidr91IlzhqzytiUgaEAzL1ZJcYCme0MeBMYvJVzvw==",
       "type": "package",
       "path": "microsoft.net.test.sdk/17.8.0",
-=======
-        "microsoft.codecoverage.17.7.2.nupkg.sha512",
-        "microsoft.codecoverage.nuspec"
-      ]
-    },
-    "Microsoft.NET.Test.Sdk/17.7.2": {
-      "sha512": "WOSF/GUYcnrLGkdvCbXDRig2rShtBwfQc5l7IxQE6PZI3CeXAqF1SpyzwlGA5vw+MdEAXs3niy+ZkGBBWna6tw==",
-      "type": "package",
-      "path": "microsoft.net.test.sdk/17.7.2",
->>>>>>> dev
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -736,11 +684,7 @@
         "buildMultiTargeting/Microsoft.NET.Test.Sdk.props",
         "lib/net462/_._",
         "lib/netcoreapp3.1/_._",
-<<<<<<< HEAD
         "microsoft.net.test.sdk.17.8.0.nupkg.sha512",
-=======
-        "microsoft.net.test.sdk.17.7.2.nupkg.sha512",
->>>>>>> dev
         "microsoft.net.test.sdk.nuspec"
       ]
     },
@@ -759,17 +703,10 @@
         "runtime.json"
       ]
     },
-<<<<<<< HEAD
     "Microsoft.TestPlatform.ObjectModel/17.8.0": {
       "sha512": "AYy6vlpGMfz5kOFq99L93RGbqftW/8eQTqjT9iGXW6s9MRP3UdtY8idJ8rJcjeSja8A18IhIro5YnH3uv1nz4g==",
       "type": "package",
       "path": "microsoft.testplatform.objectmodel/17.8.0",
-=======
-    "Microsoft.TestPlatform.ObjectModel/17.7.2": {
-      "sha512": "aHzQWgDMVBnk39HhQVmn06w+YxzF1h2V5/M4WgrNQAn7q97GR4Si3vLRTDlmJo9nK/Nknce+H4tXx4gqOKyLeg==",
-      "type": "package",
-      "path": "microsoft.testplatform.objectmodel/17.7.2",
->>>>>>> dev
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -862,7 +799,6 @@
         "lib/netstandard2.0/zh-Hans/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll",
         "lib/netstandard2.0/zh-Hant/Microsoft.TestPlatform.CoreUtilities.resources.dll",
         "lib/netstandard2.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll",
-<<<<<<< HEAD
         "microsoft.testplatform.objectmodel.17.8.0.nupkg.sha512",
         "microsoft.testplatform.objectmodel.nuspec"
       ]
@@ -871,16 +807,6 @@
       "sha512": "9ivcl/7SGRmOT0YYrHQGohWiT5YCpkmy/UEzldfVisLm6QxbLaK3FAJqZXI34rnRLmqqDCeMQxKINwmKwAPiDw==",
       "type": "package",
       "path": "microsoft.testplatform.testhost/17.8.0",
-=======
-        "microsoft.testplatform.objectmodel.17.7.2.nupkg.sha512",
-        "microsoft.testplatform.objectmodel.nuspec"
-      ]
-    },
-    "Microsoft.TestPlatform.TestHost/17.7.2": {
-      "sha512": "pv9yVD7IKPLJV28zYjLsWFiM3j506I2ye+6NquG8vsbm/gR7lgyig8IgY6Vo57VMvGaAKwtUECzcj+C5tH271Q==",
-      "type": "package",
-      "path": "microsoft.testplatform.testhost/17.7.2",
->>>>>>> dev
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -943,11 +869,7 @@
         "lib/netcoreapp3.1/zh-Hant/Microsoft.TestPlatform.CommunicationUtilities.resources.dll",
         "lib/netcoreapp3.1/zh-Hant/Microsoft.TestPlatform.CrossPlatEngine.resources.dll",
         "lib/netcoreapp3.1/zh-Hant/Microsoft.VisualStudio.TestPlatform.Common.resources.dll",
-<<<<<<< HEAD
         "microsoft.testplatform.testhost.17.8.0.nupkg.sha512",
-=======
-        "microsoft.testplatform.testhost.17.7.2.nupkg.sha512",
->>>>>>> dev
         "microsoft.testplatform.testhost.nuspec"
       ]
     },
@@ -1365,7 +1287,7 @@
         "version.txt"
       ]
     },
-    "Trolley.NetCore.SDK/1.0.11": {
+    "trolleyhq/2.0.0": {
       "type": "project",
       "path": "../trolley/trolley.csproj",
       "msbuildProject": "../trolley/trolley.csproj"
@@ -1375,26 +1297,17 @@
     ".NETStandard,Version=v2.0": [
       "MSTest.TestAdapter >= 3.1.1",
       "MSTest.TestFramework >= 3.1.1",
-<<<<<<< HEAD
       "Microsoft.NET.Test.Sdk >= 17.8.0",
-=======
-      "Microsoft.NET.Test.Sdk >= 17.7.2",
->>>>>>> dev
       "NETStandard.Library >= 2.0.3",
-      "Trolley.NetCore.SDK >= 1.0.11",
-      "coverlet.collector >= 6.0.0"
+      "coverlet.collector >= 6.0.0",
+      "trolleyhq >= 2.0.0"
     ],
     "net6.0": [
       "MSTest.TestAdapter >= 3.1.1",
       "MSTest.TestFramework >= 3.1.1",
-<<<<<<< HEAD
       "Microsoft.NET.Test.Sdk >= 17.8.0",
-      "Trolley.NetCore.SDK >= 1.0.11",
-=======
-      "Microsoft.NET.Test.Sdk >= 17.7.2",
-      "PaymentRails.NetCore.SDK >= 1.0.11",
->>>>>>> dev
-      "coverlet.collector >= 6.0.0"
+      "coverlet.collector >= 6.0.0",
+      "trolleyhq >= 2.0.0"
     ]
   },
   "packageFolders": {
@@ -1403,11 +1316,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/amanalam/src/dotnet-sdk/tests/tests.csproj",
+      "projectUniqueName": "/Users/amanalam/src/sdk-dotnet/tests/tests.csproj",
       "projectName": "tests",
-      "projectPath": "/Users/amanalam/src/dotnet-sdk/tests/tests.csproj",
+      "projectPath": "/Users/amanalam/src/sdk-dotnet/tests/tests.csproj",
       "packagesPath": "/Users/amanalam/.nuget/packages/",
-      "outputPath": "/Users/amanalam/src/dotnet-sdk/tests/obj/",
+      "outputPath": "/Users/amanalam/src/sdk-dotnet/tests/obj/",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "configFilePaths": [
@@ -1424,16 +1337,16 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/Users/amanalam/src/dotnet-sdk/trolley/trolley.csproj": {
-              "projectPath": "/Users/amanalam/src/dotnet-sdk/trolley/trolley.csproj"
+            "/Users/amanalam/src/sdk-dotnet/trolley/trolley.csproj": {
+              "projectPath": "/Users/amanalam/src/sdk-dotnet/trolley/trolley.csproj"
             }
           }
         },
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
           "projectReferences": {
-            "/Users/amanalam/src/dotnet-sdk/trolley/trolley.csproj": {
-              "projectPath": "/Users/amanalam/src/dotnet-sdk/trolley/trolley.csproj"
+            "/Users/amanalam/src/sdk-dotnet/trolley/trolley.csproj": {
+              "projectPath": "/Users/amanalam/src/sdk-dotnet/trolley/trolley.csproj"
             }
           }
         }
@@ -1458,11 +1371,7 @@
           },
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",
-<<<<<<< HEAD
             "version": "[17.8.0, )"
-=======
-            "version": "[17.7.2, )"
->>>>>>> dev
           },
           "coverlet.collector": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -1502,11 +1411,7 @@
           },
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",
-<<<<<<< HEAD
             "version": "[17.8.0, )"
-=======
-            "version": "[17.7.2, )"
->>>>>>> dev
           },
           "NETStandard.Library": {
             "suppressParent": "All",

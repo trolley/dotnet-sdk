@@ -1,27 +1,15 @@
 {
   "version": 2,
-<<<<<<< HEAD
-  "dgSpecHash": "Lsm0Yi+njzVgRz7gLbidBV9ZtKpCiPyu0migd7D1+9A0JQgTa+iDxzFxVGJNDFvmgSk1YPSmHHd9C+AMdFmF/Q==",
-=======
-  "dgSpecHash": "Var8k6K7Ln7KmTY4Qprvyu0ar0pNMqM5qMIA5cMQ9d2ZIrsRhe/7PjYKDEJ6lIyeu7N7TvyjiwQAx8AlIrjZzw==",
->>>>>>> dev
+  "dgSpecHash": "X3jTnN7umkp9cUHfI9G5tLSth99nA/GkUIQ17Np85PpN0Gea6Olto2VODPT58iG2EZ2TTHofnw5v9tHE8kZa/w==",
   "success": true,
-  "projectFilePath": "/Users/amanalam/src/dotnet-sdk/tests/tests.csproj",
+  "projectFilePath": "/Users/amanalam/src/sdk-dotnet/tests/tests.csproj",
   "expectedPackageFiles": [
     "/Users/amanalam/.nuget/packages/coverlet.collector/6.0.0/coverlet.collector.6.0.0.nupkg.sha512",
-<<<<<<< HEAD
     "/Users/amanalam/.nuget/packages/microsoft.codecoverage/17.8.0/microsoft.codecoverage.17.8.0.nupkg.sha512",
     "/Users/amanalam/.nuget/packages/microsoft.net.test.sdk/17.8.0/microsoft.net.test.sdk.17.8.0.nupkg.sha512",
     "/Users/amanalam/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "/Users/amanalam/.nuget/packages/microsoft.testplatform.objectmodel/17.8.0/microsoft.testplatform.objectmodel.17.8.0.nupkg.sha512",
     "/Users/amanalam/.nuget/packages/microsoft.testplatform.testhost/17.8.0/microsoft.testplatform.testhost.17.8.0.nupkg.sha512",
-=======
-    "/Users/amanalam/.nuget/packages/microsoft.codecoverage/17.7.2/microsoft.codecoverage.17.7.2.nupkg.sha512",
-    "/Users/amanalam/.nuget/packages/microsoft.net.test.sdk/17.7.2/microsoft.net.test.sdk.17.7.2.nupkg.sha512",
-    "/Users/amanalam/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "/Users/amanalam/.nuget/packages/microsoft.testplatform.objectmodel/17.7.2/microsoft.testplatform.objectmodel.17.7.2.nupkg.sha512",
-    "/Users/amanalam/.nuget/packages/microsoft.testplatform.testhost/17.7.2/microsoft.testplatform.testhost.17.7.2.nupkg.sha512",
->>>>>>> dev
     "/Users/amanalam/.nuget/packages/mstest.testadapter/3.1.1/mstest.testadapter.3.1.1.nupkg.sha512",
     "/Users/amanalam/.nuget/packages/mstest.testframework/3.1.1/mstest.testframework.3.1.1.nupkg.sha512",
     "/Users/amanalam/.nuget/packages/netstandard.library/2.0.3/netstandard.library.2.0.3.nupkg.sha512",

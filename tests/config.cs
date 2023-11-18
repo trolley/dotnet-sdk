@@ -10,7 +10,7 @@ namespace tests
         public string SECRET_KEY = "";
         public string BASE_URL = "";
         public string RECIPIENT_ID = "";
-        public const string TEST_BALANCE_CURRENCY = "usd";
+        public const string TEST_BALANCE_CURRENCY = "USD";
 
         public Config()
         {

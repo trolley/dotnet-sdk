@@ -15,7 +15,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -24,14 +24,14 @@
     <StartupObject></StartupObject>
     <AssemblyName>Trolley</AssemblyName>
     <RootNamespace>Trolley</RootNamespace>
-    <PackageId>Trolley.NetCore.SDK</PackageId>
+    <PackageId>trolleyhq</PackageId>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.11</Version>
-    <PackageDescription>The official Trolley NET Core and NET Standard SDK to interface with the Trolley API (https://www.trolley.com/)</PackageDescription>
+    <Version>2.0.0</Version>
+    <PackageDescription>The official Trolley .NET SDK to interface with the Trolley API (https://www.trolley.com/)</PackageDescription>
     <Copyright>Copyright 2020</Copyright>
     <Authors>Jesse Tremblay, Jesse Silber, Joshua Cunningham, Aman Aalam</Authors>
-    <PackageTags>netcore sdk PaymentRails Trolley</PackageTags>
-    <RepositoryUrl>https://github.com/Trolley/dotnet-sdk/tree/netcore2.1</RepositoryUrl>
+    <PackageTags>Trolley net sdk PaymentRails</PackageTags>
+    <RepositoryUrl>https://github.com/Trolley/dotnet-sdk/</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
