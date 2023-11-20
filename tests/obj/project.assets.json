@@ -127,17 +127,17 @@
           }
         }
       },
-      "Trolley.NetCore.SDK/1.0.11": {
+      "trolleyhq/2.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Newtonsoft.Json": "13.0.3"
         },
         "compile": {
-          "bin/placeholder/Trolley.NetCore.SDK.dll": {}
+          "bin/placeholder/trolleyhq.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Trolley.NetCore.SDK.dll": {}
+          "bin/placeholder/trolleyhq.dll": {}
         }
       }
     },
@@ -530,17 +530,17 @@
           }
         }
       },
-      "Trolley.NetCore.SDK/1.0.11": {
+      "trolleyhq/2.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Newtonsoft.Json": "13.0.3"
         },
         "compile": {
-          "bin/placeholder/Trolley.NetCore.SDK.dll": {}
+          "bin/placeholder/trolleyhq.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Trolley.NetCore.SDK.dll": {}
+          "bin/placeholder/trolleyhq.dll": {}
         }
       }
     }
@@ -1287,7 +1287,7 @@
         "version.txt"
       ]
     },
-    "Trolley.NetCore.SDK/1.0.11": {
+    "trolleyhq/2.0.0": {
       "type": "project",
       "path": "../trolley/trolley.csproj",
       "msbuildProject": "../trolley/trolley.csproj"
@@ -1299,15 +1299,15 @@
       "MSTest.TestFramework >= 3.1.1",
       "Microsoft.NET.Test.Sdk >= 17.8.0",
       "NETStandard.Library >= 2.0.3",
-      "Trolley.NetCore.SDK >= 1.0.11",
-      "coverlet.collector >= 6.0.0"
+      "coverlet.collector >= 6.0.0",
+      "trolleyhq >= 2.0.0"
     ],
     "net6.0": [
       "MSTest.TestAdapter >= 3.1.1",
       "MSTest.TestFramework >= 3.1.1",
       "Microsoft.NET.Test.Sdk >= 17.8.0",
-      "Trolley.NetCore.SDK >= 1.0.11",
-      "coverlet.collector >= 6.0.0"
+      "coverlet.collector >= 6.0.0",
+      "trolleyhq >= 2.0.0"
     ]
   },
   "packageFolders": {
@@ -1316,11 +1316,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/amanalam/src/dotnet-sdk/tests/tests.csproj",
+      "projectUniqueName": "/Users/amanalam/src/sdk-dotnet/tests/tests.csproj",
       "projectName": "tests",
-      "projectPath": "/Users/amanalam/src/dotnet-sdk/tests/tests.csproj",
+      "projectPath": "/Users/amanalam/src/sdk-dotnet/tests/tests.csproj",
       "packagesPath": "/Users/amanalam/.nuget/packages/",
-      "outputPath": "/Users/amanalam/src/dotnet-sdk/tests/obj/",
+      "outputPath": "/Users/amanalam/src/sdk-dotnet/tests/obj/",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "configFilePaths": [
@@ -1337,16 +1337,16 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/Users/amanalam/src/dotnet-sdk/trolley/trolley.csproj": {
-              "projectPath": "/Users/amanalam/src/dotnet-sdk/trolley/trolley.csproj"
+            "/Users/amanalam/src/sdk-dotnet/trolley/trolley.csproj": {
+              "projectPath": "/Users/amanalam/src/sdk-dotnet/trolley/trolley.csproj"
             }
           }
         },
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
           "projectReferences": {
-            "/Users/amanalam/src/dotnet-sdk/trolley/trolley.csproj": {
-              "projectPath": "/Users/amanalam/src/dotnet-sdk/trolley/trolley.csproj"
+            "/Users/amanalam/src/sdk-dotnet/trolley/trolley.csproj": {
+              "projectPath": "/Users/amanalam/src/sdk-dotnet/trolley/trolley.csproj"
             }
           }
         }

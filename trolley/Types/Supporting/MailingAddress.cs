@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using Trolley.JsonHelpers;
 
 namespace Trolley.Types
 {
@@ -221,25 +222,7 @@ namespace Trolley.Types
 
         public string ToJson()
         {
-            JsonSerializerSettings settings = new JsonSerializerSettings
-            {
-                /*StringEscapeHandling = StringEscapeHandling.EscapeNonAscii,
-                NullValueHandling = NullValueHandling.Ignore,
-                Formatting = Formatting.Indented,*/
-            };
-            return JsonConvert.SerializeObject(this, settings);
-
-            /*StringBuilder builder = new StringBuilder();
-            builder.Append("{\n");
-            builder.AppendFormat("\"street1\": \"{0}\",\n", this.street1);
-            builder.AppendFormat("\"street2\": \"{0}\",\n", this.street2);
-            builder.AppendFormat("\"city\": \"{0}\",\n", this.city);
-            builder.AppendFormat("\"postal\": \"{0}\",\n", this.postal);
-            builder.AppendFormat("\"phone\": \"{0}\",\n", this.phone);
-            builder.AppendFormat("\"country\": \"{0}\",\n", this.country);
-            builder.AppendFormat("\"region\": \"{0}\"\n", this.region);
-            builder.Append("}");
-            return builder.ToString();*/
+            return JsonConvert.SerializeObject(this, SerializerHelper.GetSerializerSettings());
         }
 
         public bool IsMappable()

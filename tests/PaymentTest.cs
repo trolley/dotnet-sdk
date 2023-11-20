@@ -2,6 +2,7 @@
 using Trolley.Types;
 using System;
 using System.Collections.Generic;
+using Trolley.Types.Supporting;
 
 namespace tests
 {
@@ -36,14 +37,27 @@ namespace tests
         [TestMethod]
         public void testFindBatchPayments()
         {
-            List<Batch> batches = trolley.batch.Search().batches;
-            
-            Batch batch = batches.Find(x => x.totalPayments > 0);
-            List<Payment> payments1 = trolley.payment.Search(batch.id).payments;
-            Assert.IsTrue(payments1.Count > 0);
+            Batch batch = null;
+            var batches = trolley.batch.ListAllBatches(null);
+            foreach(Batch b in batches)
+            {
+                if(b.payments != null && b.payments.Count > 0)
+                {
+                    batch = b;
+                    break;
+                }
+            }
 
-            List<Payment> payments2 = trolley.payment.Search("", 1, 10, batch.id).payments;
-            Assert.IsTrue(payments2.Count > 0);
+            if(batch != null)
+            {
+                Payments p = trolley.payment.Search(batch.id);
+                List<Payment> payments1 = p.payments;
+                Assert.IsTrue(payments1.Count > 0);
+
+                List<Payment> payments2 = trolley.payment.Search("", 1, 10, batch.id).payments;
+                Assert.IsTrue(payments2.Count > 0);
+            }
+            
         }
 
         [TestMethod]

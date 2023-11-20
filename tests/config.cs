@@ -9,7 +9,8 @@ namespace tests
         public string ACCESS_KEY = "";
         public string SECRET_KEY = "";
         public string BASE_URL = "";
-        public const string TEST_BALANCE_CURRENCY = "usd";
+        public string RECIPIENT_ID = "";
+        public const string TEST_BALANCE_CURRENCY = "USD";
 
         public Config()
         {
@@ -26,7 +27,7 @@ namespace tests
                 {
                     string[] parts = line.Split('=');
 
-                    if (parts.Length == 2)
+                    if (parts.Length == 2 && parts[1].Length > 0)
                     {
                         string key = parts[0];
                         string value = parts[1];
@@ -48,6 +49,11 @@ namespace tests
                 if (apiKeys.ContainsKey("BASE_URL"))
                 {
                     this.BASE_URL = apiKeys["BASE_URL"];
+                }
+
+                if (apiKeys.ContainsKey("RECIPIENT_ID"))
+                {
+                    this.RECIPIENT_ID = apiKeys["RECIPIENT_ID"];
                 }
             }
             else

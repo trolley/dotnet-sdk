@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/amanalam/src/dotnet-sdk/tests/tests.csproj": {}
+    "/Users/amanalam/src/sdk-dotnet/tests/tests.csproj": {}
   },
   "projects": {
-    "/Users/amanalam/src/dotnet-sdk/tests/tests.csproj": {
+    "/Users/amanalam/src/sdk-dotnet/tests/tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/amanalam/src/dotnet-sdk/tests/tests.csproj",
+        "projectUniqueName": "/Users/amanalam/src/sdk-dotnet/tests/tests.csproj",
         "projectName": "tests",
-        "projectPath": "/Users/amanalam/src/dotnet-sdk/tests/tests.csproj",
+        "projectPath": "/Users/amanalam/src/sdk-dotnet/tests/tests.csproj",
         "packagesPath": "/Users/amanalam/.nuget/packages/",
-        "outputPath": "/Users/amanalam/src/dotnet-sdk/tests/obj/",
+        "outputPath": "/Users/amanalam/src/sdk-dotnet/tests/obj/",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "configFilePaths": [
@@ -28,16 +28,16 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/Users/amanalam/src/dotnet-sdk/trolley/trolley.csproj": {
-                "projectPath": "/Users/amanalam/src/dotnet-sdk/trolley/trolley.csproj"
+              "/Users/amanalam/src/sdk-dotnet/trolley/trolley.csproj": {
+                "projectPath": "/Users/amanalam/src/sdk-dotnet/trolley/trolley.csproj"
               }
             }
           },
           "netstandard2.0": {
             "targetAlias": "netstandard2.0",
             "projectReferences": {
-              "/Users/amanalam/src/dotnet-sdk/trolley/trolley.csproj": {
-                "projectPath": "/Users/amanalam/src/dotnet-sdk/trolley/trolley.csproj"
+              "/Users/amanalam/src/sdk-dotnet/trolley/trolley.csproj": {
+                "projectPath": "/Users/amanalam/src/sdk-dotnet/trolley/trolley.csproj"
               }
             }
           }
@@ -132,14 +132,14 @@
         }
       }
     },
-    "/Users/amanalam/src/dotnet-sdk/trolley/trolley.csproj": {
-      "version": "1.0.11",
+    "/Users/amanalam/src/sdk-dotnet/trolley/trolley.csproj": {
+      "version": "2.0.0",
       "restore": {
-        "projectUniqueName": "/Users/amanalam/src/dotnet-sdk/trolley/trolley.csproj",
-        "projectName": "Trolley.NetCore.SDK",
-        "projectPath": "/Users/amanalam/src/dotnet-sdk/trolley/trolley.csproj",
+        "projectUniqueName": "/Users/amanalam/src/sdk-dotnet/trolley/trolley.csproj",
+        "projectName": "trolleyhq",
+        "projectPath": "/Users/amanalam/src/sdk-dotnet/trolley/trolley.csproj",
         "packagesPath": "/Users/amanalam/.nuget/packages/",
-        "outputPath": "/Users/amanalam/src/dotnet-sdk/trolley/obj/",
+        "outputPath": "/Users/amanalam/src/sdk-dotnet/trolley/obj/",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "configFilePaths": [

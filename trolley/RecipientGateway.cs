@@ -4,6 +4,7 @@ using Trolley.Types;
 using System.Collections.Generic;
 using System;
 using Trolley.Types.Supporting;
+using Trolley.JsonHelpers;
 
 namespace Trolley
 {
@@ -132,12 +133,7 @@ namespace Trolley
                 { "ids", recipientIds }
             };
 
-            JsonSerializerSettings settings = new JsonSerializerSettings
-            {
-                StringEscapeHandling = StringEscapeHandling.EscapeHtml
-            };
-
-            string body = JsonConvert.SerializeObject(deleteBody, settings);
+            string body = JsonConvert.SerializeObject(deleteBody, SerializerHelper.GetSerializerSettings());
             string endPoint = "/v1/recipients/";
             string response = this.gateway.client.Delete(endPoint, body);
             return true;

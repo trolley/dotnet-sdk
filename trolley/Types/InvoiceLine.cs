@@ -2,6 +2,7 @@
 using System;
 using Trolley.Types.Supporting;
 using Newtonsoft.Json;
+using Trolley.JsonHelpers;
 
 namespace Trolley.Types
 {
@@ -75,13 +76,7 @@ namespace Trolley.Types
 
         public string ToJson()
         {
-            JsonSerializerSettings settings = new JsonSerializerSettings
-            {
-                StringEscapeHandling = StringEscapeHandling.EscapeNonAscii,
-                NullValueHandling = NullValueHandling.Ignore,
-                Formatting = Formatting.Indented,
-            };
-            return JsonConvert.SerializeObject(this, settings);
+            return JsonConvert.SerializeObject(this, SerializerHelper.GetSerializerSettings());
         }
     }
 }
