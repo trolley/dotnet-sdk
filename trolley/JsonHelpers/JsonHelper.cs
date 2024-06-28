@@ -41,6 +41,38 @@ namespace Trolley.JsonHelpers
             Types.Recipient recipient = RecipientJsonHelperToRecipient(helper.Recipient);
 
             Types.Payment payment = new Types.Payment(recipient, helper.SourceAmount, helper.SourceCurrency, helper.TargetAmount, helper.TargetCurrency, helper.Id, helper.Memo, helper.ExchangeRate, helper.Fees, helper.RecipientFees, helper.FxRate, helper.ProcessedAt, helper.CreatedAt, helper.UpdatedAt, helper.MerchantFees, batchId, helper.Status, helper.Compliance);
+
+            payment.amount = helper.Amount;
+            payment.currency = helper.Currency;
+            payment.isSupplyPayment = helper.IsSupplyPayment;
+            payment.returnedAmount = helper.ReturnedAmount;
+            payment.category = helper.Category;
+            payment.account = helper.Account;
+            payment.tags = helper.Tags;
+            payment.externalId = helper.ExternalId;
+            payment.payoutMethod = helper.PayoutMethod;
+            payment.methodDisplay = helper.MethodDisplay;
+            payment.checkNumber = helper.CheckNumber;
+            payment.withholdingAmount = helper.WithholdingAmount;
+            payment.withholdingCurrency = helper.WithholdingCurrency;
+            payment.equivalentWithholdingAmount = helper.EquivalentWithholdingAmount;
+            payment.equivalentWithholdingCurrency = helper.EquivalentWithholdingCurrency;
+            payment.coverFees = helper.CoverFees;
+            payment.errors = helper.Errors;
+            payment.estimatedDeliveryAt = helper.EstimatedDeliveryAt;
+            payment.forceUsTaxActivity = helper.ForceUsTaxActivity;
+            payment.initiatedAt = helper.InitiatedAt;
+            payment.merchantId = helper.MerchantId;
+            payment.returnedAt = helper.ReturnedAt;
+            payment.returnedNote = helper.ReturnedNote;
+            payment.returnedReason = helper.ReturnedReason;
+            payment.routeMinimum = helper.RouteMinimum;
+            payment.routeType = helper.RouteType;
+            payment.settledAt = helper.SettledAt;
+            payment.taxBasisAmount = helper.TaxBasisAmount;
+            payment.taxBasisCurrency = helper.TaxBasisCurrency;
+            payment.taxReportable = helper.TaxReportable;
+
             return payment;
         }
 
@@ -64,12 +96,6 @@ namespace Trolley.JsonHelpers
         protected static Balance BalanceJsonHelperToBalance(BalanceJsonHelper helper)
         {
 
-            //List<Balance> balances = new List<Balance>();
-            //foreach (BalanceJsonHelper b in helper.Payments.Payments)
-            //{
-            //    payments.Add(PaymentJsonHelperToPayment(p));
-            //    payments.Last().batchId = helper.Id;
-            //}
             Balance helperBalance = helper.Balance;
             Balance balance = helperBalance;
             return balance;
@@ -1471,6 +1497,37 @@ namespace Trolley.JsonHelpers
             private RecipientJsonHelper recipient;
             private Compliance compliance;
 
+            private double amount;
+            private string currency;
+            private bool isSupplyPayment;
+            private double returnedAmount;
+            private string category;
+            private Types.RecipientAccount account;
+            private List<string> tags;
+            private string externalId;
+            private string payoutMethod;
+            private string methodDisplay;
+            private string checkNumber;
+            private double withholdingAmount;
+            private string withholdingCurrency;
+            private double equivalentWithholdingAmount;
+            private string equivalentWithholdingCurrency;
+            private bool coverFees;
+            private List<string> errors;
+            private string estimatedDeliveryAt;
+            private bool forceUsTaxActivity;
+            private string initiatedAt;
+            private string merchantId;
+            private string returnedAt;
+            private string returnedNote;
+            private List<string> returnedReason;
+            private double routeMinimum;
+            private string routeType;
+            private string settledAt;
+            private double taxBasisAmount;
+            private string taxBasisCurrency;
+            private bool taxReportable;
+
             #region properties
             public string Id
             {
@@ -1705,6 +1762,38 @@ namespace Trolley.JsonHelpers
                     compliance = value;
                 }
             }
+
+            public double Amount { get => amount; set => amount = value; }
+            public string Currency { get => currency; set => currency = value; }
+            public bool IsSupplyPayment { get => isSupplyPayment; set => isSupplyPayment = value; }
+            public double ReturnedAmount { get => returnedAmount; set => returnedAmount = value; }
+            public string Category { get => category; set => category = value; }
+            public Types.RecipientAccount Account { get => account; set => account = value; }
+            public List<string> Tags { get => tags; set => tags = value; }
+            public string ExternalId { get => externalId; set => externalId = value; }
+            public string PayoutMethod { get => payoutMethod; set => payoutMethod = value; }
+            public string MethodDisplay { get => methodDisplay; set => methodDisplay = value; }
+            public string CheckNumber { get => checkNumber; set => checkNumber = value; }
+            public double WithholdingAmount { get => withholdingAmount; set => withholdingAmount = value; }
+            public string WithholdingCurrency { get => withholdingCurrency; set => withholdingCurrency = value; }
+            public double EquivalentWithholdingAmount { get => equivalentWithholdingAmount; set => equivalentWithholdingAmount = value; }
+            public string EquivalentWithholdingCurrency { get => equivalentWithholdingCurrency; set => equivalentWithholdingCurrency = value; }
+            public bool CoverFees { get => coverFees; set => coverFees = value; }
+            public List<string> Errors { get => errors; set => errors = value; }
+            public string EstimatedDeliveryAt { get => estimatedDeliveryAt; set => estimatedDeliveryAt = value; }
+            public bool ForceUsTaxActivity { get => forceUsTaxActivity; set => forceUsTaxActivity = value; }
+            public string InitiatedAt { get => initiatedAt; set => initiatedAt = value; }
+            public string MerchantId { get => merchantId; set => merchantId = value; }
+            public string ReturnedAt { get => returnedAt; set => returnedAt = value; }
+            public string ReturnedNote { get => returnedNote; set => returnedNote = value; }
+            public List<string> ReturnedReason { get => returnedReason; set => returnedReason = value; }
+            public double RouteMinimum { get => routeMinimum; set => routeMinimum = value; }
+            public string RouteType { get => routeType; set => routeType = value; }
+            public string SettledAt { get => settledAt; set => settledAt = value; }
+            public double TaxBasisAmount { get => taxBasisAmount; set => taxBasisAmount = value; }
+            public string TaxBasisCurrency { get => taxBasisCurrency; set => taxBasisCurrency = value; }
+            public bool TaxReportable { get => taxReportable; set => taxReportable = value; }
+
             #endregion
 
             public PaymentJsonHelper()
