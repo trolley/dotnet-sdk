@@ -19,6 +19,7 @@ namespace Trolley.Types
     public string emailAddress;
     public string country;
     public string type;
+    public string bankAccountType;
     public string iban;
     public string accountNum;
     public string accountHolderName;
@@ -32,7 +33,7 @@ namespace Trolley.Types
     public string bankPostalCode;
     public MailingAddress mailing;
 
-    public RecipientAccount(string type, string currency, string id, bool primary, string country, string iban = null, string accountNum = null, string recipientAccountId = null, string routeType = null, string recipientFees = null, string emailAddress = null, string accountHolderName = null, string swiftBic = null, string branchId = null, string bankName = null, string bankId = null, string bankAddress = null, string bankCity = null, string bankRegionCode = null, string bankPostalCode = null, MailingAddress mailing = null)
+    public RecipientAccount(string type, string currency, string id, bool primary, string country, string iban = null, string accountNum = null, string recipientAccountId = null, string routeType = null, string recipientFees = null, string emailAddress = null, string accountHolderName = null, string swiftBic = null, string branchId = null, string bankName = null, string bankId = null, string bankAccountType = null, string bankAddress = null, string bankCity = null, string bankRegionCode = null, string bankPostalCode = null, MailingAddress mailing = null)
 
     {
       this.id = id;
@@ -44,6 +45,7 @@ namespace Trolley.Types
       this.emailAddress = emailAddress;
       this.country = country;
       this.type = type;
+      this.bankAccountType = bankAccountType;
       this.iban = iban;
       this.accountNum = accountNum;
       this.accountHolderName = accountHolderName;
@@ -88,7 +90,7 @@ namespace Trolley.Types
         if (other.id == this.id && other.primary == this.primary && other.currency == this.currency && other.recipientAccountId == this.recipientAccountId
             && other.routeType == this.routeType && other.recipientFees == this.recipientFees && other.emailAddress == this.emailAddress && other.country == this.country
             && other.type == this.type && other.iban == this.iban && other.accountNum == this.accountNum && other.accountHolderName == this.accountHolderName
-            && other.swiftBic == this.swiftBic && other.branchId == this.branchId && other.bankName == this.bankName && other.bankId == this.bankId && other.bankAddress == this.bankAddress
+            && other.swiftBic == this.swiftBic && other.branchId == this.branchId && other.bankName == this.bankName && other.bankId == this.bankId && other.bankAccountType == this.bankAccountType && other.bankAddress == this.bankAddress
             && other.bankCity == this.bankCity && other.bankRegionCode == this.bankRegionCode && other.bankPostalCode == this.bankPostalCode)
           return true;
       }

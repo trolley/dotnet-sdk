@@ -142,6 +142,7 @@ namespace tests
             recipientAccount.accountNum = "1234567";
             recipientAccount.bankId = "003";
             recipientAccount.branchId = "47261";
+            recipientAccount.bankAccountType = "savings";
             recipientAccount = gateway.recipientAccount.create(recipient.id, recipientAccount);
             Assert.IsNotNull(recipientAccount);
 

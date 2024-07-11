@@ -41,7 +41,7 @@ namespace Trolley.Types
         /// <param name="updatedAt"></param>
         /// <param name="id"></param>
 
-        public Batch(string description, List<Payment> payments, string currency, double amount, int totalPayments=0, string status=null, string sentAt = null, string completedAt = null, string createdAt = null, string updatedAt = null, string id = null)
+        public Batch(string description, List<Payment> payments, string currency, double amount=0, int totalPayments=0, string status=null, string sentAt = null, string completedAt = null, string createdAt = null, string updatedAt = null, string id = null)
         {
             this.id = id;
             this.payments = payments;
