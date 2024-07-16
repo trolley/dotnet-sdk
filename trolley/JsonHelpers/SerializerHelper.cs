@@ -18,7 +18,7 @@ namespace Trolley.JsonHelpers
                 NullValueHandling = NullValueHandling.Ignore,
                 Formatting = Formatting.Indented,
                 DefaultValueHandling = DefaultValueHandling.Ignore,
-                Converters = { new NumberToStringConverter() }                
+                Converters = { new NumberToStringConverter() }
             };
         }
     }

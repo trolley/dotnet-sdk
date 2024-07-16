@@ -3,6 +3,7 @@ using Trolley.Converters;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using Trolley.JsonHelpers;
+using System.ComponentModel;
 
 namespace Trolley.Types
 {
@@ -64,6 +65,9 @@ namespace Trolley.Types
         public string settledAt;
         public double? taxBasisAmount;
         public string taxBasisCurrency;
+        
+        // Setting default value to true, instead of false set by c#, to make sure a false value is not ignored while serializing to JSON while sending a request.
+        [DefaultValue(true)]
         public bool taxReportable;
 
         /// <summary>
