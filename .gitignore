@@ -8,8 +8,11 @@ TestResults
 .vscode/**
 tests/bin/**
 tests/bin/
-tests/obj/**
+tests/obj/*
 tests/obj/
 tests/.vs/**
 tests/.env
 .DS_Store
+tests/obj/project.assets.json
+tests/obj/project.nuget.cache
+tests/obj/tests.csproj.nuget.dgspec.json

@@ -41,6 +41,10 @@ namespace tests
             Assert.AreEqual("Jones", recipient.lastName);
             Assert.IsNotNull(recipient.email.IndexOf(uuid));
             Assert.IsNotNull(recipient.id);
+
+            // Cleanup - delete Recipient
+            bool delResult = gateway.recipient.Delete(recipient.id);
+            Assert.IsTrue(delResult);
         }
 
         [TestMethod]
@@ -55,15 +59,10 @@ namespace tests
             Assert.AreEqual("Jónes", recipient.lastName);
             Assert.IsNotNull(recipient.email.IndexOf(uuid));
             Assert.IsNotNull(recipient.id);
-        }
 
-        public static string Serialize(object o, StringEscapeHandling stringEscapeHandling)
-        {
-            StringWriter wr = new StringWriter();
-            var jsonWriter = new JsonTextWriter(wr);
-            jsonWriter.StringEscapeHandling = stringEscapeHandling;
-            new JsonSerializer().Serialize(jsonWriter, o);
-            return wr.ToString();
+            // Cleanup - delete Recipient
+            bool delResult = gateway.recipient.Delete(recipient.id);
+            Assert.IsTrue(delResult);
         }
 
         [TestMethod]
@@ -77,6 +76,7 @@ namespace tests
             recipient.lastName = "Jones";
             recipient.dob = "1990-01-01";
 
+            // Create a Recipient
             recipient = gateway.recipient.Create(recipient);
             Assert.IsNotNull(recipient);
             Assert.AreEqual("Tom", recipient.firstName);
@@ -86,16 +86,20 @@ namespace tests
             recipient.address.Country = "US";
             recipient.status = null;
 
+            // Update a Recipient
             bool response = gateway.recipient.Update(recipient.id, recipient);
             Assert.IsNotNull(recipient);
             Assert.IsTrue(response);
 
+            // Find a Recipient
             Recipient fetchResult = gateway.recipient.Get(recipient.id);
             Assert.AreEqual("Bób", fetchResult.firstName);
 
+            // Cleanup - Delete a Recipient
             bool result = gateway.recipient.Delete(fetchResult.id);
             Assert.IsTrue(result);
 
+            // Confirm the Recipient is archived
             Recipient fetchDeletedResult = gateway.recipient.Get(fetchResult.id);
             Assert.AreEqual("archived", fetchDeletedResult.status);
         }
@@ -103,6 +107,7 @@ namespace tests
         [TestMethod]
         public void testAddress()
         {
+            // Create a new Recipient with Address
             string uuid = Guid.NewGuid().ToString();
             Recipient recipient = new Recipient();
             recipient.type = "individual";
@@ -114,13 +119,17 @@ namespace tests
             Recipient createdRecipient = gateway.recipient.Create(recipient);
 
             Assert.AreEqual("US", createdRecipient.address.Country);
+
+            // Cleanup - delete Recipient
+            bool delResult = gateway.recipient.Delete(createdRecipient.id);
+            Assert.IsTrue(delResult);
         }
 
         [TestMethod]
         public void testAccount()
         {
             string uuid = Guid.NewGuid().ToString();
-
+            // Create new Recipient
             Address address = new Address("123 Wolfstrasse", "Berlin", "DE", "123123");
             Recipient recipient = new Recipient();
             recipient.type = "individual";
@@ -138,6 +147,7 @@ namespace tests
             Assert.IsNotNull(recipient.email.IndexOf(uuid));
             Assert.IsNotNull(recipient.id);
 
+            // Create a new RecipientAccount (bank-transfer)
             RecipientAccount recipientAccount = new RecipientAccount("bank-transfer", "CAD", null, true, "CA");
             recipientAccount.accountNum = "1234567";
             recipientAccount.bankId = "003";
@@ -146,6 +156,7 @@ namespace tests
             recipientAccount = gateway.recipientAccount.create(recipient.id, recipientAccount);
             Assert.IsNotNull(recipientAccount);
 
+            // Create another new RecipientAccount (bank-transfer)
             recipientAccount = new RecipientAccount("bank-transfer", "CAD", null, true, "CA");
             recipientAccount.accountNum = "1234578";
             recipientAccount.bankId = "003";
@@ -153,6 +164,7 @@ namespace tests
             recipientAccount = gateway.recipientAccount.create(recipient.id, recipientAccount);
             Assert.IsNotNull(recipientAccount);
 
+            // Create another Recipient
             Recipient usRecipient = new Recipient();
             usRecipient.type = "individual";
             usRecipient.email = "test.accountCheck" + uuid + "@example.com";
@@ -160,8 +172,9 @@ namespace tests
             usRecipient.lastName = "Jones Check";
             usRecipient.dob = "1990-01-01";
             usRecipient.address = new Address("719 anderson dr", "Los Altos", "US", "CA", "94024");
-
             usRecipient = gateway.recipient.Create(usRecipient);
+
+            // Create another new account (check)
             RecipientAccount recipientCheckAccount = new RecipientAccount
             {
                 type = "check",
@@ -171,23 +184,47 @@ namespace tests
             recipientCheckAccount = gateway.recipientAccount.create(usRecipient.id, recipientCheckAccount);
             Assert.IsNotNull(recipientCheckAccount);
 
+            // Create a PayPal account
+            RecipientAccount paypalAccount = new RecipientAccount();
+            paypalAccount.type = "paypal";
+            paypalAccount.emailAddress = "test.accountCheck" + uuid + "@example.com";
+            paypalAccount = gateway.recipientAccount.create(usRecipient.id, paypalAccount);
+            Assert.IsNotNull(paypalAccount.id);
+            Assert.IsFalse(paypalAccount.primary);
+
+            // Set Paypal account as primary
+            RecipientAccount recipientPayPalAccount = new RecipientAccount();
+            recipientPayPalAccount.id = paypalAccount.id;
+            recipientPayPalAccount.primary = true;
+            RecipientAccount payPalAccountUpdate = gateway.recipientAccount.update(usRecipient.id, recipientPayPalAccount);
+            Assert.IsTrue(payPalAccountUpdate.primary);
+
+            // Find an account
             RecipientAccount findAccount = gateway.recipientAccount.find(recipient.id, recipientAccount.id);
             Assert.AreEqual(recipientAccount.iban, findAccount.iban);
 
+            // List all RecipientAccount
             List<RecipientAccount> recipientAccounts = gateway.recipientAccount.findAll(recipient.id);
             Assert.AreEqual(2, recipientAccounts.Count);
             Assert.AreEqual(recipientAccounts[0].currency, "CAD");
 
+            // Delete a RecipientAccount
             bool response = gateway.recipientAccount.delete(recipient.id, recipientAccount.id);
             Assert.IsTrue(response);
 
+            // Confirm the RecipientAccount was deleted and only one account can be found.
             recipientAccounts = gateway.recipientAccount.findAll(recipient.id);
             Assert.AreEqual(1, recipientAccounts.Count);
+
+            // Cleanup - delete Recipient
+            bool delResult = gateway.recipient.Delete(recipient.id);
+            Assert.IsTrue(delResult);
         }
 
         [TestMethod]
         public void TestMultipleDelete()
         {
+            // Create first Recipient
             string uuid = Guid.NewGuid().ToString();
             Recipient recipient = new Recipient();
             recipient.type = "individual";
@@ -200,6 +237,7 @@ namespace tests
 
             Assert.AreEqual("Tom", createdRecipient1.firstName);
 
+            // Create another Recipient
             uuid = Guid.NewGuid().ToString();
             recipient.email = "test.create.netsdk" + uuid + "@example.com";
             recipient.firstName = "John";
@@ -208,6 +246,7 @@ namespace tests
 
             Assert.AreEqual("John", createdRecipient2.firstName);
 
+            // Delete both Recipients together
             bool delResult = gateway.recipient.Delete(createdRecipient1.id, createdRecipient2.id);
 
             Assert.IsTrue(delResult);
