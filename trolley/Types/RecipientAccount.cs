@@ -33,6 +33,16 @@ namespace Trolley.Types
     public string bankPostalCode;
     public MailingAddress mailing;
 
+    private string ACTION="";
+
+    public void setAction(string action){
+      this.ACTION=action;
+    }
+
+    public string getAction(){
+      return this.ACTION;
+    }
+
     public RecipientAccount(string type, string currency, string id, bool primary, string country, string iban = null, string accountNum = null, string recipientAccountId = null, string routeType = null, string recipientFees = null, string emailAddress = null, string accountHolderName = null, string swiftBic = null, string branchId = null, string bankName = null, string bankId = null, string bankAccountType = null, string bankAddress = null, string bankCity = null, string bankRegionCode = null, string bankPostalCode = null, MailingAddress mailing = null)
 
     {
@@ -110,7 +120,8 @@ namespace Trolley.Types
     /// <returns>weather the object is ready to be sent to the Trolley API</returns>
     public bool IsMappable()
     {
-      if (type == null)
+      //Ignoring account type check for paypal, to conform with current API design around setting paypal account as primary
+      if (type == null && this.ACTION != "UPDATE")
       {
         throw new InvalidFieldException("RecipientAccount must have a type");
       }
@@ -132,7 +143,8 @@ namespace Trolley.Types
       }
 
       if (type == "paypal")
-        if (emailAddress == null)
+      //Ignoring account type check for paypal, to conform with current API design around setting paypal account as primary
+        if (emailAddress == null && this.ACTION != "UPDATE")
         {
           throw new InvalidFieldException("RecipientAccount must have an email if the type is paypal");
         }
