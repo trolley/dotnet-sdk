@@ -54,6 +54,11 @@ namespace Trolley
             builder.AppendFormat("/v1/recipients/{0}/accounts/{1}", recipient_id,recipientAccount.id);
             string endPoint = builder.ToString();
 
+            // Remove values unnecessary for RecipientAccount Update
+            recipientAccount.id=null;
+            recipientAccount.recipientAccountId=null;
+            recipientAccount.setAction("UPDATE");
+
             string response = this.gateway.client.Patch(endPoint, recipientAccount);
 
             return recipientFactory(response);

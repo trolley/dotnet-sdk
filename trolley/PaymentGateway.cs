@@ -29,6 +29,12 @@ namespace Trolley
             builder.AppendFormat("/v1/batches/{0}/payments", payment.batchId);
             string endPoint = builder.ToString();
 
+            // Remove values unnecessary for Payment creation
+            payment.batchId=null;
+            Recipient r = new Recipient();
+            r.id = payment.recipient.id;
+            payment.recipient = r;
+
             string response = this.gateway.client.Post(endPoint, payment);
             return PaymentFactory(response);
         }

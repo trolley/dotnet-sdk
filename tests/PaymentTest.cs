@@ -85,8 +85,10 @@ namespace tests
             //Create Payment
             Payment payment = new Payment(recipient, 1.20, "USD");
             payment.batchId = batch.id;
+            payment.taxReportable = false;
             payment = trolley.payment.Create(payment);
             Assert.IsNotNull(payment);
+            Assert.IsFalse(payment.taxReportable);
 
             //Cleanup - Delete Recipient
             Boolean deleteResult = trolley.recipient.Delete(recipient.id);
