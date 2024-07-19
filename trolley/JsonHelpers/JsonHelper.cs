@@ -1521,7 +1521,7 @@ namespace Trolley.JsonHelpers
             private string returnedAt;
             private string returnedNote;
             private List<string> returnedReason;
-            private double routeMinimum;
+            private string routeMinimum;
             private string routeType;
             private string settledAt;
             private double taxBasisAmount;
@@ -1787,7 +1787,7 @@ namespace Trolley.JsonHelpers
             public string ReturnedAt { get => returnedAt; set => returnedAt = value; }
             public string ReturnedNote { get => returnedNote; set => returnedNote = value; }
             public List<string> ReturnedReason { get => returnedReason; set => returnedReason = value; }
-            public double RouteMinimum { get => routeMinimum; set => routeMinimum = value; }
+            public string RouteMinimum { get => routeMinimum; set => routeMinimum = value; }
             public string RouteType { get => routeType; set => routeType = value; }
             public string SettledAt { get => settledAt; set => settledAt = value; }
             public double TaxBasisAmount { get => taxBasisAmount; set => taxBasisAmount = value; }
