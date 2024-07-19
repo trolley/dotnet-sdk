@@ -60,7 +60,7 @@ namespace Trolley.Types
         public string returnedAt;
         public string returnedNote;
         public List<string> returnedReason;
-        public double? routeMinimum;
+        public string routeMinimum;
         public string routeType;
         public string settledAt;
         public double? taxBasisAmount;
