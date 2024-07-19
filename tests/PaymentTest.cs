@@ -87,6 +87,11 @@ namespace tests
             payment.batchId = batch.id;
             payment.taxReportable = false;
             payment = trolley.payment.Create(payment);
+            if(payment.routeMinimum != null){
+                Assert.IsTrue(Convert.ToDouble(payment.routeMinimum)>0);
+            }else{
+                Assert.IsNull(payment.routeMinimum);
+            }
             Assert.IsNotNull(payment);
             Assert.IsFalse(payment.taxReportable);
 
