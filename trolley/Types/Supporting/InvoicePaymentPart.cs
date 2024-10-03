@@ -28,15 +28,15 @@ namespace Trolley.Types.Supporting
         {
             if(invoiceId == null || invoiceLineId == null || paymentId == null)
             {
-                throw new MissingFieldException("Null fields in all IDs. At least one of invoiceId, invoiceLineId, or paymentId must be set.");
+                throw new MissingFieldException("Null fields in all IDs. At least one of invoiceId, invoiceLineId, or paymentId must be set in the InvoicePaymentPart.");
             }
             if (invoiceId.Length == 0 || invoiceLineId.Length == 0 || paymentId.Length == 0)
             {
-                throw new MissingFieldException("All IDs are empty. At least one of invoiceId, invoiceLineId, or paymentId must be set.");
+                throw new MissingFieldException("All IDs are empty. At least one of invoiceId, invoiceLineId, or paymentId must be set in the InvoicePaymentPart.");
             }
             if (amount == null)
             {
-                throw new MissingFieldException("Amount needs to be set.");
+                throw new MissingFieldException("InvoicePaymentPart.Amount needs to be set.");
             }
             return true;
         }
