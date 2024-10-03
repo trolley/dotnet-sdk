@@ -28,6 +28,7 @@ namespace Trolley
         /// <param name="batchId"></param>
         /// <param name="invoicePaymentParts"></param>
         /// <returns></returns>
+        [Obsolete("Please use Create(InvoicePaymentRequest) instead.")]
         public InvoicePayment Create(string batchId = null, params InvoicePaymentPart[] invoicePaymentParts)
         {
             string body = "";
@@ -58,6 +59,23 @@ namespace Trolley
 
             return InvoicePaymentFactory(response);
         }        
+
+        /// <summary>
+        /// Create a new Invoice Payment with the optional payment fields.
+        /// </summary>
+        /// <param name="batchId"></param>
+        /// <param name="invoicePaymentParts"></param>
+        /// <returns></returns>
+        public InvoicePayment Create(InvoicePaymentRequest invoicePaymentRequest)
+        {
+            string endPoint = "/v1/invoices/payment/create/";
+
+            string response = this.gateway.client.Post(
+                endPoint, 
+                JsonConvert.SerializeObject(invoicePaymentRequest, SerializerHelper.GetSerializerSettings()));
+
+            return InvoicePaymentFactory(response);
+        }
 
         /// <summary>
         /// Update an Invoice Payment. You should supply the object set with the id values, along with the updated amount values.
