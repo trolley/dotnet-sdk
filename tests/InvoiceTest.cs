@@ -150,7 +150,16 @@ namespace tests
             invoicePaymentPartRequest.invoiceId = invoice.id;
             invoicePaymentPartRequest.invoiceLineId = invoice.lines[0].id;
             invoicePaymentPartRequest.amount = new Amount("100.00", "USD");
-            InvoicePayment invPayment = gateway.invoicePayment.Create(null, invoicePaymentPartRequest);
+
+            InvoicePaymentRequest invoicePaymentRequest = new InvoicePaymentRequest(
+                new InvoicePaymentPart[]{invoicePaymentPartRequest}, 
+                null, 
+                false, 
+                "payment-memo", 
+                "external-id-"+uuid, 
+                new string[]{"tag1", "tag2"});
+
+            InvoicePayment invPayment = gateway.invoicePayment.Create(invoicePaymentRequest);
             Assert.IsNotNull(invPayment.paymentId);
 
             //Test - Update an Invoice Payment
