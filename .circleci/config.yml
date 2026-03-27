@@ -1,0 +1,46 @@
+version: 2.1
+
+orbs:
+  codecov: codecov/codecov@5.0.3
+
+defaults: &defaults
+  working_directory: ~/project
+  docker:
+    - image: mcr.microsoft.com/dotnet/sdk:6.0
+
+jobs:
+  test:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: dotnet restore
+      - run:
+          name: Build
+          command: dotnet build --configuration Release --no-restore
+      - run:
+          name: Run tests with coverage
+          command: |
+            dotnet test tests/tests.sln \
+              --no-restore \
+              --verbosity normal \
+              --collect:"XPlat Code Coverage" \
+              --results-directory ./coverage \
+              || true
+      - codecov/upload:
+          token: CODECOV_TOKEN
+          slug: trolley/dotnet-sdk
+          files: coverage/**/coverage.cobertura.xml
+          handle_no_reports_found: true
+          when: always
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - test:
+          context: org-global
+          filters:
+            tags:
+              ignore: /.*/

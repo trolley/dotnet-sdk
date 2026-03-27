@@ -5,6 +5,7 @@ codecov:
     wait_for_ci: true
   allow_coverage_offsets: true
   ci:
+    - circleci.com
     - github.com
 
 coverage:
