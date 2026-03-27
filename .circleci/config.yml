@@ -17,9 +17,6 @@ jobs:
           name: Install dependencies
           command: dotnet restore
       - run:
-          name: Build
-          command: dotnet build --configuration Release --no-restore
-      - run:
           name: Run tests with coverage
           command: |
             dotnet test tests/tests.sln \
@@ -28,6 +25,12 @@ jobs:
               --collect:"XPlat Code Coverage" \
               --results-directory ./coverage \
               || true
+      - run:
+          name: Build
+          command: dotnet build --configuration Release --no-restore
+      - run:
+          name: Install GPG
+          command: apt-get update -qq && apt-get install -y gnupg
       - codecov/upload:
           token: CODECOV_TOKEN
           slug: trolley/dotnet-sdk
