@@ -30,6 +30,8 @@ namespace Trolley.Types
         public string updatedAt;
         public double merchantFees;
         public string sourceCurrency;
+        public string sourceCurrencyName;
+        public string targetCurrencyName;
         public string batchId;
         public string id;
         public string status;
@@ -54,6 +56,8 @@ namespace Trolley.Types
         public bool coverFees;
         public List<string> errors;
         public string estimatedDeliveryAt;
+        public string failureMessage;
+        public bool visibleToRecipient;
         public bool forceUsTaxActivity;
         public string initiatedAt;
         public string merchantId;

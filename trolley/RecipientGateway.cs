@@ -67,7 +67,7 @@ namespace Trolley
         /// <returns><c>Recipient</c></returns>
         public Recipient Get(string recipientId)
         {
-            string endPoint = "/v1/recipients/" + recipientId;
+            string endPoint = $"/v1/recipients/{recipientId}";
             string response = this.gateway.client.Get(endPoint);
 
             return RecipientFactory(response);
@@ -103,7 +103,7 @@ namespace Trolley
                 throw new MissingFieldException("recipient object can not be null or empty");
             }
 
-            string endPoint = "/v1/recipients/" + recipientId;
+            string endPoint = $"/v1/recipients/{recipientId}";
             gateway.client.Patch(endPoint, recipient);
             return true;
         }
@@ -115,7 +115,7 @@ namespace Trolley
         /// <returns></returns>
         public bool Delete(string recipientId)
         {
-            string endPoint = "/v1/recipients/" + recipientId;
+            string endPoint = $"/v1/recipients/{recipientId}";
             string response = this.gateway.client.Delete(endPoint);
             return true;
         }

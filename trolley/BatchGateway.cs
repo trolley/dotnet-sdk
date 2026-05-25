@@ -19,7 +19,7 @@ namespace Trolley
 
         public Batch Get(string batchId)
         {
-            string endPoint = "/v1/batches/" + batchId;
+            string endPoint = $"/v1/batches/{batchId}";
             string response = this.gateway.client.Get(endPoint);
 
             return BatchFactory(response);
@@ -79,14 +79,14 @@ namespace Trolley
 
         public bool Update(Batch batch)
         {
-            string endPoint = "/v1/batches/" + batch.id;
+            string endPoint = $"/v1/batches/{batch.id}";
             string response = this.gateway.client.Patch(endPoint, batch);
             return true;
         }
 
         public bool Delete(string batchId)
         {
-            string endPoint = "/v1/batches/" + batchId;
+            string endPoint = $"/v1/batches/{batchId}";
             string response = this.gateway.client.Delete(endPoint);
             return true;
         }
@@ -127,9 +127,7 @@ namespace Trolley
 
         public Batch GenerateQuote(string batchId)
         {
-            StringBuilder builder = new StringBuilder();
-            builder.AppendFormat("/v1/batches/{0}/generate-quote", batchId);
-            string endPoint = builder.ToString();
+            string endPoint = $"/v1/batches/{batchId}/generate-quote";
 
             Batch batch = new Batch(null, null, null, 0);
             string response = this.gateway.client.Post(endPoint, batch);
@@ -138,9 +136,7 @@ namespace Trolley
 
         public Batch ProcessBatch(string batchId)
         {
-            StringBuilder builder = new StringBuilder();
-            builder.AppendFormat("/v1/batches/{0}/start-processing", batchId);
-            string endPoint = builder.ToString();
+            string endPoint = $"/v1/batches/{batchId}/start-processing";
 
             Batch batch = new Batch(null, null, null, 0);
             string response = this.gateway.client.Post(endPoint, batch);
@@ -150,9 +146,7 @@ namespace Trolley
 
         public string Summary(string batchId)
         {
-            StringBuilder builder = new StringBuilder();
-            builder.AppendFormat("/v1/batches/{0}/summary", batchId);
-            string endPoint = builder.ToString();
+            string endPoint = $"/v1/batches/{batchId}/summary";
 
             return this.gateway.client.Get(endPoint);
         }

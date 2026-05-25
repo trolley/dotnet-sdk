@@ -16,6 +16,7 @@ namespace Trolley.Types
     {
 
         public string id;
+        public string recipientId;
         public Recipient recipient;
         public double amount;
         public string currency;
@@ -32,6 +33,8 @@ namespace Trolley.Types
         public string updatedAt;
         public string createdAt;
         public string deletedAt;
+        public string activityCount;
+        public bool taxReportable;
 
         public OfflinePayment() { }
 

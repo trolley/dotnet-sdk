@@ -36,9 +36,7 @@ namespace Trolley
                 throw new MissingFieldException("offlinePayment object can not be null.");
             }
 
-            StringBuilder builder = new StringBuilder();
-            builder.AppendFormat("/v1/recipients/{0}/offlinePayments/", recipientId);
-            string endPoint = builder.ToString();
+            string endPoint = $"/v1/recipients/{recipientId}/offlinePayments";
 
             string response = this.gateway.client.Post(endPoint, offlinePayment);
             return OfflinePaymentFactory(response);
@@ -69,9 +67,7 @@ namespace Trolley
                 throw new MissingFieldException("offlinePayment object can not be null.");
             }
 
-            StringBuilder builder = new StringBuilder();
-            builder.AppendFormat("/v1/recipients/{0}/offlinePayments/{1}", recipientId, offlinePaymentId);
-            string endPoint = builder.ToString();
+            string endPoint = $"/v1/recipients/{recipientId}/offlinePayments/{offlinePaymentId}";
 
             string response = this.gateway.client.Patch(endPoint, offlinePayment);
             return true;
@@ -96,9 +92,7 @@ namespace Trolley
                 throw new MissingFieldException("offlinePaymentId can not be null or empty.");
             }
 
-            StringBuilder builder = new StringBuilder();
-            builder.AppendFormat("/v1/recipients/{0}/offlinePayments/{1}", recipientId, offlinePaymentId);
-            string endPoint = builder.ToString();
+            string endPoint = $"/v1/recipients/{recipientId}/offlinePayments/{offlinePaymentId}";
 
             string response = this.gateway.client.Delete(endPoint);
             return true;

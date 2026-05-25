@@ -32,6 +32,8 @@ namespace Trolley.Types
     public string bankRegionCode;
     public string bankPostalCode;
     public MailingAddress mailing;
+    public object cardDetails;
+    public string phoneNumber;
 
     private string ACTION="";
 
