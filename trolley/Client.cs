@@ -103,6 +103,35 @@ namespace Trolley
             return result;
         }
 
+        public string Patch(string endPoint, string body)
+        {
+            if (body == null)
+            {
+                body = "";
+            }
+
+            HttpContent jsonBody = ConvertBody(body);
+            string result = "";
+            try
+            {
+                httpClient = CreateRequest(endPoint, "PATCH", null, body);
+                var request = new HttpRequestMessage(new HttpMethod("PATCH"), endPoint) { Content = jsonBody };
+                Task<HttpResponseMessage> responseTask = httpClient.SendAsync(request);
+
+                HttpResponseMessage response = responseTask.Result;
+                result = response.Content.ReadAsStringAsync().Result;
+                if ((int)response.StatusCode != 200)
+                {
+                    ThrowStatusCodeException((int)response.StatusCode, response.Content.ReadAsStringAsync().Result);
+                }
+            }
+            catch (HttpRequestException)
+            {
+                throw new InvalidStatusCodeException(result);
+            }
+            return result;
+        }
+
         /// <summary>
         /// Makes a PATCH request to API
         /// </summary>

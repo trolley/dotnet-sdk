@@ -13,6 +13,8 @@
         public InvoiceGateway invoice;
         public InvoiceLineGateway invoiceLine;
         public InvoicePaymentGateway invoicePayment;
+        public VerificationGateway verification;
+        public VerificationGateway trust;
 
         public string apiKey;
         public string apiSecret;
@@ -31,6 +33,8 @@
             this.invoice = new InvoiceGateway(this);
             this.invoiceLine = new InvoiceLineGateway(this);
             this.invoicePayment = new InvoicePaymentGateway(this);
+            this.verification = new VerificationGateway(this);
+            this.trust = this.verification;
         }
 
         public Gateway(string apiKey, string apiSecret, string apiBase = "production"):this(new Configuration(apiKey, apiSecret, apiBase))

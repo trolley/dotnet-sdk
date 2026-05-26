@@ -29,7 +29,9 @@ namespace Trolley
         /// <returns></returns>
         public List<Balance> GetTrolleyBalances()
         {
-            return Get("paymentrails");
+            string endPoint = "/v1/balances/paymentrails";
+            string response = this.gateway.client.Get(endPoint);
+            return balanceListFactory(response);
         }
 
         /// <summary>
@@ -38,7 +40,9 @@ namespace Trolley
         /// <returns></returns>
         public List<Balance> GetPaypalBalances()
         {
-            return Get("paypal");
+            string endPoint = "/v1/balances/paypal";
+            string response = this.gateway.client.Get(endPoint);
+            return balanceListFactory(response);
         }
 
         /// <summary>

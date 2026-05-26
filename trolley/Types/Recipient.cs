@@ -34,13 +34,18 @@ namespace Trolley.Types
         [JsonProperty("accounts")]
         public List<RecipientAccount> recipientAccounts { get; set; }
 
+        [JsonIgnore]
+        public List<RecipientAccount> accounts
+        {
+            get { return recipientAccounts; }
+            set { recipientAccounts = value; }
+        }
+
         public string passport;
         public string updatedAt;
         public string createdAt;
         public List<GovernmentId> governmentIds;
-        public string ssn;
         public string primaryCurrency;
-        public string placeOfBirth;
         public List<string> tags;
         public string merchantId;
         public string payoutMethod;
@@ -48,6 +53,7 @@ namespace Trolley.Types
         public string taxForm;
         public string taxFormStatus;
         public string taxWithholdingPercentage;
+        public string complianceStatus;
 
         //public string timeZone;
 

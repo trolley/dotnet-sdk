@@ -18,16 +18,21 @@ namespace Trolley
 
         public Payment Get(string paymentId)
         {
-            string endPoint = "/v1/payments/" + paymentId;
+            string endPoint = $"/v1/payments/{paymentId}";
+            string response = this.gateway.client.Get(endPoint);
+            return PaymentFactory(response);
+        }
+
+        public Payment Get(string paymentId, string batchId)
+        {
+            string endPoint = $"/v1/batches/{batchId}/payments/{paymentId}";
             string response = this.gateway.client.Get(endPoint);
             return PaymentFactory(response);
         }
 
         public Payment Create(Payment payment)
         {
-            StringBuilder builder = new StringBuilder();
-            builder.AppendFormat("/v1/batches/{0}/payments", payment.batchId);
-            string endPoint = builder.ToString();
+            string endPoint = $"/v1/batches/{payment.batchId}/payments";
 
             // Remove values unnecessary for Payment creation
             payment.batchId=null;
@@ -41,9 +46,7 @@ namespace Trolley
 
         public bool Update(Payment payment)
         {
-            StringBuilder builder = new StringBuilder();
-            builder.AppendFormat("/v1/batches/{0}/payments/{1}", payment.batchId, payment.id);
-            string endPoint = builder.ToString();
+            string endPoint = $"/v1/batches/{payment.batchId}/payments/{payment.id}";
 
             Payment cleanPayment = UpdateablePayment(payment);
 
@@ -53,9 +56,7 @@ namespace Trolley
 
         public bool Delete(string paymentId, string batchId)
         {
-            StringBuilder builder = new StringBuilder();
-            builder.AppendFormat("/v1/batches/{0}/payments/{1}", batchId, paymentId);
-            string endPoint = builder.ToString();
+            string endPoint = $"/v1/batches/{batchId}/payments/{paymentId}";
 
             string response = this.gateway.client.Delete(endPoint);
             return true;
@@ -113,9 +114,7 @@ namespace Trolley
 
         public Payments Search(string batchId, PaymentQueryParams queryParams)
         {
-            StringBuilder builder = new StringBuilder();
-            builder.AppendFormat("/v1/batches/{0}/payments?&{1}", batchId, queryParams.buildQueryString());
-            string endPoint = builder.ToString();
+            string endPoint = $"/v1/batches/{batchId}/payments?&{queryParams.buildQueryString()}";
 
             string jsonResponse = this.gateway.client.Get(endPoint);
 
