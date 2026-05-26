@@ -21,3 +21,18 @@ jobs:
       run: dotnet restore trolley/trolley.csproj
     - name: Build
       run: dotnet build trolley/trolley.csproj --configuration Release --no-restore
+    - name: Test with coverage
+      continue-on-error: true
+      run: |
+        dotnet test tests/tests.sln \
+          --no-restore \
+          --verbosity normal \
+          --collect:"XPlat Code Coverage" \
+          --results-directory ./coverage
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v4
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./coverage/**/*.xml
+        slug: trolley/dotnet-sdk
+        fail_ci_if_error: false
