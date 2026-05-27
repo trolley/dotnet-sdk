@@ -14,6 +14,9 @@ namespace tests
 
         public Config()
         {
+            ACCESS_KEY = Environment.GetEnvironmentVariable("TROLLEY_ACCESS_KEY") ?? Environment.GetEnvironmentVariable("ACCESS_KEY") ?? "";
+            SECRET_KEY = Environment.GetEnvironmentVariable("TROLLEY_SECRET_KEY") ?? Environment.GetEnvironmentVariable("SECRET_KEY") ?? "";
+            BASE_URL = Environment.GetEnvironmentVariable("TROLLEY_API_BASE_URL") ?? Environment.GetEnvironmentVariable("BASE_URL") ?? "";
 
             string filePath = Path.Combine("../../../", ".env");
 
@@ -38,22 +41,22 @@ namespace tests
 
                 if (apiKeys.ContainsKey("ACCESS_KEY"))
                 {
-                    this.ACCESS_KEY = apiKeys["ACCESS_KEY"];
+                    ACCESS_KEY = apiKeys["ACCESS_KEY"];
                 }
 
                 if (apiKeys.ContainsKey("SECRET_KEY"))
                 {
-                    this.SECRET_KEY = apiKeys["SECRET_KEY"];
+                    SECRET_KEY = apiKeys["SECRET_KEY"];
                 }
 
                 if (apiKeys.ContainsKey("BASE_URL"))
                 {
-                    this.BASE_URL = apiKeys["BASE_URL"];
+                    BASE_URL = apiKeys["BASE_URL"];
                 }
 
                 if (apiKeys.ContainsKey("RECIPIENT_ID"))
                 {
-                    this.RECIPIENT_ID = apiKeys["RECIPIENT_ID"];
+                    RECIPIENT_ID = apiKeys["RECIPIENT_ID"];
                 }
             }
             else
