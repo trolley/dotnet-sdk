@@ -19,7 +19,7 @@ namespace tests
         public void Init()
         {   
             config = new Config();
-            gateway = new Trolley.Gateway(config.ACCESS_KEY, config.SECRET_KEY);
+            gateway = new Trolley.Gateway(config.ACCESS_KEY, config.SECRET_KEY, config.BASE_URL);
         }
 
         [TestMethod]

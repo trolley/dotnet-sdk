@@ -11,6 +11,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      TROLLEY_ACCESS_KEY: ${{ secrets.TROLLEY_ACCESS_KEY }}
+      TROLLEY_SECRET_KEY: ${{ secrets.TROLLEY_SECRET_KEY }}
+      TROLLEY_API_BASE_URL: ${{ secrets.TROLLEY_API_BASE_URL }}
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET
@@ -18,18 +23,25 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Install dependencies
-      run: dotnet restore trolley/trolley.csproj
+      run: dotnet restore trolley.sln
     - name: Build
-      run: dotnet build trolley/trolley.csproj --configuration Release --no-restore
-    - name: Test with coverage
-      continue-on-error: true
+      run: dotnet build trolley.sln --configuration Release --no-restore
+    - name: Discover tests
+      run: dotnet test tests/tests.sln --configuration Release --no-build --list-tests
+    - name: Run integration tests with coverage
+      if: env.TROLLEY_ACCESS_KEY != '' && env.TROLLEY_SECRET_KEY != ''
       run: |
         dotnet test tests/tests.sln \
-          --no-restore \
+          --configuration Release \
+          --no-build \
           --verbosity normal \
           --collect:"XPlat Code Coverage" \
           --results-directory ./coverage
+    - name: Skip integration tests without credentials
+      if: env.TROLLEY_ACCESS_KEY == '' || env.TROLLEY_SECRET_KEY == ''
+      run: echo "Skipping integration tests because TROLLEY_ACCESS_KEY/TROLLEY_SECRET_KEY are not configured."
     - name: Upload coverage to Codecov
+      if: env.CODECOV_TOKEN != '' && env.TROLLEY_ACCESS_KEY != '' && env.TROLLEY_SECRET_KEY != ''
       uses: codecov/codecov-action@v4
       with:
         token: ${{ secrets.CODECOV_TOKEN }}

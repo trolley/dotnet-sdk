@@ -15,7 +15,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>2.0.0.0</ApplicationVersion>
+    <ApplicationVersion>2.2.4.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -28,6 +28,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>2.2.4</Version>
     <PackageDescription>The official Trolley .NET SDK to interface with the Trolley API (https://www.trolley.com/)</PackageDescription>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <Copyright>Copyright 2020</Copyright>
     <Authors>Jesse Tremblay, Jesse Silber, Joshua Cunningham, Aman Aalam</Authors>
     <PackageTags>Trolley net sdk PaymentRails</PackageTags>
@@ -44,6 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Types\Supporting\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Types\Supporting\" />

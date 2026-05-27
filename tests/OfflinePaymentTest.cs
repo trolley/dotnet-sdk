@@ -17,7 +17,7 @@ namespace tests
         public void Init()
         {
             Config config = new Config();
-            gateway = new Trolley.Gateway(config.ACCESS_KEY, config.SECRET_KEY);
+            gateway = new Trolley.Gateway(config.ACCESS_KEY, config.SECRET_KEY, config.BASE_URL);
         }
 
         public TestContext TestContext

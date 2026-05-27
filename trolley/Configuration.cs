@@ -67,6 +67,16 @@
 
         public string enviromentToUrl(string enviroment)
         {
+            if (string.IsNullOrEmpty(enviroment))
+            {
+                return "https://api.trolley.com";
+            }
+
+            if (enviroment.StartsWith("http://") || enviroment.StartsWith("https://"))
+            {
+                return enviroment.TrimEnd('/');
+            }
+
             switch (enviroment)
             {
                 case "development":

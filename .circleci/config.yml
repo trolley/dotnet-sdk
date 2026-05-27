@@ -15,19 +15,26 @@ jobs:
       - checkout
       - run:
           name: Install dependencies
-          command: dotnet restore
-      - run:
-          name: Run tests with coverage
-          command: |
-            dotnet test tests/tests.sln \
-              --no-restore \
-              --verbosity normal \
-              --collect:"XPlat Code Coverage" \
-              --results-directory ./coverage \
-              || true
+          command: dotnet restore trolley.sln
       - run:
           name: Build
-          command: dotnet build --configuration Release --no-restore
+          command: dotnet build trolley.sln --configuration Release --no-restore
+      - run:
+          name: Discover tests
+          command: dotnet test tests/tests.sln --configuration Release --no-build --list-tests
+      - run:
+          name: Run integration tests with coverage
+          command: |
+            if [ -n "$TROLLEY_ACCESS_KEY" ] && [ -n "$TROLLEY_SECRET_KEY" ]; then
+              dotnet test tests/tests.sln \
+                --configuration Release \
+                --no-build \
+                --verbosity normal \
+                --collect:"XPlat Code Coverage" \
+                --results-directory ./coverage
+            else
+              echo "Skipping integration tests because TROLLEY_ACCESS_KEY/TROLLEY_SECRET_KEY are not configured."
+            fi
       - run:
           name: Install GPG
           command: apt-get update -qq && apt-get install -y gnupg
