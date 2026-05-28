@@ -41,5 +41,10 @@
         {
         }
 
+        public string Request(string method, string endPoint, string body = null)
+        {
+            return this.client.Request(method, endPoint, body);
+        }
+
     }
 }
