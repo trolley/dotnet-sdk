@@ -36,9 +36,9 @@ namespace Trolley
                 HttpResponseMessage response = httpClient.GetAsync(endPoint).Result;
 
                 result = response.Content.ReadAsStringAsync().Result;
-                if ((int)response.StatusCode != 200)
+                if (!response.IsSuccessStatusCode)
                 {
-                    ThrowStatusCodeException((int)response.StatusCode, response.Content.ReadAsStringAsync().Result);
+                    ThrowStatusCodeException((int)response.StatusCode, result);
                 }
             }
             catch (HttpRequestException)
@@ -88,9 +88,9 @@ namespace Trolley
                 httpClient = CreateRequest(endPoint, "POST", null, body);
                 HttpResponseMessage response = httpClient.PostAsync(endPoint, jsonBody).Result;
                 result = response.Content.ReadAsStringAsync().Result;
-                if ((int)response.StatusCode != 200)
+                if (!response.IsSuccessStatusCode)
                 {
-                    ThrowStatusCodeException((int)response.StatusCode, response.Content.ReadAsStringAsync().Result);
+                    ThrowStatusCodeException((int)response.StatusCode, result);
                 }
 
             }
@@ -120,9 +120,9 @@ namespace Trolley
 
                 HttpResponseMessage response = responseTask.Result;
                 result = response.Content.ReadAsStringAsync().Result;
-                if ((int)response.StatusCode != 200)
+                if (!response.IsSuccessStatusCode)
                 {
-                    ThrowStatusCodeException((int)response.StatusCode, response.Content.ReadAsStringAsync().Result);
+                    ThrowStatusCodeException((int)response.StatusCode, result);
                 }
             }
             catch (HttpRequestException)
@@ -152,9 +152,9 @@ namespace Trolley
 
                 HttpResponseMessage response = responseTask.Result;
                 result = response.Content.ReadAsStringAsync().Result;
-                if ((int)response.StatusCode != 200)
+                if (!response.IsSuccessStatusCode)
                 {
-                    ThrowStatusCodeException((int)response.StatusCode, response.Content.ReadAsStringAsync().Result);
+                    ThrowStatusCodeException((int)response.StatusCode, result);
                 }
             }
             catch (HttpRequestException)
@@ -195,9 +195,9 @@ namespace Trolley
                 
                 
                 result = response.Content.ReadAsStringAsync().Result;
-                if ((int)response.StatusCode != 200)
+                if (!response.IsSuccessStatusCode)
                 {
-                    ThrowStatusCodeException((int)response.StatusCode, response.Content.ReadAsStringAsync().Result);
+                    ThrowStatusCodeException((int)response.StatusCode, result);
                 }
             }
             catch (HttpRequestException)
@@ -206,6 +206,23 @@ namespace Trolley
             }
 
             return result;
+        }
+
+        public string Request(string method, string endPoint, string body = null)
+        {
+            switch (method.ToUpperInvariant())
+            {
+                case "GET":
+                    return Get(endPoint);
+                case "POST":
+                    return Post(endPoint, body);
+                case "PATCH":
+                    return Patch(endPoint, body);
+                case "DELETE":
+                    return Delete(endPoint, body);
+                default:
+                    throw new InvalidStatusCodeException("Unsupported HTTP method: " + method);
+            }
         }
 
 
