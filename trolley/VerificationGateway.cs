@@ -35,8 +35,7 @@ namespace Trolley
 
         public string TriggerWatchlist(object body)
         {
-            string endPoint = "/v1/verifications/watchlist/trigger";
-            return this.gateway.client.Post(endPoint, JsonConvert.SerializeObject(body));
+            return this.Trigger("watchlist", body);
         }
     }
 }
