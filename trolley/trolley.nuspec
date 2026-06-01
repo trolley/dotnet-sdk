@@ -4,7 +4,7 @@
     <id>trolleyhq</id>
     <version>2.3.1</version>
     <title>$title$</title>
-    <authors>Jesse Tremblay, Jesse Silber, Joshua Cunningham, Aman Aalam</authors>
+    <authors>Jesse Tremblay, Jesse Silber, Joshua Cunningham, Aman Aalam, Barnett Klane</authors>
     <owners>aman.trolley, trolley-developers, PaymentRailsJesse, joshuapr</owners>
     <projectUrl>https://github.com/Trolley/dotnet-sdk</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
