@@ -18,6 +18,8 @@ jobs:
       TROLLEY_API_BASE_URL: ${{ secrets.TROLLEY_API_BASE_URL }}
     steps:
     - uses: actions/checkout@v4
+    - name: Verify version metadata
+      run: scripts/verify-version.sh
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:

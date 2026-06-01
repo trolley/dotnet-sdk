@@ -14,6 +14,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Verify version metadata
+          command: bash scripts/verify-version.sh
+      - run:
           name: Install dependencies
           command: dotnet restore trolley.sln
       - run:
