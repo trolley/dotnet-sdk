@@ -25,66 +25,67 @@ fi
 repo_root="$(git rev-parse --show-toplevel)"
 cd "$repo_root"
 
-python3 - "${1:-}" <<'PY'
-import re
-import sys
-import xml.etree.ElementTree as ET
-from pathlib import Path
+project_file="trolley/trolley.csproj"
+semver_file="trolley/Types/Supporting/SemVer.cs"
+assembly_info_file="trolley/Properties/AssemblyInfo.cs"
+nuspec_file="trolley/trolley.nuspec"
 
-repo = Path(".")
-expected = sys.argv[1] if len(sys.argv) > 1 and sys.argv[1] else None
+first_match() {
+  awk 'NF { print; exit }'
+}
 
-project_file = repo / "trolley/trolley.csproj"
-semver_file = repo / "trolley/Types/Supporting/SemVer.cs"
-assembly_info_file = repo / "trolley/Properties/AssemblyInfo.cs"
-nuspec_file = repo / "trolley/trolley.nuspec"
+xml_value() {
+  local file="$1"
+  local tag="$2"
 
-csproj = ET.parse(project_file)
-project_version = csproj.find(".//Version").text or ""
-application_version = csproj.find(".//ApplicationVersion").text or ""
+  sed -nE "s/.*<${tag}>([^<]+)<\\/${tag}>.*/\\1/p" "$file" | first_match
+}
 
-semver_text = semver_file.read_text()
-semver_parts = {}
-for name in ("MAJOR", "PATCH", "MINOR"):
-    match = re.search(rf"public\s+static\s+int\s+{name}\s*=\s*(\d+)", semver_text)
-    semver_parts[name] = match.group(1) if match else ""
-semver_version = f"{semver_parts['MAJOR']}.{semver_parts['PATCH']}.{semver_parts['MINOR']}"
+semver_part() {
+  local name="$1"
 
-assembly_text = assembly_info_file.read_text()
-file_version_match = re.search(r'AssemblyFileVersion\("([^"]+)"\)', assembly_text)
-info_version_match = re.search(r'AssemblyInformationalVersion\("([^"]+)"\)', assembly_text)
-file_version = file_version_match.group(1) if file_version_match else ""
-info_version = info_version_match.group(1) if info_version_match else ""
+  sed -nE "s/.*public[[:space:]]+static[[:space:]]+int[[:space:]]+${name}[[:space:]]*=[[:space:]]*([0-9]+).*/\\1/p" "$semver_file" | first_match
+}
 
-nuspec_text = nuspec_file.read_text()
-nuspec_match = re.search(r"<version>([^<]+)</version>", nuspec_text)
-nuspec_version = nuspec_match.group(1) if nuspec_match else ""
+assembly_attribute() {
+  local name="$1"
 
-if expected is None:
-    expected = project_version
+  sed -nE "s/.*${name}\\(\"([^\"]+)\"\\).*/\\1/p" "$assembly_info_file" | first_match
+}
 
-errors = []
+project_version="$(xml_value "$project_file" "Version")"
+application_version="$(xml_value "$project_file" "ApplicationVersion")"
+semver_version="$(semver_part "MAJOR").$(semver_part "PATCH").$(semver_part "MINOR")"
+file_version="$(assembly_attribute "AssemblyFileVersion")"
+info_version="$(assembly_attribute "AssemblyInformationalVersion")"
+nuspec_version="$(xml_value "$nuspec_file" "version")"
+expected="${1:-$project_version}"
 
-def check(label, actual, want):
-    if actual != want:
-        errors.append(f"{label}: expected {want!r}, found {actual!r}")
+errors=()
 
-check("trolley/trolley.csproj <Version>", project_version, expected)
-check("trolley/trolley.csproj <ApplicationVersion>", application_version, f"{expected}.0")
-check("trolley/Types/Supporting/SemVer.cs", semver_version, expected)
-check("trolley/Properties/AssemblyInfo.cs AssemblyFileVersion", file_version, f"{expected}.0")
-check("trolley/Properties/AssemblyInfo.cs AssemblyInformationalVersion", info_version, expected)
-check("trolley/trolley.nuspec <version>", nuspec_version, expected)
+check() {
+  local label="$1"
+  local actual="$2"
+  local want="$3"
 
-if errors:
-    print("Version metadata mismatch:", file=sys.stderr)
-    for error in errors:
-        print(f"  - {error}", file=sys.stderr)
-    print(
-        "\nUpdate every location above when bumping the SDK version.",
-        file=sys.stderr,
-    )
-    sys.exit(1)
+  if [[ "$actual" != "$want" ]]; then
+    errors+=("${label}: expected '${want}', found '${actual}'")
+  fi
+}
 
-print(f"Version metadata is consistent at {expected}.")
-PY
+check "trolley/trolley.csproj <Version>" "$project_version" "$expected"
+check "trolley/trolley.csproj <ApplicationVersion>" "$application_version" "${expected}.0"
+check "trolley/Types/Supporting/SemVer.cs" "$semver_version" "$expected"
+check "trolley/Properties/AssemblyInfo.cs AssemblyFileVersion" "$file_version" "${expected}.0"
+check "trolley/Properties/AssemblyInfo.cs AssemblyInformationalVersion" "$info_version" "$expected"
+check "trolley/trolley.nuspec <version>" "$nuspec_version" "$expected"
+
+if (( ${#errors[@]} > 0 )); then
+  echo "Version metadata mismatch:" >&2
+  printf '  - %s\n' "${errors[@]}" >&2
+  echo >&2
+  echo "Update every location above when bumping the SDK version." >&2
+  exit 1
+fi
+
+echo "Version metadata is consistent at ${expected}."
