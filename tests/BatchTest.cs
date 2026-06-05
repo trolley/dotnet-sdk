@@ -3,6 +3,7 @@ using Trolley.Types;
 using System.Collections.Generic;
 using System;
 using Trolley.Exceptions;
+using Newtonsoft.Json.Linq;
 
 namespace tests
 {
@@ -46,6 +47,19 @@ namespace tests
             List<Batch> batches = gateway.batch.Search().batches;
             Assert.IsNotNull(batches);
         }
+        [TestMethod]
+        public void testBatchJsonIncludesTags()
+        {
+            Batch batch = new Batch("Integration Test Create", null, Config.TEST_BALANCE_CURRENCY, 0);
+            batch.tags = new List<string> { "customer-import", "weekly" };
+
+            JObject json = JObject.Parse(batch.ToJson());
+
+            Assert.AreEqual(Config.TEST_BALANCE_CURRENCY, (string)json["sourceCurrency"]);
+            Assert.AreEqual("Integration Test Create", (string)json["description"]);
+            CollectionAssert.AreEqual(new[] { "customer-import", "weekly" }, json["tags"].ToObject<string[]>());
+        }
+
         [TestMethod]
         public void testCreate()
         {

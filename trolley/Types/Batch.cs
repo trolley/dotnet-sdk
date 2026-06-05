@@ -1,7 +1,9 @@
 ﻿using Trolley.Exceptions;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Trolley.JsonHelpers;
 
 namespace Trolley.Types
 {
@@ -122,6 +124,13 @@ namespace Trolley.Types
             builder.Append("{\n");
             if (this.currency != "" && this.currency != null) { builder.AppendFormat("\"sourceCurrency\": \"{0}\",\n", this.currency); }
             builder.AppendFormat("\"description\": \"{0}\"\n", this.description);
+
+            if (this.tags != null)
+            {
+                builder.Append(",\"tags\": ");
+                builder.Append(JsonConvert.SerializeObject(this.tags, SerializerHelper.GetSerializerSettings()));
+                builder.Append("\n");
+            }
 
             if (this.payments != null)
             {
