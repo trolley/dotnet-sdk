@@ -1,0 +1,37 @@
+---
+description: Keep SDK version metadata consistent across all release files
+globs: trolley/trolley.csproj,trolley/Types/Supporting/SemVer.cs,trolley/Properties/AssemblyInfo.cs,trolley/trolley.nuspec,scripts/**
+alwaysApply: false
+---
+
+# SDK Version Bumps
+
+When changing the .NET SDK release version, update **every** location below in the same change. Do not bump only `trolley.csproj`.
+
+| File | Field | Example for `2.3.1` |
+|------|-------|---------------------|
+| `trolley/trolley.csproj` | `<Version>` | `2.3.1` |
+| `trolley/trolley.csproj` | `<ApplicationVersion>` | `2.3.1.0` |
+| `trolley/Types/Supporting/SemVer.cs` | `MAJOR`, `PATCH`, `MINOR` | `2`, `3`, `1` |
+| `trolley/Properties/AssemblyInfo.cs` | `AssemblyFileVersion` | `2.3.1.0` |
+| `trolley/Properties/AssemblyInfo.cs` | `AssemblyInformationalVersion` | `2.3.1` |
+| `trolley/trolley.nuspec` | `<version>` | `2.3.1` |
+
+Notes:
+- `SemVer.cs` uses `MAJOR.PATCH.MINOR` for the `Trolley-Source` header (not standard SemVer naming).
+- Leave `AssemblyVersion("2.0.0.0")` unchanged unless there is an explicit assembly-version policy change.
+
+After editing, run:
+
+```bash
+scripts/verify-version.sh
+scripts/verify-version.sh 2.3.1   # optional explicit target
+```
+
+Before publishing, run:
+
+```bash
+scripts/cut-release.sh 2.3.1
+```
+
+CI runs `scripts/verify-version.sh` on every PR and push to `main`.

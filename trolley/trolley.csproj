@@ -30,7 +30,7 @@
     <PackageDescription>The official Trolley .NET SDK to interface with the Trolley API (https://www.trolley.com/)</PackageDescription>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <Copyright>Copyright 2020</Copyright>
-    <Authors>Jesse Tremblay, Jesse Silber, Joshua Cunningham, Aman Aalam</Authors>
+    <Authors>Jesse Tremblay, Jesse Silber, Joshua Cunningham, Aman Aalam, Barnett Klane</Authors>
     <PackageTags>Trolley net sdk PaymentRails</PackageTags>
     <RepositoryUrl>https://github.com/Trolley/dotnet-sdk/</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
