@@ -59,6 +59,45 @@ namespace tests
             });
         }
 
+        [TestMethod]
+        public void VerificationGatewayTriggersIdentityOrBusinessVerification()
+        {
+            string method = null;
+            string path = null;
+            string body = null;
+
+            WithServer(async context =>
+            {
+                method = context.Request.HttpMethod;
+                path = context.Request.RawUrl;
+                using (var reader = new System.IO.StreamReader(context.Request.InputStream, context.Request.ContentEncoding))
+                {
+                    body = await reader.ReadToEndAsync();
+                }
+
+                byte[] response = Encoding.UTF8.GetBytes("{\"ok\":true}");
+                context.Response.StatusCode = 200;
+                context.Response.ContentType = "application/json";
+                context.Response.OutputStream.Write(response, 0, response.Length);
+                context.Response.Close();
+            }, baseUrl =>
+            {
+                var gateway = new Trolley.Gateway("access", "secret", baseUrl);
+
+                string response = gateway.verification.TriggerIdentityOrBusinessVerification(new
+                {
+                    recipientId = "R-123",
+                    types = new[] { "individual" },
+                    retryAllowed = true
+                });
+
+                Assert.AreEqual("POST", method);
+                Assert.AreEqual("/v1/verifications/trigger", path);
+                Assert.AreEqual("{\"recipientId\":\"R-123\",\"types\":[\"individual\"],\"retryAllowed\":true}", body);
+                Assert.AreEqual("{\"ok\":true}", response);
+            });
+        }
+
         private static void WithServer(Func<HttpListenerContext, Task> handler, Action<string> test)
         {
             int port = GetAvailablePort();
