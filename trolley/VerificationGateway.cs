@@ -33,6 +33,12 @@ namespace Trolley
             return this.gateway.client.Post(endPoint, JsonConvert.SerializeObject(body));
         }
 
+        public string TriggerIdentityOrBusinessVerification(object body)
+        {
+            string endPoint = "/v1/verifications/trigger";
+            return this.gateway.client.Post(endPoint, JsonConvert.SerializeObject(body));
+        }
+
         public string TriggerWatchlist(object body)
         {
             string endPoint = "/v1/verifications/watchlist/trigger";
