@@ -38,9 +38,6 @@ jobs:
               echo "Skipping integration tests because TROLLEY_ACCESS_KEY/TROLLEY_SECRET_KEY are not configured."
             fi
       - run:
-          name: Install GPG
-          command: apt-get update -qq && apt-get install -y gnupg
-      - run:
           name: Upload coverage to Codecov
           when: always
           command: |
