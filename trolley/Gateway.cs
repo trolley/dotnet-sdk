@@ -15,6 +15,7 @@
         public InvoicePaymentGateway invoicePayment;
         public VerificationGateway verification;
         public VerificationGateway trust;
+        public PartnerGateway partner;
 
         public string apiKey;
         public string apiSecret;
@@ -35,6 +36,7 @@
             this.invoicePayment = new InvoicePaymentGateway(this);
             this.verification = new VerificationGateway(this);
             this.trust = this.verification;
+            this.partner = new PartnerGateway(this);
         }
 
         public Gateway(string apiKey, string apiSecret, string apiBase = "production"):this(new Configuration(apiKey, apiSecret, apiBase))
