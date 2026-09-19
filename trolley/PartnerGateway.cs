@@ -12,9 +12,14 @@ namespace Trolley
             this.gateway = gateway;
         }
 
-        public string GetFees()
+        public string GetFees(string currency = null)
         {
-            return this.gateway.client.Get("/v1/fees");
+            string endPoint = "/v1/fees";
+            if (!string.IsNullOrEmpty(currency))
+            {
+                endPoint += $"?currency={Uri.EscapeDataString(currency)}";
+            }
+            return this.gateway.client.Get(endPoint);
         }
 
         public string UpdateFees(object body)

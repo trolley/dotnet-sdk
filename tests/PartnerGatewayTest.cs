@@ -17,6 +17,7 @@ namespace tests
             var body = new { enabled = true };
 
             AssertRequest("GET", "/v1/fees", null, partner => partner.GetFees());
+            AssertRequest("GET", "/v1/fees?currency=USD", null, partner => partner.GetFees("USD"));
             AssertRequest("PATCH", "/v1/fees", "{\"enabled\":true}", partner => partner.UpdateFees(body));
             AssertRequest("GET", "/v1/payout-methods", null, partner => partner.ListPayoutMethods());
             AssertRequest("GET", "/v1/payout-methods/bank-transfer", null, partner => partner.GetPayoutMethod("bank-transfer"));
@@ -46,7 +47,7 @@ namespace tests
             WithServer(async context =>
             {
                 method = context.Request.HttpMethod;
-                path = context.Request.Url.AbsolutePath;
+                path = context.Request.Url.PathAndQuery;
                 using (var reader = new StreamReader(context.Request.InputStream, context.Request.ContentEncoding))
                 {
                     body = await reader.ReadToEndAsync();
